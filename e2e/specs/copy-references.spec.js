@@ -1,7 +1,7 @@
 import { waitForAppReady, skipOnboardingIfPresent, waitForEditor } from "./helpers.js";
 async function invoke(command, args = {}) {
   const response = await browser.executeAsync(async (command, args, done) => {
-    try { done({value: await window.__KINDLING_TEST__.invoke(command, args)}); }
+    try { done({value: await window.__FEATHER_QUILL_TEST__.invoke(command, args)}); }
     catch (error) { done({error:JSON.stringify(error)}); }
   }, command, args);
   if (response.error) throw new Error(response.error);

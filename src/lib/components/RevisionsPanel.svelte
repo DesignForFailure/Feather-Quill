@@ -218,7 +218,7 @@
         >
       </fieldset>{/if}
   </DialogHeader>
-  <nav aria-label={t("editorial.revisionsPanel.viewsAria")} class="ka-tablist history-tabs">
+  <nav aria-label={t("editorial.revisionsPanel.viewsAria")} class="fq-tablist history-tabs">
     <button type="button" aria-pressed={tab === "history"} onclick={() => (tab = "history")}
       >{t("editorial.revisionsPanel.tabHistory")}</button
     >
@@ -226,9 +226,9 @@
       >{t("editorial.revisionsPanel.tabOverview")}</button
     >
   </nav>
-  {#if error}<p role="alert" class="ka-error history-error">{error}</p>{/if}
+  {#if error}<p role="alert" class="fq-error history-error">{error}</p>{/if}
   {#if !review}
-    <div class="ka-empty od-stack history-empty">
+    <div class="fq-empty od-stack history-empty">
       {#if busy}
         <p class="history-loading">
           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />{t(
@@ -237,20 +237,20 @@
         </p>
       {:else}
         <p>{t("editorial.revisionsPanel.loadFailed")}</p>
-        <button type="button" class="ka-button ka-button--secondary" onclick={load}
+        <button type="button" class="fq-button fq-button--secondary" onclick={load}
           >{t("editorial.revisionsPanel.retry")}</button
         >
       {/if}
     </div>
   {:else}
     {#if locked}
-      <div class="ka-notice ka-notice--warning od-row-top locked-notice" role="status">
+      <div class="fq-notice fq-notice--warning od-row-top locked-notice" role="status">
         <Lock class="w-5 h-5" aria-hidden="true" />
         <p>{t("editorial.revisionsPanel.lockedReadOnly")}</p>
       </div>
     {/if}
     {#if prunedNotice}
-      <div class="ka-notice od-row-top locked-notice" role="status">
+      <div class="fq-notice od-row-top locked-notice" role="status">
         <Info class="w-5 h-5" aria-hidden="true" />
         <p>{prunedNotice}</p>
       </div>
@@ -260,10 +260,10 @@
         <aside class="draft-list" aria-label={t("editorial.revisionsPanel.savedDrafts")}>
           <h3 class="draft-list-title">
             {t("editorial.revisionsPanel.savedDrafts")}
-            <span class="ka-badge">{review.data.drafts.length}</span>
+            <span class="fq-badge">{review.data.drafts.length}</span>
           </h3>
           <fieldset disabled={busy || locked} class="save-draft">
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="revision-draft-name">{t("editorial.revisionsPanel.draftName")}</label>
               <input
                 id="revision-draft-name"
@@ -273,7 +273,7 @@
             </div>
             <button
               type="button"
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               disabled={!name.trim()}
               aria-busy={action === "draft" || undefined}
               onclick={createDraft}
@@ -306,14 +306,14 @@
         </aside>
         <section class="draft-detail" aria-label={t("editorial.revisionsPanel.comparisonAria")}>
           {#if !review.data.drafts.length}
-            <div class="ka-empty od-stack history-empty">
+            <div class="fq-empty od-stack history-empty">
               <History class="w-7 h-7" aria-hidden="true" />
               <h3>{t("editorial.revisionsPanel.keepVersionTitle")}</h3>
               <p>{t("editorial.revisionsPanel.keepVersionBody")}</p>
             </div>
           {:else if oldDraft && newDraft}
             <div class="comparison-toolbar">
-              <div class="ka-field od-field compare-field">
+              <div class="fq-field od-field compare-field">
                 <label for="revision-compare">{t("editorial.revisionsPanel.compareWith")}</label>
                 <select id="revision-compare" bind:value={after}
                   ><option value={-1}>{t("editorial.revisionsPanel.currentProse")}</option
@@ -327,7 +327,7 @@
               </div>
               <button
                 type="button"
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 disabled={busy || locked}
                 aria-expanded={restoreIndex !== null}
                 onclick={() => (restoreIndex = before)}
@@ -338,7 +338,7 @@
             </div>
             {#if restoreIndex !== null}
               <div
-                class="ka-notice ka-notice--warning od-row-top restore-confirm"
+                class="fq-notice fq-notice--warning od-row-top restore-confirm"
                 role="region"
                 aria-label={t("editorial.revisionsPanel.restoreConfirmAria")}
               >
@@ -355,13 +355,13 @@
                   <div class="restore-actions">
                     <button
                       type="button"
-                      class="ka-button ka-button--ghost"
+                      class="fq-button fq-button--ghost"
                       disabled={busy}
                       onclick={() => (restoreIndex = null)}
                       >{t("editorial.revisionsPanel.cancelRestore")}</button
                     ><button
                       type="button"
-                      class="ka-button ka-button--danger"
+                      class="fq-button fq-button--danger"
                       disabled={busy || locked}
                       aria-busy={action === "restore" || undefined}
                       onclick={restore}
@@ -374,7 +374,7 @@
                 </div>
               </div>
             {/if}
-            <p class="ka-help comparison-note">
+            <p class="fq-help comparison-note">
               {hasChanges
                 ? t("editorial.revisionsPanel.comparisonChanged")
                 : t("editorial.revisionsPanel.comparisonUnchanged")}
@@ -454,7 +454,7 @@
       </div>
     {/if}
   {/if}
-  {#if busy}<p role="status" class="ka-help busy-notice">
+  {#if busy}<p role="status" class="fq-help busy-notice">
       {t("editorial.revisionsPanel.savingOrLoading")}
     </p>{/if}
 </dialog>

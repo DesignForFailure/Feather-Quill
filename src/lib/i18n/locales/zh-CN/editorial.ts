@@ -66,7 +66,7 @@ const catalog: Catalog = {
   // --- EditorialWorkspace: review package screen ---
   "editorialWorkspace.packageTitle": "发送稿件供审阅",
   "editorialWorkspace.packageDescription":
-    "创建一个你的编辑可在 kindling 中打开的文件。对方无需账号即可阅读、提出修改建议并返回反馈。",
+    "创建一个你的编辑可在 Feather Quill 中打开的文件。对方无需账号即可阅读、提出修改建议并返回反馈。",
   "editorialWorkspace.reviewRound": "审阅轮次",
   "editorialWorkspace.reviewRoundPlaceholder": "结构编辑 — 九月",
   "editorialWorkspace.reviewRoundRequired": "请为此次审阅轮次输入名称。",
@@ -94,7 +94,7 @@ const catalog: Catalog = {
   "editorialWorkspace.comment.other": "条批注",
   "editorialWorkspace.whatHappensNext": "后续流程",
   "editorialWorkspace.nextBody":
-    "阅读批注、回复编辑，并采纳或拒绝建议。如果你重写了某段文字，kindling 会帮你把这个反馈放到正确位置，再应用修改。",
+    "阅读批注、回复编辑，并采纳或拒绝建议。如果你重写了某段文字，Feather Quill 会帮你把这个反馈放到正确位置，再应用修改。",
   "editorialWorkspace.nextBodyPace": "你可以按自己的节奏处理反馈，准备好后再导出回复和决定。",
   "editorialWorkspace.importReviewFeedback": "导入并审阅反馈",
   "editorialWorkspace.importHelp": "只有采纳建议时，你的稿件才会改变。",
@@ -116,20 +116,20 @@ const catalog: Catalog = {
   "editorialWorkspace.exportReplies": "导出回复与决定",
 
   // --- EditorialWorkspace: file dialogs and notices ---
-  "editorialWorkspace.openFileTitle": "打开 kindling 审阅或反馈文件",
-  "editorialWorkspace.openFileFilter": "kindling 审阅文件",
+  "editorialWorkspace.openFileTitle": "打开 Feather Quill 审阅或反馈文件",
+  "editorialWorkspace.openFileFilter": "Feather Quill 审阅文件",
   "editorialWorkspace.exportPackageTitle": "导出供审阅",
-  "editorialWorkspace.exportPackageFilter": "kindling 审阅",
+  "editorialWorkspace.exportPackageFilter": "Feather Quill 审阅",
   "editorialWorkspace.reviewPackageSaved": "审阅交付包已保存到{path}。请把这个文件交给你的编辑。",
   "editorialWorkspace.returnFeedbackTitle": "提交审阅反馈",
-  "editorialWorkspace.recoveryFilter": "kindling 恢复审阅",
-  "editorialWorkspace.feedbackFilter": "kindling 反馈",
+  "editorialWorkspace.recoveryFilter": "Feather Quill 恢复审阅",
+  "editorialWorkspace.feedbackFilter": "Feather Quill 反馈",
   "editorialWorkspace.recoverySaved":
-    "恢复审阅已保存到{path}。在 kindling 中打开它以继续工作，然后正常导出反馈。",
+    "恢复审阅已保存到{path}。在 Feather Quill 中打开它以继续工作，然后正常导出反馈。",
   "editorialWorkspace.feedbackSaved":
     "反馈已保存到{path}。请把这个文件交还给作者。你可以继续审阅，稍后再导出另一次回复。",
   "editorialWorkspace.sendReplyTitle": "向你的编辑发送回复和决定",
-  "editorialWorkspace.sendReplyFilter": "kindling 审阅回复",
+  "editorialWorkspace.sendReplyFilter": "Feather Quill 审阅回复",
   "editorialWorkspace.replySaved":
     "回复已保存到{path}。你的编辑打开后会收到你的回复和决定，同时保留其正在进行的审阅。",
   "editorialWorkspace.feedbackImported": "反馈已导入。你的稿件没有改变。请在下方查看建议。",

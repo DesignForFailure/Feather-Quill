@@ -237,7 +237,7 @@ it("protects custom field drafts when their reference type is disabled", async (
 it("groups navigation by scope and keeps the project selector in the sidebar across areas", async () => {
   render(SettingsDialog, { onClose: vi.fn() });
   const nav = screen.getByRole("navigation", { name: "Settings areas" });
-  const shared = within(nav).getByRole("region", { name: "kindling" });
+  const shared = within(nav).getByRole("region", { name: "Feather Quill" });
   const projectGroup = within(nav).getByRole("region", { name: "Projects" });
   // A lone subsection needs no eyebrow; the group heading already names it.
   expect(within(shared).queryByRole("heading", { name: "Preferences" })).toBeNull();
@@ -245,7 +245,9 @@ it("groups navigation by scope and keeps the project selector in the sidebar acr
   expect(within(projectGroup).getByRole("heading", { name: "Reference Library" })).toBeTruthy();
   const selector = await within(projectGroup).findByRole("combobox", { name: "Project" });
   expect(screen.getAllByRole("combobox", { name: "Project" })).toHaveLength(1);
-  expect(screen.getByTestId("settings-location").textContent).toContain("kindling / Preferences");
+  expect(screen.getByTestId("settings-location").textContent).toContain(
+    "Feather Quill / Preferences"
+  );
   await fireEvent.change(selector, { target: { value: second.id } });
   expect(screen.getByRole("button", { name: "Project Details" }).getAttribute("aria-current")).toBe(
     "page"
@@ -261,7 +263,7 @@ it("groups navigation by scope and keeps the project selector in the sidebar acr
 
 it("starts each area at the top of the pane", async () => {
   render(SettingsDialog, { onClose: vi.fn() });
-  const pane = document.querySelector(".ka-settings-pane") as HTMLElement;
+  const pane = document.querySelector(".fq-settings-pane") as HTMLElement;
   pane.scrollTop = 400;
   await fireEvent.click(screen.getByRole("button", { name: "Tags" }));
   await waitFor(() => expect(pane.scrollTop).toBe(0));

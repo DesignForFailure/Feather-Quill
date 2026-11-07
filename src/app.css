@@ -1,15 +1,8 @@
 @import "tailwindcss";
-@import "./styles/press/fonts.css";
-@import "./styles/press/tokens.css";
-@import "./styles/press/tailwind.css";
-/* Press foundation (global form controls, selection, scrollbars, paper grain,
-   .app-prose-sheet, .app-dialog-surface) then the application layer: one
-   implementation per control role (ka-*). Both sit under Tailwind's utilities
-   so a utility can tune an element and `.press-app h3` cannot restyle a
-   heading that carries its own type role. */
-@import "./styles/press/components.css" layer(components);
-@import "./styles/press/application.css" layer(components);
-/* Overlay/dialog rules proposed upstream to Press; see the file header. */
+@import "./styles/theme/fonts.css";
+@import "./styles/theme/tokens.css";
+@import "./styles/theme/utilities.css";
+@import "./styles/theme/controls.css" layer(components);
 @import "./styles/overlays.css" layer(components);
 
 :root {
@@ -63,11 +56,11 @@ button:disabled {
   opacity: 1 !important;
 }
 /* A disabled ghost stays ghost: no slab where there was never a fill. */
-button.ka-button--ghost:disabled,
-button.ka-icon-button:disabled,
-.ka-menu-list > button:disabled,
-.ka-tree button:disabled,
-.ka-command-list button:disabled {
+button.fq-button--ghost:disabled,
+button.fq-icon-button:disabled,
+.fq-menu-list > button:disabled,
+.fq-tree button:disabled,
+.fq-command-list button:disabled {
   background-color: transparent !important;
   border-color: transparent !important;
 }
@@ -75,15 +68,15 @@ button.ka-icon-button:disabled,
    Beats/Page view). The rule above strips the accent fill and leaves the
    selected segment the same sunken colour as its track, so the selected one
    takes the raised surface and a ring in the disabled ink: still the disabled
-   pair for its text, never opacity. (Raise upstream in Press: it has no
-   disabled-selected segment state, and `.ka-segment:has(input:disabled)`
+   pair for its text, never opacity. (Inherited application adaptation: it has no
+   disabled-selected segment state, and `.fq-segment:has(input:disabled)`
    dims with opacity.) */
-button.ka-segment:is(.ka-selected, [aria-pressed="true"]):disabled {
+button.fq-segment:is(.fq-selected, [aria-pressed="true"]):disabled {
   background-color: var(--color-surface) !important;
   box-shadow: inset 0 0 0 1px var(--color-disabled-text);
 }
 
-/* Focus follows the Press application layer: a 2px accent-text outline offset
+/* Focus follows the Feather Quill application layer: a 2px accent-text outline offset
    3px, on every operable element, in both themes. */
 :where(button, [role="button"], a, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 2px solid var(--color-accent-text);
@@ -107,16 +100,16 @@ button.ka-segment:is(.ka-selected, [aria-pressed="true"]):disabled {
   font-optical-sizing: auto;
 }
 
-/* Press application icons: Lucide outline geometry at a 1.75px stroke
+/* Feather Quill application icons: Lucide outline geometry at a 1.75px stroke
    (lucide-svelte defaults to 2). The CSS property beats the SVG attribute. */
 svg.lucide-icon {
   stroke-width: 1.75;
 }
 
 /* WebKit adapter: WKWebView renders <select> as a native menu button and
-   ignores the Press field's border, padding and 44px height unless the native
+   ignores the Feather Quill field's border, padding and 44px height unless the native
    appearance is removed. The chevron is drawn from currentColor so it follows
-   the theme. (Raise upstream in Press: application.css assumes Chromium.) */
+   the theme. (Inherited application adaptation: application.css assumes Chromium.) */
 select:not([multiple]):not([size]) {
   -webkit-appearance: none;
   appearance: none;
@@ -147,10 +140,10 @@ select:not([multiple]):not([size]) {
   background-repeat: no-repeat;
 }
 
-/* Every field inside a dialog is the Press field (.ka-field): 44px, sunken
+/* Every field inside a dialog is the Feather Quill field (.fq-field): 44px, sunken
    fill, a visible control edge, 16px Inter. Unlayered on purpose so it wins
    over the utilities older dialogs still carry; width utilities still apply. */
-:where(.app-dialog-surface, .ka-dialog)
+:where(.app-dialog-surface, .fq-dialog)
   :where(
     input:not([type]),
     input[type="text"],
@@ -173,24 +166,24 @@ select:not([multiple]):not([size]) {
   font: var(--text-base) / 1.5 var(--font-ui);
   box-shadow: none;
 }
-:where(.app-dialog-surface, .ka-dialog) textarea {
+:where(.app-dialog-surface, .fq-dialog) textarea {
   min-height: 96px;
   padding: var(--space-xs);
 }
-:where(.app-dialog-surface, .ka-dialog) :where(input, select, textarea):focus-visible {
+:where(.app-dialog-surface, .fq-dialog) :where(input, select, textarea):focus-visible {
   outline: 2px solid var(--color-accent-text);
   outline-offset: 3px;
   border-color: var(--color-control-border-focus);
 }
-:where(.app-dialog-surface, .ka-dialog) :where(input, select, textarea)[aria-invalid="true"] {
+:where(.app-dialog-surface, .fq-dialog) :where(input, select, textarea)[aria-invalid="true"] {
   border: 2px solid var(--color-error);
 }
-:where(.app-dialog-surface, .ka-dialog) :where(input, select, textarea):disabled {
+:where(.app-dialog-surface, .fq-dialog) :where(input, select, textarea):disabled {
   color: var(--color-disabled-text);
   background-color: var(--color-disabled-bg);
   border-color: var(--color-disabled-border);
 }
-:where(.app-dialog-surface, .ka-dialog) :where(input[type="checkbox"], input[type="radio"]) {
+:where(.app-dialog-surface, .fq-dialog) :where(input[type="checkbox"], input[type="radio"]) {
   width: 20px;
   height: 20px;
   accent-color: var(--color-accent-text);
@@ -207,16 +200,16 @@ select:not([multiple]):not([size]) {
   padding: var(--space-m) var(--space-s);
   background: var(--color-overlay-scrim);
 }
-.app-dialog-surface.ka-dialog-narrow {
+.app-dialog-surface.fq-dialog-narrow {
   width: min(480px, calc(100% - 32px));
 }
-.app-dialog-surface.ka-dialog-default {
+.app-dialog-surface.fq-dialog-default {
   width: min(600px, calc(100% - 32px));
 }
-.app-dialog-surface.ka-dialog-wide {
+.app-dialog-surface.fq-dialog-wide {
   width: min(960px, calc(100% - 32px));
 }
-.app-dialog-surface :where(.ka-dialog-body) {
+.app-dialog-surface :where(.fq-dialog-body) {
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
@@ -234,7 +227,7 @@ select:not([multiple]):not([size]) {
   display: grid;
   gap: var(--space-m);
 }
-.settings-pane > .ka-group + .ka-group {
+.settings-pane > .fq-group + .fq-group {
   margin-top: 0;
 }
 .settings-lede {
@@ -259,7 +252,7 @@ select:not([multiple]):not([size]) {
   justify-content: flex-end;
   gap: var(--space-s);
 }
-.settings-actions .ka-help {
+.settings-actions .fq-help {
   margin: 0;
 }
 .settings-fields {
@@ -267,16 +260,16 @@ select:not([multiple]):not([size]) {
   gap: 20px;
 }
 
-/* Press cascade adapter: `.press-app :where(h3, h4)` (0,1,1) out-ranks the
+/* Feather Quill cascade adapter: `.fq-app :where(h3, h4)` (0,1,1) out-ranks the
    single-class type roles below when they sit on a heading. Restate them at
    (0,2,0) so a group title or eyebrow keeps its role on any element.
-   (Raise upstream: the roles should win inside .press-app.) */
-.press-app .ka-group-title {
+   (Raise upstream: the roles should win inside .fq-app.) */
+.fq-app .fq-group-title {
   font: 600 var(--text-base) / 1.5 var(--font-ui);
   letter-spacing: 0;
   color: var(--color-text);
 }
-.press-app .ka-eyebrow {
+.fq-app .fq-eyebrow {
   font: 600 var(--text-eyebrow) / 1.4 var(--font-ui);
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
@@ -355,42 +348,42 @@ input[type="radio"]:checked:disabled {
   background: var(--color-disabled-text);
 }
 /* Segmented controls and colour swatches hide their radios; keep them hidden. */
-:where(.ka-segment, .ka-swatch-option) input {
+:where(.fq-segment, .fq-swatch-option) input {
   position: absolute;
   width: 1px;
   height: 1px;
   opacity: 0;
 }
 
-/* A standalone check row: box and label side by side (Press pairs .ka-check
+/* A standalone check row: box and label side by side (Feather Quill pairs .fq-check
    with a row layout but gives it no display of its own). */
-.ka-check {
+.fq-check {
   display: flex;
   align-items: center;
 }
 
-/* Press cascade adapter: `.ka-notice` sets display:grid, which defeats the
+/* Feather Quill cascade adapter: `.fq-notice` sets display:grid, which defeats the
    `od-row-top` row the Notice component pairs it with, stacking the icon above
    the text. Keep icon and text side by side. (Raise upstream.) */
-.ka-notice.od-row-top {
+.fq-notice.od-row-top {
   display: flex;
   align-items: flex-start;
   gap: var(--space-xs);
 }
 
-.ka-notice.od-row-top > svg {
+.fq-notice.od-row-top > svg {
   flex: none;
   margin-top: 2px;
 }
 
 /* The pane lede reads as the title's standfirst, not a separate block. */
-.ka-settings-pane .ka-settings-head {
+.fq-settings-pane .fq-settings-head {
   margin-bottom: var(--space-xs);
 }
 
 /* Footer help (a disabled reason, a note) takes the slack and wraps, so the
    actions always stay on one row. */
-.ka-dialog-footer > p.ka-dialog-footer-start {
+.fq-dialog-footer > p.fq-dialog-footer-start {
   flex: 1 1 0;
   min-width: 0;
   margin-block: 0;
@@ -400,45 +393,45 @@ input[type="radio"]:checked:disabled {
    the middle of the x-height. Flex centring uses the line box, which leaves
    the dot about 1px high in Inter. */
 .sb-status-dot,
-.ka-tagrow .ka-swatch,
+.fq-tagrow .fq-swatch,
 .tag-dot {
   translate: 0 0.1em;
 }
 
-/* Contrast adapter: Press's success text on its wash measures 4.35:1 on the
+/* Contrast adapter: Feather Quill's success text on its wash measures 4.35:1 on the
    light sunken surface and 4.32:1 on the dark raised surface (AA needs 4.5).
    Success copy uses ink; the success colour stays on the icon and edge, and
    the words carry the meaning. (Raise upstream: darken --green / lighten
    --green-dark, or drop the wash under text.) */
-.ka-badge--success {
+.fq-badge--success {
   color: var(--color-text);
   border-color: var(--color-success);
 }
-.ka-notice--success {
+.fq-notice--success {
   color: var(--color-text);
 }
-.ka-notice--success > svg {
+.fq-notice--success > svg {
   color: var(--color-success);
 }
 
 /* Short windows (the 668px-tall compact size): the settings nav drops its
    helper lines so every area fits without scrolling, and a selected area
    scrolled into view keeps clear of the dialog edge. */
-.ka-settings-nav .ka-tree-selected {
+.fq-settings-nav .fq-tree-selected {
   scroll-margin-block: var(--space-s);
 }
 @media (max-height: 800px) {
-  .ka-settings-nav {
+  .fq-settings-nav {
     gap: var(--space-xs);
     padding-block: var(--space-xs) var(--space-s);
   }
-  .ka-settings-nav .ka-help {
+  .fq-settings-nav .fq-help {
     display: none;
   }
 }
 
 /* Native control parts (number-field steppers, date pickers, scrollbars)
-   follow the chrome theme. Press sets data-theme but not color-scheme. */
+   follow the chrome theme. Feather Quill sets data-theme but not color-scheme. */
 :root {
   color-scheme: light;
 }
@@ -448,7 +441,7 @@ input[type="radio"]:checked:disabled {
 
 /* Shortcut labels: the mono stack (Monaco/Menlo) has no ⌘ ⇧ ⌥ glyphs, so
    they fell back small. The UI stack's system font draws them at size.
-   (Raise upstream: Press kbd uses --font-mono.) */
+   (Raise upstream: Feather Quill kbd uses --font-mono.) */
 kbd {
   font-family: var(--font-ui);
   font-variant-numeric: tabular-nums;
@@ -467,6 +460,6 @@ kbd {
   margin-bottom: var(--space-xs);
   padding: 0;
 }
-.settings-fieldset > legend + .ka-help {
+.settings-fieldset > legend + .fq-help {
   margin-top: calc(-1 * var(--space-xs));
 }

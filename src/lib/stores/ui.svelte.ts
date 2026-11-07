@@ -38,15 +38,15 @@ export type OnboardingStep =
 // Panel width constraints
 const REFERENCES_PANEL_MIN_WIDTH = 200;
 const REFERENCES_PANEL_DEFAULT_WIDTH = 288; // w-72
-const REFERENCES_PANEL_STORAGE_KEY = "kindling:referencesPanelWidth";
+const REFERENCES_PANEL_STORAGE_KEY = "feather-quill:referencesPanelWidth";
 const SIDEBAR_WIDTH = 256; // w-64
 
 // Onboarding storage
-const ONBOARDING_COMPLETED_KEY = "kindling:onboardingCompleted";
+const ONBOARDING_COMPLETED_KEY = "feather-quill:onboardingCompleted";
 
 // Guidance preferences (Phase C)
-const GUIDANCE_ENABLED_KEY = "kindling:guidanceEnabled";
-const TOOLTIP_SEEN_PREFIX = "kindling:tooltipSeen:";
+const GUIDANCE_ENABLED_KEY = "feather-quill:guidanceEnabled";
+const TOOLTIP_SEEN_PREFIX = "feather-quill:tooltipSeen:";
 
 export type GuidanceArea =
   | "sidebar"

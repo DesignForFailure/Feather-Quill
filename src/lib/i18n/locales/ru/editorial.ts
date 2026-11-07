@@ -69,7 +69,7 @@ const catalog: Catalog = {
   // --- EditorialWorkspace: review package screen ---
   "editorialWorkspace.packageTitle": "Отправить рукопись на рецензию",
   "editorialWorkspace.packageDescription":
-    "Создайте файл, который редактор сможет открыть в kindling. Он сможет читать, предлагать правки и возвращать отзыв без необходимости в аккаунте.",
+    "Создайте файл, который редактор сможет открыть в feather-quill. Он сможет читать, предлагать правки и возвращать отзыв без необходимости в аккаунте.",
   "editorialWorkspace.reviewRound": "Раунд рецензии",
   "editorialWorkspace.reviewRoundPlaceholder": "Редакционная правка — Сентябрь",
   "editorialWorkspace.reviewRoundRequired": "Введите название этого раунда рецензии.",
@@ -105,7 +105,7 @@ const catalog: Catalog = {
   "editorialWorkspace.comment.many": "комментариев",
   "editorialWorkspace.whatHappensNext": "Что происходит дальше",
   "editorialWorkspace.nextBody":
-    "Читайте комментарии, отвечайте редактору и принимайте или отклоняйте предложения. Если вы переписали фрагмент, kindling поможет вам разместить отзыв перед применением правки.",
+    "Читайте комментарии, отвечайте редактору и принимайте или отклоняйте предложения. Если вы переписали фрагмент, Feather Quill поможет вам разместить отзыв перед применением правки.",
   "editorialWorkspace.nextBodyPace":
     "Вы можете работать с отзывом в своём темпе и экспортировать ответы и решения, когда будете готовы.",
   "editorialWorkspace.importReviewFeedback": "Импортировать и просмотреть отзыв",
@@ -128,21 +128,21 @@ const catalog: Catalog = {
   "editorialWorkspace.exportReplies": "Экспортировать ответы и решения",
 
   // --- EditorialWorkspace: file dialogs and notices ---
-  "editorialWorkspace.openFileTitle": "Открыть файл рецензии или отзыва kindling",
-  "editorialWorkspace.openFileFilter": "Редакционные файлы kindling",
+  "editorialWorkspace.openFileTitle": "Открыть файл рецензии или отзыва Feather Quill",
+  "editorialWorkspace.openFileFilter": "Редакционные файлы Feather Quill",
   "editorialWorkspace.exportPackageTitle": "Экспорт для редакционной рецензии",
-  "editorialWorkspace.exportPackageFilter": "Рецензия kindling",
+  "editorialWorkspace.exportPackageFilter": "Рецензия Feather Quill",
   "editorialWorkspace.reviewPackageSaved":
     "Пакет рецензии сохранён в {path}. Передайте этот файл редактору.",
   "editorialWorkspace.returnFeedbackTitle": "Вернуть редакционный отзыв",
-  "editorialWorkspace.recoveryFilter": "Восстановительная рецензия kindling",
-  "editorialWorkspace.feedbackFilter": "Отзыв kindling",
+  "editorialWorkspace.recoveryFilter": "Восстановительная рецензия Feather Quill",
+  "editorialWorkspace.feedbackFilter": "Отзыв Feather Quill",
   "editorialWorkspace.recoverySaved":
-    "Восстановительная рецензия сохранена в {path}. Откройте её в kindling для продолжения работы, а затем экспортируйте отзыв обычным образом.",
+    "Восстановительная рецензия сохранена в {path}. Откройте её в Feather Quill для продолжения работы, а затем экспортируйте отзыв обычным образом.",
   "editorialWorkspace.feedbackSaved":
     "Отзыв сохранён в {path}. Верните этот файл автору. Вы можете продолжать рецензировать и экспортировать дополнительные ответы позже.",
   "editorialWorkspace.sendReplyTitle": "Отправить ответы и решения редактору",
-  "editorialWorkspace.sendReplyFilter": "Ответ на рецензию kindling",
+  "editorialWorkspace.sendReplyFilter": "Ответ на рецензию Feather Quill",
   "editorialWorkspace.replySaved":
     "Ответ сохранён в {path}. Редактор откроет его для получения ваших ответов и решений, сохраняя при этом текущую рецензию.",
   "editorialWorkspace.feedbackImported":

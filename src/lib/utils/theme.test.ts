@@ -63,17 +63,17 @@ describe("theme utility", () => {
     });
 
     it("returns 'light' when stored", () => {
-      store["kindling:theme"] = "light";
+      store["feather-quill:theme"] = "light";
       expect(getStoredPreference()).toBe("light");
     });
 
     it("returns 'system' when stored", () => {
-      store["kindling:theme"] = "system";
+      store["feather-quill:theme"] = "system";
       expect(getStoredPreference()).toBe("system");
     });
 
     it("returns 'light' for invalid stored value", () => {
-      store["kindling:theme"] = "invalid";
+      store["feather-quill:theme"] = "invalid";
       expect(getStoredPreference()).toBe("light");
     });
   });
@@ -81,7 +81,7 @@ describe("theme utility", () => {
   describe("setThemePreference", () => {
     it("persists and applies dark theme", () => {
       setThemePreference("dark");
-      expect(localStorageMock.setItem).toHaveBeenCalledWith("kindling:theme", "dark");
+      expect(localStorageMock.setItem).toHaveBeenCalledWith("feather-quill:theme", "dark");
       expect(setAttributeSpy).toHaveBeenCalledWith("data-theme", "dark");
     });
 
@@ -98,7 +98,7 @@ describe("theme utility", () => {
 
     it("persists and applies light theme", () => {
       setThemePreference("light");
-      expect(localStorageMock.setItem).toHaveBeenCalledWith("kindling:theme", "light");
+      expect(localStorageMock.setItem).toHaveBeenCalledWith("feather-quill:theme", "light");
       expect(setAttributeSpy).toHaveBeenCalledWith("data-theme", "light");
     });
 
@@ -137,7 +137,7 @@ describe("theme utility", () => {
 
   describe("initTheme", () => {
     it("applies theme from storage on init", () => {
-      store["kindling:theme"] = "light";
+      store["feather-quill:theme"] = "light";
       initTheme();
       expect(setAttributeSpy).toHaveBeenCalledWith("data-theme", "light");
     });
@@ -148,7 +148,7 @@ describe("theme utility", () => {
     });
 
     it("sets up system listener when preference is system", () => {
-      store["kindling:theme"] = "system";
+      store["feather-quill:theme"] = "system";
       initTheme();
       expect(addListenerSpy).toHaveBeenCalledWith("change", expect.any(Function));
     });

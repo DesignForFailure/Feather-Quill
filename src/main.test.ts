@@ -37,21 +37,21 @@ it("reports the created project before later import UI work fails", async () => 
   const project = { id: "owned-fixture", name: "QA" };
   invoke.mockResolvedValueOnce(project).mockRejectedValueOnce(new Error("chapter load failed"));
   const observer = vi.fn();
-  window.__KINDLING_TEST__!.onProjectCreated = observer;
-  const importing = window.__KINDLING_TEST__!.importProject("fixture.pltr");
+  window.__FEATHER_QUILL_TEST__!.onProjectCreated = observer;
+  const importing = window.__FEATHER_QUILL_TEST__!.importProject("fixture.pltr");
   // The bridge captures this callback for this action before yielding to IPC.
-  delete window.__KINDLING_TEST__!.onProjectCreated;
+  delete window.__FEATHER_QUILL_TEST__!.onProjectCreated;
   await expect(importing).rejects.toThrow("chapter load failed");
   expect(observer).toHaveBeenCalledExactlyOnceWith("import_plottr", project);
 });
 afterEach(() => {
   document.body.innerHTML = "";
-  delete window.__KINDLING_TEST__;
+  delete window.__FEATHER_QUILL_TEST__;
 });
 
 it("restores live visual preferences from an independent snapshot", async () => {
   await import("./main");
-  const bridge = window.__KINDLING_TEST__!;
+  const bridge = window.__FEATHER_QUILL_TEST__!;
   const original = bridge.visualPreferences();
   bridge.setVisualPreferences({
     guidanceEnabled: false,
@@ -81,7 +81,7 @@ it("reports readiness only after the app's content hook and Svelte flush", async
   void ready.then(completed);
   expect(mount).toHaveBeenCalledOnce();
   expect(tick).not.toHaveBeenCalled();
-  expect(window.__KINDLING_TEST__).toBeDefined();
+  expect(window.__FEATHER_QUILL_TEST__).toBeDefined();
   mount.mock.calls[0][1].props.onReady();
   await vi.waitFor(() => expect(tick).toHaveBeenCalledOnce());
   expect(completed).not.toHaveBeenCalled();

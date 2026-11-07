@@ -147,7 +147,7 @@ the existing large-chunk warning. The full run includes all 29 workspace tests. 
 timed out during a concurrent build run, passed individually, then passed in
 the full coverage run with one worker; no assertions or timeouts were weakened.
 
-Native macOS QA used an isolated `com.kindlingwriter.editorialuiqa` profile and
+Native macOS QA used an isolated `io.github.designforfailure.featherquill.editorialuiqa` profile and
 disposable database. It covered fresh demo review, local save/reopen/acceptance,
 SQLite verification of changed prose and preserved pre-acceptance history,
 closing the project to Home, opening a review file through the running-instance
@@ -273,7 +273,7 @@ search retained its position and there was no horizontal overflow.
 
 Native menu rows measured 8px/12px padding with transparent resting backgrounds
 and semantic decision text in both themes. The name input remained 14px with
-normal ink (#231D18 light, #E8E0D4 dark), confirmed against Press's direct control
+normal ink (#231D18 light, #E8E0D4 dark), confirmed against the original control
 color declaration. Updated `review-menu-light.png` and `review-menu-dark.png`
 are browser renderings of captured native DOM. Theme and window size were
 restored; no manuscript data was edited for these checks.
@@ -283,7 +283,7 @@ activation; both paths now dismiss the previously open menu. Its final result:
 **No findings**. Claude high-effort session
 `067fdf32-16fb-42b4-8f6c-2d9181cebb50` identified duplicate hover declarations,
 which were removed. It withdrew the input-color concern after checking the
-direct Press control declaration and its cascade above Tailwind preflight.
+original control declaration and its cascade above Tailwind preflight.
 Claude's final result: **No findings**.
 
 The first normal push run passed 517 tests but the existing 500-reference-library
@@ -329,15 +329,15 @@ Follow-up base: `82ec96aa043fea1c340b2aaeb9d7130d35bed94a`.
 
 The local and portable entry points already render the same `EditorialWorkspace`,
 `EditorialManuscript`, `ReviewSidebar`, and `ContextMenu`. macOS was resolving
-actual review files to **Kindling Editorial UI QA.app**, built September 8 at
+actual review files to **Feather Quill Editorial UI QA.app**, built September 8 at
 12:32:56, before the recent shared UI fixes. That QA bundle had been left
 registered as an Owner of the editorial file types. The investigation confirmed
 the running executable and used `NSWorkspace.urlForApplication(toOpen:)` on an
 actual exported review file to identify the stale handler.
 
-The stale QA bundle was unregistered. The current `Kindling.app` was rebuilt and
+The stale QA bundle was unregistered. The current `Feather Quill.app` was rebuilt and
 registered for both types. Actual exported review and feedback files now resolve
-to `src-tauri/target/release/bundle/macos/Kindling.app`. The local verification
+to `src-tauri/target/release/bundle/macos/Feather Quill.app`. The local verification
 build disabled updater artifact creation through a command-line config override;
 it does not establish signed release/update behavior. The older running review
 and its data were left intact. The native checklist now requires cleanup after

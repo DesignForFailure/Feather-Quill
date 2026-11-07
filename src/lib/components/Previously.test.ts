@@ -31,7 +31,7 @@ const previous: Scene = {
 };
 const current = { ...previous, id: "current", title: "Current scene", position: 1 };
 beforeEach(() => {
-  localStorage.removeItem("kindling:previouslyCollapsed");
+  localStorage.removeItem("feather-quill:previouslyCollapsed");
   currentProject.setProject(mockProject);
   currentProject.setChapters([chapter]);
   currentProject.setScenes([previous, current]);
@@ -58,7 +58,7 @@ it("remembers collapse across navigation and remount, and allows expansion", asy
   const view = render(Previously);
   await fireEvent.click(await screen.findByRole("button", { name: "Previously" }));
   expect(screen.queryByText(previous.title)).toBeNull();
-  expect(localStorage.getItem("kindling:previouslyCollapsed")).toBe("true");
+  expect(localStorage.getItem("feather-quill:previouslyCollapsed")).toBe("true");
   currentProject.setCurrentScene(previous);
   await tick();
   expect(screen.queryByRole("button", { name: "Previously" })).toBeNull();
@@ -72,7 +72,7 @@ it("remembers collapse across navigation and remount, and allows expansion", asy
   render(Previously);
   await fireEvent.click(await screen.findByRole("button", { name: "Previously" }));
   expect(screen.getByText(previous.title)).toBeTruthy();
-  expect(localStorage.getItem("kindling:previouslyCollapsed")).toBe("false");
+  expect(localStorage.getItem("feather-quill:previouslyCollapsed")).toBe("false");
 });
 it("hides for the first scene and when nothing is selected", async () => {
   currentProject.setCurrentScene(previous);

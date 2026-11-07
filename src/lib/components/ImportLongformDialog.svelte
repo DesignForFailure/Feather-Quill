@@ -20,20 +20,20 @@
   aria-labelledby="longform-import-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell">
     <DialogHeader
       title={t("onboarding.importLongformDialog.title")}
       titleId="longform-import-title"
       {onClose}
     />
-    <div class="ka-dialog-body longform">
+    <div class="fq-dialog-body longform">
       <p class="longform-lede">
         {t("onboarding.importLongformDialog.lede")}
       </p>
       <button
         type="button"
         onclick={onSelectIndex}
-        class="ka-button ka-button--secondary longform-choice"
+        class="fq-button fq-button--secondary longform-choice"
       >
         <FileText class="w-5 h-5" aria-hidden="true" />
         <span class="longform-choice-text">
@@ -44,7 +44,7 @@
       <button
         type="button"
         onclick={onSelectVault}
-        class="ka-button ka-button--secondary longform-choice"
+        class="fq-button fq-button--secondary longform-choice"
       >
         <FolderOpen class="w-5 h-5" aria-hidden="true" />
         <span class="longform-choice-text">
@@ -53,8 +53,8 @@
         </span>
       </button>
     </div>
-    <footer class="ka-dialog-footer">
-      <button type="button" onclick={onClose} class="ka-button ka-button--secondary">
+    <footer class="fq-dialog-footer">
+      <button type="button" onclick={onClose} class="fq-button fq-button--secondary">
         {t("common.cancel")}
       </button>
     </footer>

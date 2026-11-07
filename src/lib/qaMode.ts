@@ -1,10 +1,11 @@
 declare global {
   interface Window {
-    __KINDLING_QA_BACKGROUND__?: boolean;
+    __FEATHER_QUILL_QA_BACKGROUND__?: boolean;
   }
 }
 
-export const backgroundQA = () => import.meta.env.DEV && window.__KINDLING_QA_BACKGROUND__ === true;
+export const backgroundQA = () =>
+  import.meta.env.DEV && window.__FEATHER_QUILL_QA_BACKGROUND__ === true;
 
 // Hidden WebKit windows may suspend native rAF even with timer throttling off.
 // Keep the application's layout callbacks running in the isolated QA process.

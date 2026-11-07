@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/svelte";
 import AboutDialog from "./AboutDialog.svelte";
+import { openUrl } from "@tauri-apps/plugin-opener";
 
 function open() {
   const opener = document.createElement("button");
@@ -19,6 +20,21 @@ afterEach(() => {
 });
 
 describe("AboutDialog focus", () => {
+  it("identifies the fork and sends support links to its own repository", async () => {
+    open();
+    expect(screen.getByRole("dialog", { name: "About Feather Quill" })).toBeTruthy();
+    expect(screen.getByText(/Forked from Kindling by Josh Smith/)).toBeTruthy();
+    for (const [name, suffix] of [
+      ["GitHub repository", ""],
+      ["Report an issue", "/issues/new"],
+      ["Release notes", "/releases"],
+    ]) {
+      await fireEvent.click(screen.getByRole("button", { name }));
+      expect(openUrl).toHaveBeenLastCalledWith(
+        `https://github.com/DesignForFailure/Feather-Quill${suffix}`
+      );
+    }
+  });
   it("moves focus inside on open", async () => {
     open();
     await waitFor(() => expect(document.activeElement).toBe(screen.getByTestId("about-close")));

@@ -3,7 +3,7 @@
 `npm run qa:visual -- --list` lists executable socket suites. The default runs
 all of those suites in light (1600×968), dark (1600×968), and narrow light
 (1100×668), rendered as lossless 2× PNGs from an isolated hidden WKWebView.
-These are CSS viewport sizes, independent of desktop geometry. Each screenshot records a DOM assertion, Press audit, axe results,
+These are CSS viewport sizes, independent of desktop geometry. Each screenshot records a DOM assertion, theme audit, axe results,
 overflow candidates, console errors, and baseline diff. These are **surface and
 interaction checks**, not complete acceptance of every feature.
 

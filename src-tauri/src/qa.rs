@@ -13,8 +13,8 @@ static PENDING: LazyLock<Mutex<HashMap<u64, oneshot::Sender<Reply>>>> =
     LazyLock::new(|| Mutex::new(HashMap::new()));
 
 extern "C" {
-    fn kindling_qa_supported() -> bool;
-    fn kindling_qa_request(
+    fn feather_quill_qa_supported() -> bool;
+    fn feather_quill_qa_request(
         webview: *mut c_void,
         request: u64,
         operation: *const c_char,
@@ -26,15 +26,15 @@ extern "C" {
 }
 
 pub fn enabled() -> bool {
-    if std::env::var("KINDLING_QA_BACKGROUND").as_deref() != Ok("1") {
+    if std::env::var("FEATHER_QUILL_QA_BACKGROUND").as_deref() != Ok("1") {
         return false;
     }
     assert!(
-        std::env::var("KINDLING_DATA_DIR").is_ok_and(|v| !v.trim().is_empty()),
-        "Background QA requires an explicit KINDLING_DATA_DIR; refusing to open the normal app"
+        std::env::var("FEATHER_QUILL_DATA_DIR").is_ok_and(|v| !v.trim().is_empty()),
+        "Background QA requires an explicit FEATHER_QUILL_DATA_DIR; refusing to open the normal app"
     );
     assert!(
-        unsafe { kindling_qa_supported() },
+        unsafe { feather_quill_qa_supported() },
         "Background QA requires macOS 14+"
     );
     true
@@ -99,7 +99,7 @@ async fn request(
     let _guard = RequestGuard(id);
     window
         .with_webview(move |webview| unsafe {
-            kindling_qa_request(
+            feather_quill_qa_request(
                 webview.inner(),
                 id,
                 operation.as_ptr(),

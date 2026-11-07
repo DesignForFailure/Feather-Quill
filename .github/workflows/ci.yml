@@ -72,7 +72,7 @@ jobs:
       - name: Format check
         run: npm run format:check
 
-      - name: Check Press design-system mirrors
+      - name: Check Feather Quill theme contracts
         run: npm run check:design-system
 
       - name: Type check

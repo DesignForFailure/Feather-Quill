@@ -97,7 +97,7 @@ jobs:
 
       - name: Verify build output
         run: |
-          ls -la src-tauri/target/release/kindling || echo "Binary not found!"
+          ls -la src-tauri/target/release/feather-quill || echo "Binary not found!"
           ls -la test-data/
 
       - name: Run E2E tests

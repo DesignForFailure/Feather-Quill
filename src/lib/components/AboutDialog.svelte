@@ -39,7 +39,7 @@
   aria-labelledby="about-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell" data-testid="about-dialog">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell" data-testid="about-dialog">
     <DialogHeader
       title={t("onboarding.aboutDialog.title")}
       titleId="about-title"
@@ -48,20 +48,14 @@
       closeTestId="about-close"
     />
 
-    <div class="ka-dialog-body about">
+    <div class="fq-dialog-body about">
       <div class="about-identity">
-        <img class="on-light" src="/brand/kindling-mark.svg" alt="" width="88" height="50" />
-        <img
-          class="on-dark"
-          src="/brand/kindling-mark-reversed.svg"
-          alt=""
-          width="88"
-          height="50"
-        />
+        <img class="on-light" src="/feather-quill/mark.svg" alt="" width="88" height="50" />
+        <img class="on-dark" src="/feather-quill/mark-reversed.svg" alt="" width="88" height="50" />
         <p class="about-tagline">{t("onboarding.aboutDialog.tagline")}</p>
       </div>
 
-      <dl class="ka-facts">
+      <dl class="fq-facts">
         <div>
           <dt>{t("onboarding.aboutDialog.versionLabel")}</dt>
           <dd>{version}</dd>
@@ -79,7 +73,7 @@
         <li>
           <button
             type="button"
-            onclick={() => openLink("https://github.com/smith-and-web/kindling")}
+            onclick={() => openLink("https://github.com/DesignForFailure/Feather-Quill")}
             class="about-link"
           >
             <ExternalLink class="w-5 h-5" aria-hidden="true" />
@@ -89,7 +83,7 @@
         <li>
           <button
             type="button"
-            onclick={() => openLink("https://github.com/smith-and-web/kindling/issues/new")}
+            onclick={() => openLink("https://github.com/DesignForFailure/Feather-Quill/issues/new")}
             class="about-link"
           >
             <ExternalLink class="w-5 h-5" aria-hidden="true" />
@@ -99,7 +93,7 @@
         <li>
           <button
             type="button"
-            onclick={() => openLink("https://github.com/smith-and-web/kindling/releases")}
+            onclick={() => openLink("https://github.com/DesignForFailure/Feather-Quill/releases")}
             class="about-link"
           >
             <ExternalLink class="w-5 h-5" aria-hidden="true" />
@@ -108,10 +102,10 @@
         </li>
       </ul>
       {#if linkError}
-        <p class="ka-error" role="alert">{linkError}</p>
+        <p class="fq-error" role="alert">{linkError}</p>
       {/if}
 
-      <p class="ka-help">&copy; 2026 Josh Smith</p>
+      <p class="fq-help">Feather Quill by DesignForFailure. Forked from Kindling by Josh Smith.</p>
     </div>
   </div>
 </div>

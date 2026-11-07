@@ -1494,7 +1494,7 @@ fn process_binder_children(
     Ok(())
 }
 
-/// Parse a .scriv bundle directory into Kindling data structures
+/// Parse a .scriv bundle directory into Feather Quill data structures
 pub fn parse_scrivener_bundle(
     scriv_path: &std::path::Path,
 ) -> Result<ParsedScrivener, ScrivenerError> {
@@ -1540,7 +1540,7 @@ pub fn parse_scrivener_bundle(
         .find(|item| item.item_type == "DraftFolder");
 
     if let Some(draft_folder) = draft {
-        // Check for Kindling project type metadata on the DraftFolder
+        // Check for Feather Quill project type metadata on the DraftFolder
         if let Some(ref pt) = draft_folder.kindling_project_type {
             project.project_type = pt.clone();
         }
@@ -2139,7 +2139,7 @@ mod tests {
 
     #[test]
     fn test_rtf_to_html_li720_blockquote() {
-        // Mirrors Kindling's html_to_rtf blockquote output: \pard\li720 ...
+        // Mirrors Feather Quill's html_to_rtf blockquote output: \pard\li720 ...
         let rtf = r"{\rtf1\ansi\pard\li720\i Quoted line\i0\par}";
         let html = rtf_to_html(rtf);
         assert!(

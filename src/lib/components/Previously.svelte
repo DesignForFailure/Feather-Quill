@@ -12,7 +12,7 @@
     loading = $bindable(true),
   }: { actions?: Snippet; refreshVersion?: number; loading?: boolean } = $props();
 
-  const storageKey = "kindling:previouslyCollapsed";
+  const storageKey = "feather-quill:previouslyCollapsed";
   let collapsed = $state(localStorage.getItem(storageKey) === "true");
   let previous = $state<Awaited<ReturnType<typeof loadPreviousScene>>>(null);
   let error = $state(false);
@@ -83,7 +83,7 @@
           onclick={toggle}
           aria-expanded={!collapsed}
           aria-controls="previously-content"
-          class="ka-button ka-button--ghost previously-toggle"
+          class="fq-button fq-button--ghost previously-toggle"
         >
           <ChevronDown class={collapsed ? "w-5 h-5 -rotate-90" : "w-5 h-5"} aria-hidden="true" />
           {t("editor.previously.toggle")}
@@ -111,9 +111,9 @@
         {/if}
       </section>
     {:else if error}
-      <p role="status" class="ka-help previously-error">
+      <p role="status" class="fq-help previously-error">
         {t("editor.previously.loadError")}
-        <button type="button" onclick={() => retry++} class="ka-button ka-button--ghost"
+        <button type="button" onclick={() => retry++} class="fq-button fq-button--ghost"
           >{t("editor.previously.retry")}</button
         >
       </p>

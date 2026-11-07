@@ -24,15 +24,15 @@
   <dialog
     use:modal
     data-testid="import-progress"
-    class="ka-dialog press-app import-dialog"
+    class="fq-dialog fq-app import-dialog"
     aria-labelledby="import-progress-title"
     oncancel={(event) => event.preventDefault()}
   >
-    <header class="ka-dialog-header">
+    <header class="fq-dialog-header">
       <h3 id="import-progress-title">{ui.importTitle}</h3>
     </header>
-    <div class="ka-dialog-body ka-progress od-field">
-      <div class="ka-between">
+    <div class="fq-dialog-body fq-progress od-field">
+      <div class="fq-between">
         <span id="import-progress-status" role="status" aria-live="polite">
           {ui.importStatus || t("onboarding.importProgressDialog.statusFallback")}
         </span>
@@ -48,7 +48,7 @@
   .import-dialog {
     width: min(520px, calc(100% - 32px));
   }
-  .import-dialog .ka-dialog-body {
+  .import-dialog .fq-dialog-body {
     display: grid;
     gap: var(--space-2xs);
     font: var(--text-ui) / 1.5 var(--font-ui);

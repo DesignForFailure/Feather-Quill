@@ -10,7 +10,7 @@ const values = new Map<string, string>();
 beforeEach(() => {
   values.clear();
   // A remembered folder makes Markdown exportable without a file picker.
-  values.set("kindling:lastExportPath", "/tmp/exports");
+  values.set("feather-quill:lastExportPath", "/tmp/exports");
   vi.stubGlobal("localStorage", {
     getItem: (key: string) => values.get(key) ?? null,
     setItem: (key: string, value: string) => values.set(key, value),

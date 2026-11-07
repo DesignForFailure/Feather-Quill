@@ -871,11 +871,11 @@
         ui.showError(t("references.referencesPanel.detectReferencesFailed", { error: String(e) }));
       }
     };
-    window.addEventListener("kindling:detectReferences", handler);
-    window.addEventListener("kindling:detectAllReferences", allHandler);
+    window.addEventListener("feather-quill:detectReferences", handler);
+    window.addEventListener("feather-quill:detectAllReferences", allHandler);
     return () => {
-      window.removeEventListener("kindling:detectReferences", handler);
-      window.removeEventListener("kindling:detectAllReferences", allHandler);
+      window.removeEventListener("feather-quill:detectReferences", handler);
+      window.removeEventListener("feather-quill:detectAllReferences", allHandler);
     };
   });
 </script>
@@ -887,13 +887,13 @@
   aria-label={t("references.referencesPanel.title")}
   style={embedded || collapsed ? undefined : `width: ${ui.referencesPanelWidth}px`}
 >
-  <p class="ka-sr" role="status" aria-live="polite">{moveAnnouncement}</p>
+  <p class="fq-sr" role="status" aria-live="polite">{moveAnnouncement}</p>
   {#if collapsed}
     <div class="refs-rail">
       <button
         type="button"
         onclick={toggleReferencesPanel}
-        class="ka-button ka-button--ghost ka-icon-button"
+        class="fq-button fq-button--ghost fq-icon-button"
         aria-label={t("references.referencesPanel.expandWithCount", {
           count: referenceTypeOptions.reduce((n, o) => n + getReferenceCount(o.id), 0),
         })}
@@ -929,7 +929,7 @@
           type="button"
           onclick={() => (copyDestination = currentProject.value)}
           disabled={!currentProject.value || editDialog !== null}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("references.referencesPanel.copyFromProject")}
           title={t("references.referencesPanel.copyFromProject")}
         >
@@ -938,7 +938,7 @@
         <button
           type="button"
           onclick={openCreateDialog}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={addReferenceLabel}
           title={addReferenceLabel}
           data-testid="add-reference-button"
@@ -949,7 +949,7 @@
         <button
           type="button"
           onclick={collapseAll}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("references.referencesPanel.collapseAll")}
           title={t("references.referencesPanel.collapseAll")}
         >
@@ -958,7 +958,7 @@
         <button
           type="button"
           onclick={sortAlphabetically}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("references.referencesPanel.sortAlphabetically")}
           title={t("references.referencesPanel.sortAZ")}
         >
@@ -968,7 +968,7 @@
           <button
             type="button"
             onclick={toggleReferencesPanel}
-            class="ka-button ka-button--ghost ka-icon-button"
+            class="fq-button fq-button--ghost fq-icon-button"
             aria-label={t("references.referencesPanel.collapsePanel")}
             title={t("references.referencesPanel.collapsePanel")}
           >
@@ -980,7 +980,7 @@
 
     <!-- Tabs -->
     <div
-      class="ka-tablist refs-tabs"
+      class="fq-tablist refs-tabs"
       role="tablist"
       aria-label={t("references.referencesPanel.referenceTypes")}
     >
@@ -1023,21 +1023,21 @@
                 {t("references.referencesPanel.suggested")}
               </h3>
               {#if suggestions.length > 0}
-                <span class="ka-badge">{suggestions.length}</span>
+                <span class="fq-badge">{suggestions.length}</span>
               {/if}
             </button>
             {#if suggestionsOpen && !suggestionsLoading && suggestions.length > 1}
               <button
                 type="button"
                 onclick={linkAllSuggestions}
-                class="ka-button ka-button--ghost refs-group-action"
+                class="fq-button fq-button--ghost refs-group-action"
               >
                 {t("references.referencesPanel.linkAll")}
               </button>
               <button
                 type="button"
                 onclick={dismissAllSuggestions}
-                class="ka-button ka-button--ghost refs-group-action"
+                class="fq-button fq-button--ghost refs-group-action"
               >
                 {t("references.referencesPanel.dismissAll")}
               </button>
@@ -1045,7 +1045,7 @@
           </div>
           {#if suggestionsOpen}
             {#if suggestionsLoading}
-              <div class="ka-progress od-field refs-finding" role="status">
+              <div class="fq-progress od-field refs-finding" role="status">
                 <span>{t("references.referencesPanel.findingMentions")}</span>
                 <progress aria-label={t("references.referencesPanel.findingMentionsLabel")}
                 ></progress>
@@ -1069,19 +1069,19 @@
 
       <!-- Content -->
       {#if loading}
-        <div class="ka-progress od-field refs-finding" role="status">
+        <div class="fq-progress od-field refs-finding" role="status">
           <span>{t("references.referencesPanel.loadingReferences")}</span>
           <progress aria-label={t("references.referencesPanel.loadingReferencesLabel")}></progress>
         </div>
       {:else if !activeTab}
-        <p class="ka-help refs-empty">
+        <p class="fq-help refs-empty">
           {t("references.referencesPanel.noTypesEnabled")}
         </p>
       {:else if activeItems.length === 0}
-        <div class="ka-empty od-stack refs-empty-state">
+        <div class="fq-empty od-stack refs-empty-state">
           <h4>{referenceTypeText("references.referencesPanel.empty", activeTab)}</h4>
           <p>{referenceTypeText("references.referencesPanel.emptyHint", activeTab)}</p>
-          <button type="button" class="ka-button" onclick={openCreateDialog}>
+          <button type="button" class="fq-button" onclick={openCreateDialog}>
             <Plus class="w-5 h-5" aria-hidden="true" />
             {addReferenceLabel}
           </button>
@@ -1094,13 +1094,13 @@
                 {t("references.referencesPanel.linkedToScene")}
               </h3>
               {#if sceneReferenceLoading}
-                <span class="ka-help" role="status">{t("references.referencesPanel.loading")}</span>
+                <span class="fq-help" role="status">{t("references.referencesPanel.loading")}</span>
               {/if}
             </div>
             {#if sceneReferenceError}
-              <p class="ka-error refs-empty" role="alert">{sceneReferenceError}</p>
+              <p class="fq-error refs-empty" role="alert">{sceneReferenceError}</p>
             {:else if linkedItems.length === 0 && !sceneReferenceLoading}
-              <p class="ka-help refs-empty">
+              <p class="fq-help refs-empty">
                 {t("references.referencesPanel.noLinked")}
               </p>
             {/if}
@@ -1165,9 +1165,9 @@
                     <button
                       type="button"
                       onclick={() => toggleSceneLink(reference)}
-                      class="ka-button refs-link"
-                      class:ka-button--ghost={isLinked}
-                      class:ka-button--secondary={!isLinked}
+                      class="fq-button refs-link"
+                      class:fq-button--ghost={isLinked}
+                      class:fq-button--secondary={!isLinked}
                       aria-label={isLinked
                         ? t("references.referencesPanel.unlinkFromSceneLabel", {
                             name: reference.name,
@@ -1222,7 +1222,7 @@
                     {/if}
 
                     {#if hasFieldValues || attributes.length > 0}
-                      <dl class="ka-facts refs-facts">
+                      <dl class="fq-facts refs-facts">
                         {#each refFieldDefs as def (def.id)}
                           {@const fv = refFieldValues[def.id]}
                           {#if fv != null && fv !== ""}
@@ -1276,7 +1276,7 @@
                     {/if}
 
                     {#if !reference.description && !notes && attributes.length === 0 && !hasFieldValues}
-                      <p class="ka-help">{t("references.referencesPanel.noDetails")}</p>
+                      <p class="fq-help">{t("references.referencesPanel.noDetails")}</p>
                     {/if}
 
                     <div class="refs-detail-actions">
@@ -1286,7 +1286,7 @@
                           type="button"
                           onclick={() => moveReferenceOneStep(reference, -1)}
                           disabled={!order || order.index === 0}
-                          class="ka-button ka-button--ghost"
+                          class="fq-button fq-button--ghost"
                           aria-label={t("references.referencesPanel.moveUpLabel", {
                             name: reference.name,
                           })}
@@ -1298,7 +1298,7 @@
                           type="button"
                           onclick={() => moveReferenceOneStep(reference, 1)}
                           disabled={!order || order.index === order.count - 1}
-                          class="ka-button ka-button--ghost"
+                          class="fq-button fq-button--ghost"
                           aria-label={t("references.referencesPanel.moveDownLabel", {
                             name: reference.name,
                           })}
@@ -1310,7 +1310,7 @@
                       <button
                         type="button"
                         onclick={() => openEditDialog(reference)}
-                        class="ka-button ka-button--ghost"
+                        class="fq-button fq-button--ghost"
                         aria-label={t("references.referencesPanel.editReference")}
                       >
                         <Pencil class="w-5 h-5" aria-hidden="true" />
@@ -1319,7 +1319,7 @@
                       <button
                         type="button"
                         onclick={() => (deleteTarget = reference)}
-                        class="ka-button ka-button--ghost refs-danger"
+                        class="fq-button fq-button--ghost refs-danger"
                         aria-label={t("references.referencesPanel.deleteReference")}
                       >
                         <Trash2 class="w-5 h-5" aria-hidden="true" />
@@ -1420,7 +1420,7 @@
     bottom: 0;
     width: 1px;
     background: transparent;
-    transition: background var(--ka-motion);
+    transition: background var(--fq-motion);
   }
   .refs-resize:hover::after,
   .refs-resize:focus-visible::after,
@@ -1523,7 +1523,7 @@
   .refs :global(.refs-chev) {
     flex: none;
     color: var(--color-text-muted);
-    transition: transform var(--ka-motion) ease-out;
+    transition: transform var(--fq-motion) ease-out;
   }
   .refs-disclose[aria-expanded="true"] :global(.refs-chev) {
     transform: rotate(90deg);

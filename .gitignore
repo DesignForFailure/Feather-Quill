@@ -44,7 +44,7 @@ npm-debug.log*
 # Test coverage
 coverage/
 coverage-rust/
-kindling-cursor-context.md
+feather-quill-cursor-context.md
 
 # Blacksmith (agentic orchestrator) — local runtime state.
 # blacksmith.toml and blacksmith.config.toml ARE committed; .blacksmith/ is not.
@@ -60,3 +60,6 @@ prds/
 # README demo recorder
 qa/demo/readme/results/
 .goal/
+
+# Generated browser smoke screenshots
+qa/browser/output/

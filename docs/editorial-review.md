@@ -1,7 +1,7 @@
 # Editorial review without accounts
 
-Kindling can send a manuscript to an editor and bring their feedback back as
-local files. Both people use Kindling. The review needs no account, server, or
+Feather Quill can send a manuscript to an editor and bring their feedback back as
+local files. Both people use Feather Quill. The review needs no account, server, or
 network connection; choose your own way to transfer the files.
 
 ## Send a manuscript
@@ -30,7 +30,7 @@ Double-click the package or choose **Open a review or feedback package** on the
 start screen. **File → Open Review or Feedback File** works inside a project too.
 Opening a package preserves any writing project you already have open.
 
-Enter the name you want shown with your feedback once. Kindling remembers it on
+Enter the name you want shown with your feedback once. Feather Quill remembers it on
 this installation; change it under **Review options → Your name**. It is an
 attribution label, not an account or verified identity.
 An empty name is highlighted with a reminder; enter a name to add comments and
@@ -115,7 +115,7 @@ comments, suggestions, and draft history remain available.
 
 Use the mode selector to switch between **Reviewing** (read current prose and
 decide on feedback), **Suggesting** (type proposed edits), and **Writing** (return
-to your writing view). Kindling preserves the selected passage between review
+to your writing view). Feather Quill preserves the selected passage between review
 modes. Suggestions save locally and appear for decisions without exporting files.
 The local pass retains its original manuscript so ongoing suggestions can resume;
 if you have rewritten the manuscript, choose **Manuscript actions (⋯) → Start
@@ -177,5 +177,5 @@ also updates its revision status, and accepted suggestions set it to Revised.
 Moving a Revised or Final scene back to Draft starts it at First Draft; choose
 Editor Review in Revisions when it is ready for that stage again.
 
-Existing sample projects are not overwritten when Kindling updates. Create a
+Existing sample projects are not overwritten when Feather Quill updates. Create a
 fresh sample for these examples; keep any sample you have edited separately.

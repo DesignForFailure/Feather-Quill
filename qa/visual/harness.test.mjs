@@ -37,7 +37,7 @@ function setup() {
       };
     },
   };
-  w.__KINDLING_TEST__ = {
+  w.__FEATHER_QUILL_TEST__ = {
     importCommands: Object.fromEntries(
       ["plottr", "markdown", "ywriter", "longform", "scrivener", "novelwriter"].map((format) => [
         format,
@@ -119,7 +119,7 @@ test("successful QA creations are tracked across reload and removed only once", 
     assert.equal(w.__TAURI_INTERNALS__.invoke, original);
     await settle();
     await w.__qa.trackCreation("create_blank_project", () =>
-      w.__KINDLING_TEST__.invoke("create_blank_project")
+      w.__FEATHER_QUILL_TEST__.invoke("create_blank_project")
     );
     delete w.__qa;
     w.eval(source);
@@ -237,9 +237,9 @@ test("tracks fixture creation with a frozen Tauri IPC entry point before UI comp
   try {
     const ipc = w.__TAURI_INTERNALS__.invoke;
     Object.defineProperty(w.__TAURI_INTERNALS__, "invoke", { value: ipc, writable: false });
-    w.__KINDLING_TEST__.creationObserverVersion = 1;
-    w.__KINDLING_TEST__.importProject = async () => {
-      const onCreated = w.__KINDLING_TEST__.onProjectCreated;
+    w.__FEATHER_QUILL_TEST__.creationObserverVersion = 1;
+    w.__FEATHER_QUILL_TEST__.importProject = async () => {
+      const onCreated = w.__FEATHER_QUILL_TEST__.onProjectCreated;
       const project = await ipc("import_plottr", {});
       onCreated?.("import_plottr", project);
       return new Promise(() => {}); // Later frontend work never completes.
@@ -258,14 +258,14 @@ test("tracks fixture creation with a frozen Tauri IPC entry point before UI comp
 test("creation observer is scoped to its action and restored even when the action throws", async () => {
   const { w, close } = setup();
   try {
-    w.__KINDLING_TEST__.creationObserverVersion = 1;
+    w.__FEATHER_QUILL_TEST__.creationObserverVersion = 1;
     const previous = () => {};
-    w.__KINDLING_TEST__.onProjectCreated = previous;
+    w.__FEATHER_QUILL_TEST__.onProjectCreated = previous;
     let captured;
     w.__qa.trackCreation("create_blank_project", () => {
-      captured = w.__KINDLING_TEST__.onProjectCreated;
+      captured = w.__FEATHER_QUILL_TEST__.onProjectCreated;
     });
-    assert.equal(w.__KINDLING_TEST__.onProjectCreated, previous);
+    assert.equal(w.__FEATHER_QUILL_TEST__.onProjectCreated, previous);
     captured("create_blank_project", { id: "owned-blank", name: "QA Blank Project" });
     assert.equal(
       JSON.parse(w.sessionStorage.getItem("__qa_created_projects"))[0].id,
@@ -276,7 +276,7 @@ test("creation observer is scoped to its action and restored even when the actio
         throw Error("cancelled");
       })
     );
-    assert.equal(w.__KINDLING_TEST__.onProjectCreated, previous);
+    assert.equal(w.__FEATHER_QUILL_TEST__.onProjectCreated, previous);
   } finally {
     close();
   }

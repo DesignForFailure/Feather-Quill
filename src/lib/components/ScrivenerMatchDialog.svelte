@@ -54,7 +54,7 @@
   tabindex="-1"
 >
   <div
-    class="app-dialog-surface ka-dialog-default dialog-shell"
+    class="app-dialog-surface fq-dialog-default dialog-shell"
     role="dialog"
     aria-modal="true"
     aria-labelledby="scrivener-match-title"
@@ -68,14 +68,14 @@
       closeLabel={t("references.scrivenerMatchDialog.close")}
     />
 
-    <div class="ka-dialog-body match">
+    <div class="fq-dialog-body match">
       {#if loading}
-        <div class="ka-progress od-field" role="status">
+        <div class="fq-progress od-field" role="status">
           <span>{t("references.scrivenerMatchDialog.analyzing")}</span>
           <progress aria-label={t("references.scrivenerMatchDialog.analyzingLabel")}></progress>
         </div>
       {:else if loadError}
-        <div class="ka-notice ka-notice--error od-row-top" role="alert">
+        <div class="fq-notice fq-notice--error od-row-top" role="alert">
           <CircleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <strong>{t("references.scrivenerMatchDialog.previewFailed")}</strong>
@@ -83,17 +83,17 @@
           </div>
         </div>
       {:else if matches.length === 0}
-        <div class="ka-empty od-stack">
+        <div class="fq-empty od-stack">
           <h4>{t("references.scrivenerMatchDialog.noScenes")}</h4>
           <p>{t("references.scrivenerMatchDialog.noScenesMessage")}</p>
         </div>
       {:else}
         <div class="match-summary">
-          <span class="ka-badge ka-badge--success"
+          <span class="fq-badge fq-badge--success"
             >{t("references.scrivenerMatchDialog.matchedCount", { count: matchedCount })}</span
           >
           {#if unmatchedCount > 0}
-            <span class="ka-badge ka-badge--warning"
+            <span class="fq-badge fq-badge--warning"
               >{t("references.scrivenerMatchDialog.unmatchedCount", {
                 count: unmatchedCount,
               })}</span
@@ -107,17 +107,17 @@
             <li class="match-row">
               <span class="match-type">
                 {#if isMatched}
-                  <span class="ka-badge ka-badge--success"
+                  <span class="fq-badge fq-badge--success"
                     >{t("references.scrivenerMatchDialog.matchedBadge")}</span
                   >
                 {:else}
-                  <span class="ka-badge ka-badge--warning"
+                  <span class="fq-badge fq-badge--warning"
                     >{t("references.scrivenerMatchDialog.newBadge")}</span
                   >
                 {/if}
               </span>
               <span class="match-text">
-                <span class="ka-label match-name">{m.chapter_title} · {m.scene_title}</span>
+                <span class="fq-label match-name">{m.chapter_title} · {m.scene_title}</span>
                 <span class="match-meta">
                   {isMatched
                     ? t("references.scrivenerMatchDialog.via", {
@@ -136,11 +136,11 @@
       {/if}
     </div>
 
-    <footer class="ka-dialog-footer">
-      <button type="button" onclick={onCancel} class="ka-button ka-button--secondary">
+    <footer class="fq-dialog-footer">
+      <button type="button" onclick={onCancel} class="fq-button fq-button--secondary">
         {t("references.scrivenerMatchDialog.cancel")}
       </button>
-      <button type="button" onclick={onConfirm} disabled={loading || !!loadError} class="ka-button">
+      <button type="button" onclick={onConfirm} disabled={loading || !!loadError} class="fq-button">
         {t("references.scrivenerMatchDialog.proceed")}
       </button>
     </footer>
@@ -192,14 +192,14 @@
     color: var(--color-text-muted);
     overflow-wrap: anywhere;
   }
-  .ka-notice p {
+  .fq-notice p {
     margin: 0;
   }
-  .ka-empty h4 {
+  .fq-empty h4 {
     margin: 0;
     font: 550 var(--text-h3) / 1.25 var(--font-display);
   }
-  .ka-empty p {
+  .fq-empty p {
     margin: 0;
   }
 </style>

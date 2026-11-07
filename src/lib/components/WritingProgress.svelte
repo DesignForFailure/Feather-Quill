@@ -50,7 +50,7 @@
         count: formatNumber(stats.project_words),
       })}
     </p>
-    <div class="ka-progress progress-goal">
+    <div class="fq-progress progress-goal">
       <p title={t("editor.writingProgress.todayTooltip")}>
         {#if stats.daily_goal > 0}
           {tn("editor.writingProgress.todayWithGoal", stats.daily_goal, {
@@ -71,7 +71,7 @@
         ></progress>
       {/if}
     </div>
-    <div class="ka-between progress-session">
+    <div class="fq-between progress-session">
       <span title={t("editor.writingProgress.sessionTooltip")}
         >{tn("editor.writingProgress.sessionWords", stats.session_words, {
           count: formatNumber(stats.session_words),
@@ -79,7 +79,7 @@
       >
       <button
         type="button"
-        class="ka-button ka-button--ghost"
+        class="fq-button fq-button--ghost"
         onclick={reset}
         disabled={resetting}
         aria-busy={resetting || undefined}
@@ -112,7 +112,7 @@
     display: grid;
     gap: var(--space-3xs);
   }
-  .progress-session .ka-button {
+  .progress-session .fq-button {
     min-height: var(--control-target);
     margin-block: calc(-1 * var(--space-2xs));
     padding: var(--space-2xs) var(--space-xs);

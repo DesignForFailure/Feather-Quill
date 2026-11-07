@@ -52,7 +52,7 @@
           tabindex="0"
         >
           <h2 id="writing-statistics-title">{t("editor.writingStatusBar.statisticsTitle")}</h2>
-          <dl class="ka-stats statistics-figures">
+          <dl class="fq-stats statistics-figures">
             <div>
               <dt>{t("editor.writingStatusBar.totalWords")}</dt>
               <dd>{formatNumber(stats.project_words)}</dd>
@@ -74,7 +74,7 @@
               </dd>
             </div>
           </dl>
-          <p class="ka-help statistics-note">
+          <p class="fq-help statistics-note">
             {t("editor.writingStatusBar.savedProseNote")}
           </p>
           {#if chapters.length}
@@ -100,7 +100,7 @@
               </tbody>
             </table>
           {:else}
-            <p class="ka-help">{t("editor.writingStatusBar.noChapters")}</p>
+            <p class="fq-help">{t("editor.writingStatusBar.noChapters")}</p>
           {/if}
         </section>
       {/if}
@@ -125,7 +125,7 @@
         </span>
         <button
           type="button"
-          class="ka-button ka-button--ghost statusbar-toggle"
+          class="fq-button fq-button--ghost statusbar-toggle"
           aria-expanded={expanded}
           aria-controls="writing-statistics-panel"
           onclick={toggleStatistics}

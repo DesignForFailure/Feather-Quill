@@ -56,7 +56,7 @@
   },
   {
     "id": "quit",
-    "label": "Quit Kindling",
+    "label": "Quit Feather Quill",
     "category": "File",
     "requiresProject": false,
     "keywords": ["quit", "exit"],
@@ -169,7 +169,7 @@
   },
   {
     "id": "about",
-    "label": "About kindling",
+    "label": "About Feather Quill",
     "category": "Help",
     "requiresProject": false,
     "keywords": ["about", "version", "info"],
@@ -190,7 +190,7 @@
     "requiresProject": false,
     "keywords": [
       "settings",
-      "kindling",
+      "Feather Quill",
       "preferences",
       "author",
       "project",

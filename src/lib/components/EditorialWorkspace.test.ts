@@ -546,7 +546,7 @@ describe("editorial workspace", () => {
     }
     await fireEvent.click(view.getByRole("button", { name: "Done" }));
     expect(view.queryByLabelText("Name shown with feedback")).toBeNull();
-    expect(localStorage.getItem("kindling.editorial.name")).toBe("Rowan");
+    expect(localStorage.getItem("feather-quill.editorial.name")).toBe("Rowan");
   });
   it("activates inline feedback without expanding the edit selection", async () => {
     const view = render(EditorialWorkspace, { prepareWriting, onManuscriptChanged });
@@ -1306,7 +1306,7 @@ describe("editorial workspace", () => {
     await fireEvent.click(view.getByRole("button", { name: "Close review" }));
     await waitFor(() => expect(view.getByRole("alert").textContent).toContain("disk full"));
     expect(view.component.isOpen()).toBe(true);
-    expect(localStorage.getItem("kindling.editorial.recovery.round")).toContain("Rowan");
+    expect(localStorage.getItem("feather-quill.editorial.recovery.round")).toContain("Rowan");
   });
 
   it.each(["feedback", "review"] as const)(

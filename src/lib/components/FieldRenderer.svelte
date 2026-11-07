@@ -86,7 +86,7 @@
   const inputClass = "field-input";
 </script>
 
-<div class="ka-field od-field field-renderer">
+<div class="fq-field od-field field-renderer">
   {#if isMultiselect}
     <div id={`${fieldId}-label`} class="field-label">
       {definition.name}
@@ -151,7 +151,7 @@
           href={value}
           target="_blank"
           rel="noopener noreferrer"
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("references.fieldRenderer.openUrl")}
           title={t("references.fieldRenderer.openUrl")}
         >
@@ -178,10 +178,10 @@
       role="group"
       aria-labelledby={`${fieldId}-label`}
       aria-describedby={definition.required ? `${fieldId}-required` : undefined}
-      class="ka-checks"
+      class="fq-checks"
     >
       {#each selectOptions as option}
-        <label class="ka-check">
+        <label class="fq-check">
           <input
             type="checkbox"
             checked={isMultiselectSelected(option)}
@@ -193,7 +193,7 @@
       {/each}
     </div>
   {:else if definition.field_type === "checkbox"}
-    <div class="ka-check">
+    <div class="fq-check">
       <input
         id={fieldId}
         aria-required={definition.required}

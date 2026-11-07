@@ -58,7 +58,7 @@
   import { t, tn } from "../i18n";
   import { formatNumber } from "../i18n/format";
 
-  const LAST_EXPORT_PATH_KEY = "kindling:lastExportPath";
+  const LAST_EXPORT_PATH_KEY = "feather-quill:lastExportPath";
 
   let {
     scope,
@@ -217,7 +217,7 @@
   let customProfileId = $state("");
   let profileLoadFailed = $state(false);
   const selectedCustomProfile = $derived(customProfiles.find((p) => p.id === customProfileId));
-  const customPreferenceKey = () => `kindling:custom-export:${currentProject.value?.id}`;
+  const customPreferenceKey = () => `feather-quill:custom-export:${currentProject.value?.id}`;
 
   onMount(() => {
     const project = currentProject.value;
@@ -810,7 +810,7 @@
   tabindex="-1"
 >
   <!-- Dialog -->
-  <div class="app-dialog-surface ka-dialog-default dialog-shell classic-export">
+  <div class="app-dialog-surface fq-dialog-default dialog-shell classic-export">
     <DialogHeader
       title={t("export.classicExportDialog.dialogTitle", { scopeTitle })}
       titleId="export-dialog-title"
@@ -820,7 +820,7 @@
       closeTestId="export-close"
     >
       {#if scope === "project" && (loadingWordCount || formattedWordCount)}
-        <span class="ka-badge"
+        <span class="fq-badge"
           >{loadingWordCount
             ? t("export.classicExportDialog.countingWords")
             : formattedWordCount}</span
@@ -829,10 +829,10 @@
     </DialogHeader>
 
     <!-- Content -->
-    <div class="ka-dialog-body classic-export-body">
+    <div class="fq-dialog-body classic-export-body">
       <!-- Format Selection - Card Style -->
       <fieldset class="export-picker">
-        <legend class="ka-group-title">{t("export.classicExportDialog.formatLegend")}</legend>
+        <legend class="fq-group-title">{t("export.classicExportDialog.formatLegend")}</legend>
         <div class="export-picker-groups">
           {#each formatGroups as group (group.id)}
             <div
@@ -847,7 +847,7 @@
             </div>
           {/each}
         </div>
-        <div class="ka-field od-field export-profile">
+        <div class="fq-field od-field export-profile">
           <label for="custom-export-profile">{t("export.classicExportDialog.profileLabel")}</label>
           <select
             id="custom-export-profile"
@@ -861,16 +861,16 @@
                 >{profile.name}</option
               >{/each}
           </select>
-          {#if profileLoadFailed}<p class="ka-error" role="alert">
+          {#if profileLoadFailed}<p class="fq-error" role="alert">
               {t("export.classicExportDialog.profileLoadFailed")}
             </p>
           {:else if exportFormat === "custom" && selectedCustomProfile}
             {@const summary = profileSummary(selectedCustomProfile)}
             <div id="custom-export-profile-help" class="export-profile-summary">
-              {#if selectedCustomProfile.description}<p class="ka-help">
+              {#if selectedCustomProfile.description}<p class="fq-help">
                   {selectedCustomProfile.description}
                 </p>{/if}
-              <dl class="ka-facts">
+              <dl class="fq-facts">
                 {#each summary as [term, value] (term)}
                   <div>
                     <dt>{term}</dt>
@@ -878,10 +878,10 @@
                   </div>
                 {/each}
               </dl>
-              <p class="ka-help">{t("export.classicExportDialog.profileRemembered")}</p>
+              <p class="fq-help">{t("export.classicExportDialog.profileRemembered")}</p>
             </div>
           {:else}
-            <p id="custom-export-profile-help" class="ka-help">
+            <p id="custom-export-profile-help" class="fq-help">
               {t("export.classicExportDialog.profileHint")}
             </p>
           {/if}
@@ -891,29 +891,29 @@
       {#if exportFormat === "docx"}
         <!-- DOCX Options Section -->
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.docxLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.docxLegend")}</legend>
 
           <!-- Toggle Options -->
           <div class="export-choices">
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={includeTitlePage} />{t(
                 "export.classicExportDialog.includeTitlePage"
               )}</label
             >
 
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={pageBreaksBetweenChapters} />{t(
                 "export.classicExportDialog.pageBreaksBetweenChapters"
               )}</label
             >
 
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={includeBeatMarkers} />{t(
                 "export.classicExportDialog.includeBeatMarkers"
               )}</label
             >
 
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={includeSynopsis} />{t(
                 "export.classicExportDialog.includeSceneSynopses"
               )}</label
@@ -923,7 +923,7 @@
           <!-- Dropdown Selects -->
           <div class="export-grid">
             <!-- Chapter Heading Style -->
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="chapter-heading-style">
                 {t("export.classicExportDialog.chapterHeading")}
               </label>
@@ -932,7 +932,7 @@
                   <option value={style.value}>{style.label}</option>
                 {/each}
               </select>
-              <p class="ka-help">
+              <p class="fq-help">
                 {t("export.classicExportDialog.appearsAs", {
                   example:
                     chapterHeadingStyles.find((s) => s.value === chapterHeadingStyle)?.example ??
@@ -942,14 +942,14 @@
             </div>
 
             <!-- Scene Break Style -->
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="scene-break-style"> {t("export.classicExportDialog.sceneBreak")} </label>
               <select id="scene-break-style" bind:value={sceneBreakStyle}>
                 {#each sceneBreakStyles as style (style.value)}
                   <option value={style.value}>{style.label}</option>
                 {/each}
               </select>
-              <p class="ka-help">
+              <p class="fq-help">
                 {t("export.classicExportDialog.appearsAs", {
                   example: sceneBreakStyles.find((s) => s.value === sceneBreakStyle)?.example ?? "",
                 })}
@@ -960,10 +960,10 @@
 
         <!-- Typography Section -->
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.typographyLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.typographyLegend")}</legend>
           <div class="export-grid">
             <!-- Font Family -->
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="font-family"> {t("export.classicExportDialog.font")} </label>
               <select id="font-family" bind:value={fontFamily}>
                 {#each fontFamilies as font (font.value)}
@@ -973,7 +973,7 @@
             </div>
 
             <!-- Line Spacing -->
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="line-spacing"> {t("export.classicExportDialog.lineSpacing")} </label>
               <select id="line-spacing" bind:value={lineSpacing}>
                 {#each lineSpacingOptions as spacing (spacing.value)}
@@ -985,7 +985,7 @@
         </fieldset>
 
         <!-- Save Location -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="docx-destination"> {t("export.classicExportDialog.saveLocation")} </label>
           <div class="export-location">
             <input
@@ -999,7 +999,7 @@
             <button
               type="button"
               onclick={selectDocxFile}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               aria-label={t("export.classicExportDialog.chooseSaveLocation")}
             >
               {t("export.classicExportDialog.choose")}
@@ -1009,16 +1009,16 @@
       {:else if exportFormat === "markdown"}
         <!-- Markdown Options -->
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.optionsLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.optionsLegend")}</legend>
 
           <div class="export-choices">
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={includeBeatMarkers} />{t(
                 "export.classicExportDialog.includeBeatMarkers"
               )}</label
             >
 
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={deleteExisting} />{t(
                 "export.classicExportDialog.deleteExistingFolder"
               )}</label
@@ -1027,7 +1027,7 @@
         </fieldset>
 
         <!-- Export Name -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="export-name"> {t("export.classicExportDialog.exportName")} </label>
           <input
             id="export-name"
@@ -1035,14 +1035,14 @@
             bind:value={exportName}
             placeholder={t("export.classicExportDialog.exportFolderNamePlaceholder")}
           />
-          <p class="ka-help">
+          <p class="fq-help">
             {t("export.classicExportDialog.folderLabel")}
             <span>{exportName.trim() || currentProject.value?.name || "Project"}</span>
           </p>
         </div>
 
         <!-- Destination Folder -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="destination"> {t("export.classicExportDialog.destinationFolder")} </label>
           <div class="export-location">
             <input
@@ -1056,7 +1056,7 @@
             <button
               type="button"
               onclick={selectDestination}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               aria-label={t("export.classicExportDialog.browseForFolder")}
             >
               {t("export.classicExportDialog.choose")}
@@ -1066,10 +1066,10 @@
       {:else if exportFormat === "longform"}
         <!-- Longform Options -->
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.optionsLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.optionsLegend")}</legend>
 
           <div class="export-choices">
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={deleteExisting} />{t(
                 "export.classicExportDialog.deleteExistingFolder"
               )}</label
@@ -1078,7 +1078,7 @@
         </fieldset>
 
         <!-- Export Name -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="export-name-longform"> {t("export.classicExportDialog.exportName")} </label>
           <input
             id="export-name-longform"
@@ -1086,7 +1086,7 @@
             bind:value={exportName}
             placeholder={t("export.classicExportDialog.projectNamePlaceholder")}
           />
-          <p class="ka-help">
+          <p class="fq-help">
             {t("export.classicExportDialog.folderLabel")}
             <span>{exportName.trim() || currentProject.value?.name || "Project"}</span>
             · {t("export.classicExportDialog.indexLabel")}
@@ -1095,7 +1095,7 @@
         </div>
 
         <!-- Destination Folder -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="destination-longform">
             {t("export.classicExportDialog.destinationFolder")}
           </label>
@@ -1111,7 +1111,7 @@
             <button
               type="button"
               onclick={selectDestination}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               aria-label={t("export.classicExportDialog.browseForFolder")}
             >
               {t("export.classicExportDialog.choose")}
@@ -1121,10 +1121,10 @@
       {:else if exportFormat === "treatment"}
         <!-- Treatment Options -->
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.detailLevelLegend")}</legend
+          <legend class="fq-group-title">{t("export.classicExportDialog.detailLevelLegend")}</legend
           >
           <div class="export-choices">
-            <label class="ka-check export-check" class:is-selected={treatmentLevel === "one_page"}>
+            <label class="fq-check export-check" class:is-selected={treatmentLevel === "one_page"}>
               <input
                 type="radio"
                 name="treatment-level"
@@ -1137,7 +1137,7 @@
                 ></span
               >
             </label>
-            <label class="ka-check export-check" class:is-selected={treatmentLevel === "five_page"}>
+            <label class="fq-check export-check" class:is-selected={treatmentLevel === "five_page"}>
               <input
                 type="radio"
                 name="treatment-level"
@@ -1150,7 +1150,7 @@
                 ></span
               >
             </label>
-            <label class="ka-check export-check" class:is-selected={treatmentLevel === "full"}>
+            <label class="fq-check export-check" class:is-selected={treatmentLevel === "full"}>
               <input type="radio" name="treatment-level" value="full" bind:group={treatmentLevel} />
               <span class="export-check-text"
                 ><span>{t("export.classicExportDialog.treatmentFull")}</span><small
@@ -1162,13 +1162,13 @@
         </fieldset>
 
         <!-- Output Format -->
-        <fieldset class="ka-segments">
-          <legend class="ka-group-title"
+        <fieldset class="fq-segments">
+          <legend class="fq-group-title"
             >{t("export.classicExportDialog.outputFormatLegend")}</legend
           >
-          <div class="ka-segment-track">
+          <div class="fq-segment-track">
             {#each [{ id: "docx", label: ".docx" }, { id: "txt", label: ".txt" }] as option (option.id)}
-              <label class="ka-segment" class:ka-selected={treatmentFormat === option.id}>
+              <label class="fq-segment" class:fq-selected={treatmentFormat === option.id}>
                 <input
                   type="radio"
                   name="treatment-format"
@@ -1182,7 +1182,7 @@
         </fieldset>
 
         <!-- Save Location -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="treatment-destination">
             {t("export.classicExportDialog.saveLocation")}
           </label>
@@ -1198,7 +1198,7 @@
             <button
               type="button"
               onclick={selectTreatmentFile}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               aria-label={t("export.classicExportDialog.chooseSaveLocation")}
             >
               {t("export.classicExportDialog.choose")}
@@ -1207,27 +1207,27 @@
         </div>
       {:else if exportFormat === "novelwriter"}
         <div class="export-section">
-          <p class="ka-help">
+          <p class="fq-help">
             {t("export.classicExportDialog.novelwriterHelp")}
           </p>
-          <label class="ka-check"
+          <label class="fq-check"
             ><input
               type="checkbox"
               data-testid="novelwriter-beat-comments"
               bind:checked={novelwriterBeatComments}
             />{t("export.classicExportDialog.includeBeatComments")}</label
           >
-          <p class="ka-help">
+          <p class="fq-help">
             {t("export.classicExportDialog.beatCommentsHelp")}
           </p>
-          <label class="ka-check"
+          <label class="fq-check"
             ><input
               type="checkbox"
               data-testid="novelwriter-notes"
               bind:checked={novelwriterNotes}
             />{t("export.classicExportDialog.includeReferenceNotes")}</label
           >
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="novelwriter-destination">
               {t("export.classicExportDialog.destinationFolder")}
             </label>
@@ -1242,12 +1242,12 @@
                 type="button"
                 onclick={selectNovelWriterPath}
                 aria-label={t("export.classicExportDialog.chooseNovelwriterFolder")}
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 >{t("export.classicExportDialog.choose")}</button
               >
             </div>
           </div>
-          <details class="ka-disclosure export-details">
+          <details class="fq-disclosure export-details">
             <summary>{t("export.classicExportDialog.roundTrip")}</summary>
             <p>
               {t("export.classicExportDialog.roundTripExport")}
@@ -1263,9 +1263,9 @@
       {:else if exportFormat === "scrivener"}
         <!-- Scrivener Export Options -->
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.exportModeLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.exportModeLegend")}</legend>
           <div class="export-choices">
-            <label class="ka-check export-check" class:is-selected={scrivenerMode === "create_new"}>
+            <label class="fq-check export-check" class:is-selected={scrivenerMode === "create_new"}>
               <input
                 type="radio"
                 name="scrivener-mode"
@@ -1278,7 +1278,7 @@
                 ></span
               >
             </label>
-            <label class="ka-check export-check" class:is-selected={scrivenerMode === "update"}>
+            <label class="fq-check export-check" class:is-selected={scrivenerMode === "update"}>
               <input type="radio" name="scrivener-mode" value="update" bind:group={scrivenerMode} />
               <span class="export-check-text"
                 ><span>{t("export.classicExportDialog.updateExisting")}</span><small
@@ -1292,11 +1292,11 @@
         {#if scrivenerMode === "update"}
           <!-- Update-mode-specific options -->
           <fieldset>
-            <legend class="ka-group-title"
+            <legend class="fq-group-title"
               >{t("export.classicExportDialog.updateOptionsLegend")}</legend
             >
             <div class="export-choices">
-              <label class="ka-check export-check">
+              <label class="fq-check export-check">
                 <input type="checkbox" bind:checked={scrivenerBackup} />
                 <span class="export-check-text"
                   ><span>{t("export.classicExportDialog.backupBeforeUpdating")}</span><small
@@ -1305,7 +1305,7 @@
                 >
               </label>
 
-              <label class="ka-check export-check">
+              <label class="fq-check export-check">
                 <input type="checkbox" bind:checked={scrivenerIncludeUnmatched} />
                 <span class="export-check-text"
                   ><span>{t("export.classicExportDialog.includeUnmatched")}</span><small
@@ -1317,12 +1317,12 @@
           </fieldset>
         {/if}
 
-        <p class="ka-help">
+        <p class="fq-help">
           {t("export.classicExportDialog.scrivenerExclusions")}
         </p>
 
         <!-- Save/Select Location -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="scrivener-destination">
             {scrivenerMode === "create_new"
               ? t("export.classicExportDialog.scrivenerSaveLocation")
@@ -1342,7 +1342,7 @@
             <button
               type="button"
               onclick={selectScrivenerPath}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               aria-label={scrivenerMode === "create_new"
                 ? t("export.classicExportDialog.chooseSaveLocation")
                 : t("export.classicExportDialog.selectScrivBundle")}
@@ -1354,9 +1354,9 @@
       {:else if exportFormat === "epub"}
         <!-- EPUB Options -->
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.metadataLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.metadataLegend")}</legend>
           <div class="export-section">
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="epub-title">{t("export.classicExportDialog.title")}</label>
               <input
                 id="epub-title"
@@ -1365,7 +1365,7 @@
                 placeholder={t("export.classicExportDialog.titlePlaceholder")}
               />
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="epub-author">{t("export.classicExportDialog.author")}</label>
               <input
                 id="epub-author"
@@ -1374,7 +1374,7 @@
                 placeholder={t("export.classicExportDialog.authorPlaceholder")}
               />
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="epub-description">{t("export.classicExportDialog.description")}</label>
               <textarea
                 id="epub-description"
@@ -1383,23 +1383,23 @@
                 placeholder={t("export.classicExportDialog.descriptionPlaceholder")}
               ></textarea>
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="epub-language">{t("export.classicExportDialog.language")}</label>
               <input id="epub-language" type="text" bind:value={epubLanguage} placeholder="en" />
-              <p class="ka-help">{t("export.classicExportDialog.languageHelp")}</p>
+              <p class="fq-help">{t("export.classicExportDialog.languageHelp")}</p>
             </div>
           </div>
         </fieldset>
 
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.contentLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.contentLegend")}</legend>
           <div class="export-choices">
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={includeBeatMarkers} />{t(
                 "export.classicExportDialog.includeBeatMarkers"
               )}</label
             >
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={includeSynopsis} />{t(
                 "export.classicExportDialog.includeSceneSynopses"
               )}</label
@@ -1408,8 +1408,8 @@
         </fieldset>
 
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.stylingLegend")}</legend>
-          <div class="ka-field od-field">
+          <legend class="fq-group-title">{t("export.classicExportDialog.stylingLegend")}</legend>
+          <div class="fq-field od-field">
             <label for="epub-theme">{t("export.classicExportDialog.theme")}</label>
             <select id="epub-theme" bind:value={epubTheme}>
               {#each epubThemeOptions as theme (theme.value)}
@@ -1420,16 +1420,16 @@
         </fieldset>
 
         <fieldset>
-          <legend class="ka-group-title">{t("export.classicExportDialog.coverLegend")}</legend>
+          <legend class="fq-group-title">{t("export.classicExportDialog.coverLegend")}</legend>
           <div class="export-section">
-            <label class="ka-check"
+            <label class="fq-check"
               ><input type="checkbox" bind:checked={includeCoverImage} />{t(
                 "export.classicExportDialog.includeCoverImage"
               )}</label
             >
 
             {#if includeCoverImage}
-              <div class="ka-field od-field">
+              <div class="fq-field od-field">
                 <label for="cover-image">{t("export.classicExportDialog.coverImage")}</label>
                 <div class="export-location">
                   <input
@@ -1443,7 +1443,7 @@
                   <button
                     type="button"
                     onclick={selectCoverImage}
-                    class="ka-button ka-button--secondary"
+                    class="fq-button fq-button--secondary"
                     aria-label={t("export.classicExportDialog.selectCoverImage")}
                   >
                     {t("export.classicExportDialog.choose")}
@@ -1455,7 +1455,7 @@
         </fieldset>
 
         <!-- Save Location -->
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="epub-destination"> {t("export.classicExportDialog.saveLocation")} </label>
           <div class="export-location">
             <input
@@ -1469,7 +1469,7 @@
             <button
               type="button"
               onclick={selectEpubFile}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               aria-label={t("export.classicExportDialog.chooseSaveLocation")}
             >
               {t("export.classicExportDialog.choose")}
@@ -1481,7 +1481,7 @@
       {#if exportFormat !== "custom"}
         <!-- Snapshot Option (shown for both formats) -->
         <div class="export-snapshot">
-          <label class="ka-check export-check">
+          <label class="fq-check export-check">
             <input type="checkbox" bind:checked={createSnapshot} />
             <span class="export-check-text"
               ><span>{t("export.classicExportDialog.createSnapshot")}</span><small
@@ -1493,7 +1493,7 @@
       {/if}
       <!-- Error Message -->
       {#if error}
-        <div class="ka-notice ka-notice--error od-row-top" role="alert">
+        <div class="fq-notice fq-notice--error od-row-top" role="alert">
           <TriangleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <strong>{t("export.classicExportDialog.exportFailed")}</strong>
@@ -1503,18 +1503,18 @@
       {/if}
     </div>
 
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       {#if blockedReason && !exporting}
-        <p class="ka-help ka-dialog-footer-start" id="export-blocked">{blockedReason}</p>
+        <p class="fq-help fq-dialog-footer-start" id="export-blocked">{blockedReason}</p>
       {:else if exportFormat === "custom"}
-        <p class="ka-help ka-dialog-footer-start">
+        <p class="fq-help fq-dialog-footer-start">
           {t("export.classicExportDialog.customFooterHint")}
         </p>
       {/if}
       <button
         type="button"
         onclick={onClose}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         disabled={exporting}
       >
         {t("common.cancel")}
@@ -1523,7 +1523,7 @@
         type="button"
         data-testid="export-confirm"
         onclick={handleExport}
-        class="ka-button"
+        class="fq-button"
         disabled={!canExport || exporting}
         aria-busy={exporting || undefined}
         aria-describedby={blockedReason && !exporting ? "export-blocked" : undefined}
@@ -1567,14 +1567,14 @@
   }
   /* A legend interrupts its fieldset's top border (the rule ran beside the
      group title), so the hairline closes the group *before* each fieldset. */
-  .classic-export-body > :global(*:has(+ fieldset:not(.ka-segments))) {
+  .classic-export-body > :global(*:has(+ fieldset:not(.fq-segments))) {
     padding-bottom: var(--space-m);
     border-bottom: var(--border-hair);
   }
-  .classic-export-body > :global(fieldset > legend.ka-group-title) {
+  .classic-export-body > :global(fieldset > legend.fq-group-title) {
     margin-bottom: var(--space-xs);
   }
-  .classic-export-body > :global(fieldset.ka-segments) {
+  .classic-export-body > :global(fieldset.fq-segments) {
     padding-top: 0;
     border-top: 0;
   }
@@ -1641,7 +1641,7 @@
     display: grid;
     gap: var(--space-2xs);
   }
-  .export-profile-summary .ka-facts {
+  .export-profile-summary .fq-facts {
     margin: 0;
   }
   .export-choices {

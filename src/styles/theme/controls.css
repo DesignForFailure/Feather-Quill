@@ -1,0 +1,416 @@
+/* Original Feather Quill control styling, MIT. The application markup is the
+   interface contract; this stylesheet is not a translated Press implementation. */
+.fq-app {
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+.fq-app :where(h1, h2, h3, h4, p) {
+  margin-block: 0;
+}
+.fq-app :where(h1, h2, h3, h4) {
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+}
+.fq-app h1 {
+  font-size: var(--text-h1);
+}
+.fq-app h2 {
+  font-size: var(--text-h2);
+}
+.fq-app h3 {
+  font-size: var(--text-h3);
+}
+.fq-app :where(button, input, textarea, select) {
+  font: inherit;
+  color: inherit;
+}
+.fq-app button {
+  cursor: pointer;
+}
+.fq-app a {
+  color: var(--color-accent-text);
+  text-underline-offset: 0.2em;
+}
+.fq-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.fq-row,
+.fq-between {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+.fq-between {
+  justify-content: space-between;
+}
+.fq-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.fq-button,
+.fq-icon-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--control-target);
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+  padding: 9px 15px;
+  background: var(--color-accent-text);
+  color: var(--color-on-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.fq-icon-button {
+  width: var(--control-target);
+  padding: 9px;
+  color: var(--color-text-muted);
+  background: transparent;
+  flex-shrink: 0;
+}
+.fq-button--secondary {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+.fq-button--ghost {
+  background: transparent;
+  color: var(--color-text);
+}
+.fq-button--danger {
+  background: var(--color-error);
+  color: var(--color-surface);
+}
+@media (hover: hover) {
+  .fq-button:not(:disabled):hover {
+    filter: brightness(0.94);
+  }
+  .fq-icon-button:not(:disabled):hover,
+  .fq-button--ghost:not(:disabled):hover {
+    background: var(--color-surface-sunken);
+  }
+}
+.fq-field {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2xs);
+  min-width: 0;
+}
+.fq-label,
+.fq-field > label,
+.fq-field > span:first-child {
+  font-weight: 600;
+}
+.fq-field :where(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-target);
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-s);
+  background: var(--color-surface-sunken);
+}
+.fq-field textarea {
+  resize: vertical;
+}
+.fq-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: var(--control-target);
+}
+.fq-check :where(input[type="checkbox"], input[type="radio"]) {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-accent-text);
+}
+.fq-help,
+.fq-optional,
+.fq-count {
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+.fq-error {
+  color: var(--color-error);
+  font-size: var(--text-ui);
+}
+.fq-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+}
+.fq-eyebrow {
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+.fq-code {
+  font-family: var(--font-mono);
+  background: var(--color-surface-sunken);
+  padding: 2px 5px;
+  border-radius: var(--radius-xs);
+}
+.app-dialog-surface,
+.fq-dialog {
+  max-height: calc(100dvh - 32px);
+  max-width: calc(100vw - 32px);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  box-shadow: var(--shadow-overlay);
+  overflow: hidden;
+}
+.fq-dialog {
+  margin: auto;
+  width: min(680px, calc(100vw - 32px));
+  padding: 0;
+}
+.fq-dialog::backdrop {
+  background: var(--color-overlay-scrim);
+}
+.fq-dialog-header,
+.fq-dialog-footer {
+  padding: var(--space-m);
+}
+.fq-dialog-header {
+  border-bottom: var(--border-hair);
+}
+.fq-dialog-body {
+  padding: var(--space-m);
+}
+.fq-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-xs);
+  border-top: var(--border-hair);
+}
+.fq-dialog-default {
+  width: 680px;
+}
+.fq-dialog-wide {
+  width: 1040px;
+}
+.fq-segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.fq-segment-track {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 3px;
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-s);
+}
+.fq-segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  min-height: var(--control-target);
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-s);
+}
+.fq-segment.fq-selected,
+.fq-segment[aria-pressed="true"],
+.fq-segment:has(input:checked) {
+  background: var(--color-accent-text);
+  color: var(--color-on-accent);
+}
+.fq-segment:has(input:focus-visible) {
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 2px;
+}
+.fq-tree-list,
+.fq-menu-list,
+.fq-command-list,
+.fq-results {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.fq-tree button {
+  width: 100%;
+  min-height: var(--control-target);
+  padding: 8px 12px;
+  text-align: left;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: transparent;
+}
+.fq-tree-selected {
+  background: var(--color-accent-wash) !important;
+  color: var(--color-accent-text);
+}
+.fq-menu-list {
+  padding: 6px;
+  background: var(--color-surface);
+  border: var(--border-hair);
+  border-radius: var(--radius-s);
+}
+.fq-menu-list > button,
+.fq-command-list button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-s);
+  text-align: left;
+  border: 0;
+  background: transparent;
+  padding: 9px 12px;
+  min-height: var(--control-target);
+}
+.fq-menu-list > button:hover,
+.fq-command-list button:hover {
+  background: var(--color-surface-sunken);
+}
+.fq-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  border-bottom: var(--border-hair);
+}
+.fq-tablist [role="tab"] {
+  padding: 10px 14px;
+  min-height: var(--control-target);
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+}
+.fq-tablist [aria-selected="true"] {
+  color: var(--color-accent-text);
+  border-bottom-color: currentColor;
+}
+.fq-badge,
+.fq-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-small);
+  background: var(--color-surface-sunken);
+}
+.fq-badge--accent {
+  background: var(--color-accent-wash);
+  color: var(--color-accent-text);
+}
+.fq-badge--success {
+  background: var(--color-success-wash);
+  color: var(--color-success);
+}
+.fq-badge--warning {
+  background: var(--color-warning-wash);
+  color: var(--color-warning);
+}
+.fq-notice {
+  display: flex;
+  align-items: start;
+  gap: var(--space-xs);
+  padding: var(--space-s);
+  border: var(--border-hair);
+  border-radius: var(--radius-s);
+  background: var(--color-info-wash);
+}
+.fq-notice--error {
+  color: var(--color-error);
+  background: var(--color-error-wash);
+}
+.fq-notice--warning {
+  color: var(--color-warning);
+  background: var(--color-warning-wash);
+}
+.fq-notice--success {
+  color: var(--color-success);
+  background: var(--color-success-wash);
+}
+.fq-empty {
+  display: grid;
+  place-items: center;
+  gap: var(--space-s);
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+.fq-facts {
+  margin: 0;
+}
+.fq-facts > div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-m);
+  padding-block: var(--space-xs);
+  border-bottom: var(--border-hair);
+}
+.fq-facts dd {
+  margin: 0;
+}
+.fq-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-m);
+}
+.fq-stats strong,
+.fq-stats dt {
+  font-variant-numeric: tabular-nums;
+}
+.fq-progress {
+  accent-color: var(--color-accent-text);
+  width: 100%;
+}
+.fq-disclosure {
+  border-bottom: var(--border-hair);
+}
+.fq-disclosure > summary {
+  cursor: pointer;
+  min-height: var(--control-target);
+  padding-block: var(--space-xs);
+}
+.fq-enter {
+  animation: fq-enter 120ms ease-out;
+}
+@keyframes fq-enter {
+  from {
+    transform: translateY(4px);
+    opacity: 0.6;
+  }
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+.app-prose-sheet {
+  background: var(--color-prose-bg);
+  color: var(--color-prose-text);
+  box-shadow: var(--shadow-prose);
+  border: 1px solid var(--color-prose-border);
+}
+::selection {
+  background: var(--color-accent-wash);
+  color: var(--color-text);
+}
+:where(input, textarea)::placeholder {
+  color: var(--color-text-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fq-enter {
+    animation: none;
+  }
+}

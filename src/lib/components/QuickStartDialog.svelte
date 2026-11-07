@@ -36,7 +36,7 @@
   tabindex="-1"
 >
   <div
-    class="app-dialog-surface ka-dialog-default dialog-shell quick-start"
+    class="app-dialog-surface fq-dialog-default dialog-shell quick-start"
     data-testid="quick-start-dialog"
   >
     <DialogHeader
@@ -47,18 +47,18 @@
       closeTestId="quick-start-close"
     />
 
-    <div class="ka-dialog-body quick-start-body">
+    <div class="fq-dialog-body quick-start-body">
       <!-- Import -->
-      <section class="ka-group">
-        <h3 class="ka-group-title">{t("onboarding.quickStartDialog.importHeading")}</h3>
-        <p class="font-press-ui text-press-base text-press-text mb-3 max-w-press-measure">
+      <section class="fq-group">
+        <h3 class="fq-group-title">{t("onboarding.quickStartDialog.importHeading")}</h3>
+        <p class="font-fq-ui text-fq-base text-fq-text mb-3 max-w-fq-measure">
           {t("onboarding.quickStartDialog.importLede")}
         </p>
-        <ul class="space-y-2 text-press-ui text-press-muted">
+        <ul class="space-y-2 text-fq-ui text-fq-muted">
           <li class="flex items-start gap-2">
             <Kanban class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text">Plottr</strong>{t(
+              ><strong class="text-fq-text">Plottr</strong>{t(
                 "onboarding.quickStartDialog.plottr"
               )}</span
             >
@@ -66,7 +66,7 @@
           <li class="flex items-start gap-2">
             <PenTool class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text">yWriter 7</strong>{t(
+              ><strong class="text-fq-text">yWriter 7</strong>{t(
                 "onboarding.quickStartDialog.ywriter"
               )}</span
             >
@@ -74,7 +74,7 @@
           <li class="flex items-start gap-2">
             <FileText class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text">Markdown</strong>{t(
+              ><strong class="text-fq-text">Markdown</strong>{t(
                 "onboarding.quickStartDialog.markdown"
               )}</span
             >
@@ -82,7 +82,7 @@
           <li class="flex items-start gap-2">
             <BookOpen class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text">Longform</strong>{t(
+              ><strong class="text-fq-text">Longform</strong>{t(
                 "onboarding.quickStartDialog.longform"
               )}</span
             >
@@ -90,7 +90,7 @@
           <li class="flex items-start gap-2">
             <FileText class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text">Scrivener 3</strong>{t(
+              ><strong class="text-fq-text">Scrivener 3</strong>{t(
                 "onboarding.quickStartDialog.scrivener"
               )}</span
             >
@@ -99,12 +99,12 @@
       </section>
 
       <!-- Sidebar -->
-      <section class="ka-group">
-        <h3 class="ka-group-title">{t("onboarding.quickStartDialog.sidebarHeading")}</h3>
-        <p class="font-press-ui text-press-base text-press-text mb-3 max-w-press-measure">
+      <section class="fq-group">
+        <h3 class="fq-group-title">{t("onboarding.quickStartDialog.sidebarHeading")}</h3>
+        <p class="font-fq-ui text-fq-base text-fq-text mb-3 max-w-fq-measure">
           {t("onboarding.quickStartDialog.sidebarLede")}
         </p>
-        <ul class="space-y-2 text-press-ui text-press-muted">
+        <ul class="space-y-2 text-fq-ui text-fq-muted">
           <li class="flex items-start gap-2">
             <ChevronDown class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span>{t("onboarding.quickStartDialog.sidebarChapters")}</span>
@@ -114,42 +114,41 @@
             <span>{t("onboarding.quickStartDialog.sidebarScenes")}</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="text-press-accent-text shrink-0">•</span>
+            <span class="text-fq-accent-text shrink-0">•</span>
             <span>{t("onboarding.quickStartDialog.sidebarContextMenu")}</span>
           </li>
         </ul>
       </section>
 
       <!-- Scene Panel -->
-      <section class="ka-group">
-        <h3 class="ka-group-title">{t("onboarding.quickStartDialog.scenePanelHeading")}</h3>
-        <p class="font-press-ui text-press-base text-press-text mb-3 max-w-press-measure">
+      <section class="fq-group">
+        <h3 class="fq-group-title">{t("onboarding.quickStartDialog.scenePanelHeading")}</h3>
+        <p class="font-fq-ui text-fq-base text-fq-text mb-3 max-w-fq-measure">
           {t("onboarding.quickStartDialog.scenePanelLede")}
         </p>
-        <ul class="space-y-2 text-press-ui text-press-muted">
+        <ul class="space-y-2 text-fq-ui text-fq-muted">
           <li class="flex items-start gap-2">
             <Zap class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text"
-                >{t("onboarding.quickStartDialog.synopsisLabel")}</strong
+              ><strong class="text-fq-text">{t("onboarding.quickStartDialog.synopsisLabel")}</strong
               >{t("onboarding.quickStartDialog.synopsisBullet")}</span
             >
           </li>
           <li class="flex items-start gap-2">
             <Zap class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text">{t("onboarding.quickStartDialog.beatsLabel")}</strong
+              ><strong class="text-fq-text">{t("onboarding.quickStartDialog.beatsLabel")}</strong
               >{t("onboarding.quickStartDialog.beatsBullet")}</span
             >
           </li>
           <li class="flex items-start gap-2">
-            <span class="text-press-accent-text shrink-0">•</span>
+            <span class="text-fq-accent-text shrink-0">•</span>
             <span>{t("onboarding.quickStartDialog.beatsContextMenu")}</span>
           </li>
           <li class="flex items-start gap-2">
-            <span class="text-press-accent-text shrink-0">•</span>
+            <span class="text-fq-accent-text shrink-0">•</span>
             <span
-              ><strong class="text-press-text"
+              ><strong class="text-fq-text"
                 >{t("onboarding.quickStartDialog.discoveryNotesLabel")}</strong
               >{#if shortcuts.label("toggle_discovery_notes")}
                 ({shortcuts.label("toggle_discovery_notes")}){/if}{t(
@@ -161,16 +160,16 @@
       </section>
 
       <!-- References -->
-      <section class="ka-group">
-        <h3 class="ka-group-title">{t("onboarding.quickStartDialog.referencesHeading")}</h3>
-        <p class="font-press-ui text-press-base text-press-text mb-3 max-w-press-measure">
+      <section class="fq-group">
+        <h3 class="fq-group-title">{t("onboarding.quickStartDialog.referencesHeading")}</h3>
+        <p class="font-fq-ui text-fq-base text-fq-text mb-3 max-w-fq-measure">
           {t("onboarding.quickStartDialog.referencesLede")}
         </p>
-        <ul class="space-y-2 text-press-ui text-press-muted">
+        <ul class="space-y-2 text-fq-ui text-fq-muted">
           <li class="flex items-start gap-2">
             <User class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text"
+              ><strong class="text-fq-text"
                 >{t("onboarding.quickStartDialog.charactersLabel")}</strong
               >{t("onboarding.quickStartDialog.charactersBullet")}</span
             >
@@ -178,7 +177,7 @@
           <li class="flex items-start gap-2">
             <MapPin class="w-4 h-4 shrink-0 mt-0.5 quick-start-icon" />
             <span
-              ><strong class="text-press-text"
+              ><strong class="text-fq-text"
                 >{t("onboarding.quickStartDialog.locationsLabel")}</strong
               >{t("onboarding.quickStartDialog.locationsBullet")}</span
             >
@@ -191,32 +190,31 @@
       </section>
 
       <!-- Tips -->
-      <section class="ka-group">
-        <h3 class="ka-group-title">{t("onboarding.quickStartDialog.tipsHeading")}</h3>
-        <ul class="space-y-2 text-press-ui text-press-muted">
+      <section class="fq-group">
+        <h3 class="fq-group-title">{t("onboarding.quickStartDialog.tipsHeading")}</h3>
+        <ul class="space-y-2 text-fq-ui text-fq-muted">
           <li>
-            <strong class="text-press-text"
+            <strong class="text-fq-text"
               >{shortcuts.label("export") ||
                 t("onboarding.quickStartDialog.exportFallback")}</strong
             >{t("onboarding.quickStartDialog.exportRest")}
           </li>
           <li>
-            <strong class="text-press-text"
+            <strong class="text-fq-text"
               >{shortcuts.label("toggle_discovery_notes") ||
                 t("onboarding.quickStartDialog.discoveryNotesLabel")}</strong
             >{t("onboarding.quickStartDialog.discoveryNotesToggleRest")}
           </li>
           <li>
-            <strong class="text-press-text"
-              >{t("onboarding.quickStartDialog.snapshotsLabel")}</strong
+            <strong class="text-fq-text">{t("onboarding.quickStartDialog.snapshotsLabel")}</strong
             >{t("onboarding.quickStartDialog.snapshotsRest")}
           </li>
         </ul>
       </section>
     </div>
 
-    <footer class="ka-dialog-footer">
-      <button type="button" onclick={onClose} class="ka-button">
+    <footer class="fq-dialog-footer">
+      <button type="button" onclick={onClose} class="fq-button">
         {t("onboarding.quickStartDialog.gotIt")}
       </button>
     </footer>

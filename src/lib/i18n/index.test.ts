@@ -69,7 +69,7 @@ describe("t()", () => {
   });
 
   it("interpolates parameters", () => {
-    expect(t("common.closeNamed", { name: "Kindling" })).toBe("Close Kindling");
+    expect(t("common.closeNamed", { name: "Feather Quill" })).toBe("Close Feather Quill");
     expect(t("find.findReplaceDialog.position", { current: 2, total: 9 })).toBe("2 of 9");
   });
 
@@ -81,7 +81,7 @@ describe("t()", () => {
   it("uses the Chinese catalog after a locale change", () => {
     setLocale("zh-CN");
     expect(t("common.cancel")).toBe("取消");
-    expect(t("common.closeNamed", { name: "Kindling" })).toBe("关闭Kindling");
+    expect(t("common.closeNamed", { name: "Feather Quill" })).toBe("关闭Feather Quill");
   });
 });
 
@@ -130,7 +130,7 @@ describe("locale registry", () => {
 
   it("reads English in tests whatever the system or override says", () => {
     expect(
-      initialLocale(env({ MODE: "test", DEV: true, VITE_KINDLING_LOCALE: "zh-CN" }), "zh")
+      initialLocale(env({ MODE: "test", DEV: true, VITE_FEATHER_QUILL_LOCALE: "zh-CN" }), "zh")
     ).toBe("en");
     expect(initialLocale(env({ ...dev, VITEST: "true" }), "zh")).toBe("en");
   });
@@ -141,14 +141,16 @@ describe("locale registry", () => {
     expect(initialLocale(env(dev), undefined)).toBe("en");
   });
 
-  it("lets VITE_KINDLING_LOCALE override the system language on the dev server", () => {
-    expect(initialLocale(env({ ...dev, VITE_KINDLING_LOCALE: "zh-CN" }), "en-US")).toBe("zh-CN");
-    expect(initialLocale(env({ ...dev, VITE_KINDLING_LOCALE: "en" }), "zh")).toBe("en");
-    expect(initialLocale(env({ ...dev, VITE_KINDLING_LOCALE: "" }), "zh")).toBe("zh-CN");
+  it("lets VITE_FEATHER_QUILL_LOCALE override the system language on the dev server", () => {
+    expect(initialLocale(env({ ...dev, VITE_FEATHER_QUILL_LOCALE: "zh-CN" }), "en-US")).toBe(
+      "zh-CN"
+    );
+    expect(initialLocale(env({ ...dev, VITE_FEATHER_QUILL_LOCALE: "en" }), "zh")).toBe("en");
+    expect(initialLocale(env({ ...dev, VITE_FEATHER_QUILL_LOCALE: "" }), "zh")).toBe("zh-CN");
   });
 
   it("ignores the override in production builds", () => {
-    const build = { MODE: "production", DEV: false, VITE_KINDLING_LOCALE: "zh-CN" };
+    const build = { MODE: "production", DEV: false, VITE_FEATHER_QUILL_LOCALE: "zh-CN" };
     expect(initialLocale(env(build), "en-US")).toBe("en");
   });
 });

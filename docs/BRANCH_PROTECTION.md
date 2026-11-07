@@ -1,6 +1,6 @@
 # Branch Protection Policy
 
-This document outlines the recommended branch protection rules for the Kindling repository. These settings should be configured in GitHub under **Settings > Branches > Branch protection rules**.
+This document outlines the recommended branch protection rules for the Feather Quill repository. These settings should be configured in GitHub under **Settings > Branches > Branch protection rules**.
 
 ## Protected Branch: `main`
 

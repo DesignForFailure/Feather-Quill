@@ -347,7 +347,10 @@ describe("ui store", () => {
       ui.completeOnboarding();
       expect(ui.showOnboarding).toBe(false);
       expect(ui.onboardingCompleted).toBe(true);
-      expect(localStorageMock.setItem).toHaveBeenCalledWith("kindling:onboardingCompleted", "true");
+      expect(localStorageMock.setItem).toHaveBeenCalledWith(
+        "feather-quill:onboardingCompleted",
+        "true"
+      );
     });
 
     it("should skip onboarding (same as complete)", () => {
@@ -363,7 +366,7 @@ describe("ui store", () => {
       expect(ui.showOnboarding).toBe(true);
       expect(ui.onboardingStep).toBe("welcome");
       expect(ui.onboardingCompleted).toBe(false);
-      expect(localStorageMock.removeItem).toHaveBeenCalledWith("kindling:onboardingCompleted");
+      expect(localStorageMock.removeItem).toHaveBeenCalledWith("feather-quill:onboardingCompleted");
     });
   });
 
@@ -395,11 +398,17 @@ describe("ui store", () => {
     it("should set and persist guidanceEnabled", () => {
       ui.setGuidanceEnabled(false);
       expect(ui.guidanceEnabled).toBe(false);
-      expect(localStorageMock.setItem).toHaveBeenCalledWith("kindling:guidanceEnabled", "false");
+      expect(localStorageMock.setItem).toHaveBeenCalledWith(
+        "feather-quill:guidanceEnabled",
+        "false"
+      );
 
       ui.setGuidanceEnabled(true);
       expect(ui.guidanceEnabled).toBe(true);
-      expect(localStorageMock.setItem).toHaveBeenCalledWith("kindling:guidanceEnabled", "true");
+      expect(localStorageMock.setItem).toHaveBeenCalledWith(
+        "feather-quill:guidanceEnabled",
+        "true"
+      );
     });
 
     it("should track tooltip seen per area", () => {
@@ -411,7 +420,10 @@ describe("ui store", () => {
       ui.markTooltipSeen("sidebar");
       expect(ui.hasSeenTooltip("sidebar")).toBe(true);
       expect(ui.hasSeenTooltip("scenePanel")).toBe(false);
-      expect(localStorageMock.setItem).toHaveBeenCalledWith("kindling:tooltipSeen:sidebar", "true");
+      expect(localStorageMock.setItem).toHaveBeenCalledWith(
+        "feather-quill:tooltipSeen:sidebar",
+        "true"
+      );
 
       ui.markTooltipSeen("references");
       expect(ui.hasSeenTooltip("references")).toBe(true);
@@ -434,7 +446,7 @@ describe("ui store", () => {
 describe("ui store initialization", () => {
   it("should load saved panel width from localStorage on initialization", async () => {
     // Set localStorage value before creating new store
-    store["kindling:referencesPanelWidth"] = "400";
+    store["feather-quill:referencesPanelWidth"] = "400";
 
     // Reset modules to get a fresh import
     vi.resetModules();
@@ -451,7 +463,7 @@ describe("ui store initialization", () => {
 
   it("should ignore invalid saved panel width from localStorage", async () => {
     // Set invalid localStorage value (below min width)
-    store["kindling:referencesPanelWidth"] = "50";
+    store["feather-quill:referencesPanelWidth"] = "50";
 
     // Reset modules to get a fresh import
     vi.resetModules();
@@ -467,7 +479,7 @@ describe("ui store initialization", () => {
   });
 
   it("should load guidanceEnabled=false from localStorage", async () => {
-    store["kindling:guidanceEnabled"] = "false";
+    store["feather-quill:guidanceEnabled"] = "false";
 
     vi.resetModules();
 
@@ -479,7 +491,7 @@ describe("ui store initialization", () => {
   });
 
   it("should load guidanceEnabled=true when stored as 'true'", async () => {
-    store["kindling:guidanceEnabled"] = "true";
+    store["feather-quill:guidanceEnabled"] = "true";
 
     vi.resetModules();
 
@@ -491,7 +503,7 @@ describe("ui store initialization", () => {
   });
 
   it("should load onboardingCompleted from localStorage", async () => {
-    store["kindling:onboardingCompleted"] = "true";
+    store["feather-quill:onboardingCompleted"] = "true";
 
     vi.resetModules();
 
@@ -505,7 +517,7 @@ describe("ui store initialization", () => {
 
   it("should ignore NaN saved panel width from localStorage", async () => {
     // Set NaN localStorage value
-    store["kindling:referencesPanelWidth"] = "not-a-number";
+    store["feather-quill:referencesPanelWidth"] = "not-a-number";
 
     // Reset modules to get a fresh import
     vi.resetModules();

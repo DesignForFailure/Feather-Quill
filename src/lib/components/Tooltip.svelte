@@ -46,7 +46,7 @@
 
   {#if visible && text}
     <div
-      class="ka-tooltip tooltip"
+      class="fq-tooltip tooltip"
       class:tooltip-top={position === "top"}
       class:tooltip-bottom={position === "bottom"}
       class:tooltip-left={position === "left"}

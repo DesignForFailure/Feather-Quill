@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// Records the README demo by driving a hidden, isolated kindling over the QA socket.
+// Records the README demo by driving a hidden, isolated Feather Quill over the QA socket.
 // Each checkpoint is serialised from the live DOM into vector SVG (dom2svg.js); the
 // frames are then assembled into one looping SMIL animation with subset fonts.
 //
-//   npm run demo:readme                 # writes docs/assets/kindling-demo.svg
+//   npm run demo:readme                 # writes docs/assets/feather-quill-demo.svg
 //   npm run demo:readme -- --png        # also keeps WKWebView PNGs for comparison
 //   npm run demo:readme -- --keep-app   # leave the hidden app running for inspection
 //
@@ -17,8 +17,8 @@ import { SocketClient } from "../../visual/socket.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, "../../..");
-const SOCKET = "/tmp/kindling-qa.sock";
-const OUT = join(repo, "docs/assets/kindling-demo.svg");
+const SOCKET = "/tmp/feather-quill-qa.sock";
+const OUT = join(repo, "docs/assets/feather-quill-demo.svg");
 const WIDTH = 1280;
 const HEIGHT = 800;
 const CAPTION = 64;
@@ -29,7 +29,7 @@ const keepApp = process.argv.includes("--keep-app");
 const pngDir = join(repo, "qa/demo/readme/results");
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// Press splits each face into a Latin and a Rest file by unicode-range. The demo is
+// The bundled font files split each face into a Latin and a Rest file by unicode-range. The demo is
 // English, so the Latin file holds every glyph it sets.
 const FONT_FILES = {
   "Inter|normal": "Inter-Latin.woff2",
@@ -82,9 +82,9 @@ async function launch() {
   execFileSync("cargo", ["build", "--manifest-path", join(repo, "src-tauri/Cargo.toml")], {
     stdio: "inherit",
   });
-  const data = mkdtempSync(join(tmpdir(), "kindling-readme-demo-"));
-  const app = spawn(join(repo, "src-tauri/target/debug/kindling"), [], {
-    env: { ...process.env, KINDLING_QA_BACKGROUND: "1", KINDLING_DATA_DIR: data },
+  const data = mkdtempSync(join(tmpdir(), "feather-quill-readme-demo-"));
+  const app = spawn(join(repo, "src-tauri/target/debug/feather-quill"), [], {
+    env: { ...process.env, FEATHER_QUILL_QA_BACKGROUND: "1", FEATHER_QUILL_DATA_DIR: data },
     stdio: "ignore",
   });
   const deadline = Date.now() + 60000;
@@ -97,7 +97,7 @@ async function launch() {
     try {
       const c = await new SocketClient(SOCKET, 30000).connect();
       await c.wait(
-        "window.__KINDLING_TEST__ && !document.getElementById('startup-loading')",
+        "window.__FEATHER_QUILL_TEST__ && !document.getElementById('startup-loading')",
         30000
       );
       return { c, app, data };
@@ -118,7 +118,7 @@ async function pull(c, expr, size = 150000) {
 
 async function invokeLarge(c, command, args, field) {
   await c.evaluate(`window.__demoRpc = {done:false};
-    window.__KINDLING_TEST__.invoke(${JSON.stringify(command)}, ${JSON.stringify(args)})
+    window.__FEATHER_QUILL_TEST__.invoke(${JSON.stringify(command)}, ${JSON.stringify(args)})
       .then(v => window.__demoRpc = {done:true, v})
       .catch(e => window.__demoRpc = {done:true, err:String(e)});`);
   await c.wait("window.__demoRpc.done", 30000);
@@ -212,7 +212,7 @@ async function record(c) {
   );
   const palette = await js(
     c,
-    `const probe = document.createElement('div'); document.querySelector('.press-app').append(probe);
+    `const probe = document.createElement('div'); document.querySelector('.fq-app').append(probe);
      const read = (v) => { probe.style.color = 'var(' + v + ')'; return getComputedStyle(probe).color; };
      const p = { surface: read('--color-surface'), text: read('--color-text'), muted: read('--color-text-muted'),
        border: read('--color-border'), wash: read('--color-accent-wash'), accent: read('--color-accent-text') };
@@ -381,7 +381,7 @@ async function record(c) {
 // ------------------------------------------------------------------ assembly
 function fontCss(chars) {
   const bin = pyftsubset();
-  const work = mkdtempSync(join(tmpdir(), "kindling-demo-fonts-"));
+  const work = mkdtempSync(join(tmpdir(), "feather-quill-demo-fonts-"));
   let css = "";
   try {
     for (const [key, text] of Object.entries(chars)) {
@@ -494,7 +494,7 @@ function assemble({ scenes, palette }) {
     fontCss(chars) +
     [...styles].map(([style, name]) => `.${name}{${style}}`).join("") +
     "text{white-space:pre}";
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${H}" width="${WIDTH}" height="${H}" role="img" aria-label="kindling demo: the sample project, writing under outline beats, find and replace, editorial review, export profiles, and dark mode"><title>kindling demo</title><style>${css}</style><clipPath id="window"><rect width="${WIDTH}" height="${H}" rx="12"/></clipPath><g clip-path="url(#window)">${groups.join("")}${overlays.join("")}<rect y="${HEIGHT}" width="${WIDTH}" height="1" fill="${palette.border}"/></g><rect x="0.5" y="0.5" width="${WIDTH - 1}" height="${H - 1}" rx="11.5" fill="none" stroke="${palette.border}"/></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${H}" width="${WIDTH}" height="${H}" role="img" aria-label="Feather Quill demo: the sample project, writing under outline beats, find and replace, editorial review, export profiles, and dark mode"><title>Feather Quill demo</title><style>${css}</style><clipPath id="window"><rect width="${WIDTH}" height="${H}" rx="12"/></clipPath><g clip-path="url(#window)">${groups.join("")}${overlays.join("")}<rect y="${HEIGHT}" width="${WIDTH}" height="1" fill="${palette.border}"/></g><rect x="0.5" y="0.5" width="${WIDTH - 1}" height="${H - 1}" rx="11.5" fill="none" stroke="${palette.border}"/></svg>`;
 }
 
 // ------------------------------------------------------------------ main
@@ -506,8 +506,8 @@ async function main() {
     saved = await js(c, "return JSON.stringify({...localStorage});");
     await js(
       c,
-      `localStorage.setItem('kindling:theme', 'light'); document.documentElement.setAttribute('data-theme', 'light');
-       localStorage.setItem('kindling:onboardingCompleted', 'true'); localStorage.setItem('kindling:guidanceEnabled', 'false');`
+      `localStorage.setItem('feather-quill:theme', 'light'); document.documentElement.setAttribute('data-theme', 'light');
+       localStorage.setItem('feather-quill:onboardingCompleted', 'true'); localStorage.setItem('feather-quill:guidanceEnabled', 'false');`
     );
     const recording = await record(c);
     const svg = assemble(recording);

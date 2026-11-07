@@ -23,7 +23,7 @@ pub(crate) fn parent_dir(target: &Path) -> &Path {
 /// with `create_new`, so it has default permissions rather than 0600.
 pub(crate) fn staged_file_in(dir: &Path) -> io::Result<tempfile::NamedTempFile> {
     tempfile::Builder::new()
-        .prefix(".kindling-")
+        .prefix(".feather-quill-")
         .make_in(dir, |path| {
             fs::OpenOptions::new()
                 .read(true)

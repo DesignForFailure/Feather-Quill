@@ -345,7 +345,7 @@ export interface SyncChange {
   db_id: string;
   /**
    * Both sides changed since the last sync, or there is no baseline to tell.
-   * Accepting may discard a kindling edit, so "All" never selects it.
+   * Accepting may discard a Feather Quill edit, so "All" never selects it.
    */
   conflict: boolean;
 }

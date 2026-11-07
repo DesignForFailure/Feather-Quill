@@ -29,19 +29,19 @@ beforeAll(async () => {
   const read = (path: string): string =>
     readFileSync(fileURLToPath(new URL(path, import.meta.url)), "utf8");
   const appCss = read("../../app.css");
-  tokensCss = read("../../styles/press/tokens.css");
+  tokensCss = read("../../styles/theme/tokens.css");
   // The app's disabled-control rules: the global disabled pair through the
-  // segment adapter, after Press's `.ka-segment.ka-selected` accent fill.
+  // segment adapter, after Press's `.fq-segment.fq-selected` accent fill.
   const start = appCss.indexOf("/* Disabled state is a token pair");
-  const end = appCss.indexOf("/* Focus follows the Press application layer", start);
+  const end = appCss.indexOf("/* Focus follows the Feather Quill application layer", start);
   expect(start).toBeGreaterThan(-1);
   expect(end).toBeGreaterThan(start);
   disabledRules =
-    ".ka-segment.ka-selected{background-color:var(--color-accent-text);color:var(--color-on-accent);}\n" +
+    ".fq-segment.fq-selected{background-color:var(--color-accent-text);color:var(--color-on-accent);}\n" +
     appCss.slice(start, end).replace(/\/\*[\s\S]*?\*\//g, "");
 });
 
-/** Resolve a Press token to its hex value in a theme, following var() chains. */
+/** Resolve a theme token to its hex value in a theme, following var() chains. */
 function token(name: string, theme: "light" | "dark"): string {
   const blocks = new Map<string, Map<string, string>>();
   const css = tokensCss.replace(/\/\*[\s\S]*?\*\//g, "");
@@ -105,9 +105,9 @@ it.each(["page", "beat"] as const)(
     const other = screen.getByTestId(mode === "page" ? "view-beats" : "view-page");
     expect(active.disabled).toBe(true);
     expect((other as HTMLButtonElement).disabled).toBe(true);
-    expect(active.classList.contains("ka-selected")).toBe(true);
+    expect(active.classList.contains("fq-selected")).toBe(true);
     expect(active.getAttribute("aria-pressed")).toBe("true");
-    expect(other.classList.contains("ka-selected")).toBe(false);
+    expect(other.classList.contains("fq-selected")).toBe(false);
     expect(other.getAttribute("aria-pressed")).toBe("false");
 
     // The global disabled pair must not flatten the chosen segment into its

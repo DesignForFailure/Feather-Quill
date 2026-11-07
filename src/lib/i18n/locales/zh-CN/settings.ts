@@ -31,7 +31,7 @@ const catalog: Catalog = {
   "dialog.loadProjectsFailed": "无法加载项目：{error}",
 
   // --- Appearance ---
-  "appearance.lede": "选择 kindling 的外观，以及显示多少引导提示。更改会立即应用到所有项目。",
+  "appearance.lede": "选择 Feather Quill 的外观，以及显示多少引导提示。更改会立即应用到所有项目。",
   "appearance.title": "外观",
   "appearance.themeAria": "主题",
   "appearance.themeDark": "深色",

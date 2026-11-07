@@ -464,7 +464,7 @@
         closeProject();
         break;
       case "sync":
-        window.dispatchEvent(new CustomEvent("kindling:sync"));
+        window.dispatchEvent(new CustomEvent("feather-quill:sync"));
         break;
       case "toggle_sidebar":
         ui.toggleSidebar();
@@ -473,16 +473,16 @@
         ui.toggleReferencesPanel();
         break;
       case "toggle_discovery_notes":
-        window.dispatchEvent(new CustomEvent("kindling:toggleDiscoveryNotes"));
+        window.dispatchEvent(new CustomEvent("feather-quill:toggleDiscoveryNotes"));
         break;
       case "detect_references":
-        window.dispatchEvent(new CustomEvent("kindling:detectReferences"));
+        window.dispatchEvent(new CustomEvent("feather-quill:detectReferences"));
         break;
       case "detect_all_references":
-        window.dispatchEvent(new CustomEvent("kindling:detectAllReferences"));
+        window.dispatchEvent(new CustomEvent("feather-quill:detectAllReferences"));
         break;
       case "toggle_editor_mode":
-        window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+        window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
         break;
       case "quick_start":
         showQuickStart = true;
@@ -653,9 +653,9 @@
 {/if}
 
 {#if synopsisSaves.failedCount && !discardQuitDrafts}
-  <div class="ka-toast-region synopsis-toast">
-    <div role="alert" class="ka-toast">
-      <CircleAlert class="w-5 h-5 ka-icon" aria-hidden="true" />
+  <div class="fq-toast-region synopsis-toast">
+    <div role="alert" class="fq-toast">
+      <CircleAlert class="w-5 h-5 fq-icon" aria-hidden="true" />
       <div>
         <strong>{t("shell.synopsisUnsaved")}</strong>
         <button
@@ -664,7 +664,7 @@
           disabled={retryingSynopses || interactionBlocked}
           aria-busy={retryingSynopses || undefined}
           aria-label={t("shell.retryAllSynopsisSaves")}
-          class="ka-button ka-button--secondary synopsis-retry"
+          class="fq-button fq-button--secondary synopsis-retry"
           >{retryingSynopses ? t("shell.savingShort") : t("shell.retrySaving")}</button
         >
       </div>

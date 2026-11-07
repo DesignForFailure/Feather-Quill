@@ -1,13 +1,12 @@
-<!-- The supplied outlined wordmark (never re-typeset), swapped for its reversed
-     artwork in dark chrome. Height sets the size; the ratio is intrinsic. -->
+<!-- Feather Quill wordmark, with a reversed variant for dark chrome. -->
 <script lang="ts">
   let { height = 22 }: { height?: number } = $props();
-  const width = $derived(Math.round((height * 6445) / 1972));
+  const width = $derived(Math.round(height * 5));
 </script>
 
-<span class="brand-wordmark" role="img" aria-label="kindling">
-  <img class="on-light" src="/brand/kindling-wordmark.svg" alt="" {width} {height} />
-  <img class="on-dark" src="/brand/kindling-wordmark-reversed.svg" alt="" {width} {height} />
+<span class="brand-wordmark" role="img" aria-label="Feather Quill">
+  <img class="on-light" src="/feather-quill/wordmark.svg" alt="" {width} {height} />
+  <img class="on-dark" src="/feather-quill/wordmark-reversed.svg" alt="" {width} {height} />
 </span>
 
 <style>

@@ -70,7 +70,7 @@ const catalog: Catalog = {
   // --- EditorialWorkspace: review package screen ---
   "editorialWorkspace.packageTitle": "Manuskript zur Begutachtung senden",
   "editorialWorkspace.packageDescription":
-    "Eine Datei erstellen, die Ihr Lektor in kindling öffnen kann. Er kann lesen, Bearbeitungen vorschlagen und seine Rückmeldung ohne Konto zurücksenden.",
+    "Eine Datei erstellen, die Ihr Lektor in Feather Quill öffnen kann. Er kann lesen, Bearbeitungen vorschlagen und seine Rückmeldung ohne Konto zurücksenden.",
   "editorialWorkspace.reviewRound": "Lektorrunde",
   "editorialWorkspace.reviewRoundPlaceholder": "Entwicklungslektorat — September",
   "editorialWorkspace.reviewRoundRequired": "Namen für diese Lektorrunde eingeben.",
@@ -104,7 +104,7 @@ const catalog: Catalog = {
   "editorialWorkspace.comment.other": "Kommentare",
   "editorialWorkspace.whatHappensNext": "Was als Nächstes passiert",
   "editorialWorkspace.nextBody":
-    "Kommentare lesen, Ihrem Lektor antworten und Vorschläge annehmen oder ablehnen. Wenn Sie eine Passage neu geschrieben haben, hilft kindling Ihnen, die Rückmeldung zu platzieren, bevor eine Bearbeitung angewendet wird.",
+    "Kommentare lesen, Ihrem Lektor antworten und Vorschläge annehmen oder ablehnen. Wenn Sie eine Passage neu geschrieben haben, hilft Feather Quill Ihnen, die Rückmeldung zu platzieren, bevor eine Bearbeitung angewendet wird.",
   "editorialWorkspace.nextBodyPace":
     "Sie können die Rückmeldung in Ihrem eigenen Tempo durcharbeiten und Ihre Antworten und Entscheidungen exportieren, wenn Sie bereit sind.",
   "editorialWorkspace.importReviewFeedback": "Rückmeldung importieren und prüfen",
@@ -128,21 +128,21 @@ const catalog: Catalog = {
   "editorialWorkspace.exportReplies": "Antworten und Entscheidungen exportieren",
 
   // --- EditorialWorkspace: file dialogs and notices ---
-  "editorialWorkspace.openFileTitle": "kindling-Lektorats- oder Rückmeldungsdatei öffnen",
-  "editorialWorkspace.openFileFilter": "kindling-Lektoratsdateien",
+  "editorialWorkspace.openFileTitle": "Feather Quill-Lektorats- oder Rückmeldungsdatei öffnen",
+  "editorialWorkspace.openFileFilter": "Feather Quill-Lektoratsdateien",
   "editorialWorkspace.exportPackageTitle": "Für Lektorat exportieren",
-  "editorialWorkspace.exportPackageFilter": "kindling-Lektorat",
+  "editorialWorkspace.exportPackageFilter": "Feather Quill-Lektorat",
   "editorialWorkspace.reviewPackageSaved":
     "Lektoratspaket unter {path} gespeichert. Diese Datei an Ihren Lektor weitergeben.",
   "editorialWorkspace.returnFeedbackTitle": "Lektoratsrückmeldung zurücksenden",
-  "editorialWorkspace.recoveryFilter": "kindling-Wiederherstellungslektorat",
-  "editorialWorkspace.feedbackFilter": "kindling-Rückmeldung",
+  "editorialWorkspace.recoveryFilter": "Feather Quill-Wiederherstellungslektorat",
+  "editorialWorkspace.feedbackFilter": "Feather Quill-Rückmeldung",
   "editorialWorkspace.recoverySaved":
-    "Wiederherstellungslektorat unter {path} gespeichert. In kindling öffnen, um die Arbeit fortzusetzen, dann Rückmeldung normal exportieren.",
+    "Wiederherstellungslektorat unter {path} gespeichert. In Feather Quill öffnen, um die Arbeit fortzusetzen, dann Rückmeldung normal exportieren.",
   "editorialWorkspace.feedbackSaved":
     "Rückmeldung unter {path} gespeichert. Diese Datei an den Autor zurücksenden. Sie können das Lektorat fortsetzen und später eine weitere Antwort exportieren.",
   "editorialWorkspace.sendReplyTitle": "Antworten und Entscheidungen an Ihren Lektor senden",
-  "editorialWorkspace.sendReplyFilter": "kindling-Lektoratsantwort",
+  "editorialWorkspace.sendReplyFilter": "Feather Quill-Lektoratsantwort",
   "editorialWorkspace.replySaved":
     "Antwort unter {path} gespeichert. Ihr Lektor öffnet sie, um Ihre Antworten und Entscheidungen zu erhalten, während er sein laufendes Lektorat fortsetzt.",
   "editorialWorkspace.feedbackImported":

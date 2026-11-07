@@ -1,3 +1,13 @@
+# Feather Quill changelog
+
+## Unreleased
+
+- Rebrand the Kindling fork as Feather Quill with a separate app identity, local storage, artwork, and repository links.
+- Document the fork direction; whiteboard and expanded story-planning features are planned, not implemented.
+- Isolate update and feedback configuration from upstream Kindling services.
+
+The release history below belongs to upstream Kindling and is preserved for attribution and context.
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

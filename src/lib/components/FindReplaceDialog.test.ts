@@ -426,7 +426,7 @@ describe("replace-all confirmation wording", () => {
       target: { value: "Alice" },
     });
     await fireEvent.click(screen.getByText(t("find.findReplaceDialog.replaceAll")));
-    const notice = document.querySelector(".ka-notice--warning p");
+    const notice = document.querySelector(".fq-notice--warning p");
     return notice?.textContent?.replace(/\s+/g, " ").trim();
   }
 

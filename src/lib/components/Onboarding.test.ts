@@ -43,7 +43,7 @@ const button = (name: string | RegExp) => screen.getByRole("button", { name });
 describe("Onboarding", () => {
   it("welcomes with a labelled dialog, progress and the sample as the primary", () => {
     render(Onboarding);
-    expect(screen.getByRole("dialog", { name: "Welcome to kindling" })).toBeTruthy();
+    expect(screen.getByRole("dialog", { name: "Welcome to Feather Quill" })).toBeTruthy();
     expect(screen.getByText("Step 1 of 5")).toBeTruthy();
     expect(screen.getByRole("progressbar", { name: "Getting started, step 1 of 5" })).toBeTruthy();
     expect(document.activeElement).toBe(button("Try sample project"));
@@ -80,7 +80,7 @@ describe("Onboarding", () => {
     expect(screen.getByRole("dialog", { name: "References" })).toBeTruthy();
 
     await fireEvent.click(button("Start importing"));
-    expect(localStorage.getItem("kindling:onboardingCompleted")).toBe("true");
+    expect(localStorage.getItem("feather-quill:onboardingCompleted")).toBe("true");
     expect(screen.getByRole("dialog", { name: "Import your outline" })).toBeTruthy();
     expect(screen.getByText("Step 5 of 5")).toBeTruthy();
 

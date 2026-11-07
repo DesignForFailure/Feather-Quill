@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Kindling needs persistent storage for project data (chapters, scenes, beats, characters, locations). The storage solution must:
+Feather Quill needs persistent storage for project data (chapters, scenes, beats, characters, locations). The storage solution must:
 - Work offline (local-first)
 - Handle relational data (scenes belong to chapters, beats belong to scenes)
 - Support efficient queries (loading scenes for a chapter)

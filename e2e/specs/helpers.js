@@ -1,7 +1,7 @@
 /**
- * E2E Test Helpers for Kindling
+ * E2E Test Helpers for Feather Quill
  *
- * Common utilities for interacting with the Kindling app
+ * Common utilities for interacting with the Feather Quill app
  */
 
 import { resolve, dirname } from "path";
@@ -57,7 +57,7 @@ export async function skipOnboardingIfPresent() {
   }
   // Disable guidance tooltips so the overlay doesn't intercept clicks
   await browser.execute(() => {
-    window.__KINDLING_TEST__?.disableGuidance();
+    window.__FEATHER_QUILL_TEST__?.disableGuidance();
   });
 }
 
@@ -107,11 +107,11 @@ export async function importProject(filePath, format = "plottr") {
   const result = await browser.executeAsync(
     async (path, format, done) => {
       try {
-        // The app exposes importProject via __KINDLING_TEST__ for E2E testing
-        if (!window.__KINDLING_TEST__?.importProject) {
-          throw new Error("__KINDLING_TEST__.importProject not available");
+        // The app exposes importProject via __FEATHER_QUILL_TEST__ for E2E testing
+        if (!window.__FEATHER_QUILL_TEST__?.importProject) {
+          throw new Error("__FEATHER_QUILL_TEST__.importProject not available");
         }
-        const project = await window.__KINDLING_TEST__.importProject(path, format);
+        const project = await window.__FEATHER_QUILL_TEST__.importProject(path, format);
         done({ success: true, project });
       } catch (error) {
         done({ success: false, error: error.message || String(error) });

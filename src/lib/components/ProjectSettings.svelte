@@ -158,10 +158,10 @@
   </p>
   <div hidden={section !== "details"} class="settings-fields">
     <!-- Pen Name -->
-    <div class="ka-field od-field">
+    <div class="fq-field od-field">
       <label for="author-pen-name">
         {t("settings.project.penName")}
-        <span class="ka-optional">{t("settings.project.optional")}</span>
+        <span class="fq-optional">{t("settings.project.optional")}</span>
       </label>
       <input
         id="author-pen-name"
@@ -170,16 +170,16 @@
         placeholder={t("settings.project.penNamePlaceholder")}
         disabled={saving}
       />
-      <p class="ka-help">
+      <p class="fq-help">
         {t("settings.project.penNameHelp")}
       </p>
     </div>
 
     <!-- Genre -->
-    <div class="ka-field od-field">
+    <div class="fq-field od-field">
       <label for="genre">
         {t("settings.project.genre")}
-        <span class="ka-optional">{t("settings.project.optional")}</span>
+        <span class="fq-optional">{t("settings.project.optional")}</span>
       </label>
       <input
         id="genre"
@@ -188,14 +188,14 @@
         placeholder={t("settings.project.genrePlaceholder")}
         disabled={saving}
       />
-      <p class="ka-help">{t("settings.project.genreHelp")}</p>
+      <p class="fq-help">{t("settings.project.genreHelp")}</p>
     </div>
 
     <!-- Description -->
-    <div class="ka-field od-field">
+    <div class="fq-field od-field">
       <label for="project-description">
         {t("settings.project.description")}
-        <span class="ka-optional">{t("settings.project.optional")}</span>
+        <span class="fq-optional">{t("settings.project.optional")}</span>
       </label>
       <textarea
         id="project-description"
@@ -206,7 +206,7 @@
       ></textarea>
     </div>
 
-    <div class="ka-field od-field">
+    <div class="fq-field od-field">
       <label for="daily-writing-goal">{t("settings.project.dailyGoal")}</label>
       <input
         id="daily-writing-goal"
@@ -218,16 +218,16 @@
         disabled={saving || !goalLoaded}
         aria-describedby="daily-goal-help"
       />
-      <p id="daily-goal-help" class="ka-help">
+      <p id="daily-goal-help" class="fq-help">
         {t("settings.project.dailyGoalHelp")}
       </p>
     </div>
 
     <!-- Word Target -->
-    <div class="ka-field od-field">
+    <div class="fq-field od-field">
       <label for="word-target">
         {t("settings.project.wordTarget")}
-        <span class="ka-optional">{t("settings.project.optional")}</span>
+        <span class="fq-optional">{t("settings.project.optional")}</span>
       </label>
       <input
         id="word-target"
@@ -241,11 +241,11 @@
     </div>
   </div>
   <div hidden={section !== "references"} class="settings-fields">
-    <p class="ka-help">
+    <p class="fq-help">
       {t("settings.project.referencesHelp")}
     </p>
     {#each REFERENCE_TYPE_OPTIONS as option (option.id)}
-      <label class="ka-check">
+      <label class="fq-check">
         <input type="checkbox" value={option.id} bind:group={referenceTypes} disabled={saving} />
         {option.label}
       </label>
@@ -271,19 +271,19 @@
             onState={(state) => (fieldStates[refType] = state)}
             onChange={() => onSave({ ...project })}
           />{/if}
-      {:else}<p class="ka-help">{t("settings.project.enableRefTypes")}</p>{/each}
+      {:else}<p class="fq-help">{t("settings.project.enableRefTypes")}</p>{/each}
     {/if}
   </div>
   {#if section === "details" || section === "references"}
-    {#if error}<p role="alert" class="ka-error">{error}</p>{/if}
+    {#if error}<p role="alert" class="fq-error">{error}</p>{/if}
     <div class="settings-actions">
-      {#if saved && !dirty}<p role="status" class="ka-help">{t("settings.project.saved")}</p>{/if}
+      {#if saved && !dirty}<p role="status" class="fq-help">{t("settings.project.saved")}</p>{/if}
       <button
         type="button"
         onclick={handleSave}
         disabled={saving}
         aria-busy={saving || undefined}
-        class="ka-button"
+        class="fq-button"
         >{#if saving}<Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
           {t("common.saving")}{:else}{t("settings.project.save")}{/if}</button
       >

@@ -2,34 +2,34 @@
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
 # Default owner for everything
-* @smith-and-web
+* @DesignForFailure
 
 # Frontend (Svelte/TypeScript)
-/src/ @smith-and-web
-*.svelte @smith-and-web
-*.ts @smith-and-web
+/src/ @DesignForFailure
+*.svelte @DesignForFailure
+*.ts @DesignForFailure
 
 # Backend (Rust/Tauri)
-/src-tauri/ @smith-and-web
-*.rs @smith-and-web
-Cargo.toml @smith-and-web
-Cargo.lock @smith-and-web
+/src-tauri/ @DesignForFailure
+*.rs @DesignForFailure
+Cargo.toml @DesignForFailure
+Cargo.lock @DesignForFailure
 
 # E2E Tests
-/e2e/ @smith-and-web
+/e2e/ @DesignForFailure
 
 # CI/CD and DevOps
-/.github/ @smith-and-web
-/.githooks/ @smith-and-web
+/.github/ @DesignForFailure
+/.githooks/ @DesignForFailure
 
 # Documentation
-/docs/ @smith-and-web
-*.md @smith-and-web
+/docs/ @DesignForFailure
+*.md @DesignForFailure
 
 # Configuration files
-package.json @smith-and-web
-package-lock.json @smith-and-web
-tsconfig.json @smith-and-web
-vite.config.ts @smith-and-web
-vitest.config.ts @smith-and-web
-tailwind.config.* @smith-and-web
+package.json @DesignForFailure
+package-lock.json @DesignForFailure
+tsconfig.json @DesignForFailure
+vite.config.ts @DesignForFailure
+vitest.config.ts @DesignForFailure
+tailwind.config.* @DesignForFailure

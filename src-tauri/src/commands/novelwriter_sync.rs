@@ -12,7 +12,7 @@ use std::{
 };
 use uuid::Uuid;
 
-/// Reads the source for sync. A document with several headings that kindling
+/// Reads the source for sync. A document with several headings that Feather Quill
 /// 1.2 imported as one chapter or scene is read that same way, so upgrading
 /// never offers its later headings as new scenes over text the project already
 /// has. Such a document has its first heading's items here, none of its later
@@ -82,7 +82,7 @@ pub(crate) fn record_split_documents(
     Ok(())
 }
 
-/// One field as kindling holds it and as novelWriter holds it now.
+/// One field as Feather Quill holds it and as novelWriter holds it now.
 struct Field {
     kind: &'static str,
     id: Uuid,
@@ -90,7 +90,7 @@ struct Field {
     field: &'static str,
     local: String,
     incoming: String,
-    /// kindling's HTML for prose fields, so an accepted change keeps the
+    /// Feather Quill's HTML for prose fields, so an accepted change keeps the
     /// formatting of paragraphs novelWriter did not touch.
     html: String,
 }
@@ -113,7 +113,7 @@ fn change(
         html: String::new(),
     });
 }
-/// Records a prose field together with kindling's HTML for it.
+/// Records a prose field together with Feather Quill's HTML for it.
 fn prose_change(
     out: &mut Vec<Field>,
     (kind, id, title): (&'static str, Uuid, &str),
@@ -156,12 +156,12 @@ fn scene_prose_html(scene: &Scene, beats: &[Beat]) -> (String, String) {
     (nw, html)
 }
 
-/// Pairs novelWriter's beats with kindling's. Titles pair first, whatever their
-/// order: the k-th incoming beat with a title pairs with kindling's k-th beat
+/// Pairs novelWriter's beats with Feather Quill's. Titles pair first, whatever their
+/// order: the k-th incoming beat with a title pairs with Feather Quill's k-th beat
 /// with that title, so a reordered scene pairs every beat and changes nothing.
-/// An incoming beat left over then pairs, in order, with a leftover kindling
+/// An incoming beat left over then pairs, in order, with a leftover Feather Quill
 /// beat that follows the same paired neighbour (a rename). Anything still
-/// unpaired on the incoming side is an addition; kindling beats novelWriter no
+/// unpaired on the incoming side is an addition; Feather Quill beats novelWriter no
 /// longer has are left alone, so a deletion never moves text onto a neighbour.
 fn align<'a>(incoming: &[&'a Beat], local: &[&'a Beat]) -> Vec<(&'a Beat, Option<&'a Beat>)> {
     let mut partner: Vec<Option<usize>> = vec![None; incoming.len()];
@@ -179,7 +179,7 @@ fn align<'a>(incoming: &[&'a Beat], local: &[&'a Beat]) -> Vec<(&'a Beat, Option
             taken[j] = true;
         }
     }
-    // Renames: group leftovers by the kindling beat they follow.
+    // Renames: group leftovers by the Feather Quill beat they follow.
     let mut gaps: HashMap<Option<usize>, std::collections::VecDeque<usize>> = HashMap::new();
     let mut after = None;
     for (j, t) in taken.iter().enumerate() {
@@ -204,8 +204,8 @@ fn align<'a>(incoming: &[&'a Beat], local: &[&'a Beat]) -> Vec<(&'a Beat, Option
 }
 
 /// Beats whose identity must change so identities follow novelWriter's current
-/// order: each paired kindling beat takes its partner's identity, and a
-/// kindling beat novelWriter no longer has gives up an identity that is now
+/// order: each paired Feather Quill beat takes its partner's identity, and a
+/// Feather Quill beat novelWriter no longer has gives up an identity that is now
 /// another beat's. Additions are placed after the beat holding the identity
 /// before them, so this keeps them next to the right beat and unique.
 type Rekey = Vec<(Uuid, String)>;
@@ -412,7 +412,7 @@ fn settle(
     Ok(())
 }
 
-/// Settle every field kindling already matches (used at import and for new items).
+/// Settle every field Feather Quill already matches (used at import and for new items).
 pub(crate) fn record_baselines(
     conn: &Connection,
     project: &Project,
@@ -427,7 +427,7 @@ pub(crate) fn record_baselines(
 }
 
 /// Only fields novelWriter changed since the baseline are offered, paired with
-/// whether they conflict. When kindling changed too, or there is no baseline
+/// whether they conflict. When Feather Quill changed too, or there is no baseline
 /// (imported before baselines existed), the writer must pick individually.
 fn offered<'a>(fields: &'a [Field], baselines: &Baselines) -> Vec<(&'a Field, bool)> {
     fields
@@ -435,7 +435,7 @@ fn offered<'a>(fields: &'a [Field], baselines: &Baselines) -> Vec<(&'a Field, bo
         .filter(|f| f.local != f.incoming)
         .filter_map(|f| {
             let base = baselines.get(&(f.id.to_string(), f.field.to_string()));
-            // novelWriter unchanged since the baseline: the difference is a kindling edit.
+            // novelWriter unchanged since the baseline: the difference is a Feather Quill edit.
             (base != Some(&f.incoming)).then_some((f, base != Some(&f.local)))
         })
         .collect()
@@ -517,7 +517,7 @@ fn blocks(html: &str) -> Vec<&str> {
     out.chunks(2).map(|b| &html[b[0]..b[1]]).collect()
 }
 
-/// Builds the accepted prose from novelWriter's text while keeping kindling's
+/// Builds the accepted prose from novelWriter's text while keeping Feather Quill's
 /// HTML for every block whose text novelWriter left unchanged. novelWriter
 /// cannot express underline, alignment or lists, so rebuilding the whole field
 /// from its text would silently strip them from untouched paragraphs. Blocks
@@ -621,7 +621,7 @@ fn validate(
 }
 
 /// Applies the accepted changes and additions. Each conflict in `kept` (shown to
-/// the writer and left unticked) is settled as "keep kindling": its baseline
+/// the writer and left unticked) is settled as "keep Feather Quill": its baseline
 /// moves to novelWriter's current text so it is not offered again until
 /// novelWriter changes it. Unaccepted non-conflicting changes keep their
 /// baseline and are offered again. Reimport passes no `kept` ids because it
@@ -949,21 +949,21 @@ mod tests {
     fn local_edits_are_never_incoming_and_both_side_edits_are_conflicts() {
         let (conn, project, temp) = imported();
         let beats = db::get_all_project_beats(&conn, &project.id).unwrap();
-        // Revise a beat in kindling, then fix a typo in a different beat in novelWriter.
-        db::update_beat_prose(&conn, &beats[0].id, "<p>Revised in kindling.</p>").unwrap();
+        // Revise a beat in Feather Quill, then fix a typo in a different beat in novelWriter.
+        db::update_beat_prose(&conn, &beats[0].id, "<p>Revised in feather-quill.</p>").unwrap();
         edit_source(&temp, &conn, &project, "listened", "listened closely");
         let parsed = load(&conn, &project).unwrap();
         let changes = preview(&conn, &project, &parsed).unwrap().changes;
         assert_eq!(changes.len(), 1, "{changes:?}");
         assert_eq!(changes[0].db_id, beats[1].id.to_string());
         assert!(!changes[0].conflict);
-        // "All" + Apply: the novelWriter fix lands and the kindling revision survives.
+        // "All" + Apply: the novelWriter fix lands and the Feather Quill revision survives.
         let all: Vec<_> = changes.iter().map(|c| c.id.clone()).collect();
         apply(&conn, &project, &parsed, &all, &[], &[], &mut |_| Ok(())).unwrap();
         let after = db::get_all_project_beats(&conn, &project.id).unwrap();
         assert_eq!(
             after[0].prose.as_deref(),
-            Some("<p>Revised in kindling.</p>")
+            Some("<p>Revised in feather-quill.</p>")
         );
         assert!(after[1]
             .prose
@@ -1015,10 +1015,10 @@ mod tests {
     }
 
     #[test]
-    fn declined_conflicts_keep_kindling_until_novelwriter_changes_again() {
+    fn declined_conflicts_keep_feather_quill_until_novelwriter_changes_again() {
         let (conn, project, temp) = imported();
         let beats = db::get_all_project_beats(&conn, &project.id).unwrap();
-        db::update_beat_prose(&conn, &beats[1].id, "<p>Kept in kindling.</p>").unwrap();
+        db::update_beat_prose(&conn, &beats[1].id, "<p>Kept in feather-quill.</p>").unwrap();
         edit_source(&temp, &conn, &project, "listened", "listened closely");
         let parsed = load(&conn, &project).unwrap();
         let changes = preview(&conn, &project, &parsed).unwrap().changes;
@@ -1026,7 +1026,7 @@ mod tests {
         // Reimport shows the writer nothing, so it must not settle the conflict.
         apply(&conn, &project, &parsed, &[], &[], &[], &mut |_| Ok(())).unwrap();
         assert_eq!(preview(&conn, &project, &parsed).unwrap().changes.len(), 1);
-        // Applying with the conflict unticked keeps kindling's text and settles it.
+        // Applying with the conflict unticked keeps Feather Quill's text and settles it.
         let kept_ids = [changes[0].id.clone()];
         let summary = apply(&conn, &project, &parsed, &[], &[], &kept_ids, &mut |_| {
             Ok(())
@@ -1034,7 +1034,7 @@ mod tests {
         .unwrap();
         assert_eq!((summary.prose_updated, summary.prose_preserved), (0, 1));
         let kept = || db::get_beat(&conn, &beats[1].id).unwrap().unwrap().prose;
-        assert_eq!(kept().as_deref(), Some("<p>Kept in kindling.</p>"));
+        assert_eq!(kept().as_deref(), Some("<p>Kept in feather-quill.</p>"));
         assert!(preview(&conn, &project, &parsed)
             .unwrap()
             .changes
@@ -1047,7 +1047,7 @@ mod tests {
         assert!(changes[0].new_value.contains("listened hard"));
 
         // Pre-baseline projects: every local edit starts as a conflict, and
-        // keeping kindling's side is enough to get out of it.
+        // keeping Feather Quill's side is enough to get out of it.
         conn.execute("DELETE FROM novelwriter_sync_baselines", [])
             .unwrap();
         db::update_beat_prose(&conn, &beats[0].id, "<p>Also local.</p>").unwrap();
@@ -1062,7 +1062,7 @@ mod tests {
             .unwrap()
             .changes
             .is_empty());
-        assert_eq!(kept().as_deref(), Some("<p>Kept in kindling.</p>"));
+        assert_eq!(kept().as_deref(), Some("<p>Kept in feather-quill.</p>"));
     }
 
     #[test]
@@ -1293,7 +1293,7 @@ mod tests {
         let deleted = preview_with(format!("{}{}", &original[..knock], &original[answer..]));
         assert!(deleted.changes.is_empty(), "{:?}", deleted.changes);
         assert!(deleted.additions.is_empty());
-        // A renamed beat still pairs with its kindling beat.
+        // A renamed beat still pairs with its Feather Quill beat.
         let renamed = preview_with(original.replace("% Beat: Answer", "% Beat: Reply"));
         assert_eq!(renamed.changes.len(), 1, "{:?}", renamed.changes);
         assert_eq!(renamed.changes[0].db_id, beats[1].id.to_string());
@@ -1580,7 +1580,7 @@ mod tests {
         let file = temp.path().join("content").join(format!("{handle}.md"));
         let text = std::fs::read_to_string(&file).unwrap();
         std::fs::write(&file, format!("{text}\n### Second half\n\nMore text.\n")).unwrap();
-        // kindling 1.2 read the whole document as one scene.
+        // Kindling 1.2 read the whole document as one scene.
         let legacy =
             parse_novelwriter_project_with(temp.path(), &HashSet::from([handle.clone()])).unwrap();
         assert_eq!(legacy.scenes.len(), 1);
@@ -1651,7 +1651,7 @@ mod tests {
         db::initialize_schema(&conn).unwrap();
         super::super::import::insert_novelwriter(&conn, &parsed).unwrap();
         let project = parsed.project;
-        // The writer deletes the second scene in kindling.
+        // The writer deletes the second scene in feather-quill.
         let second = db::get_all_project_scenes(&conn, &project.id)
             .unwrap()
             .into_iter()

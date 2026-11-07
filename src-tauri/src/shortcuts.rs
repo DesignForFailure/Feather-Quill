@@ -24,7 +24,7 @@ pub struct ShortcutState {
 fn path(app: &AppHandle) -> Result<PathBuf, String> {
     // Match the isolated project data directory in debug QA runs.
     #[cfg(debug_assertions)]
-    if let Ok(dir) = std::env::var("KINDLING_DATA_DIR") {
+    if let Ok(dir) = std::env::var("FEATHER_QUILL_DATA_DIR") {
         if !dir.trim().is_empty() {
             fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
             return Ok(PathBuf::from(dir).join("shortcuts.json"));
@@ -36,7 +36,7 @@ fn path(app: &AppHandle) -> Result<PathBuf, String> {
 fn validate(bindings: &Bindings) -> Result<(), String> {
     let known = defaults();
     if bindings.keys().ne(known.keys()) {
-        return Err("Shortcut commands do not match this version of kindling".into());
+        return Err("Shortcut commands do not match this version of Feather Quill".into());
     }
     let reserved = [
         "Mod+X",

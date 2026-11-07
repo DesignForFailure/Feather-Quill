@@ -10,7 +10,7 @@ We as members, contributors, and leaders pledge to make participation in our com
 
 ## Enforcement
 
-Instances of unacceptable behavior may be reported to the project team at **smithandweb+kindling@gmail.com**.
+Contact the maintainer through this fork's [GitHub repository](https://github.com/DesignForFailure/Feather-Quill). For private matters, request a private contact without posting personal details publicly.
 
 All complaints will be reviewed and investigated promptly and fairly.
 

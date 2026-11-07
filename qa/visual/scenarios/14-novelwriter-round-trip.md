@@ -7,7 +7,7 @@ Run `/visual-qa 14` separately. Budget: 5 screenshots, about 35 tool calls,
 
 Precondition: scratch database and harness installed. This uses a fresh owned
 Longform import as the seed, so it does not depend on scenario 13. It exports
-to a new temporary folder and edits only that export. The Kindling test bridge
+to a new temporary folder and edits only that export. The Feather Quill test bridge
 bypasses native pickers; opening the export in novelWriter itself remains a
 separate compatibility check.
 
@@ -20,7 +20,7 @@ also sets the marker: completion is not evidence of success.
 Bash:
 
 ```bash
-mktemp -d /tmp/kindling-qa-novelwriter.XXXXXX
+mktemp -d /tmp/feather-quill-qa-novelwriter.XXXXXX
 ```
 
 Record the printed absolute path as `<scratch folder>` for this scenario only.

@@ -1,6 +1,6 @@
 # Architecture Decision Records
 
-This directory contains Architecture Decision Records (ADRs) for the Kindling project.
+This directory contains Architecture Decision Records (ADRs) for the Feather Quill project.
 
 ## What is an ADR?
 

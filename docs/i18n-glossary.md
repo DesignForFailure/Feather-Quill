@@ -15,7 +15,7 @@ The fr column follows the terms in `src/lib/i18n/locales/fr/`; "temps fort" is p
 the borrowed "beat" following French storytelling usage, and "fiche" is used for "reference"
 following French writing-tool conventions; both are pending native review (AC-4).
 
-| Term             | Meaning in kindling                                                  | en               | zh-CN | pt-BR             | es                 | ru                    | de              | fr                    |
+| Term             | Meaning in Feather Quill                                                  | en               | zh-CN | pt-BR             | es                 | ru                    | de              | fr                    |
 | ---------------- | -------------------------------------------------------------------- | ---------------- | ----- | ----------------- | ------------------ | --------------------- | --------------- | --------------------- |
 | beat             | A single story point inside a scene, imported from the outline       | beat             | 节拍  | beat              | tiempo             | бит                   | Beat            | temps fort            |
 | scene            | The unit of prose; holds beats, a synopsis and the draft text        | scene            | 场景  | cena              | escena             | сцена                 | Szene           | scène                 |

@@ -3,7 +3,7 @@
 Use the export workspace to prepare a manuscript for an agent, a reading group,
 a website, or another writing app. An **export profile** remembers the format,
 content selection, and settings for a particular recipient or routine. Changing
-export settings leaves your writing and its formatting in Kindling unchanged.
+export settings leaves your writing and its formatting in Feather Quill unchanged.
 
 For a quick export with the standard options, see [Exporting Projects](exporting-projects.md).
 
@@ -23,7 +23,7 @@ For a quick export with the standard options, see [Exporting Projects](exporting
 The starting profiles are editable. Check your recipient's requirements before
 using one for a submission.
 
-After you choose Custom, Kindling selects it by default whenever you reopen
+After you choose Custom, Feather Quill selects it by default whenever you reopen
 Export for that project. It also remembers the last profile you chose in either
 the export dialog or the workspace. You can still select a standard format for
 an individual export; your Custom preference remains saved.
@@ -170,14 +170,14 @@ page count depends on your material.
 
 In **Files & format**, enter a **Filename pattern**. Use the buttons beneath the
 field to insert `{title}`, `{profile}`, or `{date}`. The example below the field
-shows the resulting filename. Kindling adds the file extension for you.
+shows the resulting filename. Feather Quill adds the file extension for you.
 
 For example, `{title}-{profile}-{date}` could produce
 `The Letter-Friday readers-2026-09-11.epub`.
 
 Choose a destination each time you export. Workspace exports preserve existing
 files and folders, so use a new name for each copy. For Longform and novelWriter,
-choose the parent folder; Kindling creates the named project folder inside it.
+choose the parent folder; Feather Quill creates the named project folder inside it.
 
 ## Save, reuse, and recover profiles
 
@@ -186,7 +186,7 @@ see, including changes you have not saved to the profile. Switching profiles
 also saves valid changes to the current profile. To try a different arrangement
 without changing an existing profile, duplicate it first.
 
-**Revert** returns to the saved settings. Kindling also retains unsaved profile
+**Revert** returns to the saved settings. Feather Quill also retains unsaved profile
 changes on this device so you can resume after closing the workspace. If an
 incomplete draft cannot be recovered, it loads the saved profile instead.
 

@@ -18,14 +18,14 @@ fresh sample to get these examples; existing projects are not overwritten.
 Start the debug app with an empty scratch data directory:
 
 ```bash
-KINDLING_DATA_DIR="$(mktemp -d /tmp/kindling-demo.XXXXXX)" npm run tauri dev
+FEATHER_QUILL_DATA_DIR="$(mktemp -d /tmp/feather-quill-demo.XXXXXX)" npm run tauri dev
 ```
 
 Click **Sample Project**. For screenplay and sync screenshots, also run this in
 the app's developer console (or through the local MCP `execute_js` command):
 
 ```js
-await window.__KINDLING_TEST__.invoke("create_demo_fixture");
+await window.__FEATHER_QUILL_TEST__.invoke("create_demo_fixture");
 ```
 
 The command adds **The Letter — Screenplay** and **The Letter — Source Outline**.
@@ -43,7 +43,7 @@ that file and click **Sync** to photograph the diff:
 - Eleanor turns the key
 ```
 
-From the sibling `kindling-splash` repository, capture without installing images:
+From the sibling `feather-quill-splash` repository, capture without installing images:
 
 ```bash
 npm run shots -- --keep
@@ -66,9 +66,9 @@ The instructions below apply to that older seed only.
 npm run tauri:demo
 ```
 
-That sets `KINDLING_DATA_DIR=qa/demo/data`, which debug builds honour and release
+That sets `FEATHER_QUILL_DATA_DIR=qa/demo/data`, which debug builds honour and release
 builds ignore (`resolve_data_dir` in `src-tauri/src/lib.rs`). The first launch
-creates `qa/demo/data/kindling.db` with an empty schema. Quit the app, then:
+creates `qa/demo/data/feather-quill.db` with an empty schema. Quit the app, then:
 
 ```bash
 npm run seed:demo

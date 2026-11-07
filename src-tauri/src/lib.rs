@@ -1,6 +1,6 @@
-//! Kindling - Rust Backend
+//! Feather Quill - Rust Backend
 //!
-//! This is the Tauri backend for Kindling, a writing application that bridges
+//! This is the Tauri backend for Feather Quill, a writing application that bridges
 //! outline planning and prose writing.
 //!
 //! # Module Overview
@@ -55,7 +55,7 @@ fn webkit_dmabuf_workaround(
 
 /// Picks the directory that holds the SQLite database and snapshots.
 ///
-/// In debug builds a non-empty `KINDLING_DATA_DIR` overrides the platform
+/// In debug builds a non-empty `FEATHER_QUILL_DATA_DIR` overrides the platform
 /// default so automated QA can run against a scratch database. Release builds
 /// ignore the variable entirely, so a stray environment value can never
 /// redirect a real user's data.
@@ -66,7 +66,7 @@ fn resolve_data_dir(
 ) -> std::path::PathBuf {
     match override_value {
         Some(dir) if is_debug && !dir.trim().is_empty() => {
-            eprintln!("[kindling] KINDLING_DATA_DIR override active: {dir}");
+            eprintln!("[Feather Quill] FEATHER_QUILL_DATA_DIR override active: {dir}");
             std::path::PathBuf::from(dir)
         }
         _ => default_dir,
@@ -83,7 +83,8 @@ pub fn run() {
     if qa_background {
         // Separate app settings, browser storage and socket from the user's app.
         // No display sizing, foreground activation or desktop capture is needed.
-        context.config_mut().identifier = "com.kindlingwriter.app.visual-qa".into();
+        context.config_mut().identifier =
+            "io.github.designforfailure.featherquill.app.visual-qa".into();
         for window in &mut context.config_mut().app.windows {
             window.visible = false;
             window.focus = false;
@@ -94,7 +95,7 @@ pub fn run() {
             window.min_height = None;
             window.background_throttling =
                 Some(tauri::utils::config::BackgroundThrottlingPolicy::Disabled);
-            window.data_store_identifier = Some(*b"KindlingVisualQA");
+            window.data_store_identifier = Some(*b"FeatherQuillQA01");
         }
     }
     // Apply the WebKitGTK DMABUF renderer workaround on Linux to prevent a white
@@ -140,7 +141,7 @@ pub fn run() {
 
     let builder = if qa_background {
         builder.plugin(tauri::plugin::Builder::<tauri::Wry>::new("visual-qa")
-            .js_init_script("Object.defineProperty(window, '__KINDLING_QA_BACKGROUND__', {value:true});")
+            .js_init_script("Object.defineProperty(window, '__FEATHER_QUILL_QA_BACKGROUND__', {value:true});")
             .build())
             .plugin(tauri_plugin_single_instance::init(|_, _, _| {}))
     } else {
@@ -157,13 +158,13 @@ pub fn run() {
     // MCP plugin for QA automation — only in dev builds with the `mcp` feature
     #[cfg(all(debug_assertions, feature = "mcp"))]
     let builder = {
-        let mut config = tauri_plugin_mcp::PluginConfig::new("Kindling".to_string())
+        let mut config = tauri_plugin_mcp::PluginConfig::new("Feather Quill".to_string())
             .start_socket_server(true)
             .socket_path(
                 if qa_background {
-                    "/tmp/kindling-qa.sock"
+                    "/tmp/feather-quill-qa.sock"
                 } else {
-                    "/tmp/kindling-mcp.sock"
+                    "/tmp/feather-quill-mcp.sock"
                 }
                 .into(),
             );
@@ -182,7 +183,7 @@ pub fn run() {
                     window.set_ignore_cursor_events(true)?;
                 }
             }
-            // Get the app data directory. Debug builds honour KINDLING_DATA_DIR so
+            // Get the app data directory. Debug builds honour FEATHER_QUILL_DATA_DIR so
             // QA runs can use a scratch database instead of the user's real one.
             let default_dir = app
                 .path()
@@ -190,7 +191,7 @@ pub fn run() {
                 .expect("Failed to get app data directory");
             let app_data_dir = resolve_data_dir(
                 cfg!(debug_assertions),
-                std::env::var("KINDLING_DATA_DIR").ok().as_deref(),
+                std::env::var("FEATHER_QUILL_DATA_DIR").ok().as_deref(),
                 default_dir,
             );
 

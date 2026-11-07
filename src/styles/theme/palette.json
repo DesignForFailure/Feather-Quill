@@ -1,0 +1,14 @@
+{
+  "light": {
+    "--tag-red": "#b72b42",
+    "--tag-orange": "#a95018",
+    "--tag-yellow": "#886600",
+    "--tag-green": "#267344",
+    "--tag-teal": "#197769",
+    "--tag-blue": "#28689c",
+    "--tag-purple": "#7650a4",
+    "--tag-pink": "#aa387d",
+    "--tag-slate": "#566476",
+    "--tag-cyan": "#1a7189"
+  }
+}

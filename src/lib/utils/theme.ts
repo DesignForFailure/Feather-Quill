@@ -1,6 +1,6 @@
 export type ThemePreference = "dark" | "light" | "system";
 
-const STORAGE_KEY = "kindling:theme";
+const STORAGE_KEY = "feather-quill:theme";
 let mediaQuery: MediaQueryList | null = null;
 let mediaListener: ((e: MediaQueryListEvent) => void) | null = null;
 

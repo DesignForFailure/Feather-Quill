@@ -218,7 +218,7 @@ describe("prose sync UI", () => {
       item_type: "beat",
       field: "prose",
       item_title: "The knock",
-      current_value: "Revised in kindling.",
+      current_value: "Revised in feather-quill.",
       new_value: "Older novelWriter text.",
       db_id: "beat-1",
     } as const;
@@ -265,12 +265,12 @@ describe("prose sync UI", () => {
       })
     );
   });
-  it("applies with nothing ticked to keep kindling's side of conflicts", async () => {
+  it("applies with nothing ticked to keep Feather Quill's side of conflicts", async () => {
     const change = {
       item_type: "beat",
       field: "prose",
       item_title: "The knock",
-      current_value: "Revised in kindling.",
+      current_value: "Revised in feather-quill.",
       new_value: "Older novelWriter text.",
       db_id: "beat-1",
     } as const;
@@ -282,14 +282,14 @@ describe("prose sync UI", () => {
       onSyncComplete,
     });
     expect(screen.getByTestId("sync-conflict-note").textContent).toContain(
-      "Leave it unticked to keep the kindling version"
+      "Leave it unticked to keep the Feather Quill version"
     );
     expect(screen.getByTestId("sync-conflict-help").textContent).toContain(
-      "the kindling version is kept"
+      "the Feather Quill version is kept"
     );
     const confirm = screen.getByTestId("sync-confirm") as HTMLButtonElement;
     expect(confirm.disabled).toBe(false);
-    expect(confirm.textContent).toContain("Keep kindling version");
+    expect(confirm.textContent).toContain("Keep Feather Quill version");
     await fireEvent.click(confirm);
     await waitFor(() =>
       expect(invoke).toHaveBeenCalledWith("apply_sync", {

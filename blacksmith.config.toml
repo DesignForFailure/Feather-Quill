@@ -10,7 +10,7 @@
 [target]
 # repo_path is intentionally omitted: blacksmith resolves the target to the git root
 # of the directory you run it from. Run `blacksmith <prd>` from inside this repo and
-# it will operate on Kindling. (Set an absolute repo_path here only to run it from
+# it will operate on Feather Quill. (Set an absolute repo_path here only to run it from
 # outside the repo.)
 default_branch = "main"
 

@@ -1,6 +1,6 @@
 # VS Code Configuration
 
-This folder contains recommended VS Code settings for Kindling development.
+This folder contains recommended VS Code settings for Feather Quill development.
 
 ## Quick Setup
 

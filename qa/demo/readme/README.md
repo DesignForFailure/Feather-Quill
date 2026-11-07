@@ -1,14 +1,14 @@
 # README demo recorder
 
-`npm run demo:readme` rebuilds `docs/assets/kindling-demo.svg`, the animated demo at
-the top of the project README. It drives a real kindling session: a hidden,
+`npm run demo:readme` rebuilds `docs/assets/feather-quill-demo.svg`, the animated demo at
+the top of the project README. It drives a real Feather Quill session: a hidden,
 isolated debug build controlled through its authenticated Unix socket, the same
 transport as [visual QA](../../visual/README.md). The output is vector, not video.
 
 ## How it works
 
 1. `record.mjs` builds the debug binary and starts it hidden with
-   `KINDLING_QA_BACKGROUND=1` and a fresh `KINDLING_DATA_DIR` in the system temp
+   `FEATHER_QUILL_QA_BACKGROUND=1` and a fresh `FEATHER_QUILL_DATA_DIR` in the system temp
    directory. It then sets a 1280×800 viewport.
 2. It drives the app the way a user would: it clicks **Sample project**, opens
    _On the Cliff_, expands a beat, and types prose into the editor. It opens Find
@@ -39,7 +39,7 @@ python3 -m venv /tmp/fonttools && /tmp/fonttools/bin/pip install fonttools brotl
 ```
 
 Start Vite for this checkout (`npm run dev` or `npm run tauri dev`), make sure no
-visual QA app is serving `/tmp/kindling-qa.sock`, then run:
+visual QA app is serving `/tmp/feather-quill-qa.sock`, then run:
 
 ```bash
 PYFTSUBSET=/tmp/fonttools/bin/pyftsubset npm run demo:readme

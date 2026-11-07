@@ -47,7 +47,7 @@
 
     saving = true;
     error = null;
-    const onCreated = window.__KINDLING_TEST__?.onProjectCreated;
+    const onCreated = window.__FEATHER_QUILL_TEST__?.onProjectCreated;
 
     try {
       let project: Project;
@@ -110,7 +110,7 @@
   aria-labelledby="new-project-dialog-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell">
     <DialogHeader
       title={t("onboarding.newProjectDialog.title")}
       titleId="new-project-dialog-title"
@@ -119,16 +119,16 @@
       closeTestId="new-project-close"
     />
 
-    <div class="ka-dialog-body new-project">
-      <fieldset class="ka-segments">
+    <div class="fq-dialog-body new-project">
+      <fieldset class="fq-segments">
         <legend>{t("onboarding.newProjectDialog.projectTypeLegend")}</legend>
-        <div class="ka-segment-track">
-          <label class="ka-segment" class:ka-selected={projectType === "novel"}>
+        <div class="fq-segment-track">
+          <label class="fq-segment" class:fq-selected={projectType === "novel"}>
             <input type="radio" name="project-type" value="novel" bind:group={projectType} />
             <BookOpen class="w-5 h-5" aria-hidden="true" />
             <span>{t("onboarding.newProjectDialog.novel")}</span>
           </label>
-          <label class="ka-segment" class:ka-selected={projectType === "screenplay"}>
+          <label class="fq-segment" class:fq-selected={projectType === "screenplay"}>
             <input type="radio" name="project-type" value="screenplay" bind:group={projectType} />
             <Film class="w-5 h-5" aria-hidden="true" />
             <span>{t("onboarding.newProjectDialog.screenplay")}</span>
@@ -136,7 +136,7 @@
         </div>
       </fieldset>
 
-      <div class="ka-field od-field">
+      <div class="fq-field od-field">
         <label for="new-project-name">{t("onboarding.newProjectDialog.nameLabel")}</label>
         <input
           id="new-project-name"
@@ -151,7 +151,7 @@
       </div>
 
       {#if projectType === "screenplay"}
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="target-length">{t("onboarding.newProjectDialog.targetLengthLabel")}</label>
           <select id="target-length" bind:value={targetLength} disabled={saving}>
             <option value="short">{t("onboarding.newProjectDialog.lengthShort")}</option>
@@ -166,7 +166,7 @@
       <fieldset class="new-project-template">
         <legend>
           {t("onboarding.newProjectDialog.templateLegend")}
-          <span class="ka-optional">{t("onboarding.newProjectDialog.optional")}</span>
+          <span class="fq-optional">{t("onboarding.newProjectDialog.optional")}</span>
         </legend>
         {#if selectedTemplate}
           <div class="new-project-chosen">
@@ -175,7 +175,7 @@
             <button
               type="button"
               onclick={() => (selectedTemplate = null)}
-              class="ka-button ka-button--ghost ka-icon-button"
+              class="fq-button fq-button--ghost fq-icon-button"
               aria-label={t("onboarding.newProjectDialog.removeTemplate")}
               title={t("onboarding.newProjectDialog.removeTemplate")}
             >
@@ -186,26 +186,26 @@
           <button
             type="button"
             onclick={() => (showTemplateBrowser = true)}
-            class="ka-button ka-button--secondary new-project-browse"
+            class="fq-button fq-button--secondary new-project-browse"
             disabled={saving}
           >
             <Layout class="w-5 h-5" aria-hidden="true" />
             <span>{t("onboarding.newProjectDialog.browseTemplates")}</span>
-            <ChevronRight class="w-5 h-5 ka-icon" aria-hidden="true" />
+            <ChevronRight class="w-5 h-5 fq-icon" aria-hidden="true" />
           </button>
         {/if}
       </fieldset>
 
       {#if error}
-        <p id="new-project-error" class="ka-error" role="alert">{error}</p>
+        <p id="new-project-error" class="fq-error" role="alert">{error}</p>
       {/if}
     </div>
 
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       <button
         type="button"
         onclick={onClose}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         disabled={saving}
       >
         {t("common.cancel")}
@@ -214,7 +214,7 @@
         data-testid="new-project-create"
         type="button"
         onclick={handleCreate}
-        class="ka-button"
+        class="fq-button"
         disabled={saving || !name.trim()}
         aria-busy={saving || undefined}
       >
@@ -250,7 +250,7 @@
     padding: 0;
     border: 0;
   }
-  .new-project-template .ka-optional {
+  .new-project-template .fq-optional {
     font-weight: 400;
     color: var(--color-text-muted);
   }

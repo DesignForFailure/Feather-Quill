@@ -45,7 +45,7 @@
     }
   }
 
-  // Conflicts may replace a kindling edit, so they are only ever chosen one by one.
+  // Conflicts may replace a Feather Quill edit, so they are only ever chosen one by one.
   function selectAllChanges() {
     selectedChanges.clear();
     for (const change of syncPreview.changes) {
@@ -78,7 +78,7 @@
 
   const selectedCount = $derived(selectedAdditions.size + selectedChanges.size);
   const conflictCount = $derived(syncPreview.changes.filter((c) => c.conflict).length);
-  // Applying settles unticked conflicts as "keep kindling", so that alone is worth applying.
+  // Applying settles unticked conflicts as "keep Feather Quill", so that alone is worth applying.
   const keptCount = $derived(
     syncPreview.changes.filter((c) => c.conflict && !selectedChanges.has(c.id)).length
   );
@@ -123,7 +123,7 @@
         projectId,
         acceptedChangeIds: Array.from(selectedChanges),
         acceptedAdditionIds: Array.from(selectedAdditions),
-        // Only conflicts shown here are settled as "keep kindling".
+        // Only conflicts shown here are settled as "keep Feather Quill".
         keptConflictIds: syncPreview.changes
           .filter((c) => c.conflict && !selectedChanges.has(c.id))
           .map((c) => c.id),
@@ -147,7 +147,7 @@
   aria-labelledby="sync-dialog-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-default dialog-shell sync">
+  <div class="app-dialog-surface fq-dialog-default dialog-shell sync">
     <DialogHeader
       title={t("references.syncDialog.title")}
       titleId="sync-dialog-title"
@@ -158,9 +158,9 @@
       disabled={syncing}
     />
 
-    <div class="ka-dialog-body sync-body">
+    <div class="fq-dialog-body sync-body">
       {#if hasNothingToSync}
-        <div class="ka-empty od-stack">
+        <div class="fq-empty od-stack">
           <CheckCheck class="w-7 h-7" aria-hidden="true" />
           <h4>{t("references.syncDialog.allSynced")}</h4>
           <p>{t("references.syncDialog.allSyncedMessage")}</p>
@@ -172,35 +172,35 @@
 
         <div class="sync-summary" aria-label={t("references.syncDialog.summaryLabel")}>
           {#if syncPreview.additions.length > 0}
-            <span class="ka-badge ka-badge--success"
+            <span class="fq-badge fq-badge--success"
               >{t("references.syncDialog.addedCount", {
                 count: syncPreview.additions.length,
               })}</span
             >
           {/if}
           {#if syncPreview.changes.length > 0}
-            <span class="ka-badge"
+            <span class="fq-badge"
               >{t("references.syncDialog.changedCount", {
                 count: syncPreview.changes.length,
               })}</span
             >
           {/if}
           {#if conflictCount > 0}
-            <span class="ka-badge ka-badge--warning" data-testid="sync-conflict-count"
+            <span class="fq-badge fq-badge--warning" data-testid="sync-conflict-count"
               >{tn("references.syncDialog.conflict", conflictCount)}</span
             >
           {/if}
         </div>
         {#if conflictCount > 0}
-          <p class="ka-help" data-testid="sync-conflict-note">
+          <p class="fq-help" data-testid="sync-conflict-note">
             {t("references.syncDialog.conflictNote")}
           </p>
         {/if}
 
         {#if syncPreview.additions.length > 0}
-          <section class="ka-group sync-group" aria-labelledby="sync-additions-title">
+          <section class="fq-group sync-group" aria-labelledby="sync-additions-title">
             <div class="sync-group-head">
-              <h3 class="ka-group-title" id="sync-additions-title">
+              <h3 class="fq-group-title" id="sync-additions-title">
                 {t("references.syncDialog.newItems")}
               </h3>
               <span class="sync-count"
@@ -213,7 +213,7 @@
                 <button
                   type="button"
                   onclick={selectAllAdditions}
-                  class="ka-button ka-button--ghost"
+                  class="fq-button fq-button--ghost"
                   aria-label={t("references.syncDialog.selectAllNewItems")}
                   title={t("references.syncDialog.selectAll")}
                   >{t("references.syncDialog.allButton")}</button
@@ -221,7 +221,7 @@
                 <button
                   type="button"
                   onclick={deselectAllAdditions}
-                  class="ka-button ka-button--ghost"
+                  class="fq-button fq-button--ghost"
                   aria-label={t("references.syncDialog.deselectAllNewItems")}
                   title={t("references.syncDialog.deselectAll")}
                   >{t("references.syncDialog.noneButton")}</button
@@ -239,12 +239,12 @@
                       disabled={syncing}
                     />
                     <span class="sync-type"
-                      ><span class="ka-badge ka-badge--success"
+                      ><span class="fq-badge fq-badge--success"
                         >{t("references.syncDialog.addedBadge")}</span
                       ></span
                     >
                     <span class="sync-text">
-                      <span class="ka-label sync-name"
+                      <span class="fq-label sync-name"
                         >{t("references.syncDialog.kindTitle", {
                           kind: kindLabel(addition.item_type),
                           title: addition.title,
@@ -266,9 +266,9 @@
         {/if}
 
         {#if syncPreview.changes.length > 0}
-          <section class="ka-group sync-group" aria-labelledby="sync-changes-title">
+          <section class="fq-group sync-group" aria-labelledby="sync-changes-title">
             <div class="sync-group-head">
-              <h3 class="ka-group-title" id="sync-changes-title">
+              <h3 class="fq-group-title" id="sync-changes-title">
                 {t("references.syncDialog.changesTitle")}
               </h3>
               <span class="sync-count"
@@ -281,7 +281,7 @@
                 <button
                   type="button"
                   onclick={selectAllChanges}
-                  class="ka-button ka-button--ghost"
+                  class="fq-button fq-button--ghost"
                   aria-label={t("references.syncDialog.selectAllChangesLabel")}
                   title={t("references.syncDialog.selectAllExceptConflicts")}
                   >{t("references.syncDialog.allButton")}</button
@@ -289,7 +289,7 @@
                 <button
                   type="button"
                   onclick={deselectAllChanges}
-                  class="ka-button ka-button--ghost"
+                  class="fq-button fq-button--ghost"
                   aria-label={t("references.syncDialog.deselectAllChangesLabel")}
                   title={t("references.syncDialog.deselectAll")}
                   >{t("references.syncDialog.noneButton")}</button
@@ -310,15 +310,15 @@
                     />
                     <span class="sync-type">
                       {#if change.conflict}
-                        <span class="ka-badge ka-badge--warning"
+                        <span class="fq-badge fq-badge--warning"
                           >{t("references.syncDialog.conflictBadge")}</span
                         >
                       {:else}
-                        <span class="ka-badge">{t("references.syncDialog.changedBadge")}</span>
+                        <span class="fq-badge">{t("references.syncDialog.changedBadge")}</span>
                       {/if}
                     </span>
                     <span class="sync-text">
-                      <span class="ka-label sync-name"
+                      <span class="fq-label sync-name"
                         >{t("references.syncDialog.kindTitle", {
                           kind: kindLabel(change.item_type),
                           title: change.item_title,
@@ -326,7 +326,7 @@
                       >
                       <span class="sync-meta">{fieldLabel(change.field)}</span>
                       {#if change.conflict}
-                        <span class="ka-help" data-testid="sync-conflict-help">
+                        <span class="fq-help" data-testid="sync-conflict-help">
                           {selectedChanges.has(change.id)
                             ? t("references.syncDialog.conflictTicked")
                             : t("references.syncDialog.conflictUnticked")}
@@ -334,7 +334,7 @@
                       {/if}
                       {#if change.field === "prose"}
                         <span class="sync-prose" data-testid="sync-prose-diff">
-                          <span class="ka-help">
+                          <span class="fq-help">
                             {t("references.syncDialog.proseNote")}
                           </span>
                           <span class="sync-version">
@@ -383,7 +383,7 @@
 
     {#if error}
       <div class="sync-alert">
-        <div class="ka-notice ka-notice--error od-row-top" role="alert">
+        <div class="fq-notice fq-notice--error od-row-top" role="alert">
           <CircleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <strong>{t("references.syncDialog.syncFailed", { error: String(error) })}</strong>
@@ -395,19 +395,19 @@
       </div>
     {/if}
 
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       {#if hasNothingToSync}
-        <button type="button" onclick={onClose} class="ka-button ka-button--secondary">
+        <button type="button" onclick={onClose} class="fq-button fq-button--secondary">
           {t("references.syncDialog.close")}
         </button>
       {:else}
-        <p class="ka-help ka-dialog-footer-start">
+        <p class="fq-help fq-dialog-footer-start">
           {selectionSummary}
         </p>
         <button
           type="button"
           onclick={onClose}
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
           disabled={syncing}
         >
           {t("references.syncDialog.cancel")}
@@ -418,13 +418,13 @@
           onclick={applySync}
           disabled={syncing || (selectedCount === 0 && keptCount === 0)}
           aria-busy={syncing || undefined}
-          class="ka-button"
+          class="fq-button"
         >
           {#if syncing}
             <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
             {t("references.syncDialog.applying")}
           {:else if selectedCount === 0 && keptCount > 0}
-            {tn("references.syncDialog.keepKindling", keptCount)}
+            {tn("references.syncDialog.keepFeatherQuill", keptCount)}
           {:else if selectedCount === 0}
             {t("references.syncDialog.applyChanges")}
           {:else}
@@ -445,7 +445,7 @@
     align-content: start;
     gap: var(--space-m);
   }
-  .sync-body > .ka-group + .ka-group {
+  .sync-body > .fq-group + .fq-group {
     margin-top: 0;
   }
   .sync-intro {
@@ -459,11 +459,11 @@
     flex-wrap: wrap;
     gap: var(--space-2xs);
   }
-  .ka-empty h4 {
+  .fq-empty h4 {
     margin: 0;
     font: 550 var(--text-h3) / 1.25 var(--font-display);
   }
-  .ka-empty p {
+  .fq-empty p {
     margin: 0;
   }
   .sync-group {
@@ -476,7 +476,7 @@
     align-items: center;
     gap: var(--space-2xs);
   }
-  .sync-group-head .ka-group-title {
+  .sync-group-head .fq-group-title {
     margin: 0;
   }
   .sync-count {
@@ -555,7 +555,7 @@
     gap: var(--space-xs);
     margin-top: var(--space-2xs);
   }
-  .sync-prose .ka-help {
+  .sync-prose .fq-help {
     display: block;
   }
   .sync-version {

@@ -1105,12 +1105,12 @@
 
   onMount(() => {
     const handler = () => handleSyncClick();
-    window.addEventListener("kindling:sync", handler);
+    window.addEventListener("feather-quill:sync", handler);
     return () => {
       chaptersRequestId++;
       scenesRequestId++;
       beatsRequestId++;
-      window.removeEventListener("kindling:sync", handler);
+      window.removeEventListener("feather-quill:sync", handler);
     };
   });
 
@@ -1431,13 +1431,13 @@
   class:is-collapsed={ui.sidebarCollapsed}
   aria-label={t("sidebar.sidebar.sidebarAria")}
 >
-  <p class="ka-sr" role="status" aria-live="polite">{moveAnnouncement}</p>
+  <p class="fq-sr" role="status" aria-live="polite">{moveAnnouncement}</p>
   {#if ui.sidebarCollapsed}
     <div class="sb-rail">
       <button
         type="button"
         onclick={toggleSidebar}
-        class="ka-button ka-button--ghost ka-icon-button"
+        class="fq-button fq-button--ghost fq-icon-button"
         aria-label={t("sidebar.sidebar.expandSidebar")}
         title={t("sidebar.sidebar.expandSidebar")}
       >
@@ -1445,14 +1445,14 @@
       </button>
       <img
         class="sb-rail-flame on-light"
-        src="/brand/kindling-flame.svg"
+        src="/feather-quill/mark.svg"
         alt=""
         width="24"
         height="24"
       />
       <img
         class="sb-rail-flame on-dark"
-        src="/brand/kindling-flame-reversed.svg"
+        src="/feather-quill/mark-reversed.svg"
         alt=""
         width="24"
         height="24"
@@ -1466,7 +1466,7 @@
       <button
         type="button"
         onclick={toggleSidebar}
-        class="ka-button ka-button--ghost ka-icon-button"
+        class="fq-button fq-button--ghost fq-icon-button"
         aria-label={t("sidebar.sidebar.collapseSidebar")}
         title={t("sidebar.sidebar.collapseSidebar")}
       >
@@ -1478,7 +1478,7 @@
         type="button"
         data-testid="sidebar-home"
         onclick={goHome}
-        class="ka-button ka-button--ghost sb-home"
+        class="fq-button fq-button--ghost sb-home"
         aria-label={t("sidebar.sidebar.homeAria")}
         title={t("sidebar.sidebar.homeTitle")}
       >
@@ -1494,7 +1494,7 @@
           </h2>
           {#if currentProject.value.project_type === "screenplay" && pageCountEstimate}
             <span
-              class="ka-badge"
+              class="fq-badge"
               title={t("sidebar.sidebar.pageEstimate", {
                 words: pageCountEstimate.words,
                 target: pageCountEstimate.target,
@@ -1513,7 +1513,7 @@
               onclick={handleSyncClick}
               disabled={loadingSyncPreview}
               aria-busy={loadingSyncPreview || undefined}
-              class="ka-button ka-button--ghost ka-icon-button"
+              class="fq-button fq-button--ghost fq-icon-button"
               aria-label={t("sidebar.sidebar.syncFromSource")}
               title={t("sidebar.sidebar.syncFromSource")}
             >
@@ -1528,7 +1528,7 @@
               type="button"
               bind:this={moreMenuTrigger}
               onclick={() => (showMoreMenu = !showMoreMenu)}
-              class="ka-button ka-button--ghost ka-icon-button"
+              class="fq-button fq-button--ghost fq-icon-button"
               aria-label={t("sidebar.sidebar.moreActions")}
               title={t("sidebar.sidebar.moreActions")}
               aria-haspopup="menu"
@@ -1539,7 +1539,7 @@
             </button>
             {#if showMoreMenu}
               <div
-                class="ka-menu-list app-popover sb-popover"
+                class="fq-menu-list app-popover sb-popover"
                 role="menu"
                 aria-label={t("sidebar.sidebar.projectActions")}
                 use:menuKeyboard={{
@@ -1601,12 +1601,12 @@
   <!-- Chapter/Scene Tree -->
   <div class="sb-scroll" inert={ui.sidebarCollapsed}>
     {#if loading}
-      <div class="ka-progress od-field sb-status" role="status">
+      <div class="fq-progress od-field sb-status" role="status">
         <span>{t("sidebar.sidebar.openingProject")}</span>
         <progress aria-label={t("sidebar.sidebar.openingProjectAria")}></progress>
       </div>
     {:else if currentProject.chapters.length === 0}
-      <p class="sb-status ka-help">{t("sidebar.sidebar.noChapters")}</p>
+      <p class="sb-status fq-help">{t("sidebar.sidebar.noChapters")}</p>
     {:else}
       <nav class="sb-tree" aria-label={t("sidebar.sidebar.projectOutline")}>
         {#each partGroups as group}
@@ -1666,7 +1666,7 @@
                 <button
                   data-testid="menu-button"
                   onclick={(e) => openContextMenu(e, "chapter", part)}
-                  class="ka-button ka-button--ghost ka-icon-button sb-row-menu"
+                  class="fq-button fq-button--ghost fq-icon-button sb-row-menu"
                   aria-label={structureText(partKind, "menu")}
                   aria-haspopup="menu"
                 >
@@ -1748,7 +1748,7 @@
                       <button
                         data-testid="menu-button"
                         onclick={(e) => openContextMenu(e, "chapter", chapter)}
-                        class="ka-button ka-button--ghost ka-icon-button sb-row-menu"
+                        class="fq-button fq-button--ghost fq-icon-button sb-row-menu"
                         aria-label={structureText(chapterKind, "menu")}
                         aria-haspopup="menu"
                       >
@@ -1789,14 +1789,14 @@
                       {#if chapterPlanning === "undefined"}
                         <div class="sb-children">
                           <div class="sb-undefined">
-                            <p class="ka-help">
+                            <p class="fq-help">
                               {t("sidebar.sidebar.undefinedChapterHelp")}
                             </p>
                             {#if !chapter.locked}
                               <button
                                 type="button"
                                 onclick={() => setPlanningStatus("chapter", chapter, "flexible")}
-                                class="ka-button ka-button--secondary sb-small-button"
+                                class="fq-button fq-button--secondary sb-small-button"
                               >
                                 {t("sidebar.sidebar.switchToFlexible")}
                               </button>
@@ -1851,7 +1851,7 @@
                               <button
                                 data-testid="menu-button"
                                 onclick={(e) => openContextMenu(e, "scene", scene)}
-                                class="ka-button ka-button--ghost ka-icon-button sb-row-menu"
+                                class="fq-button fq-button--ghost fq-icon-button sb-row-menu"
                                 aria-label={t("sidebar.sidebar.sceneMenu")}
                                 aria-haspopup="menu"
                               >
@@ -1894,7 +1894,7 @@
                               <button
                                 type="button"
                                 onclick={() => setPlanningStatus("chapter", chapter, "fixed")}
-                                class="ka-button ka-button--ghost sb-small-button"
+                                class="fq-button fq-button--ghost sb-small-button"
                               >
                                 {t("sidebar.sidebar.defineFullStructure")}
                               </button>
@@ -1905,13 +1905,13 @@
                         <!-- Fixed chapter: full scene list with filters, drag, icons -->
                       {:else}
                         <div class="sb-filter">
-                          <fieldset class="ka-segments sb-filter-segments">
-                            <legend class="ka-sr">{t("sidebar.sidebar.showScenes")}</legend>
-                            <div class="ka-segment-track">
+                          <fieldset class="fq-segments sb-filter-segments">
+                            <legend class="fq-sr">{t("sidebar.sidebar.showScenes")}</legend>
+                            <div class="fq-segment-track">
                               {#each [{ value: "all", label: t("sidebar.sidebar.all"), title: t("sidebar.sidebar.showAllScenes") }, { value: "planned_only", label: t("sidebar.sidebar.planned"), title: t("sidebar.sidebar.showOnlyPlanned") }, { value: "next_5", label: t("sidebar.sidebar.next5"), title: t("sidebar.sidebar.showNext5Scenes") }] as option (option.value)}
                                 <label
-                                  class="ka-segment"
-                                  class:ka-selected={outlineViewFilter === option.value}
+                                  class="fq-segment"
+                                  class:fq-selected={outlineViewFilter === option.value}
                                   title={option.title}
                                 >
                                   <input
@@ -1932,7 +1932,7 @@
                               type="button"
                               bind:this={filterPopoverTrigger}
                               onclick={() => (showFilterPopover = !showFilterPopover)}
-                              class="ka-button ka-button--ghost ka-icon-button sb-filter-button"
+                              class="fq-button fq-button--ghost fq-icon-button sb-filter-button"
                               class:is-active={hasActiveFilters}
                               aria-label={hasActiveFilters
                                 ? t("sidebar.sidebar.filterByTypeStatusOn")
@@ -1961,7 +1961,7 @@
                                   {#if hasActiveFilters}
                                     <button
                                       type="button"
-                                      class="ka-button ka-button--ghost sb-small-button"
+                                      class="fq-button fq-button--ghost sb-small-button"
                                       onclick={() => {
                                         sceneStatusFilter = "all";
                                         showNotesScenes = true;
@@ -1984,7 +1984,7 @@
                                       {@const TypeIcon = option.icon}
                                       <button
                                         type="button"
-                                        class="ka-tag sb-type-chip"
+                                        class="fq-tag sb-type-chip"
                                         class:is-on={isSceneTypeVisible(option.type)}
                                         onclick={() => toggleSceneTypeVisible(option.type)}
                                         aria-pressed={isSceneTypeVisible(option.type)}
@@ -1997,7 +1997,7 @@
                                 </div>
 
                                 <!-- Status filter -->
-                                <div class="ka-field od-field sb-filter-field">
+                                <div class="fq-field od-field sb-filter-field">
                                   <label for={`scene-status-filter-${chapter.id}`}
                                     >{t("sidebar.sidebar.status")}</label
                                   >
@@ -2023,14 +2023,14 @@
                                         <button
                                           type="button"
                                           onclick={() => applySavedFilter(filter)}
-                                          class="ka-button ka-button--ghost sb-saved-name"
+                                          class="fq-button fq-button--ghost sb-saved-name"
                                         >
                                           {filter.name}
                                         </button>
                                         <button
                                           type="button"
                                           onclick={() => deleteSavedFilter(filter.id)}
-                                          class="ka-button ka-button--ghost ka-icon-button sb-danger-icon"
+                                          class="fq-button fq-button--ghost fq-icon-button sb-danger-icon"
                                           aria-label={t("sidebar.sidebar.deleteSavedFilter", {
                                             name: filter.name,
                                           })}
@@ -2059,7 +2059,7 @@
                                           type="button"
                                           onclick={saveCurrentFilter}
                                           disabled={!savedFilterName.trim()}
-                                          class="ka-button ka-button--secondary"
+                                          class="fq-button fq-button--secondary"
                                         >
                                           {t("common.save")}
                                         </button>
@@ -2068,7 +2068,7 @@
                                       <button
                                         type="button"
                                         onclick={() => (showSaveFilterInput = true)}
-                                        class="ka-button ka-button--ghost sb-small-button"
+                                        class="fq-button fq-button--ghost sb-small-button"
                                       >
                                         {t("sidebar.sidebar.saveCurrentFilter")}
                                       </button>
@@ -2161,7 +2161,7 @@
                                     class="sb-status-dot is-{sceneStatus}"
                                     title={sceneStatusLabels[sceneStatus]}
                                   ></span>
-                                  <span class="ka-sr"
+                                  <span class="fq-sr"
                                     >{t("sidebar.sidebar.statusLine", {
                                       status: sceneStatusLabels[sceneStatus],
                                     })}</span
@@ -2173,7 +2173,7 @@
                               <button
                                 data-testid="menu-button"
                                 onclick={(e) => openContextMenu(e, "scene", scene)}
-                                class="ka-button ka-button--ghost ka-icon-button sb-row-menu"
+                                class="fq-button fq-button--ghost fq-icon-button sb-row-menu"
                                 aria-label={t("sidebar.sidebar.sceneMenu")}
                                 aria-haspopup="menu"
                               >
@@ -2254,7 +2254,7 @@
               type="button"
               data-testid="new-chapter-button"
               onclick={startCreatingChapter}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
             >
               <Plus class="w-5 h-5" aria-hidden="true" />
               {structureText(chapterKind, "new")}
@@ -2265,7 +2265,7 @@
               data-testid="new-dropdown-button"
               bind:this={newDropdownTrigger}
               onclick={() => (showNewDropdown = !showNewDropdown)}
-              class="ka-button ka-button--secondary ka-icon-button"
+              class="fq-button fq-button--secondary fq-icon-button"
               aria-label={t("sidebar.sidebar.moreOptions")}
               aria-haspopup="menu"
               aria-expanded={showNewDropdown}
@@ -2277,7 +2277,7 @@
           <!-- Dropdown menu -->
           {#if showNewDropdown}
             <div
-              class="ka-menu-list app-popover sb-popover sb-popover-up"
+              class="fq-menu-list app-popover sb-popover sb-popover-up"
               role="menu"
               aria-label={t("sidebar.sidebar.createMenu")}
               use:menuKeyboard={{
@@ -2312,7 +2312,7 @@
           type="button"
           data-testid="sidebar-settings-button"
           onclick={onOpenSettings}
-          class="ka-button ka-button--ghost sb-settings"
+          class="fq-button fq-button--ghost sb-settings"
         >
           <Settings class="w-5 h-5" aria-hidden="true" />
           {t("sidebar.sidebar.settings")}
@@ -2325,7 +2325,7 @@
         type="button"
         data-testid="sidebar-settings-button"
         onclick={onOpenSettings}
-        class="ka-button ka-button--ghost sb-settings"
+        class="fq-button fq-button--ghost sb-settings"
       >
         <Settings class="w-5 h-5" aria-hidden="true" />
         {t("sidebar.sidebar.settings")}
@@ -2698,7 +2698,7 @@
     height: 16px;
     flex: none;
     color: var(--color-text-muted);
-    transition: transform var(--ka-motion) ease-out;
+    transition: transform var(--fq-motion) ease-out;
   }
   .sidebar [aria-expanded="true"] > :global(.sb-chev) {
     transform: rotate(90deg);
@@ -2823,10 +2823,10 @@
      which crowds "Planned" in the compact sidebar) and never narrower than
      them: when a language's labels don't fit on one row ("Запланированные",
      "Planificadas"), the track wraps instead of letting the labels overlap. */
-  .sb-filter-segments .ka-segment-track {
+  .sb-filter-segments .fq-segment-track {
     flex-wrap: wrap;
   }
-  .sb-filter-segments .ka-segment {
+  .sb-filter-segments .fq-segment {
     flex: 1 1 auto;
     padding: var(--space-2xs) var(--space-3xs);
     font-size: var(--text-small);
@@ -2964,11 +2964,11 @@
   .sb-split {
     display: flex;
   }
-  .sb-split .ka-button:first-child {
+  .sb-split .fq-button:first-child {
     flex: 1;
     border-radius: var(--radius-xs) 0 0 var(--radius-xs);
   }
-  .sb-split .ka-button:last-child {
+  .sb-split .fq-button:last-child {
     border-left: 0;
     border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
   }

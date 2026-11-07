@@ -3,6 +3,11 @@ import { get } from "svelte/store";
 import { invoke } from "@tauri-apps/api/core";
 import { synopsisSaves } from "./stores/synopsisSaves.svelte";
 import { session } from "./stores/session.svelte";
+import appConfig from "../../src-tauri/tauri.conf.json";
+
+vi.mock("../../src-tauri/tauri.conf.json", () => ({
+  default: { plugins: { updater: { pubkey: "test-fork-signing-key" } } },
+}));
 
 vi.mock("@tauri-apps/plugin-updater", () => ({
   check: vi.fn(),
@@ -34,6 +39,20 @@ describe("updater", () => {
   });
 
   describe("checkForUpdate", () => {
+    it("makes no network request until the fork has a signing key", async () => {
+      const originalKey = appConfig.plugins.updater.pubkey;
+      const originalDev = import.meta.env.DEV;
+      appConfig.plugins.updater.pubkey = "";
+      import.meta.env.DEV = false;
+      try {
+        await checkForUpdate();
+        expect(checkMock).not.toHaveBeenCalled();
+        expect(get(updateState)).toBeNull();
+      } finally {
+        appConfig.plugins.updater.pubkey = originalKey;
+        import.meta.env.DEV = originalDev;
+      }
+    });
     it("skips in dev mode", async () => {
       const origDev = import.meta.env.DEV;
       import.meta.env.DEV = true;

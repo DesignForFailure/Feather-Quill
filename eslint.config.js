@@ -70,8 +70,6 @@ export default ts.config(
       "src-tauri/",
       ".svelte-kit/",
       "build/",
-      // One-way mirrors are linted in their canonical repository, ../press.
-      "src/styles/press/",
     ],
   },
   {

@@ -109,7 +109,7 @@
   // The badge text carries the meaning; tone only reinforces it.
   function badge(item: ReviewItem) {
     if (item.unavailable)
-      return { label: t("editorial.reviewSidebar.inactiveProse"), tone: "ka-badge--warning" };
+      return { label: t("editorial.reviewSidebar.inactiveProse"), tone: "fq-badge--warning" };
     if (item.state === "open")
       return {
         label:
@@ -120,7 +120,7 @@
       };
     return {
       label: stateLabels[item.state] ?? item.state,
-      tone: item.state === "accepted" ? "ka-badge--success" : "",
+      tone: item.state === "accepted" ? "fq-badge--success" : "",
     };
   }
   function shortDate(value?: string) {
@@ -165,7 +165,7 @@
   aria-label={t("editorial.reviewSidebar.feedbackAria")}
 >
   <div
-    class="ka-tablist review-tabs"
+    class="fq-tablist review-tabs"
     role="tablist"
     aria-label={t("editorial.reviewSidebar.inspectorAria")}
   >
@@ -200,7 +200,7 @@
   >
     {#if tab === "references"}{@render references?.()}{:else}
       <div class="review-controls">
-        <div class="ka-field od-field show-field">
+        <div class="fq-field od-field show-field">
           <label for="review-filter">{t("editorial.reviewSidebar.showLabel")}</label>
           <select
             id="review-filter"
@@ -215,7 +215,7 @@
         </div>
         <button
           type="button"
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           title={t("editorial.reviewSidebar.previousFeedback")}
           aria-label={t("editorial.reviewSidebar.previousFeedback")}
           disabled={!visible.length}
@@ -223,7 +223,7 @@
         >
         <button
           type="button"
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           title={t("editorial.reviewSidebar.nextFeedback")}
           aria-label={t("editorial.reviewSidebar.nextFeedback")}
           disabled={!visible.length}
@@ -236,7 +236,7 @@
             ><MoreHorizontal class="w-5 h-5" aria-hidden="true" /></summary
           >
           <div class="review-menu">
-            <div class="ka-field od-field menu-identity">
+            <div class="fq-field od-field menu-identity">
               <label for="review-menu-name">{t("editorial.reviewSidebar.yourName")}</label>
               <input
                 id="review-menu-name"
@@ -251,7 +251,7 @@
         </details>
       </div>
       {#if enteringName}<div class="identity">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="review-name">{t("editorial.reviewSidebar.nameShownWithFeedback")}</label>
             <input
               id="review-name"
@@ -262,14 +262,14 @@
               oninput={(e) => onName(e.currentTarget.value)}
               placeholder={t("editorial.reviewSidebar.yourName")}
             />
-            <p id="review-name-help" class="ka-help">
+            <p id="review-name-help" class="fq-help">
               {t("editorial.reviewSidebar.nameHelp")}
             </p>
           </div>
           <div>
             <button
               type="button"
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               disabled={!name.trim()}
               onclick={() => (enteringName = false)}>{t("editorial.reviewSidebar.done")}</button
             >
@@ -277,7 +277,7 @@
         </div>{/if}
       <div class="threads">
         {#if composing}<section class="comment-compose">
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="review-comment">{t("editorial.reviewSidebar.comment")}</label>
               <textarea
                 id="review-comment"
@@ -290,12 +290,12 @@
             <div class="actions">
               <button
                 type="button"
-                class="ka-button"
+                class="fq-button"
                 disabled={busy || !name.trim() || !comment.trim()}
                 onclick={onComment}>{t("editorial.reviewSidebar.saveComment")}</button
               ><button
                 type="button"
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 onclick={onCancelComment}>{t("editorial.reviewSidebar.cancel")}</button
               >
             </div>
@@ -321,7 +321,7 @@
                   >{item.author || t("editorial.reviewSidebar.authorFallback")}{#if date}<span
                       class="card-date">{` · ${date}`}</span
                     >{/if}</span
-                ><span class="ka-badge {status.tone}">{status.label}</span></span
+                ><span class="fq-badge {status.tone}">{status.label}</span></span
               >
               {#if quote}<q class="anchor">{quote}</q>{/if}
               {#if selected !== item.id || !item.messages.length}<span class="excerpt"
@@ -345,7 +345,7 @@
                     </div>
                   </div>{/if}
                 {#if item.conflict && item.state === "open"}<div
-                    class="ka-notice ka-notice--warning od-row-top conflict"
+                    class="fq-notice fq-notice--warning od-row-top conflict"
                   >
                     <TriangleAlert class="w-5 h-5" aria-hidden="true" />
                     <p class="od-fill">
@@ -366,12 +366,12 @@
                     >
                     <p>{note.text}</p>
                   </div>{/each}
-                {#if item.unavailable}<p class="ka-help">
+                {#if item.unavailable}<p class="fq-help">
                     {item.unavailable}
-                  </p>{:else if item.locked}<p class="ka-help">
+                  </p>{:else if item.locked}<p class="fq-help">
                     {t("editorial.reviewSidebar.lockedHelp")}
                   </p>{:else}
-                  <div class="ka-field od-field reply">
+                  <div class="fq-field od-field reply">
                     <label for="review-reply">{t("editorial.reviewSidebar.reply")}</label>
                     <textarea
                       id="review-reply"
@@ -384,7 +384,7 @@
                   <div class="actions">
                     <button
                       type="button"
-                      class="ka-button ka-button--secondary"
+                      class="fq-button fq-button--secondary"
                       disabled={busy || !reply.trim() || !name.trim()}
                       onclick={async () => {
                         const text = reply;
@@ -395,7 +395,7 @@
                     >
                     {#if item.resolve}<button
                         type="button"
-                        class="ka-button ka-button--ghost"
+                        class="fq-button fq-button--ghost"
                         disabled={busy}
                         onclick={() => onResolve(item.id)}
                         >{item.state === "resolved"
@@ -408,7 +408,7 @@
                     >
                       <button
                         type="button"
-                        class="ka-button ka-button--secondary"
+                        class="fq-button fq-button--secondary"
                         disabled={busy || item.conflict}
                         onclick={() => onDecide(item.id, "accepted")}
                         ><Check class="w-5 h-5" aria-hidden="true" />{t(
@@ -417,7 +417,7 @@
                       >
                       <button
                         type="button"
-                        class="ka-button ka-button--ghost"
+                        class="fq-button fq-button--ghost"
                         disabled={busy}
                         onclick={() => onDecide(item.id, "rejected")}
                         ><X class="w-5 h-5" aria-hidden="true" />{t(
@@ -426,7 +426,7 @@
                       >
                       {#if item.conflict}<button
                           type="button"
-                          class="ka-button ka-button--secondary"
+                          class="fq-button fq-button--secondary"
                           disabled={busy || !canReanchor}
                           onclick={() => onDecide(item.id, "accepted", true)}
                           >{t("editorial.reviewSidebar.applyToSelection")}</button
@@ -437,7 +437,7 @@
                     >
                       <button
                         type="button"
-                        class="ka-button ka-button--secondary"
+                        class="fq-button fq-button--secondary"
                         disabled={busy || !canReanchor}
                         onclick={() => onDecide(item.id, "reanchor", true)}
                         >{t("editorial.reviewSidebar.reanchor")}</button
@@ -446,7 +446,7 @@
                   {#if item.withdraw}<div class="actions">
                       <button
                         type="button"
-                        class="ka-button ka-button--ghost"
+                        class="fq-button fq-button--ghost"
                         disabled={busy}
                         onclick={() => onWithdraw(item.id)}
                         >{item.kind === "suggestion"
@@ -459,7 +459,7 @@
             {/if}
           </article>
         {/each}
-        {#if !visible.length && !composing}<div class="ka-empty od-stack review-empty">
+        {#if !visible.length && !composing}<div class="fq-empty od-stack review-empty">
             <MessageSquare class="w-7 h-7" aria-hidden="true" />
             <h3>{t("editorial.reviewSidebar.emptyTitle")}</h3>
             <p>{t("editorial.reviewSidebar.emptyBody")}</p>
@@ -698,7 +698,7 @@
     font: var(--text-small) / 1.5 var(--font-ui);
     color: var(--color-text-muted);
   }
-  .card-head .ka-badge {
+  .card-head .fq-badge {
     flex: none;
   }
   .anchor {

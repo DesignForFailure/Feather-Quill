@@ -4,7 +4,7 @@ import { shortcuts } from "../stores/shortcuts.svelte";
 import { shortcutFromEvent } from "./keyboardShortcuts";
 
 // Suppress built-in formatting keys after reassignment, including defaults that
-// collide with Kindling's native commands (code/export and align/import/panels).
+// collide with Feather Quill's native commands (code/export and align/import/panels).
 const builtIn = new Set([
   "Mod+B",
   "Mod+I",

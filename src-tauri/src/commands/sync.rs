@@ -49,7 +49,7 @@ pub struct SyncChange {
     pub new_value: String,
     pub db_id: String, // The database ID to update if accepted
     /// Both sides changed since the last sync (or there is no baseline), so
-    /// accepting may discard a kindling edit. Never bulk-selected.
+    /// accepting may discard a Feather Quill edit. Never bulk-selected.
     pub conflict: bool,
 }
 
@@ -925,7 +925,7 @@ fn reconcile_markdown(
         .beats
         .retain(|b| visible_scenes.contains(&b.scene_id));
     // A label disappearing under one parent and appearing under another may
-    // be a move. Require the writer to align that move in Kindling first.
+    // be a move. Require the writer to align that move in Feather Quill first.
     for old in scenes
         .iter()
         .filter(|s| !unlinked.contains(&s.id) && !archived_scenes.contains(&s.id))
@@ -938,7 +938,7 @@ fn reconcile_markdown(
                     })
             })
         {
-            return Err("Ambiguous Markdown scene move. Move the existing scene in kindling to match the source before syncing. No changes were applied.".into());
+            return Err("Ambiguous Markdown scene move. Move the existing scene in Feather Quill to match the source before syncing. No changes were applied.".into());
         }
     }
     for old in beats
@@ -953,7 +953,7 @@ fn reconcile_markdown(
                     })
             })
         {
-            return Err("Ambiguous Markdown beat move. Align the beat's scene in kindling and the source before syncing. No changes were applied.".into());
+            return Err("Ambiguous Markdown beat move. Align the beat's scene in Feather Quill and the source before syncing. No changes were applied.".into());
         }
     }
     // Metadata repair is atomic and only follows successful matching. Cancelling
@@ -1033,7 +1033,7 @@ fn match_markdown_labels(
 ) -> Result<Vec<String>, String> {
     let ambiguous = || {
         format!(
-        "Ambiguous Markdown {kind} matching. Give sibling chapters/scenes unique titles and beats unique text, and align renamed labels in kindling and the source before syncing. No changes were applied."
+        "Ambiguous Markdown {kind} matching. Give sibling chapters/scenes unique titles and beats unique text, and align renamed labels in Feather Quill and the source before syncing. No changes were applied."
     )
     };
     let mut seen = HashSet::new();
@@ -1081,7 +1081,7 @@ pub async fn apply_sync(
     project_id: String,
     accepted_change_ids: Vec<String>,
     accepted_addition_ids: Vec<String>,
-    // Conflicts the writer saw and left unticked, to settle as "keep kindling".
+    // Conflicts the writer saw and left unticked, to settle as "keep Feather Quill".
     kept_conflict_ids: Option<Vec<String>>,
     app_handle: AppHandle,
     state: State<'_, AppState>,
@@ -2459,7 +2459,7 @@ mod source_regression_tests {
         let beat = &parsed.beats[0];
         let scene = &parsed.scenes[0];
         db::update_beat_prose(&conn, &beat.id, "<p>Local draft</p>").unwrap();
-        // A kindling-only edit is not an incoming change.
+        // A feather-quill-only edit is not an incoming change.
         assert!(get_sync_preview_with_connection(&conn, project.id)
             .unwrap()
             .changes
@@ -2520,7 +2520,7 @@ mod source_regression_tests {
         );
         assert_eq!(result.unwrap().prose_updated, 1);
         assert_eq!(snapshots.get(), 1, "the pre-sync snapshot is taken");
-        // The title conflict the writer saw unticked was settled in kindling's favour.
+        // The title conflict the writer saw unticked was settled in Feather Quill's favour.
         assert!(get_sync_preview_with_connection(&conn, project.id)
             .unwrap()
             .changes

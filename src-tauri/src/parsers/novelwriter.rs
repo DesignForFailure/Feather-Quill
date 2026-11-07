@@ -39,7 +39,7 @@ pub struct ParsedNovelWriter {
     pub scene_location_refs: Vec<(Uuid, Uuid)>,
     pub scene_reference_item_refs: Vec<(Uuid, Uuid)>,
     pub scenes_with_beat_comments: HashSet<String>,
-    /// Documents with more than one heading, which kindling 1.2 and earlier
+    /// Documents with more than one heading, which Kindling 1.2 and earlier
     /// imported as a single chapter or scene.
     pub split_documents: Vec<SplitDocument>,
     /// Every Novel document read one chapter or scene per heading, however
@@ -64,7 +64,7 @@ pub fn parse_novelwriter_project(path: &Path) -> Result<ParsedNovelWriter, Novel
 }
 
 /// Parses the project, reading the documents in `unsplit` as one section each,
-/// the way kindling 1.2 did, so a project imported then keeps its shape.
+/// the way Kindling 1.2 did, so a project imported then keeps its shape.
 pub fn parse_novelwriter_project_with(
     path: &Path,
     unsplit: &HashSet<String>,
@@ -105,7 +105,7 @@ pub fn parse_novelwriter_project_with(
     }
     walk("None", &doc, &mut ordered);
     // Several Novel roots (e.g. one per book) are all imported, in project order.
-    // kindling has one manuscript, so each root becomes a part named after it and
+    // Feather Quill has one manuscript, so each root becomes a part named after it and
     // chapters never run across a root boundary.
     let novel_roots = ordered
         .iter()

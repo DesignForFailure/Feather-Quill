@@ -182,7 +182,7 @@
   <li class="archive-row">
     <div class="archive-main">
       <div class="archive-text">
-        <p class="ka-label archive-name" id={`archive-${id}-name`}>{title}</p>
+        <p class="fq-label archive-name" id={`archive-${id}-name`}>{title}</p>
         <p class="archive-meta">{origin}</p>
       </div>
       <div class="archive-actions">
@@ -192,7 +192,7 @@
           disabled={busy}
           aria-busy={restoringId === id || undefined}
           aria-describedby={`archive-${id}-name`}
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
           data-testid="archive-restore"
         >
           {#if restoringId === id}
@@ -210,7 +210,7 @@
           aria-describedby={`archive-${id}-name`}
           aria-expanded={confirmingId === id}
           aria-controls={confirmingId === id ? `archive-${id}-confirm` : undefined}
-          class="ka-button ka-button--danger"
+          class="fq-button fq-button--danger"
         >
           {t("sidebar.archivePanel.delete")}
         </button>
@@ -219,7 +219,7 @@
     {#if confirmingId === id}
       <div
         id={`archive-${id}-confirm`}
-        class="ka-notice ka-notice--warning od-row-top archive-confirm"
+        class="fq-notice fq-notice--warning od-row-top archive-confirm"
         role="alertdialog"
         aria-labelledby={`archive-${id}-confirm-title`}
         aria-describedby={`archive-${id}-confirm-body`}
@@ -237,13 +237,13 @@
                   : t("sidebar.archivePanel.kindScene"),
             })}
           </p>
-          {#if rowError?.id === id}<p class="ka-error" role="alert">{rowError.message}</p>{/if}
+          {#if rowError?.id === id}<p class="fq-error" role="alert">{rowError.message}</p>{/if}
           <div class="archive-actions-end">
             <button
               type="button"
               onclick={cancelDelete}
               disabled={deletingId !== null}
-              class="ka-button ka-button--ghost"
+              class="fq-button fq-button--ghost"
               use:focusOnMount
             >
               {t("common.cancel")}
@@ -253,7 +253,7 @@
               onclick={onDelete}
               disabled={deletingId !== null}
               aria-busy={deletingId === id || undefined}
-              class="ka-button ka-button--danger"
+              class="fq-button fq-button--danger"
             >
               {#if deletingId === id}
                 <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
@@ -266,7 +266,7 @@
         </div>
       </div>
     {:else if rowError?.id === id}
-      <p class="ka-error" role="alert">{rowError.message}</p>
+      <p class="fq-error" role="alert">{rowError.message}</p>
     {/if}
   </li>
 {/snippet}
@@ -282,7 +282,7 @@
   aria-labelledby="archive-panel-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-default dialog-shell">
+  <div class="app-dialog-surface fq-dialog-default dialog-shell">
     <DialogHeader
       title={t("sidebar.archivePanel.title")}
       titleId="archive-panel-title"
@@ -291,14 +291,14 @@
       closeTestId="archive-close"
     />
 
-    <div class="ka-dialog-body archive">
+    <div class="fq-dialog-body archive">
       {#if loading}
-        <p class="ka-help archive-loading" role="status">
+        <p class="fq-help archive-loading" role="status">
           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
           {t("sidebar.archivePanel.loading")}
         </p>
       {:else if error}
-        <div class="ka-notice ka-notice--error od-row-top" role="alert">
+        <div class="fq-notice fq-notice--error od-row-top" role="alert">
           <CircleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <strong>{t("sidebar.archivePanel.loadFailedHeading")}</strong>
@@ -306,18 +306,18 @@
           </div>
         </div>
       {:else if archivedChapters.length === 0 && archivedScenes.length === 0}
-        <div class="ka-empty od-stack archive-empty">
+        <div class="fq-empty od-stack archive-empty">
           <Archive class="w-7 h-7" aria-hidden="true" />
           <h4>{t("sidebar.archivePanel.noItems")}</h4>
           <p>{t("sidebar.archivePanel.emptyHint")}</p>
         </div>
       {:else}
-        <p class="ka-help archive-intro">
+        <p class="fq-help archive-intro">
           {t("sidebar.archivePanel.intro")}
         </p>
         {#if archivedChapters.length > 0}
-          <section class="ka-group archive-group" aria-labelledby="archive-chapters-title">
-            <h3 id="archive-chapters-title" class="ka-group-title">
+          <section class="fq-group archive-group" aria-labelledby="archive-chapters-title">
+            <h3 id="archive-chapters-title" class="fq-group-title">
               {t("sidebar.archivePanel.archivedChapters", { count: archivedChapters.length })}
             </h3>
             <ul class="archive-list">
@@ -336,8 +336,8 @@
         {/if}
 
         {#if archivedScenes.length > 0}
-          <section class="ka-group archive-group" aria-labelledby="archive-scenes-title">
-            <h3 id="archive-scenes-title" class="ka-group-title">
+          <section class="fq-group archive-group" aria-labelledby="archive-scenes-title">
+            <h3 id="archive-scenes-title" class="fq-group-title">
               {t("sidebar.archivePanel.archivedScenes", { count: archivedScenes.length })}
             </h3>
             <ul class="archive-list">
@@ -387,7 +387,7 @@
   .archive-empty p {
     margin: 0;
   }
-  .archive-group .ka-group-title {
+  .archive-group .fq-group-title {
     margin: 0 0 var(--space-2xs);
   }
   .archive-list {
@@ -402,7 +402,7 @@
     padding-block: var(--space-xs);
     border-bottom: var(--border-hair);
   }
-  .archive-row > .ka-error {
+  .archive-row > .fq-error {
     margin: 0;
   }
   .archive-main {

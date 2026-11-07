@@ -45,7 +45,7 @@ let manuscript = document("Text when the workspace opened.");
 
 beforeEach(() => {
   values.clear();
-  values.set("kindling:lastExportPath", "/tmp/exports");
+  values.set("feather-quill:lastExportPath", "/tmp/exports");
   window.structuredClone = structuredClone;
   currentProject.setProject({ ...mockProject, source_type: "NovelWriter", source_path: "/nw" });
   manuscript = document("Text when the workspace opened.");
@@ -176,7 +176,7 @@ it("sync neither previews nor applies over an unsaved draft", async () => {
   registerProseFlush(flush);
   await unsavedDraft();
   render(Sidebar);
-  window.dispatchEvent(new CustomEvent("kindling:sync"));
+  window.dispatchEvent(new CustomEvent("feather-quill:sync"));
   await waitFor(() =>
     expect(ui.toast?.message).toMatch(/Save or recover unsaved prose before syncing/)
   );

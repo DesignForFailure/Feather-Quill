@@ -24,7 +24,7 @@
   } = $props();
 </script>
 
-<header class="ka-dialog-header dialog-header">
+<header class="fq-dialog-header dialog-header">
   <div class="dialog-header-text">
     <h2 id={titleId} class="dialog-title">{title}</h2>
     {#if subtitle}<p>{subtitle}</p>{/if}
@@ -38,7 +38,7 @@
       aria-label={closeLabel}
       title={closeLabel}
       data-testid={closeTestId}
-      class="ka-button ka-button--ghost ka-icon-button"
+      class="fq-button fq-button--ghost fq-icon-button"
       ><X class="w-5 h-5" aria-hidden="true" /></button
     >
   </div>

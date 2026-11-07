@@ -200,13 +200,13 @@
 
 <section class="fields" aria-labelledby={`fields-${entityType}`}>
   <div class="fields-head">
-    <h4 id={`fields-${entityType}`} class="ka-group-title fields-title">
+    <h4 id={`fields-${entityType}`} class="fq-group-title fields-title">
       {fieldsTitle}
     </h4>
     <button
       type="button"
       onclick={openCreateForm}
-      class="ka-button ka-button--secondary"
+      class="fq-button fq-button--secondary"
       disabled={!!editingDef}
     >
       <Plus class="w-5 h-5" aria-hidden="true" />
@@ -215,26 +215,26 @@
   </div>
 
   {#if loading}
-    <p class="ka-help" role="status">{t("references.fieldDefinitionManager.loadingFields")}</p>
+    <p class="fq-help" role="status">{t("references.fieldDefinitionManager.loadingFields")}</p>
   {:else if error}
-    <p class="ka-error" role="alert">{error}</p>
+    <p class="fq-error" role="alert">{error}</p>
   {:else if definitions.length === 0 && !editingDef}
-    <p class="ka-help">{t("references.fieldDefinitionManager.noFields")}</p>
+    <p class="fq-help">{t("references.fieldDefinitionManager.noFields")}</p>
   {:else}
-    <ul class="ka-tagtree">
+    <ul class="fq-tagtree">
       {#each definitions as def}
         <li>
-          <div class="ka-tagrow">
-            <span class="ka-name">{def.name}</span>
-            <span class="ka-help fields-type">{typeLabel(def.field_type)}</span>
+          <div class="fq-tagrow">
+            <span class="fq-name">{def.name}</span>
+            <span class="fq-help fields-type">{typeLabel(def.field_type)}</span>
             {#if def.required}
-              <span class="ka-badge">{t("references.fieldDefinitionManager.requiredBadge")}</span>
+              <span class="fq-badge">{t("references.fieldDefinitionManager.requiredBadge")}</span>
             {/if}
-            <div class="ka-row">
+            <div class="fq-row">
               <button
                 type="button"
                 onclick={() => openEditForm(def)}
-                class="ka-button ka-button--ghost ka-icon-button"
+                class="fq-button fq-button--ghost fq-icon-button"
                 aria-label={t("references.fieldDefinitionManager.editField")}
                 title={t("references.fieldDefinitionManager.editField")}
               >
@@ -243,7 +243,7 @@
               <button
                 type="button"
                 onclick={() => deleteDefinition(def.id)}
-                class="ka-button ka-button--ghost ka-icon-button fields-delete"
+                class="fq-button fq-button--ghost fq-icon-button fields-delete"
                 aria-label={t("references.fieldDefinitionManager.deleteField")}
                 title={t("references.fieldDefinitionManager.deleteField")}
               >
@@ -257,7 +257,7 @@
   {/if}
 
   {#if editingDef}
-    <div class="ka-tagedit">
+    <div class="fq-tagedit">
       <div class="fields-edit-head">
         <h5>
           {editMode === "create"
@@ -267,7 +267,7 @@
         <button
           type="button"
           onclick={cancelEdit}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("references.fieldDefinitionManager.closeFieldEditor")}
           title={t("references.fieldDefinitionManager.closeFieldEditor")}
         >
@@ -275,7 +275,7 @@
         </button>
       </div>
 
-      <div class="ka-field od-field">
+      <div class="fq-field od-field">
         <label for="field-name">{t("references.fieldDefinitionManager.name")}</label>
         <input
           id="field-name"
@@ -286,7 +286,7 @@
         />
       </div>
 
-      <div class="ka-field od-field">
+      <div class="fq-field od-field">
         <label for="field-type">{t("references.fieldDefinitionManager.type")}</label>
         <select id="field-type" bind:value={editingDef.field_type} disabled={saving}>
           {#each FIELD_TYPES as ft}
@@ -296,7 +296,7 @@
       </div>
 
       {#if needsOptions}
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="field-options">{t("references.fieldDefinitionManager.options")}</label>
           <input
             id="field-options"
@@ -309,10 +309,10 @@
         </div>
       {/if}
 
-      <div class="ka-field od-field">
+      <div class="fq-field od-field">
         <label for="field-default"
           >{t("references.fieldDefinitionManager.defaultValue")}
-          <span class="ka-optional">{t("references.fieldDefinitionManager.optional")}</span></label
+          <span class="fq-optional">{t("references.fieldDefinitionManager.optional")}</span></label
         >
         <input
           id="field-default"
@@ -323,22 +323,22 @@
         />
       </div>
 
-      <div class="ka-checks">
-        <label class="ka-check">
+      <div class="fq-checks">
+        <label class="fq-check">
           <input type="checkbox" bind:checked={editingDef.required} disabled={saving} />
           {t("references.fieldDefinitionManager.required")}
         </label>
-        <label class="ka-check">
+        <label class="fq-check">
           <input type="checkbox" bind:checked={editingDef.visible} disabled={saving} />
           {t("references.fieldDefinitionManager.visible")}
         </label>
       </div>
 
-      <div class="ka-row fields-edit-actions">
+      <div class="fq-row fields-edit-actions">
         <button
           type="button"
           onclick={cancelEdit}
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
           disabled={saving}
         >
           {t("references.fieldDefinitionManager.cancel")}
@@ -346,7 +346,7 @@
         <button
           type="button"
           onclick={saveDefinition}
-          class="ka-button"
+          class="fq-button"
           disabled={saving || !editingDef.name?.trim()}
           aria-busy={saving || undefined}
         >
@@ -382,7 +382,7 @@
     margin: 0;
   }
   /* The next group's rule closes the list; don't double it. */
-  .ka-tagtree > li:last-child > .ka-tagrow {
+  .fq-tagtree > li:last-child > .fq-tagrow {
     border-bottom: 0;
   }
   .fields-type {

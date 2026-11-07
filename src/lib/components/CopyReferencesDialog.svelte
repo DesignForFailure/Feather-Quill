@@ -229,7 +229,7 @@
   bind:this={dialog}
   oncancel={cancel}
   aria-labelledby="copy-references-title"
-  class="app-dialog-surface ka-dialog-default copy-dialog"
+  class="app-dialog-surface fq-dialog-default copy-dialog"
 >
   <DialogHeader
     title={t("references.copyReferencesDialog.title")}
@@ -237,18 +237,18 @@
     onClose={close}
     disabled={saving || refreshing}
   />
-  <div class="ka-dialog-body copy-body">
-    <dl class="ka-facts copy-facts">
+  <div class="fq-dialog-body copy-body">
+    <dl class="fq-facts copy-facts">
       <div>
         <dt>{t("references.copyReferencesDialog.destination")}</dt>
         <dd>{destination.name}</dd>
       </div>
     </dl>
-    <p class="ka-help">
+    <p class="fq-help">
       {t("references.copyReferencesDialog.independentNote")}
     </p>
     {#if result}
-      <div role="status" class="ka-notice ka-notice--success od-row-top">
+      <div role="status" class="fq-notice fq-notice--success od-row-top">
         <CircleCheck class="w-5 h-5" aria-hidden="true" />
         <div class="od-field od-fill">
           <strong>{t("references.copyReferencesDialog.copiedTitle")}</strong>
@@ -261,13 +261,13 @@
           </p>
         </div>
       </div>
-      {#if refreshing}<p role="status" class="ka-help copy-inline-status">
+      {#if refreshing}<p role="status" class="fq-help copy-inline-status">
           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />{t(
             "references.copyReferencesDialog.refreshing"
           )}
         </p>{/if}
     {:else}
-      <div class="ka-field od-field">
+      <div class="fq-field od-field">
         <label for="copy-source">{t("references.copyReferencesDialog.sourceProject")}</label>
         <select
           id="copy-source"
@@ -286,19 +286,19 @@
           {/each}
         </select>
       </div>
-      {#if loadingProjects}<p role="status" class="ka-help copy-inline-status">
+      {#if loadingProjects}<p role="status" class="fq-help copy-inline-status">
           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />{t(
             "references.copyReferencesDialog.loadingProjects"
           )}
         </p>
       {:else if projects.length === 0 && !error}
-        <div class="ka-empty od-stack copy-empty">
+        <div class="fq-empty od-stack copy-empty">
           <h4>{t("references.copyReferencesDialog.noOtherProjects")}</h4>
           <p>{t("references.copyReferencesDialog.noOtherProjectsHint")}</p>
         </div>
       {/if}
       {#if preview}
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="copy-search">{t("references.copyReferencesDialog.searchReferences")}</label>
           <input
             id="copy-search"
@@ -317,19 +317,19 @@
               type="button"
               disabled={saving}
               onclick={() => selectRows(preview?.references ?? [], true)}
-              class="ka-button ka-button--ghost"
+              class="fq-button fq-button--ghost"
               >{t("references.copyReferencesDialog.selectAll")}</button
             >
             <button
               type="button"
               disabled={saving}
               onclick={() => selectRows(preview?.references ?? [], false)}
-              class="ka-button ka-button--ghost"
+              class="fq-button fq-button--ghost"
               >{t("references.copyReferencesDialog.clearSelection")}</button
             >
           </div>
         </div>
-        {#if preview.references.length === 0}<p class="ka-help">
+        {#if preview.references.length === 0}<p class="fq-help">
             {t("references.copyReferencesDialog.noReferencesToCopy")}
           </p>{/if}
         <div class="copy-categories">
@@ -339,8 +339,8 @@
             )}
             {#if rows.length}
               <fieldset disabled={saving} class="copy-category">
-                <legend class="ka-group-title">{categoryName(category.id)}</legend>
-                <label class="ka-check copy-all">
+                <legend class="fq-group-title">{categoryName(category.id)}</legend>
+                <label class="fq-check copy-all">
                   <input
                     type="checkbox"
                     checked={rows.every((r) => selection?.some((s) => same(s, r)))}
@@ -358,7 +358,7 @@
                 <ul class="copy-rows">
                   {#each rows as row (row.id)}
                     <li class="copy-row">
-                      <label class="ka-check copy-check">
+                      <label class="fq-check copy-check">
                         <input
                           type="checkbox"
                           checked={selection?.some((s) => same(s, row))}
@@ -402,13 +402,13 @@
             {/if}
           {/each}
           {#if preview.references.length > 0 && !preview.references.some((r) => matches(r.name))}<p
-              class="ka-help"
+              class="fq-help"
             >
               {t("references.copyReferencesDialog.noSearchMatches")}
             </p>{/if}
         </div>
         {#if preview.changes.length}
-          <details aria-busy={loading} class="ka-disclosure copy-changes">
+          <details aria-busy={loading} class="fq-disclosure copy-changes">
             <summary
               >{t("references.copyReferencesDialog.changesSummary", {
                 fields: preview.changes.filter((c) => c.kind === "field").length,
@@ -416,7 +416,7 @@
               })}</summary
             >
             <div>
-              <p class="ka-help">
+              <p class="fq-help">
                 {t("references.copyReferencesDialog.changesHint")}
               </p>
               <ul class="copy-change-list">
@@ -436,12 +436,12 @@
             </div>
           </details>
         {/if}
-        {#if preview.enabled_types.length}<p class="ka-help">
+        {#if preview.enabled_types.length}<p class="fq-help">
             {t("references.copyReferencesDialog.enableCategories", {
               categories: preview.enabled_types.map(categoryName).join(", "),
             })}
           </p>{/if}
-        {#if preview.skipped}<p class="ka-help">
+        {#if preview.skipped}<p class="fq-help">
             {t("references.copyReferencesDialog.skipNote")}
           </p>{/if}
       {/if}
@@ -456,12 +456,12 @@
         </p>
       {/if}
     {/if}
-    {#if error}<p role="alert" class="ka-error">{error}</p>{/if}
+    {#if error}<p role="alert" class="fq-error">{error}</p>{/if}
   </div>
-  <footer class="ka-dialog-footer">
+  <footer class="fq-dialog-footer">
     {#if blockedReason}<p
         id="copy-blocked-reason"
-        class="ka-help ka-dialog-footer-start copy-reason"
+        class="fq-help fq-dialog-footer-start copy-reason"
       >
         {blockedReason}
       </p>{/if}
@@ -470,14 +470,14 @@
         onclick={refreshCopied}
         disabled={refreshing}
         aria-busy={refreshing || undefined}
-        class="ka-button">{t("references.copyReferencesDialog.refreshReferences")}</button
+        class="fq-button">{t("references.copyReferencesDialog.refreshReferences")}</button
       >{/if}
     {#if error && !result && !loading}
       <button
         type="button"
         onclick={() => (sourceId ? loadPreview() : loadProjects())}
         disabled={saving}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         >{sourceId
           ? t("references.copyReferencesDialog.refreshPreview")
           : t("references.copyReferencesDialog.retryLoadingProjects")}</button
@@ -487,7 +487,7 @@
       type="button"
       onclick={close}
       disabled={saving || refreshing}
-      class={result && !refreshFailed ? "ka-button" : "ka-button ka-button--secondary"}
+      class={result && !refreshFailed ? "fq-button" : "fq-button fq-button--secondary"}
       >{result
         ? t("references.copyReferencesDialog.done")
         : t("references.copyReferencesDialog.cancel")}</button
@@ -498,7 +498,7 @@
         disabled={!preview || preview.copied === 0 || loading || saving}
         aria-busy={saving || undefined}
         aria-describedby={blockedReason ? "copy-blocked-reason" : undefined}
-        class="ka-button"
+        class="fq-button"
       >
         {#if saving}<Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />{/if}
         {saving

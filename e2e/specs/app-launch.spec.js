@@ -6,7 +6,7 @@
 
 import { waitForAppReady, waitForStartScreen } from "./helpers.js";
 
-describe("Kindling App Launch", () => {
+describe("Feather Quill App Launch", () => {
   it("should launch and show the main element", async () => {
     // Wait for app to be ready
     await waitForAppReady();

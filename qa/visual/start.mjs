@@ -50,7 +50,7 @@ async function main() {
       await existing.connect();
       connected = true;
       await existing.wait(
-        "window.__KINDLING_TEST__ && !document.getElementById('startup-loading')",
+        "window.__FEATHER_QUILL_TEST__ && !document.getElementById('startup-loading')",
         20000
       );
       const caps = await existing.invoke("qa_capabilities");
@@ -100,17 +100,17 @@ async function main() {
       );
       if (!roots.length || roots.some((root) => root !== realpathSync(repo)))
         throw new Error("Port 1420 belongs to another checkout; use this checkout's Vite server");
-      console.log("Reusing Vite on port 1420; the normal Kindling app can stay open.");
+      console.log("Reusing Vite on port 1420; the normal Feather Quill app can stay open.");
     }
     await child("cargo", ["build", "--manifest-path", "src-tauri/Cargo.toml"]).done;
     if (interrupted) return;
     const data = join(repo, "qa/visual/data/background-profile");
     mkdirSync(data, { recursive: true });
     console.log(
-      "Starting hidden QA app at /tmp/kindling-qa.sock. Run npm run qa:visual in another terminal."
+      "Starting hidden QA app at /tmp/feather-quill-qa.sock. Run npm run qa:visual in another terminal."
     );
-    await child(join(repo, "src-tauri/target/debug/kindling"), [], {
-      env: { ...process.env, KINDLING_QA_BACKGROUND: "1", KINDLING_DATA_DIR: data },
+    await child(join(repo, "src-tauri/target/debug/feather-quill"), [], {
+      env: { ...process.env, FEATHER_QUILL_QA_BACKGROUND: "1", FEATHER_QUILL_DATA_DIR: data },
     }).done;
   } finally {
     stop();

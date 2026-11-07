@@ -434,7 +434,7 @@ it.each([0, 500])(
     await vi.advanceTimersByTimeAsync(0);
     editor().commands.setContent("<p>Last edits before switching</p>");
     await vi.advanceTimersByTimeAsync(delay);
-    window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+    window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
     await tick();
     await fireEvent.click(screen.getByRole("button", { name: "Switch" }));
     await vi.advanceTimersByTimeAsync(0);
@@ -466,7 +466,7 @@ it("refuses a mode switch after save failure and succeeds after retry", async ()
   await vi.advanceTimersByTimeAsync(0);
   editor().commands.setContent("<p>Do not lose this</p>");
   vi.mocked(invoke).mockRejectedValue("Disk full");
-  window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+  window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
   await tick();
   await fireEvent.click(screen.getByRole("button", { name: "Switch" }));
   await vi.advanceTimersByTimeAsync(0);
@@ -480,7 +480,7 @@ it("refuses a mode switch after save failure and succeeds after retry", async ()
     cmd === "switch_scene_editor_mode" ? { ...scene, editor_mode: "beat" } : []
   );
   await component.prepareForSearch();
-  window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+  window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
   await tick();
   await fireEvent.click(screen.getByRole("button", { name: "Switch" }));
   await vi.advanceTimersByTimeAsync(0);
@@ -514,7 +514,7 @@ it("waits for an in-flight beat save before switching to page mode", async () =>
   await vi.advanceTimersByTimeAsync(0);
   editor().commands.setContent("<p>Newest beat draft</p>");
   await vi.advanceTimersByTimeAsync(500);
-  window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+  window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
   await vi.advanceTimersByTimeAsync(0);
   expect(vi.mocked(invoke).mock.calls.some(([cmd]) => cmd === "switch_scene_editor_mode")).toBe(
     false
@@ -799,7 +799,7 @@ it("retires the actual SQLite error when a page scene is deleted during its debo
   await vi.advanceTimersByTimeAsync(500);
   await expect(component.prepareForSearch()).resolves.toBeUndefined();
   await expect(component.prepareForSearch()).resolves.toBeUndefined();
-  window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+  window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
   await tick();
   await fireEvent.click(screen.getByRole("button", { name: "Switch" }));
   await vi.advanceTimersByTimeAsync(0);
@@ -840,7 +840,7 @@ it.each(["Beat not found", "Cannot edit beats in a locked scene"])(
     const { component } = render(ScenePanel);
     await vi.advanceTimersByTimeAsync(0);
     await component.prepareForSearch();
-    window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+    window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
     await tick();
     await fireEvent.click(screen.getByRole("button", { name: "Switch" }));
     await vi.advanceTimersByTimeAsync(0);
@@ -958,7 +958,7 @@ it("requires recovery of a terminal beat draft before switching its scene to pag
   await vi.advanceTimersByTimeAsync(0);
   editor().commands.setContent("<p>Keep this failed draft</p>");
   await vi.advanceTimersByTimeAsync(500);
-  window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+  window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
   await vi.advanceTimersByTimeAsync(0);
   expect(vi.mocked(invoke).mock.calls.some(([cmd]) => cmd === "switch_scene_editor_mode")).toBe(
     false
@@ -974,7 +974,7 @@ it("requires recovery of a terminal beat draft before switching its scene to pag
       : []
   );
   await proseSaves.retryRecovered(mockProject.id);
-  window.dispatchEvent(new CustomEvent("kindling:toggleEditorMode"));
+  window.dispatchEvent(new CustomEvent("feather-quill:toggleEditorMode"));
   await vi.advanceTimersByTimeAsync(0);
   expect(currentProject.currentScene?.editor_mode).toBe("page");
 });

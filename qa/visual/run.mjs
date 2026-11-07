@@ -131,7 +131,7 @@ export class Runner {
     // Deletion through IPC does not refresh the start screen's cached recent
     // list, so ask the app to reload it from the (now empty) library.
     if (await this.js("return !!document.querySelector('[data-testid=recent-projects]');")) {
-      await this.js("window.__KINDLING_TEST__.refreshRecentProjects();");
+      await this.js("window.__FEATHER_QUILL_TEST__.refreshRecentProjects();");
       await this.wait("!document.querySelector('[data-testid=recent-projects]')");
     }
   }
@@ -140,13 +140,13 @@ export class Runner {
     await this.app.invoke("qa_set_viewport", { width: v.width, height: v.height });
     await this.wait(`innerWidth === ${v.width} && innerHeight === ${v.height}`);
     await this.js(
-      `window.__KINDLING_TEST__.setVisualPreferences({guidanceEnabled:false,referencesPanelWidth:288,sidebarCollapsed:false,referencesPanelCollapsed:false});`
+      `window.__FEATHER_QUILL_TEST__.setVisualPreferences({guidanceEnabled:false,referencesPanelWidth:288,sidebarCollapsed:false,referencesPanelCollapsed:false});`
     );
     // The scene view's planning callout is gated only by this per-profile
     // flag, not by guidanceEnabled. Pin the fresh-profile state (callout shown)
     // so captures do not depend on whether the profile has dismissed it; the
     // saveLocal/restoreLocal guard puts the user's value back afterwards.
-    await this.js(`localStorage.removeItem('kindling:tooltipSeen:planningStatus');`);
+    await this.js(`localStorage.removeItem('feather-quill:tooltipSeen:planningStatus');`);
     await this.js(`q.setTheme(${quote(v.theme)});`);
     await this.wait(`document.getElementById('qa-settled-theme')`);
   }
@@ -345,7 +345,7 @@ export class Runner {
         }.`,
         "- Capture profile: hidden WKWebView, rendered 2× lossless PNG. Pixel comparisons use PNG masters, never JPEG previews.",
         `- Cleanup: ${cell(this.cleanup || "pending")}`,
-        "- See results.json for assertions, console errors, axe, Press audit, overflow candidates and pixel differences.",
+        "- See results.json for assertions, console errors, axe, theme audit, overflow candidates and pixel differences.",
         "- Inconclusive captures require inspection against Expect; never auto-accept a baseline. Overflow candidates and moderate axe findings also need review.",
         this.fatal ? `- Run failure: ${cell(this.fatal)}` : "",
         "",
@@ -437,7 +437,7 @@ export async function main(args = process.argv.slice(2)) {
   try {
     await app.connect();
     await app.wait(
-      "window.__KINDLING_TEST__ && document.querySelector('main') && !document.getElementById('startup-loading')"
+      "window.__FEATHER_QUILL_TEST__ && document.querySelector('main') && !document.getElementById('startup-loading')"
     );
     run.capabilities = await run.native.preflight();
     if (resolve(run.capabilities.checkout || "") !== repo)
@@ -462,7 +462,7 @@ export async function main(args = process.argv.slice(2)) {
         "Baseline profile requires an empty project library. Use npm run tauri:qa with its dedicated background-profile database; existing projects will not be deleted."
       );
     original = await app.evaluate(
-      `return {width:innerWidth,height:innerHeight,theme:document.documentElement.dataset.theme,visual:window.__KINDLING_TEST__.visualPreferences()};`
+      `return {width:innerWidth,height:innerHeight,theme:document.documentElement.dataset.theme,visual:window.__FEATHER_QUILL_TEST__.visualPreferences()};`
     );
     await run.install();
     await run.js(
@@ -526,7 +526,7 @@ export async function main(args = process.argv.slice(2)) {
       try {
         await app.invoke("qa_set_viewport", { width: original.width, height: original.height });
         await run.js(
-          `window.__KINDLING_TEST__.setVisualPreferences(${quote(original.visual)}); q.restoreLocal(); q.setTheme(${quote(original.theme || "light")}); q.noMotion(false);`
+          `window.__FEATHER_QUILL_TEST__.setVisualPreferences(${quote(original.visual)}); q.restoreLocal(); q.setTheme(${quote(original.theme || "light")}); q.noMotion(false);`
         );
       } catch (error) {
         run.cleanup += `; preference/window restore FAILED: ${error}`;

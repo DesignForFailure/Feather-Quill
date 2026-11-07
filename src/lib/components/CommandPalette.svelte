@@ -121,14 +121,14 @@
   ></div>
 
   <dialog
-    class="ka-dialog palette"
+    class="fq-dialog palette"
     open
     aria-modal="true"
     aria-label={t("onboarding.commandPalette.dialogLabel")}
     data-testid="command-palette"
   >
     <div class="palette-search">
-      <Search class="w-5 h-5 ka-icon" aria-hidden="true" />
+      <Search class="w-5 h-5 fq-icon" aria-hidden="true" />
       <!-- svelte-ignore a11y_autofocus -->
       <input
         type="text"
@@ -145,13 +145,13 @@
     </div>
 
     <div
-      class="ka-command-list palette-list"
+      class="fq-command-list palette-list"
       id="command-palette-list"
       role="listbox"
       aria-label={t("onboarding.commandPalette.listLabel")}
     >
       {#if filteredCommands.length === 0}
-        <div class="ka-empty od-stack palette-empty">
+        <div class="fq-empty od-stack palette-empty">
           <h4>{t("onboarding.commandPalette.emptyTitle")}</h4>
           <p>{t("onboarding.commandPalette.emptyMessage")}</p>
         </div>
@@ -163,7 +163,7 @@
             role="option"
             aria-selected={i === selectedIndex}
             onclick={() => runCommand(cmd)}
-            class:ka-command-selected={i === selectedIndex}
+            class:fq-command-selected={i === selectedIndex}
           >
             <span class="palette-label">
               <span>{cmd.label}</span>
@@ -227,7 +227,7 @@
   .palette-search:has(input:focus-visible) {
     outline: 2px solid var(--color-accent-text);
     outline-offset: -2px;
-    border-radius: var(--ka-radius) var(--ka-radius) 0 0;
+    border-radius: var(--fq-radius) var(--fq-radius) 0 0;
   }
   .palette-list {
     margin: 0;

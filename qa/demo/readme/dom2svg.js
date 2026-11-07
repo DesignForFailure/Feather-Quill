@@ -1,4 +1,4 @@
-// Serialises the live kindling document into SVG primitives (rects, text, icon paths).
+// Serialises the live Feather Quill document into SVG primitives (rects, text, icon paths).
 // Runs inside the webview; returns markup plus the characters used per font face so
 // the caller can embed subset fonts. Geometry comes from layout, not from pixels.
 // Words inside [data-demo-type] are tagged so the recorder can animate typing.

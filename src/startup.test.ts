@@ -57,7 +57,7 @@ afterEach(() => {
   document.body.innerHTML = "";
   if (originalFonts) Object.defineProperty(document, "fonts", originalFonts);
   else Reflect.deleteProperty(document, "fonts");
-  delete window.__KINDLING_QA_BACKGROUND__;
+  delete window.__FEATHER_QUILL_QA_BACKGROUND__;
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
 });
@@ -85,7 +85,7 @@ it("ships the shell and small entry point with the app initially inert", () => {
   expect(page.querySelector('link[href="/src/startup.css"]')).not.toBeNull();
   expect(page.querySelector("#app")?.hasAttribute("inert")).toBe(true);
   expect(page.querySelector("#startup-loading")?.getAttribute("role")).toBe("status");
-  expect(page.querySelector("#startup-loading")?.textContent).toContain("Starting kindling…");
+  expect(page.querySelector("#startup-loading")?.textContent).toContain("Starting Feather Quill…");
 });
 it("paints before loading the app and waits for content, assets and another paint", async () => {
   const decoded = deferred();
@@ -186,7 +186,7 @@ it("waits for reported contentful paint when the browser supports paint timing",
 });
 
 it("starts hidden QA without waiting for visible animation frames", async () => {
-  window.__KINDLING_QA_BACKGROUND__ = true;
+  window.__FEATHER_QUILL_QA_BACKGROUND__ = true;
   const { startup } = await import("./startup");
   await vi.waitFor(() => expect(mocks.loadMain).toHaveBeenCalledOnce());
   expect(frames).toHaveLength(0);

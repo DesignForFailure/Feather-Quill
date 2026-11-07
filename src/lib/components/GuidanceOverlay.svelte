@@ -157,17 +157,17 @@
     style:left={anchor?.left !== undefined ? `${anchor.left}px` : null}
     style:right={anchor?.right !== undefined ? `${anchor.right}px` : null}
     style:top={anchor ? `${anchor.top}px` : null}
-    use:modalFocus={{ onEscape: dismiss, initialFocus: ".guidance-actions .ka-button:last-child" }}
+    use:modalFocus={{ onEscape: dismiss, initialFocus: ".guidance-actions .fq-button:last-child" }}
     role="dialog"
     aria-modal="true"
     aria-labelledby="guidance-title"
     aria-describedby="guidance-message"
     tabindex="-1"
   >
-    <div class="ka-coach guidance-card">
+    <div class="fq-coach guidance-card">
       <div class="guidance-body">
         <h4 id="guidance-title">
-          <Info class="w-5 h-5 ka-icon" aria-hidden="true" />
+          <Info class="w-5 h-5 fq-icon" aria-hidden="true" />
           {t("onboarding.guidanceOverlay.tipTitle")}
         </h4>
         <p id="guidance-message">{t(config.messageKey)}</p>
@@ -176,13 +176,13 @@
         <button
           type="button"
           onclick={disableTips}
-          class="ka-button ka-button--ghost"
+          class="fq-button fq-button--ghost"
           title={t("onboarding.guidanceOverlay.disableTipsTitle")}
         >
           <EyeOff class="w-5 h-5" aria-hidden="true" />
           {t("onboarding.guidanceOverlay.disableTips")}
         </button>
-        <button type="button" onclick={dismiss} class="ka-button" use:focusOnMount>
+        <button type="button" onclick={dismiss} class="fq-button" use:focusOnMount>
           <Check class="w-5 h-5" aria-hidden="true" />
           {t("onboarding.guidanceOverlay.gotIt")}
         </button>
@@ -240,7 +240,7 @@
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-2xs);
   }
-  .guidance-card h4 :global(.ka-icon) {
+  .guidance-card h4 :global(.fq-icon) {
     color: var(--color-info);
   }
   .guidance-card h4 {
@@ -266,7 +266,7 @@
   }
   @media (prefers-reduced-motion: no-preference) {
     .guidance-card {
-      animation: ka-enter var(--ka-motion) ease-out;
+      animation: fq-enter var(--fq-motion) ease-out;
     }
   }
 </style>

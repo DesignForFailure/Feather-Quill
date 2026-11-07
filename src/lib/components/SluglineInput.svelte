@@ -129,15 +129,15 @@
 
 <div class="slugline {className}" role="group" aria-label={t("editor.sluglineInput.sceneHeading")}>
   <div
-    class="ka-segment-track slugline-prefix"
+    class="fq-segment-track slugline-prefix"
     role="group"
     aria-label={t("editor.sluglineInput.interiorOrExterior")}
   >
     {#each ["INT", "EXT"] as const as option (option)}
       <button
         type="button"
-        class="ka-segment"
-        class:ka-selected={prefix === option}
+        class="fq-segment"
+        class:fq-selected={prefix === option}
         aria-pressed={prefix === option}
         onclick={() => setPrefix(option)}
         {disabled}
@@ -190,7 +190,7 @@
   .slugline-prefix {
     flex: none;
   }
-  .slugline-prefix .ka-segment {
+  .slugline-prefix .fq-segment {
     min-width: 64px;
     letter-spacing: 0.02em;
   }

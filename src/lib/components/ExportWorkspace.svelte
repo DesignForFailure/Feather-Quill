@@ -605,13 +605,13 @@
   <header class="xw-appbar">
     <h3 id="export-workspace-title">{t("export.exportWorkspace.title")}</h3>
     <div class="xw-appbar-actions">
-      <button type="button" class="ka-button ka-button--ghost" onclick={onClassic} disabled={saving}
+      <button type="button" class="fq-button fq-button--ghost" onclick={onClassic} disabled={saving}
         ><ArrowLeft class="w-5 h-5" aria-hidden="true" />{t(
           "export.exportWorkspace.backToExport"
         )}</button
       ><button
         type="button"
-        class="ka-button ka-button--ghost ka-icon-button"
+        class="fq-button fq-button--ghost fq-icon-button"
         aria-label={t("export.exportWorkspace.closeWorkspace")}
         title={t("export.exportWorkspace.closeWorkspace")}
         onclick={onClose}
@@ -621,7 +621,7 @@
   </header>
 
   <div class="xw-tools">
-    <div class="ka-field od-field xw-picker">
+    <div class="fq-field od-field xw-picker">
       <label for="export-profile">{t("export.exportWorkspace.profileLabel")}</label>
       <select
         id="export-profile"
@@ -633,12 +633,12 @@
     </div>
     <button
       type="button"
-      class="ka-button ka-button--secondary"
+      class="fq-button fq-button--secondary"
       aria-label={t("export.exportWorkspace.duplicateProfile")}
       onclick={duplicateProfile}
       disabled={storageBlocked}>{t("export.exportWorkspace.duplicateProfile")}</button
     >
-    <div class="ka-field od-field xw-picker">
+    <div class="fq-field od-field xw-picker">
       <label for="export-format">{t("export.exportWorkspace.outputFormat")}</label><select
         id="export-format"
         bind:value={draft.format}
@@ -654,7 +654,7 @@
       >
     </div>
     <div class="xw-status" role="status">
-      {#if dirty}<span class="ka-badge ka-badge--warning"
+      {#if dirty}<span class="fq-badge fq-badge--warning"
           >{t("export.exportWorkspace.unsavedChanges")}</span
         >{:else}<span class="xw-ok"
           ><Check class="w-5 h-5" aria-hidden="true" />{t(
@@ -666,20 +666,20 @@
   </div>
 
   <div
-    class="ka-segment-track xw-switch"
+    class="fq-segment-track xw-switch"
     role="group"
     aria-label={t("export.exportWorkspace.workspaceView")}
   >
     <button
       type="button"
-      class="ka-segment"
-      class:ka-selected={narrowPane === "settings"}
+      class="fq-segment"
+      class:fq-selected={narrowPane === "settings"}
       aria-pressed={narrowPane === "settings"}
       onclick={() => (narrowPane = "settings")}>{t("export.exportWorkspace.settings")}</button
     ><button
       type="button"
-      class="ka-segment"
-      class:ka-selected={narrowPane === "preview"}
+      class="fq-segment"
+      class:fq-selected={narrowPane === "preview"}
       aria-pressed={narrowPane === "preview"}
       onclick={() => (narrowPane = "preview")}>{t("export.exportWorkspace.preview")}</button
     >
@@ -688,7 +688,7 @@
   <div class="xw-body">
     <aside class="xw-nav" class:mobile-hidden={narrowPane === "preview"}>
       <div class="xw-search">
-        <div class="ka-field od-field od-fill">
+        <div class="fq-field od-field od-fill">
           <input
             type="search"
             aria-label={t("export.exportWorkspace.findSetting")}
@@ -698,7 +698,7 @@
         </div>
         {#if query}<button
             type="button"
-            class="ka-button ka-button--ghost ka-icon-button"
+            class="fq-button fq-button--ghost fq-icon-button"
             aria-label={t("export.exportWorkspace.clearSearch")}
             title={t("export.exportWorkspace.clearSearch")}
             onclick={() => (query = "")}><X class="w-5 h-5" aria-hidden="true" /></button
@@ -720,19 +720,19 @@
               </li>{/each}
           </ul>
         {:else}
-          <div class="ka-empty od-stack xw-empty" role="status">
+          <div class="fq-empty od-stack xw-empty" role="status">
             <Search class="w-7 h-7" aria-hidden="true" />
             <h4>{t("export.exportWorkspace.noSettingsMatch", { query: query.trim() })}</h4>
             <p>{t("export.exportWorkspace.searchHint")}</p>
           </div>
         {/if}
       {:else}
-        <nav class="ka-tree" aria-label={t("export.exportWorkspace.exportSettings")}>
-          <ul class="ka-tree-list">
+        <nav class="fq-tree" aria-label={t("export.exportWorkspace.exportSettings")}>
+          <ul class="fq-tree-list">
             {#each categories as category (category.id)}<li>
                 <button
                   type="button"
-                  class:ka-tree-selected={section === category.id}
+                  class:fq-tree-selected={section === category.id}
                   aria-current={section === category.id ? "page" : undefined}
                   use:keepVisible={section === category.id}
                   onclick={() => (section = category.id)}
@@ -743,7 +743,7 @@
               </li>{/each}
           </ul>
         </nav>
-        <p class="ka-help xw-nav-note">
+        <p class="fq-help xw-nav-note">
           {t("export.exportWorkspace.navNote")}
         </p>
       {/if}
@@ -757,12 +757,12 @@
       <div class="xw-pane-head">
         <p class="xw-meta">{formatLabel(draft.format)}</p>
         <h3>{visibleCategory.label}</h3>
-        <p class="ka-help">{visibleCategory.description}.</p>
+        <p class="fq-help">{visibleCategory.description}.</p>
       </div>
 
       {#if section === "overview"}
         <div class="xw-group">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-name">{t("export.exportWorkspace.profileName")}</label><input
               id="export-name"
               bind:value={draft.name}
@@ -770,7 +770,7 @@
               aria-invalid={!draft.name.trim() || undefined}
               aria-describedby="export-name-help"
             />
-            <p class="ka-help" id="export-name-help">
+            <p class="fq-help" id="export-name-help">
               {t("export.exportWorkspace.profileNameHelp")}
             </p>
           </div>
@@ -778,7 +778,7 @@
         <div class="xw-group">
           <fieldset class="xw-choice-list">
             <legend class="xw-label">{t("export.exportWorkspace.startingPoint")}</legend>
-            {#each profiles.slice(0, 3) as preset (preset.id)}<div class="ka-check xw-choice">
+            {#each profiles.slice(0, 3) as preset (preset.id)}<div class="fq-check xw-choice">
                 <input
                   id={`export-preset-${preset.id}`}
                   type="radio"
@@ -790,7 +790,7 @@
                 />
                 <div class="od-field od-fill">
                   <label for={`export-preset-${preset.id}`}>{preset.name}</label>
-                  <p class="ka-help" id={`export-preset-${preset.id}-help`}>
+                  <p class="fq-help" id={`export-preset-${preset.id}-help`}>
                     {presetDescriptions[preset.format] ??
                       t("export.exportWorkspace.presetFallback")}
                   </p>
@@ -800,11 +800,11 @@
         </div>
         <div class="xw-group">
           <h4 class="xw-label">{t("export.exportWorkspace.atAGlance")}</h4>
-          <dl class="ka-facts xw-facts">
+          <dl class="fq-facts xw-facts">
             {#if !exchange}
               <div>
                 <dt>{t("export.exportWorkspace.categoryContent")}</dt>
-                <dd class="ka-between">
+                <dd class="fq-between">
                   <span
                     >{countLabel(selected.length, "chapter")} · {countLabel(
                       sceneCount,
@@ -812,7 +812,7 @@
                     )}</span
                   ><button
                     type="button"
-                    class="ka-button ka-button--ghost"
+                    class="fq-button fq-button--ghost"
                     aria-label={t("export.exportWorkspace.changeContent")}
                     onclick={() => (section = "content")}
                     >{t("export.exportWorkspace.change")}</button
@@ -822,10 +822,10 @@
               {#if !plain}
                 <div>
                   <dt>{t("export.exportWorkspace.categoryText")}</dt>
-                  <dd class="ka-between">
+                  <dd class="fq-between">
                     <span>{draft.font} · {formatNumber(draft.fontSize)} pt</span><button
                       type="button"
-                      class="ka-button ka-button--ghost"
+                      class="fq-button fq-button--ghost"
                       aria-label={t("export.exportWorkspace.changeTextPage")}
                       onclick={() => (section = "text")}
                       >{t("export.exportWorkspace.change")}</button
@@ -835,10 +835,10 @@
               {/if}
               <div>
                 <dt>{t("export.exportWorkspace.categoryHeadings")}</dt>
-                <dd class="ka-between">
+                <dd class="fq-between">
                   <span>{draft.separator || t("export.exportWorkspace.blankLine")}</span><button
                     type="button"
-                    class="ka-button ka-button--ghost"
+                    class="fq-button fq-button--ghost"
                     aria-label={t("export.exportWorkspace.changeHeadings")}
                     onclick={() => (section = "headings")}
                     >{t("export.exportWorkspace.change")}</button
@@ -848,10 +848,10 @@
             {:else}
               <div>
                 <dt>{t("export.exportWorkspace.categoryContent")}</dt>
-                <dd class="ka-between">
+                <dd class="fq-between">
                   <span>{t("export.exportWorkspace.wholeProject")}</span><button
                     type="button"
-                    class="ka-button ka-button--ghost"
+                    class="fq-button fq-button--ghost"
                     aria-label={t("export.exportWorkspace.changeContent")}
                     onclick={() => (section = "files")}>{t("export.exportWorkspace.change")}</button
                   >
@@ -860,17 +860,17 @@
             {/if}
             <div>
               <dt>{t("export.exportWorkspace.outputFact")}</dt>
-              <dd class="ka-between">
+              <dd class="fq-between">
                 <span>{formatLabel(draft.format)}</span><button
                   type="button"
-                  class="ka-button ka-button--ghost"
+                  class="fq-button fq-button--ghost"
                   aria-label={t("export.exportWorkspace.changeOutput")}
                   onclick={() => (section = "files")}>{t("export.exportWorkspace.change")}</button
                 >
               </dd>
             </div>
           </dl>
-          <p class="ka-help">
+          <p class="fq-help">
             {exchange
               ? t("export.exportWorkspace.overviewHelpExchange")
               : t("export.exportWorkspace.overviewHelpApprox")}
@@ -878,7 +878,7 @@
         </div>
       {:else if section === "content"}
         <div class="xw-group">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-scope">{t("export.exportWorkspace.includeInExport")}</label><select
               id="export-scope"
               bind:value={draft.selection}
@@ -892,7 +892,7 @@
               ></select
             >
           </div>
-          {#if contextOverride}<div class="ka-notice od-row-top">
+          {#if contextOverride}<div class="fq-notice od-row-top">
               <Info class="w-5 h-5" aria-hidden="true" />
               <div class="od-field od-fill">
                 <p>
@@ -900,13 +900,13 @@
                 </p>
               </div>
             </div>{/if}
-          {#if draft.sceneId}<div class="ka-notice od-row-top">
+          {#if draft.sceneId}<div class="fq-notice od-row-top">
               <Info class="w-5 h-5" aria-hidden="true" />
               <div class="od-field od-fill xw-notice-body">
                 <p>{t("export.exportWorkspace.onlySelectedScene")}</p>
                 <button
                   type="button"
-                  class="ka-button ka-button--ghost"
+                  class="fq-button fq-button--ghost"
                   onclick={() => (draft.sceneId = null)}
                   >{t("export.exportWorkspace.includeRestOfChapter")}</button
                 >
@@ -917,7 +917,7 @@
             role="group"
             aria-label={t("export.exportWorkspace.chapterSelection")}
           >
-            {#each chapters as chapter (chapter.id)}<label class="ka-check xw-check chapter-row"
+            {#each chapters as chapter (chapter.id)}<label class="fq-check xw-check chapter-row"
                 ><input
                   type="checkbox"
                   checked={draft.selection === "all" || draft.chapterIds.includes(chapter.id)}
@@ -936,7 +936,7 @@
         <div class="xw-group">
           <h4 class="xw-label">{t("export.exportWorkspace.alongsideProse")}</h4>
           <div class="xw-checks">
-            <label class="ka-check xw-check"
+            <label class="fq-check xw-check"
               ><input
                 id="export-scene-titles"
                 type="checkbox"
@@ -947,14 +947,14 @@
                 ></span
               ></label
             >
-            <label class="ka-check xw-check"
+            <label class="fq-check xw-check"
               ><input type="checkbox" bind:checked={draft.synopses} /><span class="xw-check-text"
                 ><span>{t("export.exportWorkspace.synopses")}</span><small
                   >{t("export.exportWorkspace.synopsesHelp")}</small
                 ></span
               ></label
             >
-            <label class="ka-check xw-check"
+            <label class="fq-check xw-check"
               ><input id="export-beats" type="checkbox" bind:checked={draft.beatHeadings} /><span
                 class="xw-check-text"
                 ><span>{t("export.exportWorkspace.beatHeadings")}</span><small
@@ -963,13 +963,13 @@
               ></label
             >
           </div>
-          <p class="ka-help">
+          <p class="fq-help">
             {t("export.exportWorkspace.contentExclusions")}
           </p>
         </div>
       {:else if section === "headings"}
         <div class="xw-group">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-heading">{t("export.exportWorkspace.chapterHeading")}</label><select
               id="export-heading"
               bind:value={draft.chapterHeading}
@@ -978,7 +978,7 @@
                 value="title">{t("export.exportWorkspace.headingTitle")}</option
               ><option value="none">{t("export.exportWorkspace.headingNone")}</option></select
             >
-            <p class="ka-help">
+            <p class="fq-help">
               {draft.chapterHeading === "number_title"
                 ? t("export.exportWorkspace.headingExampleNumberTitle")
                 : draft.chapterHeading === "number"
@@ -989,14 +989,14 @@
             </p>
           </div>
           {#if draft.chapterHeading.startsWith("number")}<div class="xw-pair">
-              <div class="ka-field od-field">
+              <div class="fq-field od-field">
                 <label for="export-number-style">{t("export.exportWorkspace.numberStyle")}</label
                 ><select id="export-number-style" bind:value={draft.numberStyle}
                   ><option value="arabic">1, 2, 3</option><option value="roman">I, II, III</option
                   ></select
                 >
               </div>
-              <div class="ka-field od-field">
+              <div class="fq-field od-field">
                 <label for="export-number-start">{t("export.exportWorkspace.startAt")}</label><input
                   id="export-number-start"
                   type="number"
@@ -1008,7 +1008,7 @@
             </div>{/if}
         </div>
         <div class="xw-group">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-separator">{t("export.exportWorkspace.betweenScenes")}</label><input
               id="export-separator"
               bind:value={draft.separator}
@@ -1022,25 +1022,25 @@
             >
               {#each ["#", "* * *", "⁂", ""] as marker (marker)}<button
                   type="button"
-                  class="ka-tag"
+                  class="fq-tag"
                   aria-pressed={draft.separator === marker}
                   onclick={() => (draft.separator = marker)}
                   >{marker || t("export.exportWorkspace.blankLine")}</button
                 >{/each}
             </div>
-            <p class="ka-help" id="export-separator-help">
+            <p class="fq-help" id="export-separator-help">
               {t("export.exportWorkspace.separatorHelp")}
             </p>
           </div>
           <div class="xw-checks">
-            <label class="ka-check xw-check"
+            <label class="fq-check xw-check"
               ><input type="checkbox" bind:checked={draft.partTitles} /><span class="xw-check-text"
                 ><span>{t("export.exportWorkspace.includePartTitles")}</span><small
                   >{t("export.exportWorkspace.includePartTitlesHelp")}</small
                 ></span
               ></label
             >
-            {#if draft.format === "docx"}<label class="ka-check xw-check"
+            {#if draft.format === "docx"}<label class="fq-check xw-check"
                 ><input
                   id="export-chapter-breaks"
                   type="checkbox"
@@ -1056,7 +1056,7 @@
       {:else if section === "text"}
         <div class="xw-group">
           <div class="xw-pair">
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-font">{t("export.exportWorkspace.bodyFont")}</label><select
                 id="export-font"
                 bind:value={draft.font}
@@ -1065,7 +1065,7 @@
                   >{/each}</select
               >
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-font-size">{t("export.exportWorkspace.sizePt")}</label><input
                 id="export-font-size"
                 type="number"
@@ -1075,7 +1075,7 @@
               />
             </div>
           </div>
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-spacing">{t("export.exportWorkspace.lineSpacing")}</label><select
               id="export-spacing"
               bind:value={draft.lineSpacing}
@@ -1087,7 +1087,7 @@
             >
           </div>
           <div class="xw-pair">
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-indent">{t("export.exportWorkspace.firstLineIndent")}</label><input
                 id="export-indent"
                 type="number"
@@ -1097,7 +1097,7 @@
                 bind:value={draft.indent}
               />
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-paragraph-spacing"
                 >{t("export.exportWorkspace.paragraphSpacing")}</label
               ><input
@@ -1110,7 +1110,7 @@
               />
             </div>
           </div>
-          <label class="ka-check"
+          <label class="fq-check"
             ><input type="checkbox" bind:checked={draft.firstParagraphFlush} />{t(
               "export.exportWorkspace.firstParagraphFlush"
             )}</label
@@ -1123,7 +1123,7 @@
                   : t("export.exportWorkspace.justified")}</span
               ></summary
             >
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-alignment">{t("export.exportWorkspace.bodyAlignment")}</label
               ><select id="export-alignment" bind:value={draft.alignment}
                 ><option value="left">{t("export.exportWorkspace.leftAligned")}</option><option
@@ -1136,14 +1136,14 @@
         {#if draft.format === "docx"}<div class="xw-group">
             <h4 class="xw-label">{t("export.exportWorkspace.pageLayout")}</h4>
             <div class="xw-pair">
-              <div class="ka-field od-field">
+              <div class="fq-field od-field">
                 <label for="export-paper">{t("export.exportWorkspace.paperSize")}</label><select
                   id="export-paper"
                   bind:value={draft.paper}
                   ><option value="letter">US Letter</option><option value="a4">A4</option></select
                 >
               </div>
-              <div class="ka-field od-field">
+              <div class="fq-field od-field">
                 <label for="export-margin">{t("export.exportWorkspace.marginsIn")}</label><input
                   id="export-margin"
                   type="number"
@@ -1154,19 +1154,19 @@
                 />
               </div>
             </div>
-            <p class="ka-help">
+            <p class="fq-help">
               {t("export.exportWorkspace.wordLayoutHelp")}
             </p>
-          </div>{:else}<p class="ka-help xw-note">
+          </div>{:else}<p class="fq-help xw-note">
             {t("export.exportWorkspace.reflowableHelp")}
           </p>{/if}
-        {#if draft.format === "html" && !draft.styled}<div class="ka-notice od-row-top xw-note">
+        {#if draft.format === "html" && !draft.styled}<div class="fq-notice od-row-top xw-note">
             <Info class="w-5 h-5" aria-hidden="true" />
             <div class="od-field od-fill xw-notice-body">
               <p>{t("export.exportWorkspace.htmlStylingOff")}</p>
               <button
                 type="button"
-                class="ka-button ka-button--ghost"
+                class="fq-button fq-button--ghost"
                 onclick={() => (draft.styled = true)}
                 >{t("export.exportWorkspace.enableStyling")}</button
               >
@@ -1174,20 +1174,20 @@
           </div>{/if}
       {:else if section === "details"}
         <div class="xw-group">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-title">{t("export.exportWorkspace.bookTitle")}</label><input
               id="export-title"
               bind:value={draft.title}
             />
           </div>
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-author">{t("export.exportWorkspace.authorPenName")}</label><input
               id="export-author"
               bind:value={draft.author}
               placeholder={t("export.exportWorkspace.authorPlaceholder")}
             />
           </div>
-          <label class="ka-check xw-check"
+          <label class="fq-check xw-check"
             ><input type="checkbox" bind:checked={draft.titlePage} /><span class="xw-check-text"
               ><span
                 >{plain
@@ -1196,13 +1196,13 @@
               ><small>{t("export.exportWorkspace.titlePageHint")}</small></span
             ></label
           >
-          {#if draft.titlePage}<div class="ka-field od-field">
+          {#if draft.titlePage}<div class="fq-field od-field">
               <label for="export-subtitle"
                 >{t("export.exportWorkspace.subtitle")}
-                <span class="ka-optional">{t("export.exportWorkspace.optional")}</span></label
+                <span class="fq-optional">{t("export.exportWorkspace.optional")}</span></label
               ><input id="export-subtitle" bind:value={draft.subtitle} />
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-word-count">{t("export.exportWorkspace.titlePageWordCount")}</label
               ><select id="export-word-count" bind:value={draft.wordCount}
                 ><option value="rounded">{t("export.exportWorkspace.wordCountRounded")}</option
@@ -1211,7 +1211,7 @@
                 ></select
               >
             </div>{/if}
-          {#if draft.format === "docx"}<div class="ka-field od-field">
+          {#if draft.format === "docx"}<div class="fq-field od-field">
               <label for="export-header">{t("export.exportWorkspace.runningHeader")}</label><select
                 id="export-header"
                 bind:value={draft.header}
@@ -1221,11 +1221,11 @@
                   value="none">{t("export.exportWorkspace.headerNone")}</option
                 ></select
               >
-              <p class="ka-help">
+              <p class="fq-help">
                 {t("export.exportWorkspace.runningHeaderHelp")}
               </p>
             </div>{/if}
-          <label class="ka-check xw-check"
+          <label class="fq-check xw-check"
             ><input id="export-contents" type="checkbox" bind:checked={draft.contents} /><span
               class="xw-check-text"
               ><span>{t("export.exportWorkspace.tableOfContents")}</span><small
@@ -1242,7 +1242,7 @@
                   >{draft.language}</span
                 ></summary
               >
-              <div class="ka-field od-field">
+              <div class="fq-field od-field">
                 <label for="export-language">{t("export.exportWorkspace.documentLanguage")}</label
                 ><select id="export-language" bind:value={draft.language}
                   ><option value="en">{t("export.exportWorkspace.langEnglish")}</option><option
@@ -1259,11 +1259,11 @@
         </div>
         {#if draft.format === "epub"}<div class="xw-group">
             <h4 class="xw-label">{t("export.exportWorkspace.ebookMetadata")}</h4>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-description">{t("export.exportWorkspace.description")}</label
               ><textarea id="export-description" rows="3" bind:value={draft.description}></textarea>
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-cover">{t("export.exportWorkspace.coverImage")}</label>
               <div class="xw-location">
                 <input
@@ -1273,16 +1273,16 @@
                   placeholder={t("export.exportWorkspace.coverPlaceholder")}
                   aria-describedby="export-cover-help"
                 />
-                <button type="button" class="ka-button ka-button--secondary" onclick={chooseCover}
+                <button type="button" class="fq-button fq-button--secondary" onclick={chooseCover}
                   >{t("export.exportWorkspace.chooseCover")}</button
                 >{#if draft.coverPath}<button
                     type="button"
-                    class="ka-button ka-button--ghost"
+                    class="fq-button fq-button--ghost"
                     onclick={() => (draft.coverPath = "")}
                     >{t("export.exportWorkspace.remove")}</button
                   >{/if}
               </div>
-              <p class="ka-help" id="export-cover-help">
+              <p class="fq-help" id="export-cover-help">
                 {t("export.exportWorkspace.coverHelp")}
               </p>
             </div>
@@ -1290,7 +1290,7 @@
         {/if}
       {:else if section === "files"}
         <div class="xw-group">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="export-filename">{t("export.exportWorkspace.filenamePattern")}</label><input
               id="export-filename"
               bind:value={draft.fileName}
@@ -1303,22 +1303,22 @@
             >
               {#each ["{title}", "{profile}", "{date}"] as token (token)}<button
                   type="button"
-                  class="ka-tag"
+                  class="fq-tag"
                   onclick={() => (draft.fileName += token)}>+ {token}</button
                 >{/each}
             </div>
-            <p class="ka-help filename-sample" id="export-filename-sample">{fileName}</p>
+            <p class="fq-help filename-sample" id="export-filename-sample">{fileName}</p>
           </div>
-          {#if draft.format === "html"}<div class="ka-field od-field">
+          {#if draft.format === "html"}<div class="fq-field od-field">
               <label for="export-html-mode">{t("export.exportWorkspace.htmlStructure")}</label
               ><select id="export-html-mode" bind:value={draft.htmlMode}
                 ><option value="document">{t("export.exportWorkspace.htmlDocument")}</option><option
                   value="fragment">{t("export.exportWorkspace.htmlFragment")}</option
                 ></select
               >
-              <p class="ka-help">{t("export.exportWorkspace.htmlSavedNote")}</p>
+              <p class="fq-help">{t("export.exportWorkspace.htmlSavedNote")}</p>
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-html-heading"
                 >{t("export.exportWorkspace.htmlHeadingElement")}</label
               ><select id="export-html-heading" bind:value={draft.headingLevel}
@@ -1327,7 +1327,7 @@
                 ></select
               >
             </div>
-            <label class="ka-check xw-check"
+            <label class="fq-check xw-check"
               ><input type="checkbox" bind:checked={draft.styled} /><span class="xw-check-text"
                 ><span>{t("export.exportWorkspace.builtInStyling")}</span><small
                   >{t("export.exportWorkspace.builtInStylingHelp")}</small
@@ -1336,7 +1336,7 @@
             >{/if}
           {#if draft.format === "novelwriter"}
             <div class="xw-checks">
-              <label class="ka-check xw-check"
+              <label class="fq-check xw-check"
                 ><input type="checkbox" bind:checked={draft.includeNotes} /><span
                   class="xw-check-text"
                   ><span>{t("export.exportWorkspace.referenceNotes")}</span><small
@@ -1344,7 +1344,7 @@
                   ></span
                 ></label
               >
-              <label class="ka-check xw-check"
+              <label class="fq-check xw-check"
                 ><input type="checkbox" bind:checked={draft.includeBeatComments} /><span
                   class="xw-check-text"
                   ><span>{t("export.exportWorkspace.beatComments")}</span><small
@@ -1354,7 +1354,7 @@
               >
             </div>
           {:else if draft.format === "treatment"}
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-treatment-level"
                 >{t("export.exportWorkspace.treatmentDetail")}</label
               ><select id="export-treatment-level" bind:value={draft.treatmentLevel}
@@ -1362,11 +1362,11 @@
                 ><option value="five_page">{t("export.exportWorkspace.treatmentFivePage")}</option
                 ><option value="full">{t("export.exportWorkspace.treatmentFull")}</option></select
               >
-              <p class="ka-help">
+              <p class="fq-help">
                 {t("export.exportWorkspace.treatmentDetailHelp")}
               </p>
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="export-treatment-format"
                 >{t("export.exportWorkspace.treatmentFile")}</label
               ><select id="export-treatment-format" bind:value={draft.treatmentFormat}
@@ -1375,10 +1375,10 @@
                 ></select
               >
             </div>
-          {:else if draft.format === "scrivener"}<p class="ka-help">
+          {:else if draft.format === "scrivener"}<p class="fq-help">
               {t("export.exportWorkspace.scrivenerHelp")}
             </p>
-          {:else if draft.format === "longform"}<p class="ka-help">
+          {:else if draft.format === "longform"}<p class="fq-help">
               {t("export.exportWorkspace.longformHelp")}
             </p>{/if}
         </div>
@@ -1398,10 +1398,10 @@
                 : `.${outputExtension(draft)}`}</span
             >
           </div>
-          <p class="ka-help">
+          <p class="fq-help">
             {t("export.exportWorkspace.destinationHelp")}
           </p>
-          {#if draft.format === "markdown"}<p class="ka-help">
+          {#if draft.format === "markdown"}<p class="fq-help">
               {t("export.exportWorkspace.markdownHelp")}
             </p>{/if}
         </div>
@@ -1413,7 +1413,7 @@
       class:mobile-hidden={narrowPane === "settings"}
       aria-label={t("export.exportWorkspace.previewAria")}
     >
-      {#if exchange}<div class="ka-empty od-stack empty-preview">
+      {#if exchange}<div class="fq-empty od-stack empty-preview">
           <FileDown class="w-7 h-7" aria-hidden="true" />
           <h4>{formatLabel(draft.format)}</h4>
           <p>
@@ -1435,23 +1435,23 @@
         <header class="xw-preview-head">
           <div class="xw-preview-title">
             <span class="xw-label">{t("export.exportWorkspace.livePreview")}</span>
-            <span class="ka-badge ka-badge--success">{t("export.exportWorkspace.liveBadge")}</span>
+            <span class="fq-badge fq-badge--success">{t("export.exportWorkspace.liveBadge")}</span>
             {#if draft.format === "html"}<div
-                class="ka-segment-track preview-tabs"
+                class="fq-segment-track preview-tabs"
                 role="group"
                 aria-label={t("export.exportWorkspace.previewView")}
               >
                 <button
                   type="button"
-                  class="ka-segment"
-                  class:ka-selected={previewMode === "rendered"}
+                  class="fq-segment"
+                  class:fq-selected={previewMode === "rendered"}
                   aria-pressed={previewMode === "rendered"}
                   onclick={() => (previewMode = "rendered")}
                   >{t("export.exportWorkspace.previewRead")}</button
                 ><button
                   type="button"
-                  class="ka-segment"
-                  class:ka-selected={previewMode === "source"}
+                  class="fq-segment"
+                  class:fq-selected={previewMode === "source"}
                   aria-pressed={previewMode === "source"}
                   onclick={() => (previewMode = "source")}
                   >{t("export.exportWorkspace.previewHtml")}</button
@@ -1462,8 +1462,8 @@
           <div class="xw-preview-controls">
             {#if plain}<p class="xw-meta od-fill">
                 {t("export.exportWorkspace.wholeSelectionSingleFile")}
-              </p>{:else}<div class="ka-field od-field od-fill">
-                <label class="ka-sr" for="export-preview-chapter"
+              </p>{:else}<div class="fq-field od-field od-fill">
+                <label class="fq-sr" for="export-preview-chapter"
                   >{t("export.exportWorkspace.previewChapter")}</label
                 ><select
                   id="export-preview-chapter"
@@ -1480,7 +1480,7 @@
                 >
               </div>{/if}<button
               type="button"
-              class="ka-button ka-button--ghost ka-icon-button"
+              class="fq-button fq-button--ghost fq-icon-button"
               aria-label={t("export.exportWorkspace.refreshManuscript")}
               title={t("export.exportWorkspace.refreshManuscript")}
               disabled={loading}
@@ -1494,16 +1494,16 @@
           </div>
         </header>
         <div class="xw-desk">
-          {#if loading}<div class="ka-empty od-stack empty-preview" role="status">
+          {#if loading}<div class="fq-empty od-stack empty-preview" role="status">
               <Loader2 class="w-7 h-7 animate-spin" aria-hidden="true" />
               <h4>{t("export.exportWorkspace.loadingManuscript")}</h4>
-            </div>{:else if !selected.length}<div class="ka-empty od-stack empty-preview">
+            </div>{:else if !selected.length}<div class="fq-empty od-stack empty-preview">
               <BookOpen class="w-7 h-7" aria-hidden="true" />
               <h4>{t("export.exportWorkspace.nothingSelected")}</h4>
               <p>{t("export.exportWorkspace.nothingSelectedHelp")}</p>
               <button
                 type="button"
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 onclick={() => {
                   section = "content";
                   narrowPane = "settings";
@@ -1546,48 +1546,48 @@
 
   {#if error || storageError || missingSelection || message || unsupported || validationError}
     <div class="xw-feedback">
-      {#if error || storageError}<div class="ka-notice ka-notice--error od-row-top" role="alert">
+      {#if error || storageError}<div class="fq-notice fq-notice--error od-row-top" role="alert">
           <TriangleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill xw-notice-body">
             <p>{error || storageError}</p>
             {#if !loading && error.startsWith(t("export.exportWorkspace.loadFailed"))}<button
                 type="button"
-                class="ka-button ka-button--ghost"
+                class="fq-button fq-button--ghost"
                 onclick={() => loadManuscript()}>{t("common.retry")}</button
               >{/if}
           </div>
         </div>{/if}
-      {#if missingSelection}<div class="ka-notice ka-notice--error od-row-top" role="alert">
+      {#if missingSelection}<div class="fq-notice fq-notice--error od-row-top" role="alert">
           <TriangleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <p>{t("export.exportWorkspace.missingSelection")}</p>
           </div>
         </div>{/if}
-      {#if message}<div class="ka-notice od-row-top" role="status">
+      {#if message}<div class="fq-notice od-row-top" role="status">
           <Info class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill xw-notice-body">
             <p>{message}</p>
             {#if savedPath}<button
                 type="button"
-                class="ka-button ka-button--ghost"
+                class="fq-button fq-button--ghost"
                 onclick={openSaved}
                 >{t("export.exportWorkspace.showInFolder")}
                 <ArrowRight class="w-5 h-5" aria-hidden="true" /></button
               >{/if}
           </div>
         </div>{/if}
-      {#if unsupported}<div class="ka-notice ka-notice--error od-row-top" role="alert">
+      {#if unsupported}<div class="fq-notice fq-notice--error od-row-top" role="alert">
           <TriangleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill"><p>{unsupported}</p></div>
         </div>{/if}
-      {#if validationError}<div class="ka-notice ka-notice--error od-row-top" role="alert">
+      {#if validationError}<div class="fq-notice fq-notice--error od-row-top" role="alert">
           <TriangleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill"><p>{validationError}</p></div>
         </div>{/if}
     </div>
   {/if}
   <footer class="xw-foot">
-    <div class="ka-help xw-foot-note">
+    <div class="fq-help xw-foot-note">
       <div>
         {exchange
           ? t("export.exportWorkspace.wholeProject")
@@ -1595,10 +1595,10 @@
       </div>
       <div>{t("export.exportWorkspace.footNote")}</div>
     </div>
-    <div class="ka-row xw-foot-actions">
+    <div class="fq-row xw-foot-actions">
       {#if dirty}<button
           type="button"
-          class="ka-button ka-button--ghost"
+          class="fq-button fq-button--ghost"
           disabled={saving}
           onclick={() => {
             if (savedProfile) draft = window.structuredClone($state.snapshot(savedProfile));
@@ -1606,12 +1606,12 @@
           }}>{t("export.exportWorkspace.revert")}</button
         >{/if}<button
         type="button"
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         disabled={saving || storageBlocked || !!validationError}
         onclick={() => saveProfile()}>{t("export.exportWorkspace.saveProfile")}</button
       ><button
         type="button"
-        class="ka-button"
+        class="fq-button"
         disabled={saving ||
           loading ||
           !documentLoaded ||
@@ -1759,13 +1759,13 @@
     align-items: center;
     gap: var(--space-3xs);
   }
-  .xw-nav .ka-tree-list {
+  .xw-nav .fq-tree-list {
     gap: var(--space-3xs);
   }
-  .xw-nav .ka-tree button {
+  .xw-nav .fq-tree button {
     align-items: flex-start;
   }
-  .xw-nav .ka-tree small {
+  .xw-nav .fq-tree small {
     display: block;
   }
   .xw-nav-note {
@@ -1807,7 +1807,7 @@
   .xw-empty {
     padding: var(--space-s) 0;
   }
-  .ka-empty h4 {
+  .fq-empty h4 {
     margin: 0;
     font: 550 var(--text-h3) / var(--leading-tight) var(--font-display);
     letter-spacing: var(--tracking-tight);
@@ -1910,7 +1910,7 @@
   .xw-choice label {
     min-height: 0;
   }
-  .xw-choice .ka-help {
+  .xw-choice .fq-help {
     margin: 0;
   }
   .xw-facts {
@@ -1933,7 +1933,7 @@
     justify-items: start;
   }
   /* Optically align a notice's ghost action with its text. */
-  .xw-notice-body > .ka-button--ghost {
+  .xw-notice-body > .fq-button--ghost {
     margin-left: calc(-1 * var(--space-s));
   }
   .xw-chips {
@@ -1941,12 +1941,12 @@
     flex-wrap: wrap;
     gap: var(--space-2xs);
   }
-  .xw-chips .ka-tag[aria-pressed="true"] {
+  .xw-chips .fq-tag[aria-pressed="true"] {
     color: var(--color-on-accent);
     background: var(--color-accent-text);
     border-color: var(--color-accent-text);
   }
-  .xw-chips .ka-tag:focus-visible {
+  .xw-chips .fq-tag:focus-visible {
     outline: 2px solid var(--color-accent-text);
     outline-offset: 3px;
   }
@@ -1967,7 +1967,7 @@
     outline: 2px solid var(--color-accent-text);
     outline-offset: 3px;
   }
-  .xw-details > .ka-field {
+  .xw-details > .fq-field {
     padding-bottom: var(--space-s);
   }
   .xw-location {

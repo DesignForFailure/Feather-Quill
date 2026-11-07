@@ -181,12 +181,12 @@ mod platform {
                 c"Q@:@",
             ),
             (
-                c"kindlingApproveTerminate:",
+                c"feather_quillApproveTerminate:",
                 approve as *const c_void,
                 c"v@:@",
             ),
             (
-                c"kindlingCancelTerminate:",
+                c"feather_quillCancelTerminate:",
                 cancel as *const c_void,
                 c"v@:@",
             ),
@@ -246,9 +246,9 @@ mod platform {
     /// include the modal mode AppKit runs while a terminate is pending.
     pub fn reply(terminate: bool) {
         let name = if terminate {
-            c"kindlingApproveTerminate:"
+            c"feather_quillApproveTerminate:"
         } else {
-            c"kindlingCancelTerminate:"
+            c"feather_quillCancelTerminate:"
         };
         let send: unsafe extern "C" fn(Id, Sel, Sel, Id, bool) =
             unsafe { std::mem::transmute(objc_msgSend as unsafe extern "C" fn()) };

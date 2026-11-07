@@ -10,7 +10,7 @@ const catalog: Catalog = {
   "startScreen.startFromScratch": "Начать с нуля",
   "startScreen.openingSample": "Открытие образца…",
   "startScreen.sampleProject": "Образец проекта",
-  "startScreen.exploreKindling": "Сначала изучить kindling",
+  "startScreen.exploreFeatherQuill": "Сначала изучить Feather Quill",
   "startScreen.openReviewPackage": "Открыть пакет рецензии",
   "startScreen.openReviewPackageHint": "Открыть файл рецензии или отзыва",
   "startScreen.allProjects": "Все проекты",
@@ -42,7 +42,7 @@ const catalog: Catalog = {
   "startScreen.errorDeleteProject": "Не удалось удалить проект: {error}",
 
   // Onboarding
-  welcomeTitle: "Добро пожаловать в kindling",
+  welcomeTitle: "Добро пожаловать в Feather Quill",
   tourSidebarTitle: "Главы и сцены",
   tourSidebarSubtitle: "Левая боковая панель",
   tourEditorTitle: "Краткое содержание и биты",
@@ -73,7 +73,7 @@ const catalog: Catalog = {
   factCharacters: "Персонажи",
   factLocations: "Места",
   outlineUnreadable: "Не удалось прочитать этот план",
-  chooseFormatLede: "Выберите формат плана. kindling просмотрит его перед импортом.",
+  chooseFormatLede: "Выберите формат плана. Feather Quill просмотрит его перед импортом.",
   trySample: "Попробовать образец проекта",
   startFromScratch: "Начать новый проект с нуля",
   skipAndImport: "Пропустить и начать импорт",
@@ -131,7 +131,7 @@ const catalog: Catalog = {
   editorPointSluglinesPrefix: "В сценариях заголовки сцен — это ",
   editorPointSluglines: "слаглайны",
   editorPointSluglinesMiddle: " (например, ",
-  editorPointSluglinesSuffix: "). kindling предлагает места из ваших ссылок.",
+  editorPointSluglinesSuffix: "). Feather Quill предлагает места из ваших ссылок.",
 
   // Onboarding tour: references
   referencesTabCharacters: "Персонажи",
@@ -153,7 +153,7 @@ const catalog: Catalog = {
   referencesPointAddPrefix: "Используйте ",
   referencesPointAdd: "Добавить",
   referencesPointAddSuffix: " для поиска и привязки ссылок к сцене.",
-  referencesPointDetectPrefix: "kindling может ",
+  referencesPointDetectPrefix: "Feather Quill может ",
   referencesPointDetect: "обнаружить",
   referencesPointDetectMiddle: " упоминания персонажей и мест в вашей прозе. Ищите группу ",
   referencesPointSuggested: "Предложенные",
@@ -166,7 +166,7 @@ const catalog: Catalog = {
   "quickStartDialog.title": "Быстрый старт",
   "quickStartDialog.importHeading": "Импортировать план",
   "quickStartDialog.importLede":
-    "kindling работает с вашим существующим планом. Импортируйте с начального экрана или через Файл → Импортировать.",
+    "Feather Quill работает с вашим существующим планом. Импортируйте с начального экрана или через Файл → Импортировать.",
   "quickStartDialog.plottr": " — файлы .pltr",
   "quickStartDialog.ywriter": " — файлы .yw7",
   "quickStartDialog.markdown": " — один файл .md со структурой # Глава, ## Сцена, - Бит",
@@ -200,7 +200,7 @@ const catalog: Catalog = {
   "quickStartDialog.charactersBullet": " — кто появляется в этой сцене",
   "quickStartDialog.locationsBullet": " — где происходит сцена",
   "quickStartDialog.linkReferences":
-    "Привяжите персонажей и места из вашего плана или добавьте их в kindling",
+    "Привяжите персонажей и места из вашего плана или добавьте их в Feather Quill",
   "quickStartDialog.tipsHeading": "Советы",
   "quickStartDialog.exportFallback": "Экспорт",
   "quickStartDialog.exportRest": " — экспортировать проект",
@@ -220,7 +220,7 @@ const catalog: Catalog = {
   "guidanceOverlay.scenePanelMessage":
     "Редактируйте биты и сцены здесь. Фиксируйте идеи в заметках открытий.",
   "guidanceOverlay.referencesMessage":
-    "Привязывайте персонажей, места и предметы к сценам. Используйте кнопку + для поиска и добавления ссылок или принимайте предложенные ссылки, найденные kindling в вашей прозе.",
+    "Привязывайте персонажей, места и предметы к сценам. Используйте кнопку + для поиска и добавления ссылок или принимайте предложенные ссылки, найденные Feather Quill в вашей прозе.",
   "guidanceOverlay.syncMessage":
     "Синхронизация из источника повторно импортирует файл плана после изменений в другом месте. Используйте для получения правок из Plottr, yWriter, Longform, Scrivener или Markdown.",
   "guidanceOverlay.planningStatusMessage":
@@ -262,7 +262,7 @@ const catalog: Catalog = {
   "importProgressDialog.statusFallback": "Чтение плана…",
 
   // AboutDialog
-  "aboutDialog.title": "О программе kindling",
+  "aboutDialog.title": "О программе Feather Quill",
   "aboutDialog.tagline": "Разожгите черновик — преодолейте разрыв между планом и прозой.",
   "aboutDialog.versionLabel": "Версия",
   "aboutDialog.unknownVersion": "неизвестно",
@@ -275,12 +275,12 @@ const catalog: Catalog = {
   // FeedbackDialog
   "feedbackDialog.title": "Отправить отзыв",
   "feedbackDialog.successTitle": "Спасибо за ваш отзыв!",
-  "feedbackDialog.successMessage": "Ваше сообщение отправлено команде kindling.",
+  "feedbackDialog.successMessage": "Ваше сообщение отправлено команде feather-quill.",
   "feedbackDialog.kindsLegend": "Какой отзыв вы хотите оставить?",
   "feedbackDialog.typeBug": "Ошибка",
   "feedbackDialog.typeFeature": "Функция",
   "feedbackDialog.typeRating": "Оценка",
-  "feedbackDialog.ratingLegend": "Как бы вы оценили kindling?",
+  "feedbackDialog.ratingLegend": "Как бы вы оценили Feather Quill?",
   "feedbackDialog.star.one": "{count} звезда",
   "feedbackDialog.star.few": "{count} звезды",
   "feedbackDialog.star.many": "{count} звёзд",
@@ -291,7 +291,7 @@ const catalog: Catalog = {
   "feedbackDialog.messageLabel": "Сообщение",
   "feedbackDialog.messagePlaceholder": "Расскажите нам, что у вас на уме…",
   "feedbackDialog.disclosure":
-    "При отправке включается то, что вы здесь вводите, а также версия kindling, операционная система и язык. Ничто из вашей рукописи не прикрепляется.",
+    "При отправке включается то, что вы здесь вводите, а также версия Feather Quill, операционная система и язык. Ничто из вашей рукописи не прикрепляется.",
   "feedbackDialog.validationSummaryTooLong":
     "Краткое описание должно быть не длиннее {count} символов.",
   "feedbackDialog.validationRating": "Пожалуйста, выберите оценку от 1 до 5.",
@@ -304,7 +304,7 @@ const catalog: Catalog = {
   "feedbackDialog.send": "Отправить отзыв",
 
   // UpdateBanner
-  "updateBanner.ready": "kindling v{version} готов — перезапустите для обновления",
+  "updateBanner.ready": "Feather Quill v{version} готов — перезапустите для обновления",
   "updateBanner.restarting": "Перезапуск…",
   "updateBanner.restart": "Перезапустить",
   "updateBanner.dismiss": "Закрыть",

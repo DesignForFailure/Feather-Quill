@@ -2,11 +2,11 @@ import net from "node:net";
 import { readFileSync, existsSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 
-// Same newline-delimited protocol as kindling-splash/scripts/capture-screenshots.mjs.
+// Same newline-delimited protocol as feather-quill-splash/scripts/capture-screenshots.mjs.
 // No MCP server, SDK, browser driver, or agent round trips are involved.
 export class SocketClient {
   constructor(
-    socketPath = process.env.KINDLING_QA_SOCK || "/tmp/kindling-qa.sock",
+    socketPath = process.env.FEATHER_QUILL_QA_SOCK || "/tmp/feather-quill-qa.sock",
     timeout = 20000
   ) {
     this.path = socketPath;
@@ -25,7 +25,7 @@ export class SocketClient {
         reject(error);
         this.fail(error);
       });
-      this.socket.on("close", () => this.fail(new Error("Kindling socket disconnected")));
+      this.socket.on("close", () => this.fail(new Error("Feather Quill socket disconnected")));
       this.socket.on("data", (chunk) => this.receive(chunk));
     });
     return this;
@@ -41,7 +41,7 @@ export class SocketClient {
       try {
         message = JSON.parse(line);
       } catch {
-        this.fail(new Error("Invalid JSON from Kindling socket"));
+        this.fail(new Error("Invalid JSON from Feather Quill socket"));
         this.socket.destroy();
         return;
       }
@@ -110,7 +110,7 @@ export class SocketClient {
   async invoke(command, args = {}) {
     const key = `__qa_rpc_${randomUUID().replaceAll("-", "")}`;
     await this.evaluate(`window[${JSON.stringify(key)}] = {done:false};
-      window.__KINDLING_TEST__.invoke(${JSON.stringify(command)}, ${JSON.stringify(args)})
+      window.__FEATHER_QUILL_TEST__.invoke(${JSON.stringify(command)}, ${JSON.stringify(args)})
         .then(value => window[${JSON.stringify(key)}] = {done:true,ok:true,value:value ?? null})
         .catch(error => window[${JSON.stringify(key)}] = {done:true,ok:false,error:String(error)});`);
     let phase = "completion";

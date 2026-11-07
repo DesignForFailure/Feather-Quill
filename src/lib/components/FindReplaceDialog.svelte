@@ -244,7 +244,7 @@
 
 <dialog
   bind:this={dialog}
-  class="app-dialog-surface ka-dialog-default find-dialog"
+  class="app-dialog-surface fq-dialog-default find-dialog"
   aria-labelledby="find-title"
   oncancel={(event) => {
     event.preventDefault();
@@ -260,9 +260,9 @@
     {onClose}
     disabled={busy}
   />
-  <div class="ka-dialog-body find-body">
+  <div class="fq-dialog-body find-body">
     <fieldset disabled={busy || loadFailed} class="find-form">
-      <div class="ka-field od-field">
+      <div class="fq-field od-field">
         <label for="find-query">{t("find.findReplaceDialog.find")}</label>
         <div class="find-query">
           <input
@@ -281,7 +281,7 @@
           />
           <button
             type="button"
-            class="ka-button ka-button--secondary"
+            class="fq-button fq-button--secondary"
             disabled={!results.length}
             onclick={() => navigate(-1)}
             title={t("find.findReplaceDialog.previousMatch")}
@@ -289,13 +289,13 @@
           >
           <button
             type="button"
-            class="ka-button ka-button--secondary"
+            class="fq-button fq-button--secondary"
             disabled={!results.length}
             onclick={() => navigate(1)}
             title={t("find.findReplaceDialog.nextMatch")}>{t("find.findReplaceDialog.next")}</button
           >
         </div>
-        <p id="find-status" role="status" class="ka-help">
+        <p id="find-status" role="status" class="fq-help">
           {busy
             ? t("find.findReplaceDialog.loadingProse")
             : query
@@ -304,7 +304,7 @@
         </p>
       </div>
       <div class="find-options">
-        <div class="ka-field od-field find-scope">
+        <div class="fq-field od-field find-scope">
           <label for="find-scope">{t("find.findReplaceDialog.searchIn")}</label>
           <select id="find-scope" bind:value={scope} onchange={reset}>
             <option value="scene" disabled={!sceneId}
@@ -313,23 +313,23 @@
             <option value="project">{t("find.findReplaceDialog.entireProject")}</option>
           </select>
         </div>
-        <div class="ka-checks">
-          <label class="ka-check"
+        <div class="fq-checks">
+          <label class="fq-check"
             ><input type="checkbox" bind:checked={caseSensitive} onchange={reset} />
             {t("find.findReplaceDialog.matchCase")}</label
           >
-          <label class="ka-check"
+          <label class="fq-check"
             ><input type="checkbox" bind:checked={wholeWord} onchange={reset} />
             {t("find.findReplaceDialog.wholeWords")}</label
           >
-          <label class="ka-check"
+          <label class="fq-check"
             ><input type="checkbox" bind:checked={replacing} />
             {t("find.findReplaceDialog.replace")}</label
           >
         </div>
       </div>
       {#if replacing}
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="find-replacement">{t("find.findReplaceDialog.replaceWith")}</label>
           <input
             id="find-replacement"
@@ -339,11 +339,11 @@
           />
         </div>
       {/if}
-      <p class="ka-help">
+      <p class="fq-help">
         {t("find.findReplaceDialog.scopeHelp")}
       </p>
       {#if active}
-        <div class="ka-results find-result">
+        <div class="fq-results find-result">
           <p class="find-location">
             {t("find.findReplaceDialog.position", {
               current: Math.min(selected + 1, results.length),
@@ -369,19 +369,19 @@
           </p>
           {#if onOpenScene}<button
               type="button"
-              class="ka-button ka-button--ghost find-open"
+              class="fq-button fq-button--ghost find-open"
               onclick={openScene}>{t("find.findReplaceDialog.openScene")}</button
             >{/if}
         </div>
       {:else if query && !busy && !error}
-        <p class="ka-help">
+        <p class="fq-help">
           {results.length
             ? t("find.findReplaceDialog.noMoreMatches")
             : t("find.findReplaceDialog.noMatches")}
         </p>
       {/if}
       {#if replacing && confirming}
-        <div class="ka-notice ka-notice--warning" role="status">
+        <div class="fq-notice fq-notice--warning" role="status">
           <p>
             {tn(
               scope === "project"
@@ -391,26 +391,26 @@
             )}
             {tn("find.findReplaceDialog.confirmSkipped", results.length - editableCount)}
           </p>
-          <div class="ka-row">
-            <button type="button" class="ka-button" onclick={() => replace(true)}
+          <div class="fq-row">
+            <button type="button" class="fq-button" onclick={() => replace(true)}
               >{t("find.findReplaceDialog.confirmReplaceAll")}</button
             >
             <button
               type="button"
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               onclick={() => (confirming = false)}>{t("common.cancel")}</button
             >
           </div>
         </div>
       {/if}
     </fieldset>
-    {#if message}<p role="status" class="ka-help">{message}</p>{/if}
-    {#if error}<p role="alert" class="ka-error">{error}</p>{/if}
+    {#if message}<p role="status" class="fq-help">{message}</p>{/if}
+    {#if error}<p role="alert" class="fq-error">{error}</p>{/if}
     {#if loadFailed || pendingDrafts.length}
-      <div class="ka-notice ka-notice--warning find-drafts">
+      <div class="fq-notice fq-notice--warning find-drafts">
         <button
           type="button"
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
           disabled={busy}
           onclick={() => load(true)}
           >{loadFailed
@@ -422,13 +422,13 @@
             {t("find.findReplaceDialog.draftsHelp")}
           </p>
           {#each pendingDrafts as draft, index}
-            <details class="ka-disclosure">
+            <details class="fq-disclosure">
               <summary
                 >{draft.kind === "beat"
                   ? t("find.findReplaceDialog.unsavedBeat", { index: index + 1 })
                   : t("find.findReplaceDialog.unsavedScene", { index: index + 1 })}</summary
               >
-              <div class="ka-field od-field">
+              <div class="fq-field od-field">
                 <label for={`find-draft-${index}`}>{t("find.findReplaceDialog.draftText")}</label>
                 <textarea
                   id={`find-draft-${index}`}
@@ -444,16 +444,16 @@
               <p>
                 {t("find.findReplaceDialog.discardQuestion")}
               </p>
-              <div class="ka-row">
+              <div class="fq-row">
                 <button
                   type="button"
-                  class="ka-button ka-button--danger"
+                  class="fq-button fq-button--danger"
                   disabled={busy}
                   onclick={discardDrafts}>{t("find.findReplaceDialog.confirmDiscardDrafts")}</button
                 >
                 <button
                   type="button"
-                  class="ka-button ka-button--secondary"
+                  class="fq-button fq-button--secondary"
                   disabled={busy}
                   onclick={() => (confirmingDiscard = false)}
                   >{t("find.findReplaceDialog.keepDrafts")}</button
@@ -462,7 +462,7 @@
             {:else}
               <button
                 type="button"
-                class="ka-button ka-button--ghost"
+                class="fq-button fq-button--ghost"
                 disabled={busy}
                 onclick={() => (confirmingDiscard = true)}
                 >{t("find.findReplaceDialog.discardDrafts")}</button
@@ -474,23 +474,23 @@
     {/if}
   </div>
   {#if replacing}
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       <button
         type="button"
-        class="ka-button ka-button--ghost ka-dialog-footer-start"
+        class="fq-button fq-button--ghost fq-dialog-footer-start"
         disabled={busy || !undo.length}
         onclick={() => apply(undo[undo.length - 1], true)}
         >{t("find.findReplaceDialog.undoReplacement")}</button
       >
       <button
         type="button"
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         disabled={busy || !editableCount || confirming}
         onclick={() => (confirming = true)}>{t("find.findReplaceDialog.replaceAll")}</button
       >
       <button
         type="button"
-        class="ka-button"
+        class="fq-button"
         disabled={busy || !active || active.readOnly || confirming}
         onclick={() => replace(false)}>{t("find.findReplaceDialog.replaceMatch")}</button
       >
