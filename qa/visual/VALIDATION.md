@@ -27,7 +27,7 @@ suite 17 aborted in every variant.
   it passed in light and failed in dark by timing alone. The suite now waits for
   the pane's `<main` content before capturing.
 - **The planning callout was profile-dependent.** The scene view's "Rolling
-  outline" callout is gated only by `kindling:tooltipSeen:planningStatus`, which
+  outline" callout is gated only by `feather-quill:tooltipSeen:planningStatus`, which
   `setVisualPreferences({guidanceEnabled:false})` does not touch, so the old
   baselines (captured in a profile that had dismissed it) lacked the callout and a
   fresh profile shows it. The runner now removes that key when it switches
@@ -96,7 +96,7 @@ The historical migration/calibration evidence below describes the earlier
 120-image set.
 
 The socket runner now captures a hidden, isolated WKWebView as lossless 2× PNGs.
-It was validated while macOS was **locked**, with the normal Kindling debug app
+It was validated while macOS was **locked**, with the normal Feather Quill debug app
 still running separately. No desktop screenshots, focus, pointer movement,
 display-mode changes or DND changes were used.
 

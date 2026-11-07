@@ -10,7 +10,7 @@ const catalog: Catalog = {
   "startScreen.startFromScratch": "从零开始",
   "startScreen.openingSample": "正在打开示例…",
   "startScreen.sampleProject": "示例项目",
-  "startScreen.exploreKindling": "先来体验 kindling",
+  "startScreen.exploreFeatherQuill": "先来体验 Feather Quill",
   "startScreen.openReviewPackage": "打开审阅包",
   "startScreen.openReviewPackageHint": "打开审阅或反馈文件",
   "startScreen.allProjects": "所有项目",
@@ -39,7 +39,7 @@ const catalog: Catalog = {
   "startScreen.errorDeleteProject": "删除项目失败：{error}",
 
   // Onboarding
-  welcomeTitle: "欢迎使用 kindling",
+  welcomeTitle: "欢迎使用 Feather Quill",
   tourSidebarTitle: "章与场景",
   tourSidebarSubtitle: "左侧边栏",
   tourEditorTitle: "梗概与节拍",
@@ -69,7 +69,7 @@ const catalog: Catalog = {
   factCharacters: "角色",
   factLocations: "地点",
   outlineUnreadable: "无法读取这份大纲",
-  chooseFormatLede: "选择大纲格式。kindling 会在导入前先预览。",
+  chooseFormatLede: "选择大纲格式。Feather Quill 会在导入前先预览。",
   trySample: "试用示例项目",
   startFromScratch: "从零开始新建项目",
   skipAndImport: "跳过并开始导入",
@@ -127,7 +127,7 @@ const catalog: Catalog = {
   editorPointSluglinesPrefix: "在电影剧本中，场景标题使用",
   editorPointSluglines: "slugline",
   editorPointSluglinesMiddle: "（例如，",
-  editorPointSluglinesSuffix: "）。kindling 会根据你的引用推荐地点。",
+  editorPointSluglinesSuffix: "）。Feather Quill 会根据你的引用推荐地点。",
 
   // Onboarding tour: references
   referencesTabCharacters: "角色",
@@ -149,7 +149,7 @@ const catalog: Catalog = {
   referencesPointAddPrefix: "使用",
   referencesPointAdd: "添加",
   referencesPointAddSuffix: "搜索引用并关联到场景。",
-  referencesPointDetectPrefix: "kindling 可以",
+  referencesPointDetectPrefix: "Feather Quill 可以",
   referencesPointDetect: "检测",
   referencesPointDetectMiddle: "正文中提到的角色和地点。请留意",
   referencesPointSuggested: "“建议”",
@@ -160,7 +160,8 @@ const catalog: Catalog = {
   // QuickStartDialog
   "quickStartDialog.title": "快速入门",
   "quickStartDialog.importHeading": "导入你的大纲",
-  "quickStartDialog.importLede": "kindling 可以沿用你现有的大纲。可从开始屏幕或“文件 → 导入”导入。",
+  "quickStartDialog.importLede":
+    "Feather Quill 可以沿用你现有的大纲。可从开始屏幕或“文件 → 导入”导入。",
   "quickStartDialog.plottr": " — .pltr 文件",
   "quickStartDialog.ywriter": " — .yw7 文件",
   "quickStartDialog.markdown": " — 单个 .md 文件，包含 # 章、## 场景、- 节拍结构",
@@ -189,7 +190,7 @@ const catalog: Catalog = {
     "右侧面板显示与当前场景关联的角色和地点。用它来掌握谁出现在哪里。",
   "quickStartDialog.charactersBullet": " — 当前场景中出现的角色",
   "quickStartDialog.locationsBullet": " — 场景发生的地点",
-  "quickStartDialog.linkReferences": "从大纲关联角色和地点，或在 kindling 中添加",
+  "quickStartDialog.linkReferences": "从大纲关联角色和地点，或在 Feather Quill 中添加",
   "quickStartDialog.tipsHeading": "提示",
   "quickStartDialog.exportFallback": "导出",
   "quickStartDialog.exportRest": " — 导出你的项目",
@@ -206,7 +207,7 @@ const catalog: Catalog = {
   "guidanceOverlay.sidebarMessage": "你的大纲在这里。点击章可展开，拖动可调整顺序。",
   "guidanceOverlay.scenePanelMessage": "在这里编辑节拍和场景。在发现笔记中记录想法。",
   "guidanceOverlay.referencesMessage":
-    "把角色、地点和物品关联到场景。用 + 按钮搜索并添加引用，或采纳 kindling 在正文中发现的建议引用。",
+    "把角色、地点和物品关联到场景。用 + 按钮搜索并添加引用，或采纳 Feather Quill 在正文中发现的建议引用。",
   "guidanceOverlay.syncMessage":
     "“从源同步”会在你在别处修改大纲文件后重新导入。可用它拉取 Plottr、yWriter、Longform、Scrivener 或 Markdown 中的改动。",
   "guidanceOverlay.planningStatusMessage":
@@ -248,7 +249,7 @@ const catalog: Catalog = {
   "importProgressDialog.statusFallback": "正在读取你的大纲…",
 
   // AboutDialog
-  "aboutDialog.title": "关于 kindling",
+  "aboutDialog.title": "关于 Feather Quill",
   "aboutDialog.tagline": "点燃你的初稿——在梗概与正文之间架起桥梁。",
   "aboutDialog.versionLabel": "版本",
   "aboutDialog.unknownVersion": "未知",
@@ -261,12 +262,12 @@ const catalog: Catalog = {
   // FeedbackDialog
   "feedbackDialog.title": "发送反馈",
   "feedbackDialog.successTitle": "感谢你的反馈！",
-  "feedbackDialog.successMessage": "你的消息已发送给 kindling 团队。",
+  "feedbackDialog.successMessage": "你的消息已发送给 Feather Quill 团队。",
   "feedbackDialog.kindsLegend": "你想反馈哪类问题？",
   "feedbackDialog.typeBug": "缺陷",
   "feedbackDialog.typeFeature": "功能建议",
   "feedbackDialog.typeRating": "评分",
-  "feedbackDialog.ratingLegend": "你觉得 kindling 怎么样？",
+  "feedbackDialog.ratingLegend": "你觉得 Feather Quill 怎么样？",
   "feedbackDialog.star.other": "{count} 星",
   "feedbackDialog.ratingOfFive": "{rating} / 5",
   "feedbackDialog.summaryLabel": "摘要",
@@ -275,7 +276,7 @@ const catalog: Catalog = {
   "feedbackDialog.messageLabel": "内容",
   "feedbackDialog.messagePlaceholder": "告诉我们你的想法…",
   "feedbackDialog.disclosure":
-    "发送时会附带你填写的内容，以及 kindling 版本、操作系统和语言。不会附带你稿件中的任何内容。",
+    "发送时会附带你填写的内容，以及 Feather Quill 版本、操作系统和语言。不会附带你稿件中的任何内容。",
   "feedbackDialog.validationSummaryTooLong": "摘要不能超过 {count} 个字符。",
   "feedbackDialog.validationRating": "请选择 1 到 5 星。",
   "feedbackDialog.validationMessageRequired": "请输入内容。",
@@ -287,7 +288,7 @@ const catalog: Catalog = {
   "feedbackDialog.send": "发送反馈",
 
   // UpdateBanner
-  "updateBanner.ready": "kindling v{version} 已就绪 — 重启以更新",
+  "updateBanner.ready": "Feather Quill v{version} 已就绪 — 重启以更新",
   "updateBanner.restarting": "正在重启…",
   "updateBanner.restart": "重启",
   "updateBanner.dismiss": "忽略",

@@ -52,7 +52,7 @@ pub const EN: MenuStrings = MenuStrings {
     export: "Export...",
     close_project: "Close Project",
     settings: "Settings...",
-    quit: "Quit kindling",
+    quit: "Quit Feather Quill",
     edit: "Edit",
     find: "Find in Scene…",
     find_replace: "Find and Replace…",
@@ -65,7 +65,7 @@ pub const EN: MenuStrings = MenuStrings {
     minimize: "Minimize",
     maximize: "Maximize",
     help: "Help",
-    about: "About kindling…",
+    about: "About Feather Quill…",
     send_feedback: "Send Feedback...",
     command_palette: "Command Palette...",
     quick_start: "Quick Start",
@@ -82,7 +82,7 @@ pub const ZH_CN: MenuStrings = MenuStrings {
     export: "导出…",
     close_project: "关闭项目",
     settings: "设置…",
-    quit: "退出 kindling",
+    quit: "退出 Feather Quill",
     edit: "编辑",
     find: "在场景中查找…",
     find_replace: "查找和替换…",
@@ -95,7 +95,7 @@ pub const ZH_CN: MenuStrings = MenuStrings {
     minimize: "最小化",
     maximize: "最大化",
     help: "帮助",
-    about: "关于 kindling…",
+    about: "关于 Feather Quill…",
     send_feedback: "发送反馈…",
     command_palette: "命令面板…",
     quick_start: "快速入门",
@@ -112,7 +112,7 @@ pub const PT_BR: MenuStrings = MenuStrings {
     export: "Exportar…",
     close_project: "Fechar Projeto",
     settings: "Configurações…",
-    quit: "Sair do kindling",
+    quit: "Sair do Feather Quill",
     edit: "Editar",
     find: "Buscar na Cena…",
     find_replace: "Buscar e Substituir…",
@@ -125,7 +125,7 @@ pub const PT_BR: MenuStrings = MenuStrings {
     minimize: "Minimizar",
     maximize: "Maximizar",
     help: "Ajuda",
-    about: "Sobre o kindling…",
+    about: "Sobre o Feather Quill…",
     send_feedback: "Enviar Feedback…",
     command_palette: "Paleta de Comandos…",
     quick_start: "Início Rápido",
@@ -142,7 +142,7 @@ pub const ES: MenuStrings = MenuStrings {
     export: "Exportar…",
     close_project: "Cerrar proyecto",
     settings: "Ajustes…",
-    quit: "Salir de kindling",
+    quit: "Salir de Feather Quill",
     edit: "Edición",
     find: "Buscar en la escena…",
     find_replace: "Buscar y reemplazar…",
@@ -155,7 +155,7 @@ pub const ES: MenuStrings = MenuStrings {
     minimize: "Minimizar",
     maximize: "Maximizar",
     help: "Ayuda",
-    about: "Acerca de kindling…",
+    about: "Acerca de Feather Quill…",
     send_feedback: "Enviar feedback…",
     command_palette: "Paleta de comandos…",
     quick_start: "Inicio rápido",
@@ -172,7 +172,7 @@ pub const RU: MenuStrings = MenuStrings {
     export: "Экспортировать…",
     close_project: "Закрыть проект",
     settings: "Настройки…",
-    quit: "Выйти из kindling",
+    quit: "Выйти из Feather Quill",
     edit: "Правка",
     find: "Найти в сцене…",
     find_replace: "Найти и заменить…",
@@ -185,7 +185,7 @@ pub const RU: MenuStrings = MenuStrings {
     minimize: "Свернуть",
     maximize: "Развернуть",
     help: "Справка",
-    about: "О программе kindling…",
+    about: "О программе Feather Quill…",
     send_feedback: "Отправить отзыв…",
     command_palette: "Палитра команд…",
     quick_start: "Быстрый старт",
@@ -202,7 +202,7 @@ pub const DE: MenuStrings = MenuStrings {
     export: "Exportieren…",
     close_project: "Projekt schließen",
     settings: "Einstellungen…",
-    quit: "kindling beenden",
+    quit: "Feather Quill beenden",
     edit: "Bearbeiten",
     find: "In Szene suchen…",
     find_replace: "Suchen und ersetzen…",
@@ -215,7 +215,7 @@ pub const DE: MenuStrings = MenuStrings {
     minimize: "Minimieren",
     maximize: "Maximieren",
     help: "Hilfe",
-    about: "Über kindling…",
+    about: "Über Feather Quill…",
     send_feedback: "Rückmeldung senden…",
     command_palette: "Befehlspalette…",
     quick_start: "Schnellstart",
@@ -232,7 +232,7 @@ pub const FR: MenuStrings = MenuStrings {
     export: "Exporter…",
     close_project: "Fermer le projet",
     settings: "Réglages…",
-    quit: "Quitter kindling",
+    quit: "Quitter Feather Quill",
     edit: "Édition",
     find: "Rechercher dans la scène…",
     find_replace: "Rechercher et remplacer…",
@@ -245,7 +245,7 @@ pub const FR: MenuStrings = MenuStrings {
     minimize: "Réduire",
     maximize: "Agrandir",
     help: "Aide",
-    about: "À propos de kindling…",
+    about: "À propos de Feather Quill…",
     send_feedback: "Envoyer des retours…",
     command_palette: "Palette de commandes…",
     quick_start: "Démarrage rapide",
@@ -283,7 +283,7 @@ pub fn resolve_locale(tag: &str) -> &'static str {
         .map_or(FALLBACK_LOCALE, |(locale, _, _)| locale)
 }
 
-/// `KINDLING_LOCALE` wins over the system language, so QA can check every locale on one
+/// `FEATHER_QUILL_LOCALE` wins over the system language, so QA can check every locale on one
 /// machine. It also reaches the webview through `vite.config.ts` under `npm run tauri dev`.
 fn pick_locale(override_tag: Option<String>, system_tag: Option<String>) -> &'static str {
     let tag = override_tag
@@ -296,7 +296,7 @@ fn pick_locale(override_tag: Option<String>, system_tag: Option<String>) -> &'st
 /// Native menu copy follows the system language, like the webview interface does.
 fn menu_locale() -> &'static str {
     pick_locale(
-        std::env::var("KINDLING_LOCALE").ok(),
+        std::env::var("FEATHER_QUILL_LOCALE").ok(),
         tauri_plugin_os::locale(),
     )
 }
@@ -573,7 +573,7 @@ mod tests {
                 "Export...",
                 "Close Project",
                 "Settings...",
-                "Quit kindling",
+                "Quit Feather Quill",
                 "Edit",
                 "Find in Scene…",
                 "Find and Replace…",
@@ -586,7 +586,7 @@ mod tests {
                 "Minimize",
                 "Maximize",
                 "Help",
-                "About kindling…",
+                "About Feather Quill…",
                 "Send Feedback...",
                 "Command Palette...",
                 "Quick Start",
@@ -621,7 +621,7 @@ mod tests {
     }
 
     #[test]
-    fn kindling_locale_overrides_the_system_language() {
+    fn feather_quill_locale_overrides_the_system_language() {
         let some = |tag: &str| Some(tag.to_string());
         assert_eq!(pick_locale(some("zh-CN"), some("en-US")), "zh-CN");
         assert_eq!(pick_locale(some("en"), some("zh-Hans-CN")), "en");

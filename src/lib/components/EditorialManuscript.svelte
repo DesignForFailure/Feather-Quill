@@ -460,7 +460,7 @@
     {@render toolbar?.()}
     {#if canComment}<button
         type="button"
-        class="ka-button ka-button--ghost comment-action"
+        class="fq-button fq-button--ghost comment-action"
         onclick={onComment}
         ><MessageSquare class="w-5 h-5" aria-hidden="true" />
         {t("editorial.editorialManuscript.comment")}</button

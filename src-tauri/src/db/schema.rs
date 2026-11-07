@@ -251,7 +251,7 @@ CREATE TABLE IF NOT EXISTS writing_goals (
         );
 
         -- novelWriter text of each synced field at the last import or sync, so
-        -- sync can tell a novelWriter edit from a kindling one.
+        -- sync can tell a novelWriter edit from a Feather Quill one.
         CREATE TABLE IF NOT EXISTS novelwriter_sync_baselines (
             project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
             item_id TEXT NOT NULL,
@@ -260,9 +260,9 @@ CREATE TABLE IF NOT EXISTS writing_goals (
             PRIMARY KEY (item_id, field)
         );
 
-        -- novelWriter Novel documents that kindling has read one chapter or
+        -- novelWriter Novel documents that Feather Quill has read one chapter or
         -- scene per heading (1.3 and later), however many headings they have.
-        -- A document without a row was imported whole by kindling 1.2 and
+        -- A document without a row was imported whole by Kindling 1.2 and
         -- keeps that shape.
         CREATE TABLE IF NOT EXISTS novelwriter_split_documents (
             project_id TEXT NOT NULL REFERENCES projects(id) ON DELETE CASCADE,

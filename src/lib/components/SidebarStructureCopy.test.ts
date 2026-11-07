@@ -132,10 +132,10 @@ it("lets the scene filter segments wrap rather than overlap in long languages", 
       source.indexOf(`${selector} {`),
       source.indexOf("}", source.indexOf(`${selector} {`))
     );
-  expect(rule(".sb-filter-segments .ka-segment-track")).toContain("flex-wrap: wrap");
-  const segment = rule(".sb-filter-segments .ka-segment");
+  expect(rule(".sb-filter-segments .fq-segment-track")).toContain("flex-wrap: wrap");
+  const segment = rule(".sb-filter-segments .fq-segment");
   expect(segment).toContain("white-space: nowrap");
-  // A segment may never shrink below its label, and spacing comes from Press tokens.
+  // A segment may never shrink below its label, and spacing comes from theme tokens.
   expect(segment).not.toMatch(/min-width:\s*0/);
   expect(segment).not.toMatch(/\d+px/);
 });

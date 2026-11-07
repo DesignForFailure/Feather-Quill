@@ -35,7 +35,7 @@
 # Rust-only one). Both formatters only touch unformatted files; main is formatted.
 
 # Default toolchain — used by any work unit whose layer has no override below.
-# Defaults to the Rust backend (most of Kindling's import/export/SQLite logic lives
+# Defaults to the Rust backend (most of Feather Quill's import/export/SQLite logic lives
 # there, and it needs no provisioning).
 test_cmd = "cd src-tauri && cargo test --all-features"
 lint_cmd = "cd src-tauri && cargo clippy --all-targets --all-features -- -D warnings"

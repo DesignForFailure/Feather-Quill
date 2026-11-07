@@ -54,12 +54,12 @@ function findTauriBinary() {
 
   // Binary locations for different platforms
   const binaryPaths = {
-    linux: ["src-tauri/target/release/kindling", "src-tauri/target/debug/kindling"],
+    linux: ["src-tauri/target/release/feather-quill", "src-tauri/target/debug/feather-quill"],
     darwin: [
-      "src-tauri/target/release/bundle/macos/Kindling.app/Contents/MacOS/Kindling",
-      "src-tauri/target/debug/bundle/macos/Kindling.app/Contents/MacOS/Kindling",
+      "src-tauri/target/release/bundle/macos/Feather Quill.app/Contents/MacOS/feather-quill",
+      "src-tauri/target/debug/bundle/macos/Feather Quill.app/Contents/MacOS/feather-quill",
     ],
-    win32: ["src-tauri/target/release/kindling.exe", "src-tauri/target/debug/kindling.exe"],
+    win32: ["src-tauri/target/release/feather-quill.exe", "src-tauri/target/debug/feather-quill.exe"],
   };
 
   const paths = binaryPaths[platform] || binaryPaths.linux;

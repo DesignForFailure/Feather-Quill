@@ -46,17 +46,17 @@
 </script>
 
 {#if state}
-  <div class="ka-banner update-banner" role="status">
-    <Download class="w-5 h-5 ka-icon" aria-hidden="true" />
+  <div class="fq-banner update-banner" role="status">
+    <Download class="w-5 h-5 fq-icon" aria-hidden="true" />
     <span>{t("onboarding.updateBanner.ready", { version: state.version })}</span>
-    <div class="ka-row">
+    <div class="fq-row">
       <button
         type="button"
         onpointerdown={(event) => event.preventDefault()}
         onclick={restart}
         disabled={disabled || restarting}
         aria-busy={restarting || undefined}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
       >
         {#if restarting}
           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
@@ -69,7 +69,7 @@
         type="button"
         onclick={dismissUpdate}
         disabled={disabled || restarting}
-        class="ka-button ka-button--ghost ka-icon-button"
+        class="fq-button fq-button--ghost fq-icon-button"
         aria-label={t("onboarding.updateBanner.dismiss")}
         title={t("onboarding.updateBanner.dismiss")}
       >

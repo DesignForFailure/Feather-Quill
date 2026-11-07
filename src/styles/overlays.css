@@ -1,26 +1,24 @@
-/* Press overlay & dialog layer — PROPOSED UPSTREAM to press/design-system/application.css.
-   Designed in Open Design (kindling Reskin — Dialogs & Settings, press-overlays.css).
-   Semantic tokens only. When Press ships these selectors, delete this file and
-   re-run npm run sync:design-system; nothing else in the app should change. */
+/* MIT-licensed application overlay styles inherited from Kindling.
+   These were outside the excluded Press mirror. Maintained by this fork. */
 /* ===== Dialog shell ===================================================== */
 /* A flex column so header and footer stay pinned and only the body scrolls. */
-.ka-dialog[open] {
+.fq-dialog[open] {
   display: flex;
   flex-direction: column;
 }
-.ka-dialog {
+.fq-dialog {
   box-shadow: var(--shadow-overlay);
 }
-.ka-dialog-narrow {
+.fq-dialog-narrow {
   width: min(480px, calc(100% - 32px));
 }
 /* Settings: the wide width plus a fixed height, so switching areas never
    resizes the window-sized surface under the pointer. */
-.ka-dialog-settings {
+.fq-dialog-settings {
   width: min(960px, calc(100% - 32px));
   height: min(720px, calc(100dvh - 48px));
 }
-.ka-dialog-header {
+.fq-dialog-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -28,29 +26,29 @@
   flex: none;
   padding: 16px 16px 16px 24px;
 }
-.ka-dialog-header h3 {
+.fq-dialog-header h3 {
   margin: 0;
 }
-.ka-dialog-header p {
+.fq-dialog-header p {
   margin-top: 2px;
   font: var(--text-small)/1.5 var(--font-ui);
   color: var(--color-text-muted);
 }
-.ka-dialog-body {
+.fq-dialog-body {
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
 }
-.ka-dialog-footer {
+.fq-dialog-footer {
   flex: none;
   align-items: center;
 }
-.ka-dialog-footer-start {
+.fq-dialog-footer-start {
   margin-right: auto;
 }
 /* Inline confirmation band directly under the header (Settings discard). The
    rest of the dialog is `inert` while it shows. */
-.ka-dialog-alert {
+.fq-dialog-alert {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -62,80 +60,80 @@
   font: var(--text-ui)/1.5 var(--font-ui);
   color: var(--color-text);
 }
-.ka-dialog-alert > .ka-icon {
+.fq-dialog-alert > .fq-icon {
   color: var(--color-warning);
 }
-.ka-dialog-alert > p {
+.fq-dialog-alert > p {
   flex: 1 1 16rem;
   min-width: 0;
 }
-.ka-dialog [inert] {
+.fq-dialog [inert] {
   opacity: 0.55;
 }
 /* Command palette sits high so results grow downward, not around the centre. */
-.ka-palette {
+.fq-palette {
   margin-top: 15dvh;
 }
-.ka-palette .ka-dialog-body {
+.fq-palette .fq-dialog-body {
   padding: 0;
 }
-.ka-palette-search {
+.fq-palette-search {
   padding: 16px 16px 12px;
   border-bottom: 1px solid var(--color-border);
 }
-.ka-palette .ka-command-list {
+.fq-palette .fq-command-list {
   margin: 0;
   padding: 8px;
   max-height: 360px;
 }
-/* Upstream gap: .ka-command-list button (0,1,1) out-ranks .ka-command-selected. */
-.ka-command-list button.ka-command-selected {
+/* Upstream gap: .fq-command-list button (0,1,1) out-ranks .fq-command-selected. */
+.fq-command-list button.fq-command-selected {
   background: var(--color-surface-sunken);
-  border-radius: var(--ka-radius-small);
+  border-radius: var(--fq-radius-small);
 }
-.ka-palette .ka-command-list button > span {
+.fq-palette .fq-command-list button > span {
   display: grid;
   gap: 2px;
 }
-.ka-palette .ka-dialog-footer {
+.fq-palette .fq-dialog-footer {
   justify-content: flex-start;
   gap: 16px;
   padding-block: 12px;
 }
 
 /* ===== Buttons: busy ==================================================== */
-.ka-button[aria-busy="true"] {
+.fq-button[aria-busy="true"] {
   cursor: progress;
 }
-.ka-spin {
-  animation: ka-spin 0.9s linear infinite;
+.fq-spin {
+  animation: fq-spin 0.9s linear infinite;
 }
-@keyframes ka-spin {
+@keyframes fq-spin {
   to {
     transform: rotate(360deg);
   }
 }
 /* Danger hover keeps its pair; the shared inset ring already applies. */
 /* A disabled ghost stays ghost: no sunken slab where there was no fill. */
-.ka-button--ghost:disabled {
+.fq-button--ghost:disabled {
   background: transparent;
   border-color: transparent;
 }
 
 /* ===== Fields =========================================================== */
 /* Native select without the platform stepper arrows: one Lucide chevron. */
-.ka-select {
+.fq-select {
   position: relative;
   display: block;
   min-width: 0;
 }
-.ka-field .ka-select select {
+.fq-field .fq-select select {
   appearance: none;
   -webkit-appearance: none;
   padding-right: 44px;
   cursor: pointer;
 }
-.ka-select > .ka-icon {
+.fq-select > .fq-icon {
   position: absolute;
   right: 12px;
   top: 50%;
@@ -143,14 +141,14 @@
   pointer-events: none;
   color: var(--color-text-muted);
 }
-.ka-input-icon {
+.fq-input-icon {
   position: relative;
   display: block;
 }
-.ka-field .ka-input-icon input {
+.fq-field .fq-input-icon input {
   padding-left: 44px;
 }
-.ka-input-icon > .ka-icon {
+.fq-input-icon > .fq-icon {
   position: absolute;
   left: 12px;
   top: 50%;
@@ -158,46 +156,46 @@
   pointer-events: none;
   color: var(--color-text-muted);
 }
-.ka-input-icon > kbd {
+.fq-input-icon > kbd {
   position: absolute;
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
 }
-.ka-field-meta {
+.fq-field-meta {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 16px;
 }
-.ka-field-meta .ka-count {
+.fq-field-meta .fq-count {
   margin-left: auto;
   font: var(--text-small)/1.5 var(--font-ui);
   color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
 }
-.ka-field-meta .ka-count.ka-error {
+.fq-field-meta .fq-count.fq-error {
   color: var(--color-error);
 }
-.ka-field .ka-optional {
+.fq-field .fq-optional {
   font-weight: 400;
   color: var(--color-text-muted);
 }
-.ka-field [aria-invalid="true"] {
+.fq-field [aria-invalid="true"] {
   border-width: 2px;
   padding: 11px;
 }
-.ka-error {
+.fq-error {
   display: flex;
   align-items: flex-start;
   gap: 8px;
 }
-.ka-error > .ka-icon {
+.fq-error > .fq-icon {
   margin-top: 2px;
 }
 
 /* Grouping inside a dialog body or settings pane: hairline, not a card. */
-.ka-group {
+.fq-group {
   display: grid;
   gap: 16px;
   margin: 0;
@@ -206,14 +204,14 @@
   border-top: 1px solid var(--color-border);
   min-width: 0;
 }
-.ka-group:first-child {
+.fq-group:first-child {
   padding-top: 0;
   border-top: 0;
 }
-.ka-group + .ka-group {
+.fq-group + .fq-group {
   margin-top: 24px;
 }
-.ka-group-title {
+.fq-group-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -222,54 +220,54 @@
   font: 600 var(--text-base)/1.5 var(--font-ui);
   color: var(--color-text);
 }
-.ka-eyebrow {
+.fq-eyebrow {
   font: 600 var(--text-eyebrow)/1.4 var(--font-ui);
   letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
-.ka-checks {
+.fq-checks {
   display: flex;
   flex-wrap: wrap;
   gap: 0 24px;
 }
-.ka-checks .ka-check {
+.fq-checks .fq-check {
   display: flex;
   align-items: center;
 }
 /* Help under a checkbox sits with its label, not a group gap away. */
-.ka-check + .ka-help {
+.fq-check + .fq-help {
   margin-top: calc(4px - 16px);
   padding-left: 32px;
 }
 
-.ka-segments legend.ka-group-title {
+.fq-segments legend.fq-group-title {
   margin-bottom: 16px;
   color: var(--color-text);
 }
 /* Rating: five 44px star toggles; filled up to the chosen value. */
-.ka-rating .ka-button {
+.fq-rating .fq-button {
   color: var(--color-text-muted);
 }
-.ka-rating .ka-button.is-on {
+.fq-rating .fq-button.is-on {
   color: var(--color-accent-text);
 }
-.ka-rating .ka-button.is-on .ka-icon {
+.fq-rating .fq-button.is-on .fq-icon {
   fill: currentColor;
 }
-.ka-rating .ka-button:disabled {
+.fq-rating .fq-button:disabled {
   background: transparent;
   border-color: transparent;
 }
 
 /* ===== Settings layout ================================================== */
-.ka-settings {
+.fq-settings {
   display: grid;
   grid-template-columns: 272px minmax(0, 1fr);
   flex: 1 1 auto;
   min-height: 0;
 }
-.ka-settings-nav {
+.fq-settings-nav {
   display: grid;
   align-content: start;
   gap: 16px;
@@ -277,64 +275,64 @@
   border-right: 1px solid var(--color-border);
   overflow: auto;
 }
-.ka-settings-nav > section {
+.fq-settings-nav > section {
   display: grid;
   gap: 8px;
 }
-.ka-settings-nav .ka-tree-list {
+.fq-settings-nav .fq-tree-list {
   gap: 4px;
 }
-.ka-settings-nav .ka-eyebrow {
+.fq-settings-nav .fq-eyebrow {
   padding: 4px 12px 0;
 }
-.ka-settings-nav .ka-help {
+.fq-settings-nav .fq-help {
   padding-inline: 4px;
   text-wrap: pretty;
 }
-.ka-settings-nav .ka-field {
+.fq-settings-nav .fq-field {
   padding-inline: 4px;
 }
-.ka-settings-pane {
+.fq-settings-pane {
   overflow: auto;
   padding: 32px 40px 40px;
 }
-.ka-settings-pane > div {
+.fq-settings-pane > div {
   max-width: 40rem;
 }
-.ka-settings-head {
+.fq-settings-head {
   display: grid;
   gap: 8px;
   margin-bottom: 32px;
 }
-.ka-crumbs {
+.fq-crumbs {
   font: var(--text-small)/1.5 var(--font-ui);
   color: var(--color-text-muted);
 }
-.ka-settings-head h4 {
+.fq-settings-head h4 {
   font-size: var(--text-h3);
 }
-.ka-settings-head p {
+.fq-settings-head p {
   color: var(--color-text-muted);
   max-width: 60ch;
 }
-.ka-settings-head strong {
+.fq-settings-head strong {
   color: var(--color-text);
   font-weight: 600;
 }
 
 /* ===== Tag manager ====================================================== */
-.ka-tagtree,
-.ka-tagtree ul {
+.fq-tagtree,
+.fq-tagtree ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.ka-tagtree ul {
+.fq-tagtree ul {
   margin-left: 18px;
   padding-left: 16px;
   border-left: 1px solid var(--color-border);
 }
-.ka-tagrow {
+.fq-tagrow {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -343,19 +341,19 @@
   border-bottom: 1px solid var(--color-border);
   font: var(--text-ui)/1.5 var(--font-ui);
 }
-.ka-tagrow > .ka-name {
+.fq-tagrow > .fq-name {
   flex: 1 1 auto;
   min-width: 0;
   overflow-wrap: anywhere;
 }
-.ka-tagrow .ka-row {
+.fq-tagrow .fq-row {
   gap: 0;
   flex: none;
 }
-.ka-tagrow .ka-icon-button {
+.fq-tagrow .fq-icon-button {
   color: var(--color-text-muted);
 }
-.ka-swatch {
+.fq-swatch {
   display: inline-block;
   flex: none;
   width: 12px;
@@ -364,23 +362,23 @@
   background: var(--swatch, transparent);
   box-shadow: inset 0 0 0 1px var(--color-border);
 }
-.ka-swatch--none {
+.fq-swatch--none {
   box-shadow: inset 0 0 0 1.5px var(--color-text-muted);
 }
-.ka-tagedit {
+.fq-tagedit {
   display: grid;
   gap: 16px;
   margin: 12px 0;
   padding: 16px;
   border: 1px solid var(--color-border);
-  border-radius: var(--ka-radius);
+  border-radius: var(--fq-radius);
   background: var(--color-surface-sunken);
 }
-.ka-tagedit .ka-field :where(input) {
+.fq-tagedit .fq-field :where(input) {
   background: var(--color-surface);
 }
 /* Colour choice is a native radio group; each option is a 44px target. */
-.ka-swatches {
+.fq-swatches {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
@@ -388,27 +386,27 @@
   padding: 0;
   border: 0;
 }
-.ka-swatches legend {
+.fq-swatches legend {
   margin-bottom: 8px;
   font: 500 var(--text-ui)/1.5 var(--font-ui);
   color: var(--color-text);
 }
-.ka-swatch-option {
+.fq-swatch-option {
   position: relative;
   display: grid;
   place-items: center;
   width: var(--control-target);
   height: var(--control-target);
-  border-radius: var(--ka-radius-small);
+  border-radius: var(--fq-radius-small);
   cursor: pointer;
 }
-.ka-swatch-option input {
+.fq-swatch-option input {
   position: absolute;
   opacity: 0;
   width: 1px;
   height: 1px;
 }
-.ka-swatch-option > span {
+.fq-swatch-option > span {
   display: grid;
   place-items: center;
   width: 28px;
@@ -417,28 +415,28 @@
   background: var(--swatch);
   color: var(--color-on-accent);
 }
-.ka-swatch-option--none > span {
+.fq-swatch-option--none > span {
   background: var(--color-surface);
   box-shadow: inset 0 0 0 1.5px var(--color-text-muted);
   color: var(--color-text);
 }
-.ka-swatch-option > span > .ka-icon {
+.fq-swatch-option > span > .fq-icon {
   visibility: hidden;
 }
-.ka-swatch-option:has(input:checked) > span {
+.fq-swatch-option:has(input:checked) > span {
   outline: 2px solid var(--color-text);
   outline-offset: 2px;
 }
-.ka-swatch-option:has(input:checked) > span > .ka-icon {
+.fq-swatch-option:has(input:checked) > span > .fq-icon {
   visibility: visible;
 }
-.ka-swatch-option:has(input:focus-visible) {
+.fq-swatch-option:has(input:focus-visible) {
   outline: 2px solid var(--color-accent-text);
   outline-offset: 1px;
 }
 
 /* ===== Menus ============================================================ */
-.ka-menu-float {
+.fq-menu-float {
   position: absolute;
   z-index: var(--z-dropdown);
   margin: 0;
@@ -446,54 +444,54 @@
   width: max-content;
   max-width: 320px;
 }
-.ka-menu-list > [role="separator"] {
+.fq-menu-list > [role="separator"] {
   height: 1px;
   margin: 4px -8px;
   background: var(--color-border);
 }
-.ka-menu-list > button > span {
+.fq-menu-list > button > span {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.ka-menu-list > button .ka-icon {
+.fq-menu-list > button .fq-icon {
   color: var(--color-text-muted);
 }
-.ka-menu-list > button .ka-icon-slot {
+.fq-menu-list > button .fq-icon-slot {
   display: block;
   width: 20px;
   flex: none;
 }
-.ka-menu-list > button[aria-expanded="true"] {
+.fq-menu-list > button[aria-expanded="true"] {
   background: var(--color-surface-sunken);
 }
-.ka-menu-list > button:disabled,
-.ka-menu-list > button[aria-disabled="true"] {
+.fq-menu-list > button:disabled,
+.fq-menu-list > button[aria-disabled="true"] {
   color: var(--color-disabled-text);
   cursor: not-allowed;
 }
-.ka-menu-list > button.ka-menu-danger,
-.ka-menu-list > button.ka-menu-danger .ka-icon {
+.fq-menu-list > button.fq-menu-danger,
+.fq-menu-list > button.fq-menu-danger .fq-icon {
   color: var(--color-error);
 }
-.ka-menu-list > button[aria-checked="true"] {
+.fq-menu-list > button[aria-checked="true"] {
   font-weight: 600;
 }
-.ka-menu-list > button[aria-checked="true"] .ka-icon {
+.fq-menu-list > button[aria-checked="true"] .fq-icon {
   color: var(--color-accent-text);
 }
 @media (hover: hover) {
-  .ka-menu-list > button.ka-menu-danger:not(:disabled):hover {
+  .fq-menu-list > button.fq-menu-danger:not(:disabled):hover {
     background: var(--color-error-wash);
   }
-  .ka-command-list button:hover {
+  .fq-command-list button:hover {
     background: var(--color-surface-sunken);
-    border-radius: var(--ka-radius-small);
+    border-radius: var(--fq-radius-small);
   }
 }
 
 /* ===== Toast ============================================================ */
-.ka-toast-region {
+.fq-toast-region {
   position: fixed;
   right: 24px;
   bottom: 24px;
@@ -502,35 +500,35 @@
   gap: 8px;
   width: min(400px, calc(100vw - 48px));
 }
-.ka-toast {
+.fq-toast {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: start;
   gap: 12px;
   padding: 4px 4px 4px 16px;
   border: 1px solid var(--color-border);
-  border-radius: var(--ka-radius);
+  border-radius: var(--fq-radius);
   background: var(--color-surface);
   box-shadow: var(--shadow-overlay);
   font: var(--text-ui)/1.5 var(--font-ui);
   color: var(--color-text);
 }
-.ka-toast > .ka-icon {
+.fq-toast > .fq-icon {
   margin-top: 12px;
   color: var(--color-error);
 }
-.ka-toast > div {
+.fq-toast > div {
   padding-block: 10px;
   min-width: 0;
   overflow-wrap: anywhere;
 }
-.ka-toast strong {
+.fq-toast strong {
   display: block;
   font-weight: 600;
 }
 
 /* ===== Tooltip ========================================================== */
-.ka-tooltip {
+.fq-tooltip {
   position: absolute;
   z-index: var(--z-popover);
   padding: 4px 8px;
@@ -544,7 +542,7 @@
 }
 
 /* ===== Guidance coach mark ============================================= */
-.ka-coach {
+.fq-coach {
   position: absolute;
   z-index: var(--z-guidance);
   display: grid;
@@ -552,31 +550,31 @@
   width: min(360px, calc(100% - 32px));
   padding: 16px;
   border: 1px solid var(--color-border);
-  border-radius: var(--ka-radius);
+  border-radius: var(--fq-radius);
   background: var(--color-surface);
   box-shadow: var(--shadow-overlay);
   font: var(--text-ui)/1.6 var(--font-ui);
   color: var(--color-text);
 }
-.ka-coach > div:first-child {
+.fq-coach > div:first-child {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 4px 12px;
 }
-.ka-coach > div:first-child > .ka-icon {
+.fq-coach > div:first-child > .fq-icon {
   grid-row: span 2;
   margin-top: 3px;
   color: var(--color-info);
 }
-.ka-coach h4 {
+.fq-coach h4 {
   font-size: var(--text-body-lg);
 }
-.ka-coach .ka-row {
+.fq-coach .fq-row {
   justify-content: flex-end;
 }
 
 /* ===== Update banner ==================================================== */
-.ka-banner {
+.fq-banner {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -588,19 +586,19 @@
   font: var(--text-ui)/1.5 var(--font-ui);
   color: var(--color-text);
 }
-.ka-banner > .ka-icon {
+.fq-banner > .fq-icon {
   color: var(--color-info);
 }
-.ka-banner > span {
+.fq-banner > span {
   flex: 1 1 16rem;
   min-width: 0;
 }
-.ka-banner .ka-row {
+.fq-banner .fq-row {
   gap: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ka-spin {
+  .fq-spin {
     animation: none;
   }
 }

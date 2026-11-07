@@ -20,7 +20,7 @@ export class EditorialSaves {
     this.committed = saved ? structuredClone(saved) : null;
     this.expected = savedGeneration === undefined ? (saved?.generation ?? null) : savedGeneration;
     this.generationFloor = saved?.generation ?? 0;
-    this.key = `kindling.editorial.recovery.${round.id}`;
+    this.key = `feather-quill.editorial.recovery.${round.id}`;
   }
 
   recover(saved: EditorialSession | null): EditorialSession | null {

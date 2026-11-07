@@ -15,7 +15,7 @@ async function invoke(command, args = {}) {
   const result = await browser.executeAsync(
     async (command, args, done) => {
       try {
-        done({ value: await window.__KINDLING_TEST__.invoke(command, args) });
+        done({ value: await window.__FEATHER_QUILL_TEST__.invoke(command, args) });
       } catch (e) {
         done({ error: String(e) });
       }
@@ -39,7 +39,7 @@ describe("novelWriter round trip and prose sync", () => {
     if (folder) rmSync(folder, { recursive: true, force: true });
   });
   it("exports a sample, imports it, and applies an on-disk prose edit in the editor", async () => {
-    folder = mkdtempSync(join(tmpdir(), "kindling-novelwriter-"));
+    folder = mkdtempSync(join(tmpdir(), "feather-quill-novelwriter-"));
     const original = await invoke("create_sample_project");
     createdProjects.push(original.id);
     const originalChapters = await invoke("get_chapters", { projectId: original.id });

@@ -7,7 +7,7 @@ fn main() {
             .file("src/qa_snapshot.m")
             .flag("-fobjc-arc")
             .flag("-fblocks")
-            .compile("kindling_qa_snapshot");
+            .compile("feather_quill_qa_snapshot");
         println!("cargo:rustc-link-lib=framework=WebKit");
         println!("cargo:rustc-link-lib=framework=AppKit");
     }

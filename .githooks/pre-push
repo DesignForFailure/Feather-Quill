@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Kindling pre-push hook
+# Feather Quill pre-push hook
 # Runs linting, formatting, type checking, and tests before pushing
 
 # Automation bypass: blacksmith has its own test gate and CI re-runs every check on the

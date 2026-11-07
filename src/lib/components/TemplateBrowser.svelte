@@ -79,7 +79,7 @@
   aria-labelledby="template-browser-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-default dialog-shell templates">
+  <div class="app-dialog-surface fq-dialog-default dialog-shell templates">
     <DialogHeader
       title={t("sidebar.templateBrowser.title")}
       titleId="template-browser-title"
@@ -88,14 +88,14 @@
       closeTestId="template-close"
     />
 
-    <div class="ka-dialog-body">
+    <div class="fq-dialog-body">
       {#if loading}
-        <div class="ka-progress od-field" role="status">
+        <div class="fq-progress od-field" role="status">
           <span>{t("sidebar.templateBrowser.loading")}</span>
           <progress aria-label={t("sidebar.templateBrowser.loadingAria")}></progress>
         </div>
       {:else if filteredTemplates.length === 0}
-        <div class="ka-empty od-stack">
+        <div class="fq-empty od-stack">
           <h4>{t("sidebar.templateBrowser.noTemplates")}</h4>
           <p>{t("sidebar.templateBrowser.noTemplatesHint")}</p>
         </div>
@@ -165,14 +165,14 @@
       {/if}
     </div>
 
-    <footer class="ka-dialog-footer">
-      <p class="ka-help ka-dialog-footer-start">
+    <footer class="fq-dialog-footer">
+      <p class="fq-help fq-dialog-footer-start">
         {tn("sidebar.templateBrowser.templateCount", filteredTemplates.length)}
       </p>
-      <button type="button" onclick={onClose} class="ka-button ka-button--secondary">
+      <button type="button" onclick={onClose} class="fq-button fq-button--secondary">
         {t("common.cancel")}
       </button>
-      <button type="button" onclick={handleSelect} disabled={!selectedTemplate} class="ka-button">
+      <button type="button" onclick={handleSelect} disabled={!selectedTemplate} class="fq-button">
         {t("sidebar.templateBrowser.useTemplate")}
       </button>
     </footer>
@@ -256,7 +256,7 @@
     flex: none;
     margin-top: 6px;
     color: var(--color-text-muted);
-    transition: transform var(--ka-motion) ease-out;
+    transition: transform var(--fq-motion) ease-out;
   }
   .template-main[aria-expanded="true"] :global(.template-chev) {
     transform: rotate(90deg);

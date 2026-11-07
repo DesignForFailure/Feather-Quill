@@ -55,7 +55,7 @@ Restored light theme and 100% zoom, restored preferences, and deleted both owned
 User-requested refinement after `634211d`:
 
 - Added a pinned Settings footer in the project sidebar that opens the shared window. It also works while the sidebar is used for local editorial review.
-- Grouped settings navigation into Kindling → Preferences and Projects → Manuscript / Reference Library using labelled sections and nested lists.
+- Grouped settings navigation into Feather Quill → Preferences and Projects → Manuscript / Reference Library using labelled sections and nested lists.
 - Moved the persistent Project selector under Projects in the settings sidebar. Choosing another project from a shared preferences area opens Project Details; existing draft/save guards still apply.
 - Added a scope/project/subsection location label above the right-hand controls.
 

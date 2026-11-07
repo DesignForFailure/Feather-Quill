@@ -1,6 +1,6 @@
-# Kindling E2E Tests
+# Feather Quill E2E Tests
 
-End-to-end tests for Kindling using [WebdriverIO](https://webdriver.io/) and [Tauri's WebDriver support](https://v2.tauri.app/develop/tests/webdriver/).
+End-to-end tests for Feather Quill using [WebdriverIO](https://webdriver.io/) and [Tauri's WebDriver support](https://v2.tauri.app/develop/tests/webdriver/).
 
 ## Platform Support
 

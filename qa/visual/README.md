@@ -1,12 +1,12 @@
-# Kindling visual QA suite
+# Feather Quill visual QA suite
 
-`npm run qa:visual` drives a **hidden, isolated Kindling desktop process through
+`npm run qa:visual` drives a **hidden, isolated Feather Quill desktop process through
 its Unix socket**. Navigation, fixture creation, audits and lossless screenshots
 use that socket. No MCP server or per-checkpoint model calls are involved.
 
 Screenshots come from the app's own **WKWebView.takeSnapshot** renderer, encoded
 as PNG. They do not use macOS desktop/window capture. You can use your normal
-Kindling app and other applications while QA runs; pointer position, overlapping
+Feather Quill app and other applications while QA runs; pointer position, overlapping
 windows, notifications and display arrangement are outside the captured document.
 No focus, Screen Recording permission, DND changes or HiDPI display mode is needed.
 
@@ -35,12 +35,12 @@ node qa/visual/isolation.mjs         # optional native rendering/isolation proof
 The launcher reuses this checkout's Vite server on port 1420, or starts one. It
 builds the debug binary and starts an invisible process with a separate app
 identifier, settings directory, WebKit website datastore, authenticated socket
-(`/tmp/kindling-qa.sock`) and database (`qa/visual/data/background-profile/`).
-The normal app's `/tmp/kindling-mcp.sock` and personal library remain independent.
+(`/tmp/feather-quill-qa.sock`) and database (`qa/visual/data/background-profile/`).
+The normal app's `/tmp/feather-quill-mcp.sock` and personal library remain independent.
 An existing compatible QA process is reused. Stop a QA process before rebuilding
 its native code. Stopping the launcher stops only processes it started.
 
-Run one QA driver at a time; `/tmp/kindling-qa.sock.run.lock` rejects concurrent passes. Never
+Run one QA driver at a time; `/tmp/feather-quill-qa.sock.run.lock` rejects concurrent passes. Never
 edit application, harness or suite files during capture: Vite reload invalidates
 in-flight actions. Using the normal app is supported; changing the shared source
 code during a run is not. The runner requires an empty QA library and refuses
@@ -67,7 +67,7 @@ Start the QA app with the locale override, which reaches both the webview (throu
 Vite) and the native menus:
 
 ```bash
-KINDLING_LOCALE=ru npm run tauri:qa   # or zh-CN, es, pt-BR, de
+FEATHER_QUILL_LOCALE=ru npm run tauri:qa   # or zh-CN, es, pt-BR, de
 npm run qa:visual
 ```
 
@@ -82,7 +82,7 @@ copy or a test id as usual; compare visible text with `window.__qa.has/is` rathe
 than `textContent.includes('…')`.
 
 Accepted baselines are English, so a non-English pass reports every image as
-changed (exit 2). Its value is the audits (axe, Press, overflow, console) and a
+changed (exit 2). Its value is the audits (axe, theme, overflow, console) and a
 visual review of the captures for clipped text, untranslated copy and font
 fallback. The overflow audit only sees scroll overflow, not text cut off inside
 a fixed-size control. Native menus are not part of the WebKit captures; check
@@ -218,8 +218,8 @@ Do not overlap cleanup calls. Do not match projects by name/source to claim
 ownership. Do not empty a database or reset the data directory to bypass guards.
 
 A force-quit, logout or socket loss may prevent cleanup. The run lock records its
-PID; remove `/tmp/kindling-qa.sock.run.lock` only after verifying that PID has stopped and owned
-fixture recovery is complete. The launcher has a separate `/tmp/kindling-qa.sock.start.lock` with
+PID; remove `/tmp/feather-quill-qa.sock.run.lock` only after verifying that PID has stopped and owned
+fixture recovery is complete. The launcher has a separate `/tmp/feather-quill-qa.sock.start.lock` with
 the same stopped-PID rule. A dead process's exact owned IDs may be recovered from
 its result artifacts; leave any project without ownership evidence for inspection.
 

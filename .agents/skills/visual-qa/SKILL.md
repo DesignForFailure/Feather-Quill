@@ -1,9 +1,9 @@
 ---
 name: visual-qa
-description: Run Kindling desktop visual QA through its direct socket runner, inspect regressions, and review isolated 2× PNG baseline updates. Use for Kindling screenshot checks, visual regression passes, and baseline maintenance.
+description: Run Feather Quill desktop visual QA through its direct socket runner, inspect regressions, and review isolated 2× PNG baseline updates. Use for Feather Quill screenshot checks, visual regression passes, and baseline maintenance.
 ---
 
-# Kindling visual QA
+# Feather Quill visual QA
 
 Use the existing Node runner for navigation, fixtures, captures, audits and pixel
 comparison. App communication goes directly over the Unix socket; no MCP server,
@@ -11,7 +11,7 @@ per-checkpoint agent driving, browser substitute or website capture script is ne
 
 ## Locate and select
 
-Work from the Kindling checkout containing `qa/visual/run.mjs`. When invoked
+Work from the Feather Quill checkout containing `qa/visual/run.mjs`. When invoked
 outside that checkout, resolve this skill's real directory (following symlinks):
 the repository is three parents above it. Read `qa/visual/README.md` for current
 prerequisites, capture rules and recovery. Read `qa/visual/COVERAGE.md` when
@@ -27,7 +27,7 @@ npm run qa:visual -- --only 09,15,17 --variants light
 npm run qa:visual -- --only 07 --variants narrow --calibrate
 ```
 
-For another interface language, start the app with `KINDLING_LOCALE=<tag> npm run tauri:qa`
+For another interface language, start the app with `FEATHER_QUILL_LOCALE=<tag> npm run tauri:qa`
 (restarting Vite first) and follow the README's "Other interface languages": every image
 differs from the English baselines, so judge the audits and review the captures instead.
 
@@ -40,7 +40,7 @@ pass took 379 seconds. Report measured timing and allow the process to finish.
 ## Prepare and run
 
 1. Start/reuse the hidden debug app with `npm run tauri:qa`. It has a separate
-   authenticated socket `/tmp/kindling-qa.sock`, `background-profile` database,
+   authenticated socket `/tmp/feather-quill-qa.sock`, `background-profile` database,
    settings directory and browser storage. The normal app can stay open.
 2. Run `npm run qa:baselines:check` and `npm run qa:visual -- --dry-run`.
    Dry-run checks socket snapshot capabilities/profile without app changes.

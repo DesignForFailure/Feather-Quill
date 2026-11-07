@@ -188,7 +188,7 @@
   }
 
   function finishTour() {
-    localStorage.setItem("kindling:onboardingCompleted", "true");
+    localStorage.setItem("feather-quill:onboardingCompleted", "true");
     ui.nextStep();
   }
 
@@ -212,7 +212,7 @@
     tabindex="-1"
     use:modalFocus={{ onEscape: handleEscape }}
   >
-    <div class="app-dialog-surface ka-dialog-default dialog-shell onboarding">
+    <div class="app-dialog-surface fq-dialog-default dialog-shell onboarding">
       <DialogHeader
         title={heading.title}
         subtitle={heading.subtitle}
@@ -222,10 +222,10 @@
         closeTestId="skip-onboarding"
       />
 
-      <div class="ka-dialog-body onboarding-body">
+      <div class="fq-dialog-body onboarding-body">
         {#if ui.onboardingStep === "welcome"}
-          <img class="onboarding-mark mark-light" src="/brand/kindling-mark.svg" alt="" />
-          <img class="onboarding-mark mark-dark" src="/brand/kindling-mark-reversed.svg" alt="" />
+          <img class="onboarding-mark mark-light" src="/feather-quill/mark.svg" alt="" />
+          <img class="onboarding-mark mark-dark" src="/feather-quill/mark-reversed.svg" alt="" />
           <p class="onboarding-lede">
             {t("onboarding.welcomeLede")}
           </p>
@@ -233,9 +233,9 @@
           <div class="tour-figure" aria-hidden="true">
             <div class="tour-sheet">
               <div class="tour-row">
-                <ChevronDown class="w-4 h-4 ka-icon" />
+                <ChevronDown class="w-4 h-4 fq-icon" />
                 <span class="tour-strong">{t("onboarding.mockChapterName")}</span>
-                <span class="ka-badge">{t("onboarding.mockChapterBadge")}</span>
+                <span class="fq-badge">{t("onboarding.mockChapterBadge")}</span>
               </div>
               <div class="tour-row tour-child is-current">
                 <span>{t("onboarding.mockSceneOnCliff")}</span>
@@ -243,7 +243,7 @@
               </div>
               <div class="tour-row tour-child">
                 <span class="tour-muted">{t("onboarding.mockSceneSeventhStep")}</span>
-                <span class="ka-badge">{t("onboarding.mockSceneBadge")}</span>
+                <span class="fq-badge">{t("onboarding.mockSceneBadge")}</span>
               </div>
             </div>
           </div>
@@ -282,7 +282,7 @@
               <div class="tour-block">
                 <div class="tour-row-head">
                   <span class="tour-strong">{t("onboarding.mockSynopsis")}</span>
-                  <span class="ka-badge">{t("onboarding.mockSceneSynopsisBadge")}</span>
+                  <span class="fq-badge">{t("onboarding.mockSceneSynopsisBadge")}</span>
                 </div>
                 <p class="tour-prose">
                   {t("onboarding.mockSynopsisProse")}
@@ -291,7 +291,7 @@
               <div class="tour-beat is-open">
                 <span class="tour-beat-num">1</span>
                 <span class="tour-strong">{t("onboarding.mockBeatMessenger")}</span>
-                <span class="ka-badge ka-badge--accent">{t("onboarding.mockStoryBeatBadge")}</span>
+                <span class="fq-badge fq-badge--accent">{t("onboarding.mockStoryBeatBadge")}</span>
               </div>
               <div class="tour-beat">
                 <span class="tour-beat-num">2</span>
@@ -337,21 +337,21 @@
               <div class="tour-row">
                 <span class="tour-strong">{t("onboarding.mockCharacterName")}</span>
                 <span class="tour-muted">{t("onboarding.mockCharacterRole")}</span>
-                <span class="ka-badge">{t("onboarding.mockLinkedBadge")}</span>
+                <span class="fq-badge">{t("onboarding.mockLinkedBadge")}</span>
               </div>
               <div class="tour-row">
                 <span class="tour-strong">{t("onboarding.mockMentorName")}</span>
                 <span class="tour-muted">{t("onboarding.mockMentorRole")}</span>
               </div>
               <div class="tour-tools">
-                <span><Plus class="w-4 h-4 ka-icon" /> {t("onboarding.mockAdd")}</span>
+                <span><Plus class="w-4 h-4 fq-icon" /> {t("onboarding.mockAdd")}</span>
                 <span
-                  ><ListChevronsDownUp class="w-4 h-4 ka-icon" />
+                  ><ListChevronsDownUp class="w-4 h-4 fq-icon" />
                   {t("onboarding.mockCollapseAll")}</span
                 >
-                <span><ArrowDownAZ class="w-4 h-4 ka-icon" /> {t("onboarding.mockSortAZ")}</span>
+                <span><ArrowDownAZ class="w-4 h-4 fq-icon" /> {t("onboarding.mockSortAZ")}</span>
                 <span
-                  ><PanelRightClose class="w-4 h-4 ka-icon" />
+                  ><PanelRightClose class="w-4 h-4 fq-icon" />
                   {t("onboarding.mockHidePanel")}</span
                 >
               </div>
@@ -385,13 +385,13 @@
           </ul>
         {:else if ui.onboardingStep === "import"}
           {#if guidedLoading}
-            <div class="ka-progress od-field" role="status">
+            <div class="fq-progress od-field" role="status">
               <span>{t("onboarding.readingOutline")}</span>
               <progress aria-label={t("onboarding.readingOutline")}></progress>
             </div>
           {:else if guidedPreview}
             <p class="onboarding-lede">{t("onboarding.previewLede")}</p>
-            <dl class="ka-facts">
+            <dl class="fq-facts">
               <div>
                 <dt>{t("onboarding.factChapters")}</dt>
                 <dd>{guidedPreview.chapter_count}</dd>
@@ -418,7 +418,7 @@
               {/if}
             </dl>
           {:else if guidedError}
-            <div class="ka-notice ka-notice--error od-row-top" role="alert">
+            <div class="fq-notice fq-notice--error od-row-top" role="alert">
               <CircleAlert class="w-5 h-5" aria-hidden="true" />
               <div class="od-field od-fill">
                 <strong>{t("onboarding.outlineUnreadable")}</strong>
@@ -434,7 +434,7 @@
                 <li>
                   <button
                     type="button"
-                    class="ka-button ka-button--ghost import-format"
+                    class="fq-button fq-button--ghost import-format"
                     onclick={format.run}
                   >
                     {format.label}
@@ -446,12 +446,12 @@
             <div class="import-alternatives">
               <button
                 type="button"
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 onclick={trySampleProject}
               >
                 {t("onboarding.trySample")}
               </button>
-              <button type="button" class="ka-button ka-button--ghost" onclick={skipOnboarding}>
+              <button type="button" class="fq-button fq-button--ghost" onclick={skipOnboarding}>
                 <FilePlus class="w-5 h-5" aria-hidden="true" />
                 {t("onboarding.startFromScratch")}
               </button>
@@ -459,8 +459,8 @@
           {/if}
         {/if}
 
-        <div class="ka-progress od-field onboarding-progress">
-          <div class="ka-between">
+        <div class="fq-progress od-field onboarding-progress">
+          <div class="fq-between">
             <span>{progressLabel}</span>
             <span class="od-nowrap"
               >{t("onboarding.stepProgress", {
@@ -481,38 +481,38 @@
         </div>
       </div>
 
-      <footer class="ka-dialog-footer">
+      <footer class="fq-dialog-footer">
         {#key `${ui.onboardingStep}:${guidedPreview ? "preview" : guidedError ? "error" : ""}`}
           {#if ui.onboardingStep === "welcome"}
             <button
               type="button"
-              class="ka-button ka-button--ghost ka-dialog-footer-start"
+              class="fq-button fq-button--ghost fq-dialog-footer-start"
               onclick={skipOnboarding}
             >
               {t("onboarding.skipAndImport")}
             </button>
             <button
               type="button"
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               onclick={() => ui.nextStep()}
             >
               {t("onboarding.takeTour")}
             </button>
-            <button type="button" class="ka-button" onclick={trySampleProject} use:focusOnMount>
+            <button type="button" class="fq-button" onclick={trySampleProject} use:focusOnMount>
               {t("onboarding.trySampleShort")}
             </button>
           {:else if ui.onboardingStep === "import"}
             {#if guidedPreview}
               <button
                 type="button"
-                class="ka-button ka-button--ghost ka-dialog-footer-start"
+                class="fq-button fq-button--ghost fq-dialog-footer-start"
                 onclick={backFromGuidedPreview}
               >
                 {t("onboarding.chooseDifferentFile")}
               </button>
               <button
                 type="button"
-                class="ka-button"
+                class="fq-button"
                 data-testid="guided-import-confirm"
                 onclick={confirmGuidedImport}
                 use:focusOnMount
@@ -522,7 +522,7 @@
             {:else if guidedError}
               <button
                 type="button"
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 onclick={backFromGuidedPreview}
                 use:focusOnMount
               >
@@ -531,7 +531,7 @@
             {:else}
               <button
                 type="button"
-                class="ka-button ka-button--ghost ka-dialog-footer-start"
+                class="fq-button fq-button--ghost fq-dialog-footer-start"
                 onclick={() => ui.previousStep()}
                 disabled={guidedLoading}
               >
@@ -539,7 +539,7 @@
               </button>
               <button
                 type="button"
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 onclick={skipOnboarding}
                 disabled={guidedLoading}
               >
@@ -549,26 +549,26 @@
           {:else}
             <button
               type="button"
-              class="ka-button ka-button--ghost ka-dialog-footer-start"
+              class="fq-button fq-button--ghost fq-dialog-footer-start"
               onclick={() => ui.goToStep("import")}
             >
               {t("onboarding.skipTour")}
             </button>
             <button
               type="button"
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               onclick={() => ui.previousStep()}
             >
               {t("common.back")}
             </button>
             {#if ui.onboardingStep === "tour-references"}
-              <button type="button" class="ka-button" onclick={finishTour} use:focusOnMount>
+              <button type="button" class="fq-button" onclick={finishTour} use:focusOnMount>
                 {t("onboarding.startImporting")}
               </button>
             {:else}
               <button
                 type="button"
-                class="ka-button"
+                class="fq-button"
                 onclick={() => ui.nextStep()}
                 use:focusOnMount
               >
@@ -636,9 +636,9 @@
     font: var(--text-ui) / 1.4 var(--font-ui);
     color: var(--color-text);
   }
-  .tour-row .ka-badge,
-  .tour-beat .ka-badge,
-  .tour-row-head .ka-badge {
+  .tour-row .fq-badge,
+  .tour-beat .fq-badge,
+  .tour-row-head .fq-badge {
     margin-left: auto;
   }
   .tour-child {

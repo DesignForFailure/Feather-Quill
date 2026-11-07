@@ -29,7 +29,7 @@ describe("ContextMenu", () => {
     expect(menu.getAttribute("role")).toBe("menu");
     expect(menu.querySelector('[role="separator"]')).toBeTruthy();
     const remove = screen.getByRole("menuitem", { name: "Delete" });
-    expect(remove.classList.contains("ka-menu-danger")).toBe(true);
+    expect(remove.classList.contains("fq-menu-danger")).toBe(true);
     expect(screen.getByRole("menuitem", { name: "Planning" }).getAttribute("aria-haspopup")).toBe(
       "menu"
     );

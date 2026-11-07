@@ -98,12 +98,12 @@
   <p class="settings-lede">
     {t("settings.author.lede")}
   </p>
-  {#if loading}<p role="status" class="ka-help">{t("settings.author.loading")}</p>
+  {#if loading}<p role="status" class="fq-help">{t("settings.author.loading")}</p>
   {:else if loaded}
-    <div class="ka-group">
+    <div class="fq-group">
       <fieldset class="settings-fieldset">
-        <legend class="ka-group-title">{t("settings.author.infoTitle")}</legend>
-        <div class="ka-field od-field">
+        <legend class="fq-group-title">{t("settings.author.infoTitle")}</legend>
+        <div class="fq-field od-field">
           <label for="author-name">{t("settings.author.nameLabel")}</label>
           <input
             id="author-name"
@@ -113,20 +113,20 @@
             disabled={saving}
             aria-describedby="author-name-help"
           />
-          <p id="author-name-help" class="ka-help">
+          <p id="author-name-help" class="fq-help">
             {t("settings.author.nameHelp")}
           </p>
         </div>
       </fieldset>
     </div>
 
-    <div class="ka-group">
+    <div class="fq-group">
       <fieldset class="settings-fieldset">
-        <legend class="ka-group-title">{t("settings.author.contactTitle")}</legend>
-        <p class="ka-help">
+        <legend class="fq-group-title">{t("settings.author.contactTitle")}</legend>
+        <p class="fq-help">
           {t("settings.author.contactHelp")}
         </p>
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="address-line1">{t("settings.author.address1")}</label>
           <input
             id="address-line1"
@@ -136,7 +136,7 @@
             disabled={saving}
           />
         </div>
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="address-line2">{t("settings.author.address2")}</label>
           <input
             id="address-line2"
@@ -147,7 +147,7 @@
           />
         </div>
         <div class="settings-pair">
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="phone">{t("settings.author.phone")}</label>
             <input
               id="phone"
@@ -157,7 +157,7 @@
               disabled={saving}
             />
           </div>
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="email">{t("settings.author.email")}</label>
             <input
               id="email"
@@ -172,19 +172,19 @@
     </div>
 
     <div class="settings-actions">
-      {#if saved && !dirty}<p role="status" class="ka-help">{t("settings.author.saved")}</p>{/if}
+      {#if saved && !dirty}<p role="status" class="fq-help">{t("settings.author.saved")}</p>{/if}
       <button
         type="button"
         onclick={handleSave}
         disabled={saving}
         aria-busy={saving || undefined}
-        class="ka-button"
+        class="fq-button"
         >{#if saving}<Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
           {t("common.saving")}{:else}{t("settings.author.save")}{/if}</button
       >
     </div>
   {:else}
-    <div class="ka-notice ka-notice--warning od-row-top author-recovery">
+    <div class="fq-notice fq-notice--warning od-row-top author-recovery">
       <div class="od-field od-fill">
         <strong>{t("settings.author.loadFailedTitle")}</strong>
         <p>
@@ -195,18 +195,18 @@
     <div class="settings-actions">
       <button
         type="button"
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         onclick={loadSettings}
         disabled={saving}>{t("settings.author.retry")}</button
       >
       <button
         type="button"
-        class="ka-button ka-button--danger"
+        class="fq-button fq-button--danger"
         onclick={resetSettings}
         disabled={saving}
         aria-busy={saving || undefined}>{t("settings.author.reset")}</button
       >
     </div>
   {/if}
-  {#if error}<p role="alert" class="ka-error">{error}</p>{/if}
+  {#if error}<p role="alert" class="fq-error">{error}</p>{/if}
 </div>

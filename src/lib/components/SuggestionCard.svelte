@@ -21,8 +21,8 @@
 
   // The badge text carries the meaning; tone only reinforces it.
   const confidenceTone = $derived.by(() => {
-    if (suggestion.confidence >= 0.9) return "ka-badge--success";
-    if (suggestion.confidence >= 0.5) return "ka-badge--warning";
+    if (suggestion.confidence >= 0.9) return "fq-badge--success";
+    if (suggestion.confidence >= 0.5) return "fq-badge--warning";
     return "";
   });
 
@@ -50,7 +50,7 @@
   <div class="suggestion-main">
     <div class="suggestion-title">
       <span class="suggestion-name">{suggestion.reference_name}</span>
-      <span class="ka-badge {confidenceTone}">{confidenceLabel}</span>
+      <span class="fq-badge {confidenceTone}">{confidenceLabel}</span>
     </div>
     <small class="suggestion-match" title={suggestion.match_text}>
       {t("references.suggestionCard.foundMatch", {
@@ -62,7 +62,7 @@
   <button
     type="button"
     onclick={() => onLink(suggestion)}
-    class="ka-button ka-button--secondary suggestion-link"
+    class="fq-button fq-button--secondary suggestion-link"
     aria-label={t("references.suggestionCard.linkToSceneLabel", {
       name: suggestion.reference_name,
     })}
@@ -74,7 +74,7 @@
   <button
     type="button"
     onclick={() => onDismiss(suggestion)}
-    class="ka-button ka-button--ghost ka-icon-button suggestion-dismiss"
+    class="fq-button fq-button--ghost fq-icon-button suggestion-dismiss"
     aria-label={t("references.suggestionCard.dismissLabel", {
       name: suggestion.reference_name,
     })}
@@ -111,7 +111,7 @@
     font: 500 var(--text-ui) / 1.4 var(--font-ui);
     color: var(--color-text);
   }
-  .suggestion-title .ka-badge {
+  .suggestion-title .fq-badge {
     min-height: 20px;
     padding: 2px 6px;
     font-size: var(--text-eyebrow);

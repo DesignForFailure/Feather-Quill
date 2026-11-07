@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import pressTokens from "../../styles/press/tokens.json";
+import themePalette from "../../styles/theme/palette.json";
 import { TAG_COLOR_NAMES, tagColor } from "./tagColor";
 
 describe("tagColor", () => {
   it("renders every stored palette value through its themed token", () => {
     for (const name of TAG_COLOR_NAMES) {
-      const stored = pressTokens.light[`--tag-${name}` as keyof typeof pressTokens.light];
+      const stored = themePalette.light[`--tag-${name}` as keyof typeof themePalette.light];
       expect(tagColor(stored)).toBe(`var(--color-tag-${name})`);
       expect(tagColor(stored.toLowerCase())).toBe(`var(--color-tag-${name})`);
     }

@@ -75,7 +75,7 @@
   aria-labelledby="rename-dialog-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell">
     <DialogHeader
       {title}
       titleId="rename-dialog-title"
@@ -84,8 +84,8 @@
       closeTestId="rename-close"
     />
 
-    <div class="ka-dialog-body">
-      <div class="ka-field od-field">
+    <div class="fq-dialog-body">
+      <div class="fq-field od-field">
         <label for="rename-input">{t("sidebar.renameDialog.name")}</label>
         <input
           id="rename-input"
@@ -98,16 +98,16 @@
           aria-describedby={error ? "rename-error" : undefined}
         />
         {#if error}
-          <p id="rename-error" class="ka-error" role="alert">{error}</p>
+          <p id="rename-error" class="fq-error" role="alert">{error}</p>
         {/if}
       </div>
     </div>
 
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       <button
         type="button"
         onclick={onClose}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         disabled={saving}
       >
         {t("common.cancel")}
@@ -116,7 +116,7 @@
         data-testid="rename-save"
         type="button"
         onclick={handleSave}
-        class="ka-button"
+        class="fq-button"
         disabled={saving || !newName.trim()}
         aria-busy={saving || undefined}
       >

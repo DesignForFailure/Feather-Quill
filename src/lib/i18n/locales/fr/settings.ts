@@ -34,7 +34,7 @@ const catalog: Catalog = {
 
   // --- Apparence ---
   "appearance.lede":
-    "Choisissez l'apparence de kindling et la quantité de conseils qu'il affiche. Les modifications s'appliquent immédiatement à tous les projets.",
+    "Choisissez l'apparence de Feather Quill et la quantité de conseils qu'il affiche. Les modifications s'appliquent immédiatement à tous les projets.",
   "appearance.title": "Apparence",
   "appearance.themeAria": "Thème",
   "appearance.themeDark": "Sombre",

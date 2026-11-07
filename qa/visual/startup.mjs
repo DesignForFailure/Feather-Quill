@@ -43,9 +43,9 @@ try {
     await page.addInitScript(
       ({ preference, holdProjects, review }) => {
         let filesTaken = false;
-        if (preference) localStorage.setItem("kindling:theme", preference);
-        localStorage.setItem("kindling:onboardingCompleted", "true");
-        localStorage.setItem("kindling:guidanceEnabled", "false");
+        if (preference) localStorage.setItem("feather-quill:theme", preference);
+        localStorage.setItem("feather-quill:onboardingCompleted", "true");
+        localStorage.setItem("feather-quill:guidanceEnabled", "false");
         window.isTauri = false;
         window.__TAURI_INTERNALS__ = {
           metadata: {
@@ -212,7 +212,7 @@ try {
     return route.continue();
   });
   await page.goto(url, { waitUntil: "domcontentloaded" });
-  await page.getByText("Kindling couldn’t start. Please try again.").waitFor();
+  await page.getByText("Feather Quill couldn’t start. Please try again.").waitFor();
   assert.equal(await page.locator(".startup-spinner").isVisible(), false);
   await page.getByRole("button", { name: "Try again" }).click();
   await page.locator("#startup-loading").waitFor({ state: "detached" });

@@ -1,187 +1,38 @@
-# Installation
+# Installing Feather Quill
 
-Download and install Kindling on your platform.
+Feather Quill is an independent Kindling fork in its initial rebrand. Download an installer only when one is published on [this fork's releases page](https://github.com/DesignForFailure/Feather-Quill/releases). Kindling's upstream installers install a different application.
 
-## Download
+Builds depend on the available toolchains, release configuration, and signing credentials. This repository does not currently promise Apple signing, notarization, or a particular installer filename. Read the notes attached to the release you download.
 
-Get the latest release from the [GitHub Releases page](https://github.com/smith-and-web/kindling/releases).
+| Platform | Installer formats     |
+| -------- | --------------------- |
+| macOS    | DMG                   |
+| Windows  | EXE or MSI            |
+| Linux    | AppImage, DEB, or RPM |
 
-### Available Downloads
+Verify the release's checksums when supplied. On macOS and Windows, follow the platform's normal installation process and evaluate any signing warning against the release information.
 
-| Platform              | File                                | Description                                   |
-| --------------------- | ----------------------------------- | --------------------------------------------- |
-| macOS                 | `Kindling_<version>_universal.dmg`  | One build for both Apple Silicon and Intel    |
-| Windows               | `Kindling_<version>_x64-setup.exe`  | Windows installer (recommended)               |
-| Windows               | `Kindling_<version>_x64_en-US.msi`  | MSI package, for managed or scripted installs |
-| Linux                 | `Kindling_<version>_amd64.AppImage` | Portable, works on most distros               |
-| Linux (Debian/Ubuntu) | `Kindling_<version>_amd64.deb`      | Native package for apt-based systems          |
-| Linux (Fedora/RHEL)   | `Kindling-<version>-1.x86_64.rpm`   | Native package for dnf/rpm-based systems      |
+## Linux
 
-The `.sig` files next to each download are update signatures used by the in-app updater; you don't need them for a manual install.
-
----
-
-## Verify Your Download
-
-To ensure you downloaded the authentic Kindling release:
-
-1. **Download only from official sources**: [GitHub Releases](https://github.com/smith-and-web/kindling/releases)
-2. **Verify checksums (optional but recommended)**:
-   - Download `checksums.sha256` from the same release
-   - Verify the file with your platform:
+An AppImage is suitable for distributions where installing a DEB or RPM is inappropriate, including immutable systems such as Bazzite. Using the actual filename you downloaded:
 
 ```bash
-# macOS / Linux
-shasum -a 256 -c checksums.sha256 --ignore-missing
-
-# Windows (PowerShell)
-certutil -hashfile Kindling_<version>_x64_en-US.msi SHA256
+chmod +x "/path/to/downloaded.AppImage"
+"/path/to/downloaded.AppImage"
 ```
 
-If your checksum doesn't match, delete the file and re-download from the official release page.
+For Debian- or RPM-based systems, install the appropriate release package using the distribution's package tools. The native executable is named `feather-quill`.
 
-## Trust Signals
+## Build from source
 
-- Kindling is open source and auditable: [github.com/smith-and-web/kindling](https://github.com/smith-and-web/kindling)
-- Release builds are produced by GitHub Actions in this repository
-- Release assets include checksums for download verification
+See the [README](../README.md#build-from-source) for Node, Rust, and Tauri prerequisites and build commands. No published installer is needed to build locally.
 
----
+## Local data and existing Kindling projects
 
-## macOS Installation
+Feather Quill uses the application identifier `io.github.designforfailure.featherquill.app` and its own `feather-quill.db`. It does not automatically read or migrate a Kindling installation's library. Use supported import and export workflows to exchange projects, and keep an independent backup before attempting a manual migration.
 
-Kindling is code-signed and notarized by Apple. It should open without Gatekeeper warnings.
+Existing editorial review and feedback files remain compatible with their `.kindling-review` and `.kindling-feedback` extensions. See [fork branding and compatibility](fork-branding.md).
 
-1. Double-click the `.dmg` file to mount it
-2. Drag **Kindling** to your **Applications** folder
-3. Double-click **Kindling** in your Applications folder to launch it
+## Updates
 
----
-
-## Windows Installation
-
-Kindling is not signed with a Windows code signing certificate. Windows SmartScreen may show a warning when you first run the installer.
-
-### Bypassing SmartScreen
-
-1. Download the `_x64-setup.exe` installer (or the `.msi` package)
-2. Double-click to run it
-3. If you see **"Windows protected your PC"**:
-   - Click **More info**
-   - Click **Run anyway**
-4. Follow the installation wizard
-5. Launch Kindling from the Start menu
-
-After installation, Kindling will run without warnings.
-
-### Why This Warning Appears
-
-SmartScreen warns about apps that don't have an established reputation with Microsoft. As more users download and run Kindling, this warning will eventually disappear. Code signing certificates are expensive ($200-500/year), so we've opted to ship unsigned for now.
-
----
-
-## Linux Installation
-
-### AppImage (Recommended)
-
-AppImage is a portable format that works on most Linux distributions without installation.
-
-```bash
-# Download the AppImage
-# Make it executable
-chmod +x Kindling_*.AppImage
-
-# Run it
-./Kindling_*.AppImage
-```
-
-#### Optional: Desktop Integration
-
-To add Kindling to your application menu:
-
-```bash
-# Install AppImageLauncher (recommended)
-# Or manually create a .desktop file
-
-# Move AppImage to a permanent location
-mkdir -p ~/Applications
-mv Kindling_*.AppImage ~/Applications/
-
-# Create desktop entry
-cat > ~/.local/share/applications/kindling.desktop << EOF
-[Desktop Entry]
-Name=Kindling
-Exec=$HOME/Applications/Kindling_*.AppImage
-Icon=kindling
-Type=Application
-Categories=Office;Writing;
-EOF
-```
-
-### Debian/Ubuntu (.deb)
-
-For Debian-based distributions (Ubuntu, Linux Mint, Pop!\_OS, etc.):
-
-```bash
-# Install the package
-sudo dpkg -i Kindling_*_amd64.deb
-
-# If there are dependency issues
-sudo apt-get install -f
-```
-
-Launch Kindling from your application menu or run `kindling` in the terminal.
-
-#### Uninstalling
-
-```bash
-sudo apt remove kindling
-```
-
-### Fedora/RHEL (.rpm)
-
-For RPM-based distributions (Fedora, RHEL, openSUSE, etc.):
-
-```bash
-# Install the package
-sudo dnf install ./Kindling-*-1.x86_64.rpm
-```
-
-Launch Kindling from your application menu or run `kindling` in the terminal.
-
----
-
-## Troubleshooting
-
-### macOS: App crashes immediately
-
-The macOS download is a single universal build (`Kindling_<version>_universal.dmg`) that runs natively on both Apple Silicon and Intel Macs, so there is no architecture to choose. Delete the app, re-download the DMG from the [Releases page](https://github.com/smith-and-web/kindling/releases) and drag it to Applications again.
-
-### Windows: Installer fails silently
-
-Try running the installer as Administrator:
-
-1. Right-click the `_x64-setup.exe` or `.msi` file
-2. Select **Run as administrator**
-
-### Linux: AppImage won't start
-
-Ensure FUSE is installed:
-
-```bash
-# Ubuntu/Debian
-sudo apt install libfuse2
-
-# Fedora
-sudo dnf install fuse
-```
-
-### Linux: No application icon
-
-AppImages don't always integrate with desktop environments automatically. Use AppImageLauncher or create a `.desktop` file manually (see above).
-
----
-
-## Building from Source
-
-If you prefer to build Kindling yourself, see the [README](https://github.com/smith-and-web/kindling#from-source) for instructions.
+Automatic checks remain inactive until a Feather Quill signing key is configured. The upstream Kindling public key is not reused. Until the fork publishes signed update metadata, obtain updates from this fork's releases and follow their instructions.

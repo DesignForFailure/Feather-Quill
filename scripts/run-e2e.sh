@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# E2E Test Runner for Kindling
+# E2E Test Runner for Feather Quill
 # This script helps developers run E2E tests with proper setup
 
 set -e
@@ -17,7 +17,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 echo -e "${BLUE}╔════════════════════════════════════════════════════════╗${NC}"
-echo -e "${BLUE}║        Kindling E2E Test Runner                        ║${NC}"
+echo -e "${BLUE}║        Feather Quill E2E Test Runner                        ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════╝${NC}"
 echo ""
 
@@ -53,11 +53,11 @@ fi
 
 # Check for Tauri binary
 BINARY_PATH=""
-if [ -f "$PROJECT_ROOT/src-tauri/target/release/kindling" ]; then
-    BINARY_PATH="$PROJECT_ROOT/src-tauri/target/release/kindling"
+if [ -f "$PROJECT_ROOT/src-tauri/target/release/feather-quill" ]; then
+    BINARY_PATH="$PROJECT_ROOT/src-tauri/target/release/feather-quill"
     echo -e "${GREEN}✅ Tauri binary found (release)${NC}"
-elif [ -f "$PROJECT_ROOT/src-tauri/target/debug/kindling" ]; then
-    BINARY_PATH="$PROJECT_ROOT/src-tauri/target/debug/kindling"
+elif [ -f "$PROJECT_ROOT/src-tauri/target/debug/feather-quill" ]; then
+    BINARY_PATH="$PROJECT_ROOT/src-tauri/target/debug/feather-quill"
     echo -e "${GREEN}✅ Tauri binary found (debug)${NC}"
 else
     echo -e "${RED}❌ Tauri binary not found${NC}"

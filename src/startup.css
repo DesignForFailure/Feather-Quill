@@ -1,5 +1,5 @@
-@import "./styles/press/fonts.css";
-@import "./styles/press/tokens.css";
+@import "./styles/theme/fonts.css";
+@import "./styles/theme/tokens.css";
 
 /* This stylesheet is linked by index.html, independently of the JS bundle. */
 

@@ -16,7 +16,7 @@ const OUTLINE: &str = "---\ntitle: The Letter — Source Outline\n---\n\n# The L
 
 /// Adds a screenplay and a syncable outline alongside the user-facing sample.
 /// The Markdown source lives beside the active database, including when QA uses
-/// KINDLING_DATA_DIR. Each invocation owns a new file and never overwrites one.
+/// FEATHER_QUILL_DATA_DIR. Each invocation owns a new file and never overwrites one.
 #[cfg(debug_assertions)]
 #[tauri::command]
 pub async fn create_demo_fixture(state: State<'_, AppState>) -> Result<Vec<Project>, String> {

@@ -21,11 +21,11 @@ repairing registration; do not terminate a user's review to clean up a handler.
 
 1. Install a build without associations, then update it to the candidate build.
 2. Check both file extensions' type name, document icon and Open With identity.
-3. With Kindling closed, open a review file from the file manager. It must enter
+3. With Feather Quill closed, open a review file from the file manager. It must enter
    Editorial directly, including on a profile without projects or onboarding history.
 4. Edit, comment, scroll without moving the cursor, close and reopen. Verify the
    same session, comments, suggestions and reading position resume.
-5. Open a second file while Kindling is running with unsaved writer work. Verify
+5. Open a second file while Feather Quill is running with unsaved writer work. Verify
    writing saves and the underlying project remains open when Editorial closes.
 6. Export partial feedback; continue both editor and writer work; return again.
    Import must preserve current writer prose and previous decisions.

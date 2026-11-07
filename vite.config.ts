@@ -7,17 +7,17 @@ import path from "path";
 const host = process.env.TAURI_DEV_HOST;
 
 export default defineConfig(({ command }) => {
-  // Mock Tauri layer disabled - use real Tauri backend (npm run tauri dev).
-  // To re-enable mocks for browser-only testing: set useMocks = command === "serve" && !host
-  const useMocks = false;
+  // Explicitly opt into fixtures for browser UI checks; never include them in a build.
+  // @ts-expect-error process is a nodejs global
+  const useMocks = command === "serve" && process.env.FEATHER_QUILL_BROWSER_MOCKS === "1";
 
   // One variable sets the locale for both halves of `npm run tauri dev`: Rust reads
-  // KINDLING_LOCALE for the native menus, the webview reads VITE_KINDLING_LOCALE.
+  // FEATHER_QUILL_LOCALE for the native menus, the webview reads VITE_FEATHER_QUILL_LOCALE.
   // Dev server only, so a stray shell variable can never bake a locale into a release.
   // @ts-expect-error process is a nodejs global
   const env = process.env;
-  if (command === "serve" && env.KINDLING_LOCALE && !env.VITE_KINDLING_LOCALE) {
-    env.VITE_KINDLING_LOCALE = env.KINDLING_LOCALE;
+  if (command === "serve" && env.FEATHER_QUILL_LOCALE && !env.VITE_FEATHER_QUILL_LOCALE) {
+    env.VITE_FEATHER_QUILL_LOCALE = env.FEATHER_QUILL_LOCALE;
   }
 
   return {
@@ -26,11 +26,11 @@ export default defineConfig(({ command }) => {
     resolve: {
       alias: {
         $lib: path.resolve("./src/lib"),
-        $press: path.resolve("./src/styles/press"),
         ...(useMocks
           ? {
-              "@tauri-apps/api/core": path.resolve("./src/dev/mock-tauri.ts"),
+              "@tauri-apps/api/core": path.resolve("./src/dev/browser-core.ts"),
               "@tauri-apps/api/event": path.resolve("./src/dev/mock-event.ts"),
+              "@tauri-apps/api/window": path.resolve("./src/dev/browser-window.ts"),
               "@tauri-apps/plugin-dialog": path.resolve("./src/dev/mock-dialog.ts"),
               "@tauri-apps/plugin-opener": path.resolve("./src/dev/mock-opener.ts"),
             }

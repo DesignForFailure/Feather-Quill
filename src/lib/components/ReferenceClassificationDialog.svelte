@@ -138,27 +138,27 @@
   aria-labelledby="reference-classification-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-default dialog-shell">
+  <div class="app-dialog-surface fq-dialog-default dialog-shell">
     <DialogHeader
       title={t("references.referenceClassificationDialog.title")}
       titleId="reference-classification-title"
       {onClose}
       disabled={saving}
     />
-    <div class="ka-dialog-body classify">
+    <div class="fq-dialog-body classify">
       <p class="classify-lede">
         {t("references.referenceClassificationDialog.lede")}
       </p>
 
       {#if loading}
-        <div class="ka-progress od-field" role="status">
+        <div class="fq-progress od-field" role="status">
           <span>{t("references.referenceClassificationDialog.loadingReferences")}</span>
           <progress
             aria-label={t("references.referenceClassificationDialog.loadingReferencesLabel")}
           ></progress>
         </div>
       {:else if error}
-        <div class="ka-notice ka-notice--error od-row-top" role="alert">
+        <div class="fq-notice fq-notice--error od-row-top" role="alert">
           <CircleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <strong
@@ -170,7 +170,7 @@
           </div>
         </div>
       {:else if references.length === 0}
-        <div class="ka-empty od-stack">
+        <div class="fq-empty od-stack">
           <h4>{t("references.referenceClassificationDialog.emptyTitle")}</h4>
           <p>{t("references.referenceClassificationDialog.emptyMessage")}</p>
         </div>
@@ -190,7 +190,7 @@
             {#each references as reference (reference.id)}
               <tr>
                 <td>
-                  <div class="ka-label classify-name">{reference.name}</div>
+                  <div class="fq-label classify-name">{reference.name}</div>
                   {#if reference.description}
                     <div class="classify-desc">
                       <!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -223,11 +223,11 @@
       {/if}
     </div>
 
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       <button
         type="button"
         onclick={onClose}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         disabled={saving}
       >
         {t("references.referenceClassificationDialog.skip")}
@@ -235,7 +235,7 @@
       <button
         type="button"
         onclick={saveChanges}
-        class="ka-button"
+        class="fq-button"
         disabled={saving || loading || references.length === 0}
         aria-busy={saving || undefined}
       >
@@ -312,14 +312,14 @@
   .classify-table select {
     width: 100%;
   }
-  .ka-notice p {
+  .fq-notice p {
     margin: 0;
   }
-  .ka-empty h4 {
+  .fq-empty h4 {
     margin: 0;
     font: 550 var(--text-h3) / 1.25 var(--font-display);
   }
-  .ka-empty p {
+  .fq-empty p {
     margin: 0;
   }
 </style>

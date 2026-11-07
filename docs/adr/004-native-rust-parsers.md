@@ -6,10 +6,10 @@ Accepted
 
 ## Context
 
-Kindling imports outlines from external tools (Plottr, Markdown). These parsers need to:
+Feather Quill imports outlines from external tools (Plottr, Markdown). These parsers need to:
 - Read various file formats (JSON, text)
 - Extract hierarchical structure
-- Map external data to Kindling's model
+- Map external data to Feather Quill's model
 - Handle large files efficiently
 
 Options considered:

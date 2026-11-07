@@ -1,10 +1,10 @@
-# Kindling Architecture
+# Feather Quill Architecture
 
-This document provides an overview of the Kindling codebase for contributors. It explains how the pieces fit together and where to find things.
+This document provides an overview of the Feather Quill codebase for contributors. It explains how the pieces fit together and where to find things.
 
 ## High-Level Overview
 
-Kindling is a desktop application built with [Tauri](https://tauri.app/), which combines a Rust backend with a web-based frontend. The frontend uses Svelte 5 and communicates with the Rust backend via Tauri's IPC (Inter-Process Communication) system.
+Feather Quill is a desktop application built with [Tauri](https://tauri.app/), which combines a Rust backend with a web-based frontend. The frontend uses Svelte 5 and communicates with the Rust backend via Tauri's IPC (Inter-Process Communication) system.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -41,7 +41,7 @@ Kindling is a desktop application built with [Tauri](https://tauri.app/), which 
 ## Directory Structure
 
 ```
-kindling/
+feather-quill/
 ├── src/                      # Svelte frontend
 │   ├── lib/
 │   │   ├── components/       # UI components
@@ -83,7 +83,7 @@ kindling/
 
 ### State Management (`src/lib/stores/`)
 
-Kindling uses Svelte 5's runes-based reactivity. State is managed through class-based stores:
+Feather Quill uses Svelte 5's runes-based reactivity. State is managed through class-based stores:
 
 **`project.svelte.ts`** - Project data state:
 
@@ -136,8 +136,8 @@ namespace — an entry `newScene` in `locales/en/sidebar.ts` is `sidebar.newScen
   is required, so a locale missing a label does not compile. Rust keeps its own copy of the
   locale table; `src/lib/i18n/detection.json` holds the tag-to-locale cases both test suites
   check, and a Rust test fails if a catalog directory has no menu strings.
-- **QA override.** `KINDLING_LOCALE=<tag> npm run tauri dev` sets the menus and, through
-  `vite.config.ts`, the webview (`VITE_KINDLING_LOCALE`). The webview honours it only on the dev
+- **QA override.** `FEATHER_QUILL_LOCALE=<tag> npm run tauri dev` sets the menus and, through
+  `vite.config.ts`, the webview (`VITE_FEATHER_QUILL_LOCALE`). The webview honours it only on the dev
   server, so it can never ship in a release build.
 
 #### Adding a language
@@ -157,7 +157,7 @@ namespace — an entry `newScene` in `locales/en/sidebar.ts` is `sidebar.newScen
    `src/lib/i18n/detection.json` (for example `"es-MX": "es"`) and move any existing row that
    now resolves differently.
 6. **Glossary.** Add a column to `docs/i18n-glossary.md` and use those terms consistently.
-7. **QA.** Check the app with `KINDLING_LOCALE=<tag> npm run tauri dev`, looking for clipped or
+7. **QA.** Check the app with `FEATHER_QUILL_LOCALE=<tag> npm run tauri dev`, looking for clipped or
    overflowing labels in the sidebar, dialogs and menus.
 
 Components do not change. If a translation needs a different sentence shape, change the English
@@ -243,7 +243,7 @@ Each model maps to a database table:
 - **`queries.rs`**: CRUD operations
 - **`mod.rs`**: Module exports
 
-The database is SQLite, stored in the app's data directory (`kindling.db`).
+The database is SQLite, stored in the app's data directory (`feather-quill.db`).
 
 **Key tables:**
 
@@ -303,7 +303,7 @@ Project
 3. Returns `SyncPreview` with additions and changes
 4. User selects which changes to apply
 5. `apply_sync` updates only selected items
-6. Prose written in Kindling is preserved
+6. Prose written in Feather Quill is preserved
 
 ## Testing
 

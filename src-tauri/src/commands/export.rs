@@ -1552,10 +1552,10 @@ fn export_folder(output: &std::path::Path, name: &str) -> Result<PathBuf, String
     Ok(folder)
 }
 
-/// Written into every Markdown/Longform export folder kindling creates, with the
-/// list of files kindling wrote there. "Delete existing export folder" only
+/// Written into every Markdown/Longform export folder Feather Quill creates, with the
+/// list of files Feather Quill wrote there. "Delete existing export folder" only
 /// ever removes a folder carrying it, and only while every file in it is one
-/// kindling listed, so neither a folder of the writer's own (`~` plus a project
+/// Feather Quill listed, so neither a folder of the writer's own (`~` plus a project
 /// called "Documents") nor notes the writer later added to an export (an
 /// Obsidian vault's `Research.md`) can be deleted.
 const EXPORT_MARKER: &str = ".kindling-export";
@@ -1565,7 +1565,7 @@ nothing except the files listed below, which kindling wrote. Delete this file to
 from ever replacing the folder.\n";
 const EXPORT_MANIFEST_HEADER: &str = "--- files written by kindling ---";
 
-/// The files kindling has written into an export folder it owns, relative to
+/// The files Feather Quill has written into an export folder it owns, relative to
 /// the folder with `/` separators, as recorded in its marker.
 fn read_export_manifest(export_root: &Path) -> Option<std::collections::BTreeSet<String>> {
     let marker = export_root.join(EXPORT_MARKER);
@@ -1595,8 +1595,8 @@ fn manifest_key(export_root: &Path, path: &Path) -> Option<String> {
     parts.map(|parts| parts.join("/"))
 }
 
-/// Records each file an export writes into a folder kindling owns and keeps
-/// the marker's list up to date. For a folder that isn't kindling's (one that
+/// Records each file an export writes into a folder Feather Quill owns and keeps
+/// the marker's list up to date. For a folder that isn't Feather Quill's (one that
 /// already existed without a marker) it writes files but records nothing, so
 /// the folder never becomes replaceable.
 struct ExportManifest {
@@ -1609,7 +1609,7 @@ impl ExportManifest {
     fn write(&mut self, path: &Path, contents: impl AsRef<[u8]>) -> std::io::Result<()> {
         fs::write(path, contents)?;
         if let (Some(files), Some(key)) = (self.files.as_mut(), manifest_key(&self.root, path)) {
-            // A name kindling can't list one per line is left unlisted, which
+            // A name Feather Quill can't list one per line is left unlisted, which
             // only ever makes the folder harder to replace.
             if !key.contains(['\n', '\r']) {
                 self.dirty |= files.insert(key);
@@ -1649,8 +1649,8 @@ impl Drop for ExportManifest {
 }
 
 /// Create `folder` (inside an already-validated destination) for an export,
-/// replacing it first when asked and when kindling owns it. The ownership
-/// marker is written only when kindling creates the folder itself, never into
+/// replacing it first when asked and when Feather Quill owns it. The ownership
+/// marker is written only when Feather Quill creates the folder itself, never into
 /// a folder that already existed.
 fn prepare_export_folder(folder: &Path, delete_existing: bool) -> Result<ExportManifest, String> {
     if delete_existing && folder.exists() {
@@ -1684,7 +1684,7 @@ fn prepare_export_folder(folder: &Path, delete_existing: bool) -> Result<ExportM
 }
 
 /// Recursively delete `folder`, which is `export_root` or lies inside it, only
-/// if `export_root` carries kindling's marker and every file in `folder` is
+/// if `export_root` carries Feather Quill's marker and every file in `folder` is
 /// one the marker lists (or OS metadata). Anything else (a legacy export
 /// without a marker, a user's own folder, or a note, image or `.obsidian`
 /// setting the writer added later) is refused and nothing is deleted.
@@ -1695,17 +1695,17 @@ fn remove_owned_export_folder(folder: &Path, export_root: &Path) -> Result<(), S
         .unwrap_or_else(|| folder.display().to_string());
     let refuse = |why: String| {
         Err(format!(
-            "kindling didn't replace “{name}”: {why}. It only replaces export folders it \
+            "Feather Quill didn't replace “{name}”: {why}. It only replaces export folders it \
              created itself, holding only the files it wrote. Move or delete the folder \
              yourself, or choose another export name."
         ))
     };
     let Some(written) = read_export_manifest(export_root) else {
         return refuse(if folder == export_root {
-            "it wasn't created by a kindling export (exports made before kindling 1.3 aren't marked)"
+            "it wasn't created by a Feather Quill export (exports made before Feather Quill 1.3 aren't marked)"
                 .into()
         } else {
-            "the export folder containing it wasn't created by a kindling export".into()
+            "the export folder containing it wasn't created by a Feather Quill export".into()
         });
     };
     for entry in walkdir::WalkDir::new(folder).min_depth(1) {
@@ -1724,7 +1724,7 @@ fn remove_owned_export_folder(folder: &Path, export_root: &Path) -> Result<(), S
         if !expected {
             let relative = entry.path().strip_prefix(folder).unwrap_or(entry.path());
             return refuse(format!(
-                "it contains “{}”, which kindling didn't write",
+                "it contains “{}”, which Feather Quill didn't write",
                 relative.display()
             ));
         }
@@ -4718,7 +4718,7 @@ fn create_new_scriv_bundle(
     // umask-derived mode, so the published bundle root matches any other new
     // folder here. A unix test pins this.
     let staging = tempfile::Builder::new()
-        .prefix(".kindling-scriv-")
+        .prefix(".feather-quill-scriv-")
         .tempdir_in(parent)
         .map_err(|e| format!("Failed to create .scriv directory: {}", e))?;
 
@@ -5242,7 +5242,7 @@ mod tests {
     /// Destination `~` plus a project named "Documents" must never delete the
     /// writer's own Documents folder.
     #[test]
-    fn delete_existing_never_removes_a_folder_kindling_did_not_create() {
+    fn delete_existing_never_removes_a_folder_feather_quill_did_not_create() {
         let (conn, project) = crate::parsers::novelwriter::tests::fixture();
         let home = tempfile::tempdir().unwrap();
         let documents = home.path().join("Documents");
@@ -5256,14 +5256,20 @@ mod tests {
             markdown_options(home.path(), "Documents", true),
         )
         .unwrap_err();
-        assert!(err.contains("wasn't created by a kindling export"), "{err}");
+        assert!(
+            err.contains("wasn't created by a Feather Quill export"),
+            "{err}"
+        );
         let err = export_to_longform_with_connection(
             &conn,
             project.id,
             longform_options(home.path(), "Documents", true),
         )
         .unwrap_err();
-        assert!(err.contains("wasn't created by a kindling export"), "{err}");
+        assert!(
+            err.contains("wasn't created by a Feather Quill export"),
+            "{err}"
+        );
 
         assert_eq!(
             fs::read_to_string(documents.join("Taxes").join("2025.pdf")).unwrap(),
@@ -5296,7 +5302,7 @@ mod tests {
     }
 
     #[test]
-    fn delete_existing_replaces_kindlings_own_export_folder() {
+    fn delete_existing_replaces_feather_quills_own_export_folder() {
         let (conn, project) = crate::parsers::novelwriter::tests::fixture();
         let out = tempfile::tempdir().unwrap();
         for (export, folder) in [("markdown", "Book MD"), ("longform", "Book LF")] {
@@ -5318,7 +5324,7 @@ mod tests {
                 root.join(EXPORT_MARKER).is_file(),
                 "{export} export is unmarked"
             );
-            // A file an earlier kindling export wrote (a since-deleted scene).
+            // A file an earlier Feather Quill export wrote (a since-deleted scene).
             let mut manifest = prepare_export_folder(&root, false).unwrap();
             manifest.write(&root.join("stale scene.md"), "old").unwrap();
             manifest.finish().unwrap();
@@ -5330,7 +5336,7 @@ mod tests {
             );
             assert!(root.join(EXPORT_MARKER).is_file());
 
-            // A file kindling never writes makes the folder the writer's again.
+            // A file Feather Quill never writes makes the folder the writer's again.
             fs::write(root.join("cover.png"), "art").unwrap();
             let err = run(true).unwrap_err();
             assert!(err.contains("cover.png"), "{err}");
@@ -5340,7 +5346,7 @@ mod tests {
     }
 
     /// A Longform export often lives in an Obsidian vault, where the writer
-    /// adds notes of their own. Those are Markdown too, but kindling didn't
+    /// adds notes of their own. Those are Markdown too, but Feather Quill didn't
     /// write them, so the export folder must not be replaced.
     #[test]
     fn delete_existing_keeps_markdown_the_writer_added_to_an_export() {
@@ -5373,7 +5379,7 @@ mod tests {
                 let err = run(true).unwrap_err();
 
                 assert!(
-                    err.contains("which kindling didn't write"),
+                    err.contains("which Feather Quill didn't write"),
                     "{export} {what}: {err}"
                 );
                 assert_eq!(
@@ -5383,13 +5389,13 @@ mod tests {
                 );
                 fs::remove_file(&path).unwrap();
             }
-            // With the writer's notes gone, kindling's own export is replaceable again.
+            // With the writer's notes gone, Feather Quill's own export is replaceable again.
             run(true).unwrap();
         }
     }
 
     #[test]
-    fn chapter_delete_existing_requires_a_kindling_export_folder() {
+    fn chapter_delete_existing_requires_a_feather_quill_export_folder() {
         let (conn, project) = crate::parsers::novelwriter::tests::fixture();
         let chapter = db::get_chapters(&conn, &project.id)
             .unwrap()
@@ -7676,7 +7682,7 @@ mod tests {
         let (project, chapters) = scriv_create_fixture(&conn);
         let active: Vec<&Chapter> = chapters.iter().collect();
 
-        // The writer's original bundle, with binder content kindling never imports.
+        // The writer's original bundle, with binder content Feather Quill never imports.
         let scriv = dir.path().join("Novel.scriv");
         std::fs::create_dir_all(scriv.join("Files").join("Data").join("RESEARCH-UUID")).unwrap();
         std::fs::write(

@@ -1,6 +1,6 @@
-import pressTokens from "../../styles/press/tokens.json";
+import themePalette from "../../styles/theme/palette.json";
 
-/** The Press tag palette, in the order the tag editor offers it. */
+/** The Feather Quill tag palette, in the order the tag editor offers it. */
 export const TAG_COLOR_NAMES = [
   "red",
   "orange",
@@ -16,14 +16,14 @@ export const TAG_COLOR_NAMES = [
 
 const BY_STORED_VALUE = new Map(
   TAG_COLOR_NAMES.map((name) => [
-    pressTokens.light[`--tag-${name}` as keyof typeof pressTokens.light].toLowerCase(),
+    themePalette.light[`--tag-${name}` as keyof typeof themePalette.light].toLowerCase(),
     name,
   ])
 );
 
 /**
  * Tags persist the stable light `--tag-*` value (user data must not change
- * with the theme). Render them through `--color-tag-*`, which Press swaps for
+ * with the theme). Render them through `--color-tag-*`, which Feather Quill swaps for
  * the dark palette in dark chrome. Colours outside the palette (older projects,
  * imports) render as stored.
  */

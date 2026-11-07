@@ -31,7 +31,7 @@ import { IMPORT_COMMANDS, isImportType, type ImportType } from "./lib/importForm
 // This allows WebDriver tests to call Tauri commands and update stores directly
 declare global {
   interface Window {
-    __KINDLING_TEST__?: {
+    __FEATHER_QUILL_TEST__?: {
       invoke: typeof invoke;
       importCommands: typeof IMPORT_COMMANDS;
       importProject: (path: string, format?: ImportType) => Promise<Project>;
@@ -43,7 +43,7 @@ declare global {
         referencesPanelCollapsed: boolean;
       };
       setVisualPreferences: (
-        value: ReturnType<NonNullable<Window["__KINDLING_TEST__"]>["visualPreferences"]>
+        value: ReturnType<NonNullable<Window["__FEATHER_QUILL_TEST__"]>["visualPreferences"]>
       ) => void;
       creationObserverVersion: 1;
       refreshRecentProjects: () => void;
@@ -61,7 +61,7 @@ async function importProject(
   Project & { _debug?: { chapterCount: number; storeChapterCount: number; hasProject: boolean } }
 > {
   // Capture the observer synchronously for this action, before any async work.
-  const onCreated = window.__KINDLING_TEST__?.onProjectCreated;
+  const onCreated = window.__FEATHER_QUILL_TEST__?.onProjectCreated;
   ui.startImport();
   try {
     const command = isImportType(format) ? IMPORT_COMMANDS[format] : undefined;
@@ -102,7 +102,7 @@ async function importProject(
 }
 
 // Always expose for E2E testing - the test helper checks for this
-window.__KINDLING_TEST__ = {
+window.__FEATHER_QUILL_TEST__ = {
   creationObserverVersion: 1,
   invoke,
   importCommands: IMPORT_COMMANDS,

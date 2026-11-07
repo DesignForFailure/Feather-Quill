@@ -1,16 +1,16 @@
 //! yWriter 7 (.yw7) Parser
 //!
-//! Parses yWriter project files and converts them to Kindling's data model.
+//! Parses yWriter project files and converts them to Feather Quill's data model.
 //! yWriter stores projects as single XML files with chapters, scenes, characters,
 //! locations, and items.
 //!
 //! Key mappings:
-//! - yWriter Chapter → Kindling Chapter
-//! - yWriter Scene → Kindling Scene
-//! - yWriter Goal/Conflict/Outcome → Kindling Beats (scene scaffolding)
-//! - yWriter SceneContent → Kindling prose
-//! - yWriter Character → Kindling Character
-//! - yWriter Location → Kindling Location
+//! - yWriter Chapter → Feather Quill Chapter
+//! - yWriter Scene → Feather Quill Scene
+//! - yWriter Goal/Conflict/Outcome → Feather Quill Beats (scene scaffolding)
+//! - yWriter SceneContent → Feather Quill prose
+//! - yWriter Character → Feather Quill Character
+//! - yWriter Location → Feather Quill Location
 
 use encoding_rs::{Encoding, UTF_16BE, UTF_16LE, UTF_8};
 use quick_xml::escape::unescape;
@@ -734,8 +734,8 @@ fn parse_ywriter_content(content: &str, path: &Path) -> Result<ParsedYWriter, YW
         buf.clear();
     }
 
-    // Convert to Kindling data model
-    convert_to_kindling(
+    // Convert to Feather Quill data model
+    convert_to_feather_quill(
         project_data,
         project_notes,
         chapters,
@@ -748,11 +748,11 @@ fn parse_ywriter_content(content: &str, path: &Path) -> Result<ParsedYWriter, YW
 }
 
 // ============================================================================
-// Conversion to Kindling Model
+// Conversion to Feather Quill Model
 // ============================================================================
 
 #[allow(clippy::too_many_arguments)]
-fn convert_to_kindling(
+fn convert_to_feather_quill(
     project_data: YWriterProject,
     mut project_notes: Vec<YWriterProjectNote>,
     yw_chapters: Vec<YWriterChapter>,
@@ -829,7 +829,7 @@ fn convert_to_kindling(
     let mut yw_scene_id_to_uuid: HashMap<i32, uuid::Uuid> = HashMap::new();
 
     // Convert characters
-    let mut kindling_characters: Vec<Character> = Vec::new();
+    let mut feather_quill_characters: Vec<Character> = Vec::new();
     for (yw_id, yw_char) in &yw_characters {
         // Build a combined description from yWriter's description, bio, goals, and notes
         // Output as HTML for proper rendering in the References panel
@@ -870,11 +870,11 @@ fn convert_to_kindling(
             Some(yw_id.to_string()),
         );
         yw_char_id_to_uuid.insert(*yw_id, character.id);
-        kindling_characters.push(character);
+        feather_quill_characters.push(character);
     }
 
     // Convert locations
-    let mut kindling_locations: Vec<Location> = Vec::new();
+    let mut feather_quill_locations: Vec<Location> = Vec::new();
     for (yw_id, yw_loc) in &yw_locations {
         // Build location description as HTML for proper rendering
         let mut description_parts = Vec::new();
@@ -898,7 +898,7 @@ fn convert_to_kindling(
             Some(yw_id.to_string()),
         );
         yw_loc_id_to_uuid.insert(*yw_id, location.id);
-        kindling_locations.push(location);
+        feather_quill_locations.push(location);
     }
 
     // Convert items into generic reference items
@@ -954,9 +954,9 @@ fn convert_to_kindling(
         .collect();
 
     // Convert chapters, scenes, and beats
-    let mut kindling_chapters: Vec<Chapter> = Vec::new();
-    let mut kindling_scenes: Vec<Scene> = Vec::new();
-    let mut kindling_beats: Vec<Beat> = Vec::new();
+    let mut feather_quill_chapters: Vec<Chapter> = Vec::new();
+    let mut feather_quill_scenes: Vec<Scene> = Vec::new();
+    let mut feather_quill_beats: Vec<Beat> = Vec::new();
     let mut scene_character_refs: Vec<(uuid::Uuid, uuid::Uuid)> = Vec::new();
     let mut scene_location_refs: Vec<(uuid::Uuid, uuid::Uuid)> = Vec::new();
 
@@ -1009,7 +1009,7 @@ fn convert_to_kindling(
                         let beat =
                             Beat::new(scene.id, format!("{}: {}", goal_label, goal), beat_pos)
                                 .with_source_id(Some(format!("{}-goal", yw_scene_id)));
-                        kindling_beats.push(beat);
+                        feather_quill_beats.push(beat);
                         beat_pos += 1;
                     }
                 }
@@ -1022,7 +1022,7 @@ fn convert_to_kindling(
                             beat_pos,
                         )
                         .with_source_id(Some(format!("{}-conflict", yw_scene_id)));
-                        kindling_beats.push(beat);
+                        feather_quill_beats.push(beat);
                         beat_pos += 1;
                     }
                 }
@@ -1035,7 +1035,7 @@ fn convert_to_kindling(
                             beat_pos,
                         )
                         .with_source_id(Some(format!("{}-outcome", yw_scene_id)));
-                        kindling_beats.push(beat);
+                        feather_quill_beats.push(beat);
                         beat_pos += 1;
                     }
                 }
@@ -1047,7 +1047,7 @@ fn convert_to_kindling(
 
                         if beat_pos > 0 {
                             // Add prose to the first beat
-                            if let Some(first_beat) = kindling_beats
+                            if let Some(first_beat) = feather_quill_beats
                                 .iter_mut()
                                 .find(|b| b.scene_id == scene.id && b.position == 0)
                             {
@@ -1058,7 +1058,7 @@ fn convert_to_kindling(
                             let mut beat = Beat::new(scene.id, "Scene Content".to_string(), 0)
                                 .with_source_id(Some(format!("{}-prose", yw_scene_id)));
                             beat.prose = Some(html_content);
-                            kindling_beats.push(beat);
+                            feather_quill_beats.push(beat);
                         }
                     }
                 }
@@ -1077,20 +1077,20 @@ fn convert_to_kindling(
                     }
                 }
 
-                kindling_scenes.push(scene);
+                feather_quill_scenes.push(scene);
             }
         }
 
-        kindling_chapters.push(chapter);
+        feather_quill_chapters.push(chapter);
     }
 
     Ok(ParsedYWriter {
         project,
-        chapters: kindling_chapters,
-        scenes: kindling_scenes,
-        beats: kindling_beats,
-        characters: kindling_characters,
-        locations: kindling_locations,
+        chapters: feather_quill_chapters,
+        scenes: feather_quill_scenes,
+        beats: feather_quill_beats,
+        characters: feather_quill_characters,
+        locations: feather_quill_locations,
         reference_items,
         scene_character_refs,
         scene_location_refs,

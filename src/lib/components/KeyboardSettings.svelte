@@ -76,16 +76,16 @@
     <p class="settings-lede">
       {t("settings.keyboard.lede")}
     </p>
-    <p class="ka-help">
+    <p class="fq-help">
       {t("settings.keyboard.systemHelp")}
     </p>
   </div>
   {#if shortcuts.error}
-    <div class="ka-notice ka-notice--error" role="alert">
+    <div class="fq-notice fq-notice--error" role="alert">
       <p>{shortcuts.error}</p>
       <button
         type="button"
-        class="ka-button ka-button--secondary keys-retry"
+        class="fq-button fq-button--secondary keys-retry"
         onclick={async () => {
           await shortcuts.load();
           await shortcuts.suspend(true);
@@ -93,10 +93,10 @@
       >
     </div>
   {/if}
-  {#if error}<p role="alert" class="ka-error">{error}</p>{/if}
-  <p role="status" class="ka-help keys-message">{message}</p>
+  {#if error}<p role="alert" class="fq-error">{error}</p>{/if}
+  <p role="status" class="fq-help keys-message">{message}</p>
   <div class="keys-toolbar">
-    <div class="ka-field od-field keys-filter">
+    <div class="fq-field od-field keys-filter">
       <label for="shortcut-filter">{t("settings.keyboard.filterLabel")}</label>
       <input id="shortcut-filter" type="search" bind:value={filter} />
     </div>
@@ -104,12 +104,12 @@
       type="button"
       disabled={busy || !shortcuts.suspended}
       onclick={() => save({ ...defaultBindings })}
-      class="ka-button ka-button--secondary">{t("settings.keyboard.resetDefaults")}</button
+      class="fq-button fq-button--secondary">{t("settings.keyboard.resetDefaults")}</button
     >
   </div>
   {#if (!shortcuts.ready || !shortcuts.suspended) && !shortcuts.error}<p
       role="status"
-      class="ka-help"
+      class="fq-help"
     >
       {t("settings.keyboard.loading")}
     </p>{/if}
@@ -137,7 +137,7 @@
           onblur={() => {
             if (recording === def.id) recording = null;
           }}
-          class="ka-button ka-button--secondary keys-binding"
+          class="fq-button fq-button--secondary keys-binding"
           class:is-recording={recording === def.id}
           class:is-unassigned={!shortcuts.label(def.id) && recording !== def.id}
         >
@@ -152,12 +152,12 @@
           aria-label={t("settings.keyboard.clearFor", { label: commandLabel(def.id) })}
           disabled={busy || !shortcuts.ready || !shortcuts.suspended || !shortcuts.bindings[def.id]}
           onclick={() => save({ ...shortcuts.bindings, [def.id]: "" })}
-          class="ka-button ka-button--ghost">{t("settings.keyboard.clear")}</button
+          class="fq-button fq-button--ghost">{t("settings.keyboard.clear")}</button
         >
       </li>
     {/each}
   </ul>
-  {#if shown.length === 0}<p class="ka-help">{t("settings.keyboard.noMatches")}</p>{/if}
+  {#if shown.length === 0}<p class="fq-help">{t("settings.keyboard.noMatches")}</p>{/if}
 </div>
 
 <style>

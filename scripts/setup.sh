@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Kindling Development Environment Setup
+# Feather Quill Development Environment Setup
 #
 # This script automates the setup process for new contributors.
 # Run with: ./scripts/setup.sh
@@ -31,7 +31,7 @@ error() { echo -e "${RED}✗${NC} $1"; }
 # Header
 echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-echo "  Kindling Development Environment Setup"
+echo "  Feather Quill Development Environment Setup"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo ""
 

@@ -1,6 +1,12 @@
-# Kindling — Project Context
+# Feather Quill — Project Context
 
-Kindling is a **free, open-source, local-first desktop writing app** for plotters and
+Independent fork of Kindling by Josh Smith, maintained by DesignForFailure.
+Read `docs/fork-branding.md` for compatibility names, release configuration,
+and the independent theme replacement. Whiteboard and expanded
+Manuskript-inspired planning features are goals, not implemented features.
+Do not consult Manuskript source when implementing the independent specification.
+
+Feather Quill is a **free, open-source, local-first desktop writing app** for plotters and
 outliners. It bridges the gap between a story outline and a first draft: scene beats
 from an imported outline appear as expandable prompts in a scaffolded writing view.
 
@@ -33,8 +39,8 @@ src/                      Svelte 5 + TS frontend
   lib/components/         UI components (*.svelte, co-located *.test.ts)
   lib/stores/            Runed stores (*.svelte.ts)
   lib/utils/             Helpers (theme, import, ...)
-  app.css                Tailwind + Press imports, fonts, and app-wide styles
-  styles/press/           Generated read-only mirror + Tailwind token bridge
+  app.css                Tailwind + local theme, fonts, and app-wide styles
+  styles/theme/           Original local styles and Tailwind aliases
 src-tauri/src/           Rust backend
   commands/              Tauri IPC commands (import, export, crud, sync, ...)
   parsers/               Import parsers: plottr, ywriter, scrivener, longform, markdown
@@ -55,9 +61,7 @@ npm test -- --coverage   # frontend tests with coverage gate
 npm run check            # svelte-check (types)
 npm run lint             # eslint src/
 npm run format:check     # prettier check
-npm run sync:design-system   # sync Press from the sibling press repo (../press)
-npm run check:design-system  # fail if a synced file or generated bridge drifted
-# Add -- --with-app-icons when the canonical app-icon master changes.
+npm run check:design-system  # verify local theme variables and font notices
 
 cd src-tauri && cargo test --all-features                                  # Rust tests
 cd src-tauri && cargo clippy --all-targets --all-features -- -D warnings   # Rust lint
@@ -66,40 +70,23 @@ cd src-tauri && cargo fmt --all -- --check                                 # Rus
 npm run check:all        # everything CI checks (types, format, lint, rust fmt+clippy)
 ```
 
-## Press design system
+## Local theme
 
-`../press` ([smith-and-web/press](https://github.com/smith-and-web/press), the
-`@kindling/design-system` package) is the canonical source for the app's colours,
-typography, spacing, states, elevation, controls and brand artwork. The old
-`../brand-assets` repo is retired; never sync from it. Read `DESIGN_GUIDE.md`
-(a mirror of Press `DESIGN.md`) before changing UI, and
-`../press/docs/APPLICATION_COMPONENTS.md` for component APIs. Never define a
-token locally or hand-edit anything the sync writes; change Press upstream, then
-run `npm run sync:design-system` here. `npm run check:design-system` fails if a
-mirrored byte drifts from `src/styles/press/MANIFEST.json`.
+The MIT-licensed Feather Quill theme lives in `src/styles/theme/`:
+`tokens.css` defines theme values, `controls.css` styles application controls,
+`fonts.css` loads separately licensed bundled fonts, `utilities.css` exposes
+Tailwind aliases, and `palette.json` defines new tag colours.
 
-The mirror is `src/styles/press/`: `tokens.css` / `tokens.json`,
-`application.css` (the `ka-*` control layer, imported in `layer(components)`),
-`fonts.css` (Press WOFF2 faces bundled in `static/fonts/`), `svelte/` (the 22
-Press Svelte 5 components plus the editor entry, importable as
-`import { Button, Field } from "$press/svelte"`), and the generated Tailwind
-bridge `tailwind.css`. Brand SVGs live in `static/brand/`.
+Use `fq-*` classes, the `fq-app` surface, and semantic CSS variables. Keep
+keyboard focus visible, standalone controls at least 44px, and manuscript
+paper readable in both themes. Shared application overlay styling is in
+`src/styles/overlays.css`. Run `npm run check:design-system` to check the local
+variable contract and font notices. No sibling Press repository is needed.
 
-The application surface is `.press-app` (set on `#app`): Inter controls,
-Fraunces headings, Newsreader manuscript; light, dark and system chrome, with
-the manuscript staying light paper (`--color-prose-*`) in dark mode. One
-implementation per control role: use the Press component or its `ka-*` class
-before writing a control by hand. Standalone controls are 44px
-(`min-h-press-target`). Focus is a 2px accent-text outline offset 3px.
-Disabled is a token pair, never opacity. Hairlines separate in-flow groups;
-shadows are for floating layers and the mounted manuscript sheet only.
-
-Use token-backed utilities from the generated Tailwind bridge. Never free-hand a
-hex, font family, font size, z-index or reduced text opacity in app UI. The
-brand name is always lowercase `kindling` in displayed copy (release asset
-filenames and the `Kindling` productName stay as they are). Verify shared-style
-changes through computed styles in both themes because component-scoped Svelte
-CSS can win the cascade.
+Read `docs/press-replacement.md` for provenance and the limits of the
+independent-reimplementation claim. Do not restore the removed Press source,
+artwork, mirror scripts, or generated snapshots. Recreate visual baselines
+from the new theme and review them before accepting them.
 
 ## Conventions
 
@@ -129,7 +116,7 @@ worth getting right at commit time because they are tedious to fix afterwards.
 **Type decides whether users see it.** In practice this preset renders only
 `feat` (Features) and `fix` (Bug Fixes) sections; `chore`, `docs`, `style`,
 `refactor`, `test`, `ci` and `build` are hidden. So pick the type by asking
-whether a _writer using Kindling_ would care. Work on the toolchain, CI, git
+whether a _writer using Feather Quill_ would care. Work on the toolchain, CI, git
 hooks or the blacksmith orchestrator is `chore` or `ci` even when it fixes
 something — `fix(blacksmith): ...` puts an automation detail in front of end
 users, and the 1.1.0 notes already carry `fix(dev)` and `fix(mock)` entries
@@ -191,9 +178,7 @@ there. Verify anything touching the boundary with `npm run tauri dev`.
 ## Sensitive areas (touch only with explicit intent)
 
 - `src-tauri/src/db/schema.rs` — the SQLite schema. Changes affect existing user files.
-- `../press/design-system/` — canonical Press tokens, controls and components.
-  `src/styles/press/`, `static/fonts/`, `static/brand/` and `DESIGN_GUIDE.md` are
-  generated mirrors and must not be hand-edited.
+- `static/fonts/` — preserve the bundled OFL font notices.
 - `Cargo.lock` / `package-lock.json` — don't add or bump dependencies unsupervised.
 
 ## Automation: blacksmith

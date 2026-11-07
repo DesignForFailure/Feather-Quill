@@ -1,6 +1,6 @@
-# Importing Projects into Kindling
+# Importing Projects into Feather Quill
 
-Kindling supports importing story outlines and drafts from multiple sources. This guide explains how to prepare your files for successful import and how reference data is handled.
+Feather Quill supports importing story outlines and drafts from multiple sources. This guide explains how to prepare your files for successful import and how reference data is handled.
 
 ## Importing a Project
 
@@ -8,7 +8,7 @@ Kindling supports importing story outlines and drafts from multiple sources. Thi
 2. Select a source file (Plottr, Markdown, yWriter), a Longform/Obsidian index or vault, or a novelWriter project folder.
 3. Review the import summary and finish the import.
 
-![Screenshot: Import dialog](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/import-dialog.png)
+
 
 ## Supported Formats
 
@@ -24,15 +24,15 @@ Kindling supports importing story outlines and drafts from multiple sources. Thi
 
 ## Post-import Reference Classification
 
-If Kindling detects references during import, it opens a classification dialog so you can confirm or adjust reference types before continuing. You can skip this step and refine reference types later in the References panel.
+If Feather Quill detects references during import, it opens a classification dialog so you can confirm or adjust reference types before continuing. You can skip this step and refine reference types later in the References panel.
 
-![Screenshot: Reference classification dialog](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/reference-classification.png)
+
 
 ---
 
 ## Plottr (.pltr)
 
-Plottr is a visual story planning tool. Kindling imports the full project structure including characters, locations, and scene cards.
+Plottr is a visual story planning tool. Feather Quill imports the full project structure including characters, locations, and scene cards.
 
 ### What Gets Imported
 
@@ -60,7 +60,7 @@ Plottr is a visual story planning tool. Kindling imports the full project struct
 
 ## Markdown (.md)
 
-For users who prefer plain text, Kindling supports a simple markdown outline format.
+For users who prefer plain text, Feather Quill supports a simple markdown outline format.
 
 ### What Gets Imported
 
@@ -152,7 +152,7 @@ The parser handles special characters correctly:
 
 ## yWriter (.yw7)
 
-yWriter stores projects in a single XML file. Kindling imports the outline, metadata, and reference data.
+yWriter stores projects in a single XML file. Feather Quill imports the outline, metadata, and reference data.
 
 ### What Gets Imported
 
@@ -179,14 +179,14 @@ yWriter stores projects in a single XML file. Kindling imports the outline, meta
 
 ## Longform/Obsidian (.md)
 
-Kindling supports Longform/Obsidian projects by reading a Longform index file and its scene files. You can import either:
+Feather Quill supports Longform/Obsidian projects by reading a Longform index file and its scene files. You can import either:
 
-Kindling enhances the Obsidian workflow—it doesn't replace it. Keep research and worldbuilding in Obsidian, and use Kindling for structured outlining, scene planning, and export-ready manuscripts.
+Feather Quill enhances the Obsidian workflow—it doesn't replace it. Keep research and worldbuilding in Obsidian, and use Feather Quill for structured outlining, scene planning, and export-ready manuscripts.
 
 - The **index file** (recommended), or
 - The **vault folder**, if it contains exactly one Longform index.
 
-![Screenshot: Longform/Obsidian import selection](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/import-longform.png)
+
 
 ### What Gets Imported
 
@@ -237,7 +237,7 @@ longform:
 
 ### Scene Frontmatter Conventions
 
-Scene files can include frontmatter fields to help Kindling parse metadata and reference types:
+Scene files can include frontmatter fields to help Feather Quill parse metadata and reference types:
 
 ```yaml
 ---
@@ -270,7 +270,7 @@ You can also use Dataview-style fields (`characters::`, `setting::`) or `#status
 
 ### Reference Notes and Best Practices
 
-Kindling detects reference notes using both folder names and frontmatter:
+Feather Quill detects reference notes using both folder names and frontmatter:
 
 - Use folders like `characters/`, `locations/`, `items/`, `objectives/`, `organizations/`, `timelines/`, `notes/`
 - Add `type`, `category`, or `tags` in frontmatter (e.g., `type: character`)
@@ -289,7 +289,7 @@ sections to preserve their text separately.
 
 ## novelWriter (Project Folder)
 
-Import a novelWriter project to plan its chapters and scenes in Kindling while keeping your draft and reference notes together.
+Import a novelWriter project to plan its chapters and scenes in Feather Quill while keeping your draft and reference notes together.
 
 ### File Requirements
 
@@ -297,7 +297,7 @@ Import a novelWriter project to plan its chapters and scenes in Kindling while k
 2. Select the project folder containing `nwProject.nwx` and its `content/` folder. Select the whole folder, not an individual scene file.
 3. Finish the import and review any reference classifications offered.
 
-Keep the project folder intact. Kindling reads current `.md` documents and legacy `.nwd` documents from project format versions 1.4–1.6.
+Keep the project folder intact. Feather Quill reads current `.md` documents and legacy `.nwd` documents from project format versions 1.4–1.6.
 
 ### What Gets Imported
 
@@ -309,7 +309,7 @@ Keep the project folder intact. Kindling reads current `.md` documents and legac
 - **Reference notes** with names, descriptions and attributes
 - **Scene links** to characters, locations and supported reference notes, resolved by their tags
 
-| novelWriter Note Root | Kindling Reference Type |
+| novelWriter Note Root | Feather Quill Reference Type |
 |-----------------------|-------------------------|
 | Character | Characters |
 | World | Locations |
@@ -323,20 +323,20 @@ Blank lines separate paragraphs; a single newline stays within the same paragrap
 
 A scene without beat comments opens in Page mode and also has a single beat titled **Scene Content**. Archive, Trash and Template roots are skipped; only the first Novel root is imported.
 
-### Moving Between Kindling and novelWriter
+### Moving Between Feather Quill and novelWriter
 
-To take a Kindling novel into novelWriter, choose **Export → novelWriter** and select an empty destination folder. Exported projects require **novelWriter 26.2 or newer**. Beat comments and reference notes are included by default; archived chapters and scenes are excluded. Screenplays cannot be exported to this format.
+To take a Feather Quill novel into novelWriter, choose **Export → novelWriter** and select an empty destination folder. Exported projects require **novelWriter 26.2 or newer**. Beat comments and reference notes are included by default; archived chapters and scenes are excluded. Screenplays cannot be exported to this format.
 
-Keep **Include beat comments** enabled to preserve beat boundaries for later sync. Page-mode scenes export as whole-scene prose because they have no stored beat boundaries. Exporting does not change the project's existing sync connection. Import the exported folder to create a Kindling project linked to that novelWriter source.
+Keep **Include beat comments** enabled to preserve beat boundaries for later sync. Page-mode scenes export as whole-scene prose because they have no stored beat boundaries. Exporting does not change the project's existing sync connection. Import the exported folder to create a Feather Quill project linked to that novelWriter source.
 
 ### Reviewing Changes with Sync
 
-After editing the source project in novelWriter, open the linked Kindling project and choose **Sync**. Review the full current and incoming prose, select the changes you want, then choose **Apply Sync**. Prose changes are unselected by default, and locked chapters and scenes are skipped.
+After editing the source project in novelWriter, open the linked Feather Quill project and choose **Sync**. Review the full current and incoming prose, select the changes you want, then choose **Apply Sync**. Prose changes are unselected by default, and locked chapters and scenes are skipped.
 
 - With beat comments, Beat-mode prose can be reviewed and accepted for individual beats.
 - Without beat comments, or in Page mode, prose is reviewed as one scene-level change.
 - Accepting a whole-scene replacement in Beat mode keeps the planning beats, puts the incoming text in the first beat and clears prose from the remaining beats. The editor mode stays the same.
-- Declining a change leaves your local prose untouched. Sync reads changes into Kindling; export to a new empty folder to take Kindling changes back to novelWriter.
+- Declining a change leaves your local prose untouched. Sync reads changes into Feather Quill; export to a new empty folder to take Feather Quill changes back to novelWriter.
 
 Beats created or split locally keep their own prose and are not assigned to incoming beat comments during Sync.
 
@@ -344,7 +344,7 @@ Sync covers chapters, scenes, beats and prose. Changes to notes, reference links
 
 ### Limitations
 
-Underline and Kindling-only planning data are not included in export. novelWriter shortcodes, footnotes, alignment and indent codes, ignored text and per-item importance are not preserved. H4 sections are flattened into scene prose; POV, focus, mention and story references are not restored as scene links.
+Underline and Feather Quill-only planning data are not included in export. novelWriter shortcodes, footnotes, alignment and indent codes, ignored text and per-item importance are not preserved. H4 sections are flattened into scene prose; POV, focus, mention and story references are not restored as scene links.
 
 ---
 

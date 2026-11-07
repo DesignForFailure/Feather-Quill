@@ -75,7 +75,7 @@ export const suites = [
       await r.wait(`${el("#custom-export-profile")}?.value === ${JSON.stringify(profileId)}`);
       await r.click('[data-testid="export-close"]');
       await r.js(
-        `localStorage.removeItem(${JSON.stringify(`kindling:export-prototype:v1:${r.project.id}`)}); localStorage.removeItem(${JSON.stringify(`kindling:custom-export:${r.project.id}`)});`
+        `localStorage.removeItem(${JSON.stringify(`feather-quill:export-prototype:v1:${r.project.id}`)}); localStorage.removeItem(${JSON.stringify(`feather-quill:custom-export:${r.project.id}`)});`
       );
     },
   },
@@ -595,7 +595,7 @@ export const suites = [
       );
       await r.click('[aria-label="Close export workspace"]');
       await r.js(
-        `localStorage.removeItem(${JSON.stringify(`kindling:export-prototype:v1:${r.project.id}`)}); localStorage.removeItem(${JSON.stringify(`kindling:custom-export:${r.project.id}`)});`
+        `localStorage.removeItem(${JSON.stringify(`feather-quill:export-prototype:v1:${r.project.id}`)}); localStorage.removeItem(${JSON.stringify(`feather-quill:custom-export:${r.project.id}`)});`
       );
     },
   },
@@ -707,7 +707,7 @@ export const suites = [
       });
       await r.click('[aria-label="Close export workspace"]');
       await r.js(
-        `localStorage.removeItem(${JSON.stringify(`kindling:export-prototype:v1:${r.project.id}`)}); localStorage.removeItem(${JSON.stringify(`kindling:custom-export:${r.project.id}`)}); delete window.__workspaceExportModule;`
+        `localStorage.removeItem(${JSON.stringify(`feather-quill:export-prototype:v1:${r.project.id}`)}); localStorage.removeItem(${JSON.stringify(`feather-quill:custom-export:${r.project.id}`)}); delete window.__workspaceExportModule;`
       );
     },
   },

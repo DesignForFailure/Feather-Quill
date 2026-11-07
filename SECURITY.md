@@ -4,9 +4,9 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.x.x   | :white_check_mark: |
+| Latest fork release | Yes |
 
-As Kindling is in early development, we support the latest version only.
+As Feather Quill is in early development, we support the latest version only.
 
 ## Reporting a Vulnerability
 
@@ -14,20 +14,9 @@ We take security seriously. If you discover a security vulnerability, please rep
 
 ### How to Report
 
-1. **Do NOT open a public issue** for security vulnerabilities
-2. Email us at **smithandweb+security@gmail.com**
-3. Include as much detail as possible:
-   - Description of the vulnerability
-   - Steps to reproduce
-   - Potential impact
-   - Any suggested fixes (optional)
+Use this fork's [private vulnerability reporting](https://github.com/DesignForFailure/Feather-Quill/security/advisories/new) when enabled. Do not send Feather Quill reports to upstream Kindling's email address. If private reporting is unavailable, open a non-sensitive issue requesting a private contact without publishing exploit details.
 
-### What to Expect
-
-- **Acknowledgment**: Within 48 hours of your report
-- **Initial Assessment**: Within 1 week
-- **Resolution Timeline**: Depends on severity and complexity
-- **Credit**: We'll credit you in the release notes (unless you prefer anonymity)
+Include the affected version, reproduction steps, and impact in the private report. This fork has not established response-time commitments.
 
 ### Scope
 
@@ -46,22 +35,17 @@ Security issues we're interested in:
 
 ## Security Best Practices
 
-Kindling is a desktop application that:
+Feather Quill is a desktop application that:
 
 - Stores data locally in SQLite databases
 - Reads project files from user-specified locations
 - Has no analytics, telemetry, accounts or cloud sync, and never sends your manuscript
-- Makes network requests in only two cases:
-  - **Updates:** release builds check GitHub Releases over HTTPS shortly after launch and
-    download an available update in the background. Updates are verified against the
-    bundled signing key, and nothing installs until you choose **Restart**.
-  - **Feedback you send:** **Help → Send Feedback…** posts the feedback type, summary,
-    message and rating you enter, plus the app version, OS and locale, to the kindling
-    feedback service, only when you press **Send**.
+- Retains optional update and explicitly submitted feedback functionality, isolated from upstream Kindling services. Update checks are inactive until a fork signing key is configured; feedback makes no request until a fork-owned HTTPS endpoint is configured. See [fork branding](docs/fork-branding.md).
+- Uses a local MIT-licensed theme. The upstream Press mirror and artwork were removed; separately licensed font notices remain intact.
 
 ### For Users
 
-- Download Kindling only from official sources (GitHub Releases)
+- Download Feather Quill only from official sources (GitHub Releases)
 - Verify checksums when available
 - Keep your operating system updated
 - Be cautious when importing files from untrusted sources
@@ -72,4 +56,4 @@ We appreciate the security research community. Contributors who responsibly disc
 
 ---
 
-Thank you for helping keep Kindling secure!
+Thank you for helping keep Feather Quill secure!

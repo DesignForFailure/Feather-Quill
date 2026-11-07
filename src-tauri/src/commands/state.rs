@@ -10,7 +10,7 @@ use crate::db::initialize_schema;
 
 /// Records the app version that last opened the database, so an upgrade can be detected.
 const VERSION_FILE: &str = "last-opened-version";
-/// Pre-upgrade copies of `kindling.db`, newest `KEPT_BACKUPS` kept.
+/// Pre-upgrade copies of `feather-quill.db`, newest `KEPT_BACKUPS` kept.
 const BACKUP_DIR: &str = "backups";
 const KEPT_BACKUPS: usize = 3;
 
@@ -34,7 +34,7 @@ impl AppState {
         // Ensure the data directory exists
         std::fs::create_dir_all(app_data_dir)?;
 
-        let db_path = app_data_dir.join("kindling.db");
+        let db_path = app_data_dir.join("feather-quill.db");
         let existing = std::fs::metadata(&db_path).is_ok_and(|m| m.len() > 0);
         let conn = Connection::open(&db_path)?;
 
@@ -50,20 +50,22 @@ impl AppState {
                 Ok(path) => backup = Some(path),
                 // A failed copy must not stop the app from opening; the migration is additive.
                 Err(e) => {
-                    eprintln!("[kindling] could not back up kindling.db before upgrading: {e}")
+                    eprintln!(
+                        "[Feather Quill] could not back up feather-quill.db before upgrading: {e}"
+                    )
                 }
             }
         }
 
         initialize_schema(&conn).map_err(|e| match &backup {
             Some(path) => format!(
-                "Failed to prepare the kindling database: {e}. A copy made before this upgrade is at {}",
+                "Failed to prepare the Feather Quill database: {e}. A copy made before this upgrade is at {}",
                 path.display()
             ),
-            None => format!("Failed to prepare the kindling database: {e}"),
+            None => format!("Failed to prepare the Feather Quill database: {e}"),
         })?;
         if let Err(e) = std::fs::write(&version_path, app_version) {
-            eprintln!("[kindling] could not record the database version: {e}");
+            eprintln!("[Feather Quill] could not record the database version: {e}");
         }
 
         Ok(Self {
@@ -91,7 +93,7 @@ fn backup_database(
         })
         .collect();
     let stamp = chrono::Local::now().format("%Y%m%d-%H%M%S");
-    let path = dir.join(format!("kindling-{version}-{stamp}.db"));
+    let path = dir.join(format!("feather-quill-{version}-{stamp}.db"));
     conn.execute("VACUUM INTO ?1", [path.to_string_lossy()])?;
 
     let mut backups: Vec<(std::time::SystemTime, PathBuf)> = std::fs::read_dir(&dir)?
@@ -99,7 +101,7 @@ fn backup_database(
         .filter(|entry| {
             let name = entry.file_name();
             let name = name.to_string_lossy();
-            name.starts_with("kindling-") && name.ends_with(".db")
+            name.starts_with("feather-quill-") && name.ends_with(".db")
         })
         .filter_map(|entry| Some((entry.metadata().ok()?.modified().ok()?, entry.path())))
         .collect();
@@ -164,7 +166,7 @@ mod tests {
             .unwrap()
             .to_string_lossy()
             .into_owned();
-        assert!(name.starts_with("kindling-1.2.0-"), "{name}");
+        assert!(name.starts_with("feather-quill-1.2.0-"), "{name}");
         assert_eq!(project_count(&copies[0]), 1);
 
         AppState::open(dir.path(), "1.3.0").unwrap();
@@ -179,7 +181,7 @@ mod tests {
         let backup_dir = dir.path().join(BACKUP_DIR);
         std::fs::create_dir_all(&backup_dir).unwrap();
         for i in 0..4 {
-            std::fs::write(backup_dir.join(format!("kindling-old-{i}.db")), "x").unwrap();
+            std::fs::write(backup_dir.join(format!("feather-quill-old-{i}.db")), "x").unwrap();
         }
         std::fs::write(backup_dir.join("notes.txt"), "keep").unwrap();
 
@@ -193,6 +195,6 @@ mod tests {
         assert_eq!(dbs.len(), KEPT_BACKUPS);
         assert!(dbs
             .iter()
-            .any(|p| p.to_string_lossy().contains("kindling-unknown-")));
+            .any(|p| p.to_string_lossy().contains("feather-quill-unknown-")));
     }
 }

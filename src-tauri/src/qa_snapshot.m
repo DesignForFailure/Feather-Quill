@@ -5,7 +5,7 @@
 #include <math.h>
 #include <stdint.h>
 
-bool kindling_qa_supported(void) {
+bool feather_quill_qa_supported(void) {
     if (@available(macOS 14.0, *)) return true;
     return false;
 }
@@ -24,7 +24,7 @@ static void fail(uint64_t request, QAReply reply, NSString *message) {
 
 // Called on the main thread by Tauri's with_webview. The callback copies the
 // JSON before this autorelease pool/block returns; it never retains ObjC data.
-void kindling_qa_request(void *handle, uint64_t request, const char *operation,
+void feather_quill_qa_request(void *handle, uint64_t request, const char *operation,
                          uint32_t width, uint32_t height, uint32_t scale, QAReply reply) {
     @autoreleasepool {
         WKWebView *view = (__bridge WKWebView *)handle;

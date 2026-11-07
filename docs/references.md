@@ -1,10 +1,10 @@
-# References in Kindling
+# References in Feather Quill
 
 References help you track people, places, and story elements across scenes. Each reference can include notes and custom attributes, and you can link them to specific scenes.
 
 ## Reference Types
 
-Kindling supports these reference types:
+Feather Quill supports these reference types:
 
 - Characters
 - Locations
@@ -16,7 +16,7 @@ Kindling supports these reference types:
 
 The References panel shows tabs for each enabled reference type and lets you create, edit, and link references.
 
-![Screenshot: References panel](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/references-panel.png)
+
 
 ## Linking References to Scenes
 
@@ -27,7 +27,7 @@ When a scene is selected:
 - Drag references to set per-scene ordering
 - Expand/collapse state is saved per scene
 
-![Screenshot: Linked references in a scene](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/linked-references.png)
+
 
 ## Editing Reference Details
 
@@ -38,7 +38,7 @@ Each reference includes:
 - Notes
 - Custom attributes (key/value pairs)
 
-![Screenshot: Reference edit dialog](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/reference-edit-dialog.png)
+
 
 ## Reference Type Settings
 

@@ -255,12 +255,16 @@ fn normalize(value: Option<String>) -> Option<String> {
 
 // ── HTTP submission ───────────────────────────────────────────────────────────
 
-/// The public Lambda Function URL that accepts feedback POSTs.
-///
-/// No API key or secret is required (public client config, not a secret). The
-/// trailing slash is required by the Function URL — do not strip it.
-pub const FEEDBACK_ENDPOINT: &str =
-    "https://2gcszmyn325n5yaey2poh72qbe0tkmre.lambda-url.ca-central-1.on.aws/";
+/// Optional fork-owned HTTPS endpoint, embedded at build time.
+/// Never send Feather Quill feedback to the upstream Kindling service.
+pub const FEEDBACK_ENDPOINT: Option<&str> = option_env!("FEATHER_QUILL_FEEDBACK_ENDPOINT");
+
+fn feedback_endpoint(endpoint: Option<&str>) -> Result<&str, SubmitFeedbackError> {
+    endpoint
+        .map(str::trim)
+        .filter(|url| url.starts_with("https://") && url.len() > "https://".len())
+        .ok_or(SubmitFeedbackError::NotConfigured)
+}
 
 /// How long a submission may take before it fails instead of spinning forever.
 const FEEDBACK_TIMEOUT: std::time::Duration = std::time::Duration::from_secs(15);
@@ -272,6 +276,8 @@ const FEEDBACK_TIMEOUT: std::time::Duration = std::time::Duration::from_secs(15)
 /// frontend can show the rejection as-is.
 #[derive(Debug, thiserror::Error)]
 pub enum SubmitFeedbackError {
+    #[error("In-app feedback is not configured for Feather Quill. Please use https://github.com/DesignForFailure/Feather-Quill/issues instead.")]
+    NotConfigured,
     /// The payload failed builder validation (e.g. missing required field).
     #[error("{0}")]
     Validation(String),
@@ -343,6 +349,7 @@ where
 /// database.
 #[tauri::command]
 pub async fn submit_feedback(input: SubmitFeedbackInput) -> Result<(), SubmitFeedbackError> {
+    let endpoint = feedback_endpoint(FEEDBACK_ENDPOINT)?;
     let mut builder = FeedbackPayload::builder(input.feedback_type);
     if let Some(s) = input.summary {
         builder = builder.summary(s);
@@ -366,7 +373,7 @@ pub async fn submit_feedback(input: SubmitFeedbackInput) -> Result<(), SubmitFee
             .timeout(FEEDBACK_TIMEOUT)
             .build()
             .map_err(|e| e.to_string())?
-            .post(FEEDBACK_ENDPOINT)
+            .post(endpoint)
             .json(&body)
             .send()
             .await
@@ -379,6 +386,26 @@ pub async fn submit_feedback(input: SubmitFeedbackInput) -> Result<(), SubmitFee
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn feedback_requires_an_explicit_https_endpoint() {
+        for endpoint in [
+            None,
+            Some(""),
+            Some(" "),
+            Some("http://example.com"),
+            Some("https://"),
+        ] {
+            assert!(matches!(
+                feedback_endpoint(endpoint),
+                Err(SubmitFeedbackError::NotConfigured)
+            ));
+        }
+        assert_eq!(
+            feedback_endpoint(Some(" https://example.com/feedback ")).unwrap(),
+            "https://example.com/feedback"
+        );
+    }
 
     #[test]
     fn maps_known_operating_systems() {

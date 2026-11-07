@@ -75,7 +75,7 @@ Cleanup is implicit: the fixture project is deleted at the end of the run.
 
 ## Independent copies between books
 
-Use an isolated `KINDLING_DATA_DIR` as described in the QA runbook. Create two books and add references to the first: a character with notes, typed fields, and a nested tag; a location; an organization; a timeline; and a Notes reference. Disable at least one populated category. Give the second book a same-name character, an incompatible same-name custom field, and a same-name tag under a different parent.
+Use an isolated `FEATHER_QUILL_DATA_DIR` as described in the QA runbook. Create two books and add references to the first: a character with notes, typed fields, and a nested tag; a location; an organization; a timeline; and a Notes reference. Disable at least one populated category. Give the second book a same-name character, an incompatible same-name custom field, and a same-name tag under a different parent.
 
 In Book Two, choose **Copy references from project…**. Check that Book One is selectable, Book Two is excluded, all source categories appear, and the existing character defaults to Skip. Search by name and verify that hidden selections remain counted. Choose Keep both and verify the proposed name. Expand the fields/tags summary and check renames and the explanation that new fields also apply to existing references.
 

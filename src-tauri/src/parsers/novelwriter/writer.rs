@@ -349,7 +349,7 @@ pub fn export_novelwriter_project(
         .filter(|p| !p.as_os_str().is_empty())
         .unwrap_or(Path::new("."));
     std::fs::create_dir_all(parent).map_err(|e| e.to_string())?;
-    let stage = parent.join(format!(".kindling-nw-{}", Uuid::new_v4()));
+    let stage = parent.join(format!(".feather-quill-nw-{}", Uuid::new_v4()));
     std::fs::create_dir(&stage).map_err(|e| e.to_string())?;
     let result = (|| -> Result<(), String> {
         std::fs::create_dir(stage.join("content")).map_err(|e| e.to_string())?;

@@ -1,4 +1,4 @@
-# Scene Workflow in Kindling
+# Scene Workflow in Feather Quill
 
 Scenes are where you turn your outline into prose. Each scene combines beats, synopsis, and metadata to keep your draft structured.
 
@@ -6,7 +6,7 @@ Scenes are where you turn your outline into prose. Each scene combines beats, sy
 
 When you open a scene, the Scene panel shows its beats, synopsis, and metadata controls in one place.
 
-![Screenshot: Scene panel layout](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/scene-panel.png)
+
 
 ## Beats and Prose
 
@@ -15,11 +15,11 @@ When you open a scene, the Scene panel shows its beats, synopsis, and metadata c
 - Prose auto-saves as you write
 - Collapse a beat to keep the outline visible while you draft
 
-![Screenshot: Beat editor with prose](https://raw.githubusercontent.com/smith-and-web/kindling/main/docs/assets/beat-with-prose.png)
+
 
 ## Returning to a Project
 
-Reopening a project restores the last scene you viewed, the expanded beat, your prose cursor, and your scroll position. This works in both beat and page mode, including after restarting Kindling. Each project remembers its own position. If the saved scene was deleted or archived, the project opens with the usual chapter selection.
+Reopening a project restores the last scene you viewed, the expanded beat, your prose cursor, and your scroll position. This works in both beat and page mode, including after restarting Feather Quill. Each project remembers its own position. If the saved scene was deleted or archived, the project opens with the usual chapter selection.
 
 ## Synopsis Editing
 
@@ -41,7 +41,7 @@ Locked scenes (or scenes inside locked chapters) are read-only. Unlock the scene
 ## Cancelling quit after a save failure
 
 If saving fails while quitting, choose **Keep editing** or press **Escape** to
-return to the same writing editor and selection. Kindling restores the caret only
+return to the same writing editor and selection. Feather Quill restores the caret only
 while that editor still belongs to the same scene and project and you have not
 moved focus to another control outside the quit prompt.
 

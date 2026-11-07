@@ -10,7 +10,7 @@ const catalog: Catalog = {
   "startScreen.startFromScratch": "Start from scratch",
   "startScreen.openingSample": "Opening sample…",
   "startScreen.sampleProject": "Sample project",
-  "startScreen.exploreKindling": "Explore kindling first",
+  "startScreen.exploreFeatherQuill": "Explore Feather Quill first",
   "startScreen.openReviewPackage": "Open review package",
   "startScreen.openReviewPackageHint": "Open a review or feedback file",
   "startScreen.allProjects": "All projects",
@@ -42,7 +42,7 @@ const catalog: Catalog = {
   "startScreen.errorDeleteProject": "Failed to delete project: {error}",
 
   // Onboarding
-  welcomeTitle: "Welcome to kindling",
+  welcomeTitle: "Welcome to Feather Quill",
   tourSidebarTitle: "Chapters and scenes",
   tourSidebarSubtitle: "The left sidebar",
   tourEditorTitle: "Synopsis and beats",
@@ -73,7 +73,7 @@ const catalog: Catalog = {
   factCharacters: "Characters",
   factLocations: "Locations",
   outlineUnreadable: "Couldn’t read that outline",
-  chooseFormatLede: "Choose your outline format. kindling previews it before importing.",
+  chooseFormatLede: "Choose your outline format. Feather Quill previews it before importing.",
   trySample: "Try the sample project",
   startFromScratch: "Start a new project from scratch",
   skipAndImport: "Skip and start importing",
@@ -132,7 +132,7 @@ const catalog: Catalog = {
   editorPointSluglinesPrefix: "In screenplays, scene titles are ",
   editorPointSluglines: "sluglines",
   editorPointSluglinesMiddle: " (for example, ",
-  editorPointSluglinesSuffix: "). kindling suggests locations from your references.",
+  editorPointSluglinesSuffix: "). Feather Quill suggests locations from your references.",
 
   // Onboarding tour: references
   referencesTabCharacters: "Characters",
@@ -154,7 +154,7 @@ const catalog: Catalog = {
   referencesPointAddPrefix: "Use ",
   referencesPointAdd: "Add",
   referencesPointAddSuffix: " to search and link references to a scene.",
-  referencesPointDetectPrefix: "kindling can ",
+  referencesPointDetectPrefix: "Feather Quill can ",
   referencesPointDetect: "detect",
   referencesPointDetectMiddle: " character and location mentions in your prose. Look for the ",
   referencesPointSuggested: "Suggested",
@@ -166,7 +166,7 @@ const catalog: Catalog = {
   "quickStartDialog.title": "Quick start",
   "quickStartDialog.importHeading": "Import your outline",
   "quickStartDialog.importLede":
-    "kindling works with your existing outline. Import from the Start Screen or File → Import.",
+    "Feather Quill works with your existing outline. Import from the Start Screen or File → Import.",
   "quickStartDialog.plottr": " — .pltr files",
   "quickStartDialog.ywriter": " — .yw7 files",
   "quickStartDialog.markdown": " — Single .md file with # Chapter, ## Scene, - Beat structure",
@@ -200,7 +200,7 @@ const catalog: Catalog = {
   "quickStartDialog.charactersBullet": " — Who appears in this scene",
   "quickStartDialog.locationsBullet": " — Where the scene takes place",
   "quickStartDialog.linkReferences":
-    "Link characters and locations from your outline, or add them in kindling",
+    "Link characters and locations from your outline, or add them in Feather Quill",
   "quickStartDialog.tipsHeading": "Tips",
   "quickStartDialog.exportFallback": "Export",
   "quickStartDialog.exportRest": " — Export your project",
@@ -219,7 +219,7 @@ const catalog: Catalog = {
   "guidanceOverlay.scenePanelMessage":
     "Edit beats and scenes here. Capture ideas in discovery notes.",
   "guidanceOverlay.referencesMessage":
-    "Link characters, locations, and items to scenes. Use the + button to search and add references, or accept the suggested references kindling finds in your prose.",
+    "Link characters, locations, and items to scenes. Use the + button to search and add references, or accept the suggested references Feather Quill finds in your prose.",
   "guidanceOverlay.syncMessage":
     "Sync from source reimports your outline file when you've made changes elsewhere. Use it to pull in edits from Plottr, yWriter, Longform, Scrivener, or Markdown.",
   "guidanceOverlay.planningStatusMessage":
@@ -261,7 +261,7 @@ const catalog: Catalog = {
   "importProgressDialog.statusFallback": "Reading your outline…",
 
   // AboutDialog
-  "aboutDialog.title": "About kindling",
+  "aboutDialog.title": "About Feather Quill",
   "aboutDialog.tagline": "Spark your draft — bridge the gap between outline and prose.",
   "aboutDialog.versionLabel": "Version",
   "aboutDialog.unknownVersion": "unknown",
@@ -274,12 +274,12 @@ const catalog: Catalog = {
   // FeedbackDialog
   "feedbackDialog.title": "Send feedback",
   "feedbackDialog.successTitle": "Thanks for your feedback!",
-  "feedbackDialog.successMessage": "Your message was sent to the kindling team.",
+  "feedbackDialog.successMessage": "Your message was sent to the Feather Quill team.",
   "feedbackDialog.kindsLegend": "What kind of feedback?",
   "feedbackDialog.typeBug": "Bug",
   "feedbackDialog.typeFeature": "Feature",
   "feedbackDialog.typeRating": "Rating",
-  "feedbackDialog.ratingLegend": "How would you rate kindling?",
+  "feedbackDialog.ratingLegend": "How would you rate Feather Quill?",
   "feedbackDialog.star.one": "{count} star",
   "feedbackDialog.star.other": "{count} stars",
   "feedbackDialog.ratingOfFive": "{rating} of 5",
@@ -289,7 +289,7 @@ const catalog: Catalog = {
   "feedbackDialog.messageLabel": "Message",
   "feedbackDialog.messagePlaceholder": "Tell us what’s on your mind…",
   "feedbackDialog.disclosure":
-    "Sending includes what you enter here plus your kindling version, operating system and language. Nothing from your manuscript is attached.",
+    "Sending includes what you enter here plus your Feather Quill version, operating system and language. Nothing from your manuscript is attached.",
   "feedbackDialog.validationSummaryTooLong": "Summary must be {count} characters or fewer.",
   "feedbackDialog.validationRating": "Please select a rating from 1 to 5.",
   "feedbackDialog.validationMessageRequired": "Please enter a message.",
@@ -301,7 +301,7 @@ const catalog: Catalog = {
   "feedbackDialog.send": "Send feedback",
 
   // UpdateBanner
-  "updateBanner.ready": "kindling v{version} is ready — Restart to update",
+  "updateBanner.ready": "Feather Quill v{version} is ready — Restart to update",
   "updateBanner.restarting": "Restarting…",
   "updateBanner.restart": "Restart",
   "updateBanner.dismiss": "Dismiss",

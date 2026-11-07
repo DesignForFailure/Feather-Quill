@@ -16,17 +16,17 @@
   <p class="settings-lede">
     {t("settings.appearance.lede")}
   </p>
-  <div class="ka-group">
+  <div class="fq-group">
     <fieldset class="settings-fieldset">
-      <legend class="ka-group-title">{t("settings.appearance.title")}</legend>
-      <div class="ka-segments">
+      <legend class="fq-group-title">{t("settings.appearance.title")}</legend>
+      <div class="fq-segments">
         <div
-          class="ka-segment-track"
+          class="fq-segment-track"
           role="radiogroup"
           aria-label={t("settings.appearance.themeAria")}
         >
           {#each [{ value: "dark", label: t("settings.appearance.themeDark") }, { value: "light", label: t("settings.appearance.themeLight") }, { value: "system", label: t("settings.appearance.themeSystem") }] as opt}
-            <label class="ka-segment" class:ka-selected={ui.theme === opt.value}>
+            <label class="fq-segment" class:fq-selected={ui.theme === opt.value}>
               <input
                 type="radio"
                 name="theme"
@@ -40,14 +40,14 @@
           {/each}
         </div>
       </div>
-      <p class="ka-help">{t("settings.appearance.systemHelp")}</p>
+      <p class="fq-help">{t("settings.appearance.systemHelp")}</p>
     </fieldset>
   </div>
 
-  <div class="ka-group">
+  <div class="fq-group">
     <fieldset class="settings-fieldset">
-      <legend class="ka-group-title">{t("settings.appearance.guidance")}</legend>
-      <div class="ka-check">
+      <legend class="fq-group-title">{t("settings.appearance.guidance")}</legend>
+      <div class="fq-check">
         <input
           id="guidance-enabled"
           type="checkbox"
@@ -57,13 +57,13 @@
         />
         <label for="guidance-enabled">{t("settings.appearance.showTips")}</label>
       </div>
-      <p id="guidance-enabled-help" class="ka-help">
+      <p id="guidance-enabled-help" class="fq-help">
         {t("settings.appearance.tipsHelp")}
       </p>
       <div class="guidance-actions">
         <button
           type="button"
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
           onclick={showTipsAgain}
           disabled={!ui.guidanceEnabled}
           aria-describedby="guidance-reset-status"
@@ -71,12 +71,12 @@
           {t("settings.appearance.showTipsAgain")}
         </button>
         {#if onStartTour}
-          <button type="button" class="ka-button ka-button--secondary" onclick={onStartTour}>
+          <button type="button" class="fq-button fq-button--secondary" onclick={onStartTour}>
             {t("settings.appearance.takeTour")}
           </button>
         {/if}
       </div>
-      <p id="guidance-reset-status" class="ka-help" role="status">
+      <p id="guidance-reset-status" class="fq-help" role="status">
         {#if !ui.guidanceEnabled}
           {t("settings.appearance.turnOnTips")}
         {:else if tipsReset}

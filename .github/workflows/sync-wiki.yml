@@ -5,7 +5,7 @@ name: Sync Docs to Wiki
 # SETUP REQUIRED:
 # 1. Create a Personal Access Token (PAT) at https://github.com/settings/tokens
 #    - Select "Fine-grained token"
-#    - Repository access: Only select repositories -> kindling
+#    - Repository access: Only select repositories -> Feather Quill
 #    - Permissions: Contents (read/write)
 # 2. Add the token as a repository secret named WIKI_TOKEN:
 #    Settings -> Secrets and variables -> Actions -> New repository secret

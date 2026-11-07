@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Kindling",
+  "productName": "Feather Quill",
   "version": "1.3.1",
-  "identifier": "com.kindlingwriter.app",
+  "identifier": "io.github.designforfailure.featherquill.app",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "kindling",
+        "title": "Feather Quill",
         "visible": false,
         "width": 1600,
         "height": 1000,
@@ -29,51 +29,43 @@
   "bundle": {
     "active": true,
     "targets": "all",
-    "createUpdaterArtifacts": true,
+    "createUpdaterArtifacts": false,
     "macOS": {
       "signingIdentity": null,
       "entitlements": "./Entitlements.plist",
       "infoPlist": "EditorialDocuments.plist"
     },
     "icon": [
-      "icons/32x32.png",
-      "icons/128x128.png",
-      "icons/128x128@2x.png",
-      "icons/icon.icns",
-      "icons/icon.ico"
+      "icons/feather-quill/32x32.png",
+      "icons/feather-quill/128x128.png",
+      "icons/feather-quill/128x128@2x.png",
+      "icons/feather-quill/icon.icns",
+      "icons/feather-quill/icon.ico"
     ],
     "category": "Productivity",
-    "shortDescription": "Spark your draft - Bridge the gap between outline and prose",
-    "longDescription": "Kindling helps fiction writers go from outline to draft by providing a scaffolded writing environment where scene beats appear as expandable prompts.",
+    "shortDescription": "A local writing workspace for ideas, outlines, and manuscripts",
+    "longDescription": "Feather Quill helps fiction writers go from outline to draft by providing a scaffolded writing environment where scene beats appear as expandable prompts.",
     "fileAssociations": [
       {
-        "ext": [
-          "kindling-review"
-        ],
-        "name": "Kindling Review",
-        "description": "Kindling editorial manuscript",
+        "ext": ["kindling-review"],
+        "name": "Feather Quill Review",
+        "description": "Feather Quill editorial manuscript",
         "role": "Editor",
         "mimeType": "application/x-kindling-review",
         "exportedType": {
-          "identifier": "com.kindlingwriter.kindling-review",
-          "conformsTo": [
-            "public.json"
-          ]
+          "identifier": "io.github.designforfailure.featherquill.kindling-review",
+          "conformsTo": ["public.json"]
         }
       },
       {
-        "ext": [
-          "kindling-feedback"
-        ],
-        "name": "Kindling Feedback",
-        "description": "Kindling editorial feedback",
+        "ext": ["kindling-feedback"],
+        "name": "Feather Quill Feedback",
+        "description": "Feather Quill editorial feedback",
         "role": "Editor",
         "mimeType": "application/x-kindling-feedback",
         "exportedType": {
-          "identifier": "com.kindlingwriter.kindling-feedback",
-          "conformsTo": [
-            "public.json"
-          ]
+          "identifier": "io.github.designforfailure.featherquill.kindling-feedback",
+          "conformsTo": ["public.json"]
         }
       }
     ]
@@ -81,12 +73,13 @@
   "plugins": {
     "updater": {
       "endpoints": [
-        "https://github.com/smith-and-web/kindling/releases/latest/download/latest.json"
+        "https://github.com/DesignForFailure/Feather-Quill/releases/latest/download/latest.json"
       ],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDQ2QUZGOEI1QUYzNjMzNQpSV1ExWS9OYWkvOXFCUFpLZUFaRUpvM0IxZk1jRHJlTHIxbHlUY3lqdFlIeDQ0dWU0TGRxQldWMwo=",
+      "pubkey": "",
       "windows": {
         "installMode": "passive"
       }
     }
-  }
+  },
+  "mainBinaryName": "feather-quill"
 }

@@ -1,6 +1,6 @@
-# Contributing to Kindling
+# Contributing to Feather Quill
 
-First off, thank you for considering contributing to Kindling! It's people like you that make Kindling such a great tool for fiction writers.
+First off, thank you for considering contributing to Feather Quill! It's people like you that make Feather Quill such a great tool for fiction writers.
 
 ## Table of Contents
 
@@ -19,27 +19,27 @@ This project and everyone participating in it is governed by our [Code of Conduc
 ## Getting Started
 
 - Make sure you have a [GitHub account](https://github.com/signup)
-- Check the [issues](https://github.com/smith-and-web/kindling/issues) for existing bugs or feature requests
-- Check the [discussions](https://github.com/smith-and-web/kindling/discussions) for questions and ideas
+- Check the [issues](https://github.com/DesignForFailure/Feather-Quill/issues) for existing bugs or feature requests
+- Check the [discussions](https://github.com/DesignForFailure/Feather-Quill/discussions) for questions and ideas
 
 ### Good First Issues
 
-Looking for a place to start? Check out issues labeled [`good first issue`](https://github.com/smith-and-web/kindling/labels/good%20first%20issue) - these are great for newcomers to the project.
+Looking for a place to start? Check out issues labeled [`good first issue`](https://github.com/DesignForFailure/Feather-Quill/labels/good%20first%20issue) - these are great for newcomers to the project.
 
 ## How Can I Contribute?
 
 ### Reporting Bugs
 
 - **Check existing issues** first to avoid duplicates
-- Use the [bug report template](https://github.com/smith-and-web/kindling/issues/new?template=bug_report.yml)
+- Use the [bug report template](https://github.com/DesignForFailure/Feather-Quill/issues/new?template=bug_report.yml)
 - Include as much detail as possible
 - Include steps to reproduce the issue
 
 ### Suggesting Features
 
-- Check the [roadmap](https://github.com/smith-and-web/kindling#roadmap) first
-- Start a [discussion](https://github.com/smith-and-web/kindling/discussions/categories/ideas) to gauge interest
-- Use the [feature request template](https://github.com/smith-and-web/kindling/issues/new?template=feature_request.yml)
+- Check the [roadmap](https://github.com/DesignForFailure/Feather-Quill#roadmap) first
+- Start a [discussion](https://github.com/DesignForFailure/Feather-Quill/discussions/categories/ideas) to gauge interest
+- Use the [feature request template](https://github.com/DesignForFailure/Feather-Quill/issues/new?template=feature_request.yml)
 
 ### Writing Code
 
@@ -67,8 +67,8 @@ We provide a setup script that automates the entire process:
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/kindling.git
-cd kindling
+git clone https://github.com/YOUR_USERNAME/Feather-Quill.git
+cd Feather-Quill
 
 # Run the setup script
 ./scripts/setup.sh
@@ -113,8 +113,8 @@ sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev 
 
 ```bash
 # Clone your fork
-git clone https://github.com/YOUR_USERNAME/kindling.git
-cd kindling
+git clone https://github.com/YOUR_USERNAME/Feather-Quill.git
+cd Feather-Quill
 
 # Install dependencies
 npm install
@@ -359,7 +359,7 @@ Contributors are recognized in:
 
 ## Questions?
 
-- Start a [discussion](https://github.com/smith-and-web/kindling/discussions)
-- Check the [wiki](https://github.com/smith-and-web/kindling/wiki)
+- Start a [discussion](https://github.com/DesignForFailure/Feather-Quill/discussions)
+- Check the [wiki](https://github.com/DesignForFailure/Feather-Quill/wiki)
 
-Thank you for contributing to Kindling!
+Thank you for contributing to Feather Quill!

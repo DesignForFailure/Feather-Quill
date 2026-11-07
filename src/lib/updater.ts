@@ -8,6 +8,7 @@ import { check } from "@tauri-apps/plugin-updater";
 import { relaunch } from "@tauri-apps/plugin-process";
 import { session } from "./stores/session.svelte";
 import { synopsisSaves } from "./stores/synopsisSaves.svelte";
+import appConfig from "../../src-tauri/tauri.conf.json";
 
 export interface UpdateState {
   /** Update is downloaded and ready to install */
@@ -23,7 +24,8 @@ export interface UpdateState {
 export const updateState = writable<UpdateState | null>(null);
 
 export async function checkForUpdate(): Promise<void> {
-  if (import.meta.env.DEV) return;
+  // A fork must configure its own signing key before making update requests.
+  if (import.meta.env.DEV || !appConfig.plugins.updater.pubkey.trim()) return;
 
   try {
     const update = await check();

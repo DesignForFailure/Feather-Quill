@@ -1,8 +1,8 @@
 {
-  "name": "kindling-e2e",
+  "name": "feather-quill-e2e",
   "version": "0.1.0",
   "private": true,
-  "description": "E2E tests for Kindling using WebdriverIO",
+  "description": "E2E tests for Feather Quill using WebdriverIO",
   "type": "module",
   "scripts": {
     "test": "wdio run wdio.conf.js",

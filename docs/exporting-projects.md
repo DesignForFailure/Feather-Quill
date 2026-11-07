@@ -1,10 +1,10 @@
-# Exporting Projects from Kindling
+# Exporting Projects from Feather Quill
 
 Export your writing for a submission, a reading copy, a website, or another
 writing app. Choose a standard format for a quick export, or use **Custom** to
 save your own export profiles and adjust settings beside a live preview.
 
-Exporting leaves your writing in Kindling unchanged. Prose exports use the
+Exporting leaves your writing in Feather Quill unchanged. Prose exports use the
 writing from each scene's selected view—Page View or Beat View—so the same
 prose is not included twice. Scenes without beats use their Page View prose.
 
@@ -91,7 +91,7 @@ removes rich-text formatting. Both show the generated text in the workspace.
 Longform exports create an index file, individual scene files, and reference
 notes grouped into folders for characters, locations, items, objectives, and
 organizations. Scene files include titles, synopses, and details used to preserve
-your project's structure when you bring changes back into Kindling.
+your project's structure when you bring changes back into Feather Quill.
 
 Keep the generated index and scene files together when moving the export.
 See [Sync & Reimport](sync-and-reimport.md) for working with a linked source.

@@ -68,7 +68,7 @@ const catalog: Catalog = {
   // --- EditorialWorkspace: review package screen ---
   "editorialWorkspace.packageTitle": "Enviar un manuscrito para revisión",
   "editorialWorkspace.packageDescription":
-    "Crea un archivo que tu editor pueda abrir en kindling. Podrá leer, sugerir ediciones y devolver su feedback sin necesidad de una cuenta.",
+    "Crea un archivo que tu editor pueda abrir en feather-quill. Podrá leer, sugerir ediciones y devolver su feedback sin necesidad de una cuenta.",
   "editorialWorkspace.reviewRound": "Ronda de revisión",
   "editorialWorkspace.reviewRoundPlaceholder": "Edición de desarrollo — Septiembre",
   "editorialWorkspace.reviewRoundRequired": "Ingresa un nombre para esta ronda de revisión.",
@@ -102,7 +102,7 @@ const catalog: Catalog = {
   "editorialWorkspace.comment.other": "comentarios",
   "editorialWorkspace.whatHappensNext": "Qué pasa a continuación",
   "editorialWorkspace.nextBody":
-    "Lee los comentarios, responde a tu editor y acepta o rechaza las sugerencias. Si has reescrito un pasaje, kindling te ayuda a ubicar su feedback antes de aplicar una edición.",
+    "Lee los comentarios, responde a tu editor y acepta o rechaza las sugerencias. Si has reescrito un pasaje, Feather Quill te ayuda a ubicar su feedback antes de aplicar una edición.",
   "editorialWorkspace.nextBodyPace":
     "Puedes revisar el feedback a tu propio ritmo y exportar tus respuestas y decisiones cuando estés listo.",
   "editorialWorkspace.importReviewFeedback": "Importar y revisar feedback",
@@ -127,21 +127,21 @@ const catalog: Catalog = {
   "editorialWorkspace.exportReplies": "Exportar respuestas y decisiones",
 
   // --- EditorialWorkspace: file dialogs and notices ---
-  "editorialWorkspace.openFileTitle": "Abrir un archivo de revisión o feedback de kindling",
-  "editorialWorkspace.openFileFilter": "Archivos editoriales de kindling",
+  "editorialWorkspace.openFileTitle": "Abrir un archivo de revisión o feedback de Feather Quill",
+  "editorialWorkspace.openFileFilter": "Archivos editoriales de Feather Quill",
   "editorialWorkspace.exportPackageTitle": "Exportar para revisión editorial",
-  "editorialWorkspace.exportPackageFilter": "Revisión de kindling",
+  "editorialWorkspace.exportPackageFilter": "Revisión de Feather Quill",
   "editorialWorkspace.reviewPackageSaved":
     "Paquete de revisión guardado en {path}. Entrega este archivo a tu editor.",
   "editorialWorkspace.returnFeedbackTitle": "Devolver feedback editorial",
-  "editorialWorkspace.recoveryFilter": "Revisión de recuperación de kindling",
-  "editorialWorkspace.feedbackFilter": "Feedback de kindling",
+  "editorialWorkspace.recoveryFilter": "Revisión de recuperación de Feather Quill",
+  "editorialWorkspace.feedbackFilter": "Feedback de Feather Quill",
   "editorialWorkspace.recoverySaved":
-    "Revisión de recuperación guardada en {path}. Ábrela en kindling para reanudar tu trabajo y luego exporta el feedback normalmente.",
+    "Revisión de recuperación guardada en {path}. Ábrela en Feather Quill para reanudar tu trabajo y luego exporta el feedback normalmente.",
   "editorialWorkspace.feedbackSaved":
     "Feedback guardado en {path}. Devuelve este archivo al escritor. Puedes seguir revisando y exportar otra respuesta más tarde.",
   "editorialWorkspace.sendReplyTitle": "Enviar respuestas y decisiones a tu editor",
-  "editorialWorkspace.sendReplyFilter": "Respuesta de revisión de kindling",
+  "editorialWorkspace.sendReplyFilter": "Respuesta de revisión de Feather Quill",
   "editorialWorkspace.replySaved":
     "Respuesta guardada en {path}. Tu editor la abre para recibir tus respuestas y decisiones manteniendo su revisión en curso.",
   "editorialWorkspace.feedbackImported":

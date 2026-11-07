@@ -10,7 +10,6 @@ export default defineConfig({
   resolve: {
     alias: {
       $lib: fromHere("./src/lib"),
-      $press: fromHere("./src/styles/press"),
     },
     conditions: ["browser"],
   },

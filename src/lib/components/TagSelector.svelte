@@ -120,7 +120,7 @@
     <button
       type="button"
       onclick={() => (showDropdown = !showDropdown)}
-      class="ka-button ka-button--ghost tag-add"
+      class="fq-button fq-button--ghost tag-add"
       aria-label={t("sidebar.tagSelector.addTag")}
       aria-expanded={showDropdown}
     >
@@ -167,7 +167,7 @@
             </button>
           {/if}
           {#if !search.trim() && availableTags.length === 0}
-            <p class="ka-help tag-none">{t("sidebar.tagSelector.noMoreTags")}</p>
+            <p class="fq-help tag-none">{t("sidebar.tagSelector.noMoreTags")}</p>
           {/if}
         </div>
       </div>

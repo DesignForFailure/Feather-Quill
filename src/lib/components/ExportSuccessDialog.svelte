@@ -61,7 +61,7 @@
   aria-labelledby="export-success-dialog-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell">
     <DialogHeader
       title={t("export.exportSuccessDialog.title")}
       titleId="export-success-dialog-title"
@@ -69,8 +69,8 @@
       closeLabel={t("export.exportSuccessDialog.close")}
     />
 
-    <div class="ka-dialog-body export-success">
-      <div class="ka-notice ka-notice--success od-row-top" role="status">
+    <div class="fq-dialog-body export-success">
+      <div class="fq-notice fq-notice--success od-row-top" role="status">
         <CircleCheck class="w-5 h-5" aria-hidden="true" />
         <div class="od-field od-fill">
           <strong>{t("export.exportSuccessDialog.successHeading")}</strong>
@@ -93,21 +93,21 @@
       </div>
 
       <div class="od-field export-location">
-        <p class="ka-label">{t("export.exportSuccessDialog.savedTo")}</p>
-        <div class="ka-code">
+        <p class="fq-label">{t("export.exportSuccessDialog.savedTo")}</p>
+        <div class="fq-code">
           <code>{result.output_path}</code>
         </div>
         {#if openError}
-          <p class="ka-error" role="alert">{openError}</p>
+          <p class="fq-error" role="alert">{openError}</p>
         {/if}
       </div>
     </div>
 
-    <footer class="ka-dialog-footer">
-      <button type="button" onclick={onClose} class="ka-button ka-button--secondary">
+    <footer class="fq-dialog-footer">
+      <button type="button" onclick={onClose} class="fq-button fq-button--secondary">
         {t("export.exportSuccessDialog.close")}
       </button>
-      <button type="button" onclick={openFolder} class="ka-button">
+      <button type="button" onclick={openFolder} class="fq-button">
         <FolderOpen class="w-5 h-5" aria-hidden="true" />
         {t("export.exportSuccessDialog.openFolder")}
       </button>
@@ -133,7 +133,7 @@
   .export-location p {
     margin: 0;
   }
-  .export-location .ka-label {
+  .export-location .fq-label {
     font: 500 var(--text-ui) / 1.5 var(--font-ui);
     color: var(--color-text);
   }

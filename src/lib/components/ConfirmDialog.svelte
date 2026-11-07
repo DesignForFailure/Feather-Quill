@@ -45,20 +45,20 @@
   aria-describedby={embedded ? undefined : `${titleId}-message`}
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow confirm">
+  <div class="app-dialog-surface fq-dialog-narrow confirm">
     <DialogHeader {title} {titleId} onClose={onCancel} closeLabel={t("shell.closeConfirmation")} />
-    <div class="ka-dialog-body">
+    <div class="fq-dialog-body">
       <p id={`${titleId}-message`} data-testid="dialog-message" class="confirm-message">
         {message}
       </p>
     </div>
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       <button
         type="button"
         data-testid="dialog-cancel"
         onclick={onCancel}
         use:focusOnMount
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
       >
         {cancelLabel}
       </button>
@@ -66,7 +66,7 @@
         type="button"
         data-testid="dialog-confirm"
         onclick={onConfirm}
-        class="ka-button ka-button--danger"
+        class="fq-button fq-button--danger"
       >
         {confirmLabel}
       </button>

@@ -35,7 +35,7 @@ const catalog: Catalog = {
 
   // --- Appearance ---
   "appearance.lede":
-    "Aussehen von kindling und Menge der angezeigten Hinweise wählen. Änderungen gelten sofort für alle Projekte.",
+    "Aussehen von Feather Quill und Menge der angezeigten Hinweise wählen. Änderungen gelten sofort für alle Projekte.",
   "appearance.title": "Darstellung",
   "appearance.themeAria": "Thema",
   "appearance.themeDark": "Dunkel",

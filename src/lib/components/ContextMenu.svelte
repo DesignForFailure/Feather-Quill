@@ -207,7 +207,7 @@
 <div
   bind:this={menuRef}
   data-testid="context-menu"
-  class="ka-menu-list context-menu"
+  class="fq-menu-list context-menu"
   style="left: {adjustedX}px; top: {adjustedY}px;"
   role="menu"
   tabindex="-1"
@@ -222,7 +222,7 @@
         data-testid="context-menu-item"
         data-label={item.label}
         data-item-index={index}
-        class:ka-menu-danger={item.danger}
+        class:fq-menu-danger={item.danger}
         aria-haspopup={item.children ? "menu" : undefined}
         aria-expanded={item.children ? openSubmenuIndex === index : undefined}
         disabled={item.disabled && !item.children}
@@ -233,14 +233,14 @@
         <span>
           {#if item.icon}
             {@const Icon = item.icon}
-            <Icon class="w-5 h-5 ka-icon" aria-hidden="true" />
+            <Icon class="w-5 h-5 fq-icon" aria-hidden="true" />
           {:else}
-            <span class="ka-icon-slot" aria-hidden="true"></span>
+            <span class="fq-icon-slot" aria-hidden="true"></span>
           {/if}
           {item.label}
         </span>
         {#if item.children}
-          <ChevronRight class="w-5 h-5 ka-icon" aria-hidden="true" />
+          <ChevronRight class="w-5 h-5 fq-icon" aria-hidden="true" />
         {/if}
       </button>
     {/if}
@@ -252,7 +252,7 @@
     {@const pos = getSubmenuPosition(index)}
     <div
       bind:this={submenuRef}
-      class="ka-menu-list context-menu"
+      class="fq-menu-list context-menu"
       style="left: {pos.left}; top: {pos.top};"
       role="menu"
       aria-label={item.label}
@@ -267,16 +267,16 @@
           <button
             type="button"
             role="menuitem"
-            class:ka-menu-danger={child.danger}
+            class:fq-menu-danger={child.danger}
             disabled={child.disabled}
             onclick={() => handleSubmenuItemClick(child)}
           >
             <span>
               {#if child.icon}
                 {@const ChildIcon = child.icon}
-                <ChildIcon class="w-5 h-5 ka-icon" aria-hidden="true" />
+                <ChildIcon class="w-5 h-5 fq-icon" aria-hidden="true" />
               {:else}
-                <span class="ka-icon-slot" aria-hidden="true"></span>
+                <span class="fq-icon-slot" aria-hidden="true"></span>
               {/if}
               {child.label}
             </span>

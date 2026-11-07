@@ -418,7 +418,7 @@
   }
   function rememberName(name: string) {
     writerName = name;
-    localStorage.setItem("kindling.editorial.name", name);
+    localStorage.setItem("feather-quill.editorial.name", name);
     if (session) {
       session.name = name;
       stage();
@@ -487,7 +487,7 @@
       resetSearch();
       showComment = false;
       writerName =
-        localStorage.getItem("kindling.editorial.name") ||
+        localStorage.getItem("feather-quill.editorial.name") ||
         t("editorial.editorialWorkspace.defaultWriterName");
       manuscriptVersion++;
       await show();
@@ -864,7 +864,7 @@
         );
         nextSession = nextSaves.recover(packageData.session) ?? {
           reviewer_id: window.crypto.randomUUID(),
-          name: localStorage.getItem("kindling.editorial.name") || "",
+          name: localStorage.getItem("feather-quill.editorial.name") || "",
           generation: 0,
           document: manuscript(packageData.round.sources).toJSON(),
           changes: [],
@@ -1322,7 +1322,7 @@
   <header class="workspace-header">
     <button
       type="button"
-      class="ka-button ka-button--ghost ka-icon-button"
+      class="fq-button fq-button--ghost fq-icon-button"
       aria-label={packageReturn
         ? t("editorial.editorialWorkspace.returnToRevisions")
         : local
@@ -1349,7 +1349,7 @@
       </h1>
     </div>
     <div class="workspace-actions">
-      {#if local && focusedReview && screen !== "export"}<div class="ka-field bar-field">
+      {#if local && focusedReview && screen !== "export"}<div class="fq-field bar-field">
           <select
             aria-label={t("editorial.editorialWorkspace.revisionStatus")}
             disabled={busy || focusedSource?.locked}
@@ -1361,7 +1361,7 @@
         </div>{/if}
       {#if session}<span class="save-state" role="status">{savedState}</span>{/if}
       {#if screen === "review" || screen === "feedback"}
-        {#if local}<div class="ka-field bar-field">
+        {#if local}<div class="fq-field bar-field">
             <select
               aria-label={t("editorial.editorialWorkspace.editorMode")}
               value={screen}
@@ -1376,14 +1376,14 @@
               ><option value="review">{t("editorial.editorialWorkspace.modeSuggesting")}</option
               ></select
             >
-          </div>{:else}<span class="ka-badge mode"
+          </div>{:else}<span class="fq-badge mode"
             >{session
               ? t("editorial.editorialWorkspace.modeSuggesting")
               : t("editorial.editorialWorkspace.reviewingFeedback")}</span
           >{/if}
         <button
           type="button"
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           title={t("editorial.editorialWorkspace.findInManuscript")}
           aria-label={t("editorial.editorialWorkspace.findInManuscript")}
           onclick={focusSearch}><Search class="w-5 h-5" aria-hidden="true" /></button
@@ -1391,7 +1391,7 @@
         <button
           type="button"
           bind:this={menuTrigger}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("editorial.editorialWorkspace.manuscriptActions")}
           title={t("editorial.editorialWorkspace.manuscriptActions")}
           aria-haspopup="menu"
@@ -1415,26 +1415,26 @@
       {/if}
     </div>
   </header>
-  {#if error}<div role="alert" class="ka-notice ka-notice--error od-row-top workspace-message">
+  {#if error}<div role="alert" class="fq-notice fq-notice--error od-row-top workspace-message">
       <TriangleAlert class="w-5 h-5" aria-hidden="true" />
       <div class="od-field od-fill">
         <p>{error}</p>
-        {#if session}<div class="ka-row">
+        {#if session}<div class="fq-row">
             <button
               type="button"
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
               onclick={() => flush().catch(() => {})}
               >{t("editorial.editorialWorkspace.retrySaving")}</button
             ><button
               type="button"
-              class="ka-button ka-button--ghost"
+              class="fq-button fq-button--ghost"
               onclick={() => returnFeedback(true)}
               >{t("editorial.editorialWorkspace.exportRecoveryCopy")}</button
             >
           </div>{/if}
       </div>
     </div>{/if}
-  {#if notice}<div role="status" class="ka-notice ka-notice--success od-row-top workspace-message">
+  {#if notice}<div role="status" class="fq-notice fq-notice--success od-row-top workspace-message">
       <CheckCircle2 class="w-5 h-5" aria-hidden="true" />
       <p class="od-fill">{notice}</p>
     </div>{/if}
@@ -1448,7 +1448,7 @@
               {t("editorial.editorialWorkspace.packageDescription")}
             </p>
           </div>
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="editorial-round-name">{t("editorial.editorialWorkspace.reviewRound")}</label
             >
             <input
@@ -1458,14 +1458,14 @@
               aria-invalid={!roundName.trim() || undefined}
               aria-describedby={!roundName.trim() ? "editorial-round-name-error" : undefined}
             />
-            {#if !roundName.trim()}<p class="ka-error" id="editorial-round-name-error">
+            {#if !roundName.trim()}<p class="fq-error" id="editorial-round-name-error">
                 {t("editorial.editorialWorkspace.reviewRoundRequired")}
               </p>{/if}
           </div>
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="editorial-brief"
               >{t("editorial.editorialWorkspace.briefLabel")}
-              <span class="ka-optional">{t("editorial.editorialWorkspace.optional")}</span></label
+              <span class="fq-optional">{t("editorial.editorialWorkspace.optional")}</span></label
             >
             <textarea
               id="editorial-brief"
@@ -1476,7 +1476,7 @@
           </div>
           <fieldset class="package-scope">
             <legend>{t("editorial.editorialWorkspace.manuscriptToInclude")}</legend>
-            <label class="ka-check"
+            <label class="fq-check"
               ><input
                 type="radio"
                 name="editorial-package-scope"
@@ -1484,7 +1484,7 @@
                 value="all"
               />{t("editorial.editorialWorkspace.entireManuscript")}</label
             >
-            <label class="ka-check"
+            <label class="fq-check"
               ><input
                 type="radio"
                 name="editorial-package-scope"
@@ -1495,7 +1495,7 @@
             {#if exportScope === "selected"}
               <div class="chapter-choices">
                 {#each exportChapters as chapter}
-                  <label class="ka-check"
+                  <label class="fq-check"
                     ><input
                       type="checkbox"
                       value={chapter.chapter_id}
@@ -1510,7 +1510,7 @@
             <div>
               <button
                 type="button"
-                class="ka-button"
+                class="fq-button"
                 disabled={busy || !!exportBlocked}
                 aria-busy={exporting || undefined}
                 aria-describedby={exportBlocked ? "editorial-export-blocked" : undefined}
@@ -1523,10 +1523,10 @@
                   : t("editorial.editorialWorkspace.exportReviewPackage")}</button
               >
             </div>
-            {#if exportBlocked}<p class="ka-help" id="editorial-export-blocked">
+            {#if exportBlocked}<p class="fq-help" id="editorial-export-blocked">
                 {exportBlocked}
               </p>{/if}
-            <p class="ka-help">{t("editorial.editorialWorkspace.exportShareHelp")}</p>
+            <p class="fq-help">{t("editorial.editorialWorkspace.exportShareHelp")}</p>
           </div>
         </section>
         <aside class="package-rounds" aria-label={t("editorial.editorialWorkspace.reviewRounds")}>
@@ -1537,7 +1537,7 @@
             <div>
               <button
                 type="button"
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 disabled={busy}
                 onclick={() => openFile()}
                 ><FolderOpen class="w-5 h-5" aria-hidden="true" />{t(
@@ -1545,7 +1545,7 @@
                 )}</button
               >
             </div>
-            <p class="ka-help">
+            <p class="fq-help">
               {t("editorial.editorialWorkspace.continueReviewHelp")}
             </p>
           </section>
@@ -1577,7 +1577,7 @@
                   </li>{/each}
               </ul>
             {:else}
-              <div class="ka-empty od-stack">
+              <div class="fq-empty od-stack">
                 <MessageSquare class="w-7 h-7" aria-hidden="true" />
                 <h3>{t("editorial.editorialWorkspace.noRoundsTitle")}</h3>
                 <p>{t("editorial.editorialWorkspace.noRoundsBody")}</p>
@@ -1642,7 +1642,7 @@
             <div>
               <button
                 type="button"
-                class="ka-button"
+                class="fq-button"
                 disabled={busy}
                 aria-busy={busy || undefined}
                 onclick={importFeedback}
@@ -1651,7 +1651,7 @@
                 )}</button
               >
             </div>
-            <p class="ka-help">{t("editorial.editorialWorkspace.importHelp")}</p>
+            <p class="fq-help">{t("editorial.editorialWorkspace.importHelp")}</p>
           </div>
         </section>
         <aside
@@ -1660,7 +1660,7 @@
         >
           <section class="side-group">
             <h2>{t("editorial.editorialWorkspace.reviewDetails")}</h2>
-            <dl class="ka-facts">
+            <dl class="fq-facts">
               <div>
                 <dt>{t("editorial.editorialWorkspace.manuscript")}</dt>
                 <dd>{received.round.title}</dd>
@@ -1690,7 +1690,7 @@
             <BrandWordmark />
             <button
               type="button"
-              class="ka-button ka-button--ghost ka-icon-button"
+              class="fq-button fq-button--ghost fq-icon-button"
               aria-label={t("editorial.editorialWorkspace.hideNav")}
               title={t("editorial.editorialWorkspace.hideNav")}
               onclick={() => (showNavigation = false)}
@@ -1701,19 +1701,19 @@
             <h2>{round.title}</h2>
             <p class="round-name">{roundDisplayName(round.name)}</p>
           </div>
-          {#if round.brief}<details class="ka-disclosure nav-brief">
+          {#if round.brief}<details class="fq-disclosure nav-brief">
               <summary>{t("editorial.editorialWorkspace.writerBrief")}</summary>
               <p class="brief">{round.brief}</p>
             </details>{/if}
-          <div class="ka-tree nav-tree">
+          <div class="fq-tree nav-tree">
             {#each chapterGroups as group}
               <h3 class="nav-chapter">{group.chapter}</h3>
-              <ul class="ka-tree-list nav-scenes">
+              <ul class="fq-tree-list nav-scenes">
                 {#each group.scenes as source}<li>
                     <button
                       type="button"
                       class="scene-link"
-                      class:ka-tree-selected={focusedScene === source.scene_id}
+                      class:fq-tree-selected={focusedScene === source.scene_id}
                       aria-current={focusedScene === source.scene_id ? "location" : undefined}
                       onclick={() => {
                         focusedScene = source.scene_id;
@@ -1727,9 +1727,9 @@
         </nav>{/if}
       <section class="manuscript-region" aria-label={t("editorial.editorialWorkspace.manuscript")}>
         {#if showSearch}<div class="search-bar">
-            <div class="ka-field search-field">
-              <span class="ka-input-icon"
-                ><Search class="ka-icon w-5 h-5" aria-hidden="true" /><input
+            <div class="fq-field search-field">
+              <span class="fq-input-icon"
+                ><Search class="fq-icon w-5 h-5" aria-hidden="true" /><input
                   type="search"
                   aria-label={t("editorial.editorialWorkspace.findInManuscript")}
                   bind:value={search}
@@ -1762,15 +1762,15 @@
                 : ""}</span
             ><button
               type="button"
-              class="ka-button ka-button--ghost"
+              class="fq-button fq-button--ghost"
               disabled={!searchCount}
               onclick={() => findNext(-1)}>{t("editorial.editorialWorkspace.previous")}</button
             ><button
               type="button"
-              class="ka-button ka-button--ghost"
+              class="fq-button fq-button--ghost"
               disabled={!searchCount}
               onclick={() => findNext(1)}>{t("editorial.editorialWorkspace.next")}</button
-            ><button type="button" class="ka-button ka-button--secondary" onclick={closeSearch}
+            ><button type="button" class="fq-button fq-button--secondary" onclick={closeSearch}
               >{t("editorial.editorialWorkspace.done")}</button
             >
           </div>{/if}
@@ -1800,13 +1800,13 @@
               {#snippet toolbar()}
                 {#if !local && !showNavigation}<button
                     type="button"
-                    class="ka-button ka-button--ghost ka-icon-button"
+                    class="fq-button fq-button--ghost fq-icon-button"
                     aria-label={t("editorial.editorialWorkspace.showNav")}
                     title={t("editorial.editorialWorkspace.showNav")}
                     onclick={() => (showNavigation = true)}
                     ><PanelLeftOpen class="w-5 h-5" aria-hidden="true" /></button
                   >{/if}
-                <div class="ka-field markup-field">
+                <div class="fq-field markup-field">
                   <label for="editorial-markup">{t("editorial.editorialWorkspace.markup")}</label>
                   <select
                     id="editorial-markup"
@@ -1921,7 +1921,7 @@
             </div>
             {#if reviewers.length}
               <div class="review-menu-group">
-                <div class="ka-field review-menu-field">
+                <div class="fq-field review-menu-field">
                   <label for="editorial-reply-reviewer"
                     >{t("editorial.editorialWorkspace.sendToEditor")}</label
                   >
@@ -2048,7 +2048,7 @@
     margin: 0;
     overflow-wrap: anywhere;
   }
-  .workspace-message .ka-row {
+  .workspace-message .fq-row {
     margin-top: var(--space-2xs);
   }
 
@@ -2101,14 +2101,14 @@
     font: 500 var(--text-ui) / 1.4 var(--font-ui);
     color: var(--color-text);
   }
-  .package-scope > .ka-check {
+  .package-scope > .fq-check {
     border-bottom: var(--border-hair);
     cursor: pointer;
   }
-  .package-scope > .ka-check:last-of-type {
+  .package-scope > .fq-check:last-of-type {
     border-bottom: 0;
   }
-  .package-scope .ka-check {
+  .package-scope .fq-check {
     cursor: pointer;
   }
   .chapter-choices {
@@ -2184,16 +2184,16 @@
       background: var(--color-surface-sunken);
     }
   }
-  .package-rounds .ka-empty {
+  .package-rounds .fq-empty {
     padding: 0;
   }
-  .package-rounds .ka-empty h3 {
+  .package-rounds .fq-empty h3 {
     margin: 0;
     font: 550 var(--text-h3) / 1.25 var(--font-display);
     letter-spacing: var(--tracking-tight);
     color: var(--color-text);
   }
-  .package-rounds .ka-empty p {
+  .package-rounds .fq-empty p {
     font-size: var(--text-ui);
   }
   @media (max-width: 1280px) {

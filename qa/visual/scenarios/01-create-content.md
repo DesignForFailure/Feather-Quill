@@ -20,7 +20,7 @@ Then `take_screenshot`.
 e2e: _should show inline input when clicking new chapter button_
 
 **Expect**: a text input rendered in place at the bottom of the chapter list,
-full sidebar width minus padding, visible focus ring in the Press focus
+full sidebar width minus padding, visible focus ring in the theme focus
 colour, placeholder legible, nothing pushed out of the sidebar column.
 
 ## Call 2: create, cancel, blur, auto-expand (DOM only, 01-02 to 01-05)

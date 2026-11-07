@@ -65,7 +65,7 @@ body:
   - type: input
     id: app-version
     attributes:
-      label: Kindling Version
+      label: Feather Quill Version
       placeholder: e.g., 0.1.0
 
   - type: textarea

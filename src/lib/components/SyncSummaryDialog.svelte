@@ -73,17 +73,17 @@
   aria-labelledby="sync-summary-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell">
     <DialogHeader
       title={t("references.syncSummaryDialog.title")}
       titleId="sync-summary-title"
       {onClose}
       closeTestId="dialog-close"
     />
-    <div class="ka-dialog-body">
+    <div class="fq-dialog-body">
       <div data-testid="sync-summary" class="summary">
         {#if !hasChanges}
-          <div class="ka-empty od-stack">
+          <div class="fq-empty od-stack">
             <CheckCheck class="w-7 h-7" aria-hidden="true" />
             <h4>{t("references.syncSummaryDialog.nothingChanged")}</h4>
             <p>{t("references.syncSummaryDialog.noChangesApplied")}</p>
@@ -91,17 +91,17 @@
         {:else}
           <div class="summary-badges">
             {#if totalAdded > 0}
-              <span class="ka-badge ka-badge--success"
+              <span class="fq-badge fq-badge--success"
                 >{t("references.syncSummaryDialog.addedCount", { count: totalAdded })}</span
               >
             {/if}
             {#if totalUpdated > 0}
-              <span class="ka-badge"
+              <span class="fq-badge"
                 >{t("references.syncSummaryDialog.updatedCount", { count: totalUpdated })}</span
               >
             {/if}
             {#if summary.prose_preserved > 0}
-              <span class="ka-badge"
+              <span class="fq-badge"
                 >{t("references.syncSummaryDialog.preservedCount", {
                   count: summary.prose_preserved,
                 })}</span
@@ -111,7 +111,7 @@
           <ul class="summary-list">
             {#each rows as row (row.kind)}
               <li class="summary-row">
-                <span class="ka-label">{kindLabel(row.kind)}</span>
+                <span class="fq-label">{kindLabel(row.kind)}</span>
                 <span class="summary-meta"
                   >{t("references.syncSummaryDialog.rowMeta", {
                     added: row.added,
@@ -122,7 +122,7 @@
             {/each}
             {#if summary.prose_updated > 0 || summary.prose_preserved > 0}
               <li class="summary-row">
-                <span class="ka-label">{t("references.syncSummaryDialog.prose")}</span>
+                <span class="fq-label">{t("references.syncSummaryDialog.prose")}</span>
                 <span class="summary-meta">
                   {#if summary.prose_updated > 0}
                     <span>{proseItemLabel(summary.prose_updated, true)}</span>
@@ -137,8 +137,8 @@
         {/if}
       </div>
     </div>
-    <footer class="ka-dialog-footer">
-      <button type="button" onclick={onClose} class="ka-button"
+    <footer class="fq-dialog-footer">
+      <button type="button" onclick={onClose} class="fq-button"
         >{t("references.syncSummaryDialog.done")}</button
       >
     </footer>
@@ -180,11 +180,11 @@
     font: var(--text-small) / 1.5 var(--font-ui);
     color: var(--color-text-muted);
   }
-  .ka-empty h4 {
+  .fq-empty h4 {
     margin: 0;
     font: 550 var(--text-h3) / 1.25 var(--font-display);
   }
-  .ka-empty p {
+  .fq-empty p {
     margin: 0;
   }
 </style>

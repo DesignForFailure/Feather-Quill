@@ -15,8 +15,8 @@
   let { onClose }: { onClose: () => void } = $props();
   const groups = [
     {
-      id: "kindling",
-      label: "kindling",
+      id: "feather-quill",
+      label: "Feather Quill",
       sections: [
         {
           id: "preferences",
@@ -197,7 +197,7 @@
   use:openDialog
   aria-labelledby="settings-dialog-title"
   data-testid="settings-dialog"
-  class="app-dialog-surface ka-dialog-settings settings"
+  class="app-dialog-surface fq-dialog-settings settings"
   oncancel={(event) => {
     event.preventDefault();
     requestClose();
@@ -213,28 +213,28 @@
     disabled={busy}
   />
   {#if pending}
-    <div role="alert" class="ka-dialog-alert">
-      <TriangleAlert class="w-5 h-5 ka-icon" aria-hidden="true" />
+    <div role="alert" class="fq-dialog-alert">
+      <TriangleAlert class="w-5 h-5 fq-icon" aria-hidden="true" />
       <p>
         {"close" in pending
           ? t("settings.dialog.discardSettings")
           : t("settings.dialog.discardProjectSwitch")}
       </p>
-      <div class="ka-row">
+      <div class="fq-row">
         <button
           type="button"
           onclick={keepEditing}
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
           use:focusOnMount>{t("settings.dialog.keepEditing")}</button
         >
-        <button type="button" onclick={discard} class="ka-button ka-button--danger"
+        <button type="button" onclick={discard} class="fq-button fq-button--danger"
           >{t("settings.dialog.discard")}</button
         >
       </div>
     </div>
   {/if}
-  <div class="ka-settings" inert={pending !== null}>
-    <nav aria-label={t("settings.dialog.areasAria")} class="ka-settings-nav">
+  <div class="fq-settings" inert={pending !== null}>
+    <nav aria-label={t("settings.dialog.areasAria")} class="fq-settings-nav">
       {#each groups as group (group.id)}
         <section aria-labelledby={`settings-${group.id}-heading`}>
           <h3 id={`settings-${group.id}-heading`} class="settings-group">
@@ -242,17 +242,17 @@
           </h3>
           {#if group.id === "projects"}
             {#if loading}
-              <p role="status" class="ka-help">{t("settings.dialog.loadingProjects")}</p>
+              <p role="status" class="fq-help">{t("settings.dialog.loadingProjects")}</p>
             {:else if error}
-              <p role="alert" class="ka-error">{error}</p>
-              <button type="button" onclick={loadProjects} class="ka-button ka-button--secondary"
+              <p role="alert" class="fq-error">{error}</p>
+              <button type="button" onclick={loadProjects} class="fq-button fq-button--secondary"
                 >{t("settings.dialog.retryLoadProjects")}</button
               >
             {:else if projects.length === 0}
-              <p class="ka-help">{t("settings.dialog.noProjects")}</p>
+              <p class="fq-help">{t("settings.dialog.noProjects")}</p>
             {:else}
-              <div class="ka-field od-field">
-                <label for="settings-project" class="ka-sr"
+              <div class="fq-field od-field">
+                <label for="settings-project" class="fq-sr"
                   >{t("settings.dialog.projectLabel")}</label
                 >
                 <select
@@ -267,26 +267,26 @@
                       >{project.name}</option
                     >{/each}
                 </select>
-                <p id="settings-project-help" class="ka-help">
+                <p id="settings-project-help" class="fq-help">
                   {t("settings.dialog.projectHelp")}
                 </p>
               </div>
             {/if}
           {:else}
-            <p class="ka-help">{t("settings.dialog.appliesToAll")}</p>
+            <p class="fq-help">{t("settings.dialog.appliesToAll")}</p>
           {/if}
           {#each group.sections as section (section.id)}
             <div class="settings-section">
-              {#if group.sections.length > 1}<h4 class="ka-eyebrow">{section.label}</h4>{/if}
-              <ul class="ka-tree-list settings-areas">
+              {#if group.sections.length > 1}<h4 class="fq-eyebrow">{section.label}</h4>{/if}
+              <ul class="fq-tree-list settings-areas">
                 {#each section.areas as item (item.id)}
-                  <li class="ka-tree">
+                  <li class="fq-tree">
                     <button
                       type="button"
                       onclick={() => (area = item.id)}
                       disabled={busy}
                       aria-current={area === item.id ? "page" : undefined}
-                      class:ka-tree-selected={area === item.id}>{item.label}</button
+                      class:fq-tree-selected={area === item.id}>{item.label}</button
                     >
                   </li>
                 {/each}
@@ -296,10 +296,10 @@
         </section>
       {/each}
     </nav>
-    <div class="ka-settings-pane" bind:this={pane}>
+    <div class="fq-settings-pane" bind:this={pane}>
       <div>
-        <header class="ka-settings-head">
-          <p class="ka-crumbs" data-testid="settings-location">{locationLabel}</p>
+        <header class="fq-settings-head">
+          <p class="fq-crumbs" data-testid="settings-location">{locationLabel}</p>
           <h3 class="settings-title">{activeArea?.label}</h3>
         </header>
         {#if area === "keyboard"}<KeyboardSettings bind:busy={keyboardBusy} />{/if}
@@ -309,7 +309,7 @@
         </div>
         <div hidden={!isProjectArea}>
           {#if !loading && !error && projects.length === 0}
-            <p class="ka-help">
+            <p class="fq-help">
               {t("settings.dialog.noProjectsHelp")}
             </p>
           {:else if selected}
@@ -347,20 +347,20 @@
     letter-spacing: 0;
     color: var(--color-text);
   }
-  .ka-settings-nav :global(.ka-help) {
+  .fq-settings-nav :global(.fq-help) {
     margin: 0;
   }
   .settings-section {
     display: grid;
     gap: var(--space-3xs);
   }
-  .settings-section .ka-eyebrow {
+  .settings-section .fq-eyebrow {
     margin: 0;
   }
   .settings-areas {
     gap: var(--space-3xs);
   }
-  .settings-areas .ka-tree button {
+  .settings-areas .fq-tree button {
     font: var(--text-ui) / 1.5 var(--font-ui);
   }
   .settings-title {

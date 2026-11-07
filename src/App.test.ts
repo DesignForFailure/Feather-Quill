@@ -22,8 +22,8 @@ import { trackNativeDialog } from "./lib/utils/modalFocus";
 
 vi.hoisted(() => {
   const values = new Map([
-    ["kindling:onboardingCompleted", "true"],
-    ["kindling:guidanceEnabled", "false"],
+    ["feather-quill:onboardingCompleted", "true"],
+    ["feather-quill:guidanceEnabled", "false"],
   ]);
   vi.stubGlobal("localStorage", {
     getItem: (key: string) => values.get(key) ?? null,
@@ -926,7 +926,7 @@ it.each(["export", "export success"])(
   async (background) => {
     vi.useFakeTimers();
     currentProject.setChapters(mockChapters);
-    localStorage.setItem("kindling:lastExportPath", "/tmp/kindling-review-export");
+    localStorage.setItem("feather-quill:lastExportPath", "/tmp/kindling-review-export");
     vi.mocked(invoke).mockImplementation(async (cmd) => {
       if (cmd === "save_scene_synopsis") throw new Error("disk full");
       if (cmd === "export_to_markdown")
@@ -973,7 +973,7 @@ it.each(["export", "export success"])(
       else expect(screen.getByTestId("export-confirm")).toBeTruthy();
     } finally {
       window.removeEventListener("keydown", backgroundKey);
-      localStorage.removeItem("kindling:lastExportPath");
+      localStorage.removeItem("feather-quill:lastExportPath");
     }
   }
 );
@@ -1123,8 +1123,8 @@ it("attempts writing saves and offers explicit recovery when an editorial save b
   expect(synopsis).toHaveBeenCalled();
   expect(exit).not.toHaveBeenCalled();
   await fireEvent.click(screen.getByRole("button", { name: "Keep editing" }));
-  expect(localStorage.getItem("kindling.editorial.recovery.quit-review")).toContain("Rowan");
-  localStorage.removeItem("kindling.editorial.recovery.quit-review");
+  expect(localStorage.getItem("feather-quill.editorial.recovery.quit-review")).toContain("Rowan");
+  localStorage.removeItem("feather-quill.editorial.recovery.quit-review");
 });
 
 it.each(["an app dialog", "a file picker", "an import"])(
@@ -1180,7 +1180,7 @@ it("ignores shortcuts while a dialog is open even when focus has fallen to the p
 
 it("moves focus into Export complete after an export, not back to the page", async () => {
   currentProject.setChapters(mockChapters);
-  localStorage.setItem("kindling:lastExportPath", "/tmp/kindling-review-export");
+  localStorage.setItem("feather-quill:lastExportPath", "/tmp/kindling-review-export");
   vi.mocked(invoke).mockImplementation(async (cmd) =>
     cmd === "export_to_markdown"
       ? { output_path: "/tmp/out", chapters_exported: 1, scenes_exported: 1, files_created: 1 }
@@ -1195,7 +1195,7 @@ it("moves focus into Export complete after an export, not back to the page", asy
     const dialog = heading.closest<HTMLElement>(".dialog-scrim")!;
     await waitFor(() => expect(dialog.contains(document.activeElement)).toBe(true));
   } finally {
-    localStorage.removeItem("kindling:lastExportPath");
+    localStorage.removeItem("feather-quill:lastExportPath");
   }
 });
 

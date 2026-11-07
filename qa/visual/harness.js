@@ -1,5 +1,5 @@
 /**
- * Kindling visual QA harness.
+ * Feather Quill visual QA harness.
  *
  * Loaded into the running dev app's webview from the Vite dev server (see
  * README "Install the harness"). Everything hangs off `window.__qa`.
@@ -33,7 +33,7 @@
   // ---------------------------------------------------------------- locale
   // Suites are written against English copy. Resolve that copy to the running
   // interface locale through the app's own i18n module, so the same suites run
-  // under KINDLING_LOCALE=<tag>. English text with no catalog entry (fixture
+  // under FEATHER_QUILL_LOCALE=<tag>. English text with no catalog entry (fixture
   // data, product names) resolves to itself.
   const GROUPS = [
     "common",
@@ -261,7 +261,7 @@
   // ------------------------------------------------------------ async ops
   // Only creation calls explicitly initiated by this harness confer ownership.
   // Persist across the reload scenario; never infer ownership from a filename/name.
-  const importCommands = new Map(Object.entries(window.__KINDLING_TEST__?.importCommands ?? {}));
+  const importCommands = new Map(Object.entries(window.__FEATHER_QUILL_TEST__?.importCommands ?? {}));
   const fixtureCommands = new Set(importCommands.values());
   const ownedKey = "__qa_created_projects";
   const owned = () => JSON.parse(sessionStorage.getItem(ownedKey) || "[]");
@@ -281,7 +281,7 @@
       }
       if (fixtureCommands.has(cmd)) qa.done("fixture-created");
     };
-    const hook = window.__KINDLING_TEST__;
+    const hook = window.__FEATHER_QUILL_TEST__;
     if (hook?.creationObserverVersion === 1) {
       const previous = hook.onProjectCreated;
       hook.onProjectCreated = record;
@@ -323,9 +323,9 @@
   qa.importFixture = (absolutePath, format = "plottr") => {
     const command = importCommands.get(format);
     if (!command) throw new Error(`Unsupported QA import format: ${format}`);
-    const hook = window.__KINDLING_TEST__;
+    const hook = window.__FEATHER_QUILL_TEST__;
     if (!hook?.importProject)
-      throw new Error("__KINDLING_TEST__.importProject missing (not a dev build?)");
+      throw new Error("__FEATHER_QUILL_TEST__.importProject missing (not a dev build?)");
     qa.last = { op: "import", status: "pending" };
     qa.clearMarkers();
     hook.disableGuidance();
@@ -338,7 +338,7 @@
   qa.invoke = (cmd, args = {}) => {
     document.getElementById("qa-done-invoke")?.remove();
     qa.last = { op: cmd, status: "pending" };
-    window.__KINDLING_TEST__
+    window.__FEATHER_QUILL_TEST__
       .invoke(cmd, args)
       .then((r) => (qa.last = { op: cmd, status: "ok", result: r }))
       .catch((e) => (qa.last = { op: cmd, status: "error", error: String(e) }))
@@ -347,7 +347,7 @@
   };
   /** Delete only IDs captured from successful QA creation calls. */
   const cleanupOwned = (op, predicate) => {
-    const inv = window.__KINDLING_TEST__.invoke;
+    const inv = window.__FEATHER_QUILL_TEST__.invoke;
     qa.last = { op, status: "pending" };
     const mine = owned().filter(predicate);
     (async () => {
@@ -374,7 +374,7 @@
   // ---------------------------------------------------------------- theme
   qa.repaint = () => {
     const h = document.documentElement;
-    if (window.__KINDLING_QA_BACKGROUND__) {
+    if (window.__FEATHER_QUILL_QA_BACKGROUND__) {
       // WKWebView snapshots render the document directly; hiding it would only
       // disturb scroll/focus state and is unnecessary for this capture engine.
       void h.offsetHeight;
@@ -452,7 +452,7 @@
 
   /** Cheap gate before a screenshot batch. Stop the run if `ok` is false. */
   qa.preflight = () => ({
-    ok: window.__KINDLING_QA_BACKGROUND__ === true || document.visibilityState === "visible",
+    ok: window.__FEATHER_QUILL_QA_BACKGROUND__ === true || document.visibilityState === "visible",
     vis: document.visibilityState,
     w: innerWidth,
     h: innerHeight,
@@ -596,11 +596,11 @@
   qa.takeErrors = () => qa.errors.splice(0, qa.errors.length);
 
   // ------------------------------------------------- localStorage guard
-  /** Snapshot every kindling:* key so a run can restore the user's real preferences. */
+  /** Snapshot every feather-quill:* key so a run can restore the user's real preferences. */
   qa.saveLocal = () => {
     const snap = {};
     for (const k of Object.keys(localStorage))
-      if (k.startsWith("kindling:")) snap[k] = localStorage.getItem(k);
+      if (k.startsWith("feather-quill:")) snap[k] = localStorage.getItem(k);
     sessionStorage.setItem("__qa_local", JSON.stringify(snap));
     return Object.keys(snap).length;
   };
@@ -608,7 +608,7 @@
     const snap = JSON.parse(sessionStorage.getItem("__qa_local") || "null");
     if (!snap) return "no snapshot";
     for (const k of Object.keys(localStorage))
-      if (k.startsWith("kindling:") && !(k in snap)) localStorage.removeItem(k);
+      if (k.startsWith("feather-quill:") && !(k in snap)) localStorage.removeItem(k);
     for (const [k, v] of Object.entries(snap)) localStorage.setItem(k, v);
     return Object.keys(snap).length;
   };
@@ -657,7 +657,7 @@
       l2 = lum(bg);
     return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
   };
-  /** Every colour the Press tokens resolve to right now, as rgb strings. */
+  /** Every colour the theme tokens resolve to right now, as rgb strings. */
   const tokenColours = () => {
     const root = getComputedStyle(document.documentElement);
     const names = new Set();
@@ -702,7 +702,7 @@
     return out;
   };
   /**
-   * Press design-system audit of everything currently visible. Returns counts
+   * Local theme audit of everything currently visible. Returns counts
    * and samples; treat a non-empty `fonts`, `measure` or `contrast` list as a
    * visual regression, and `untokened` as a lead to check by hand.
    */

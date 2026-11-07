@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Scan staged changes for committed credentials.
 #
-# Kindling is a public repository and ships no secrets — the app is offline-only
+# Feather Quill is a public repository and ships no secrets — the app is offline-only
 # by design. This hook is here so that stays true by construction rather than by
 # habit.
 #
@@ -29,7 +29,7 @@ if ! out=$(gitleaks git --pre-commit --staged --no-banner --redact 2>&1); then
   If it is a real secret:
     git restore --staged <file>
 
-  Kindling has no server, accounts or API keys, so a credential here is almost
+  Feather Quill has no server, accounts or API keys, so a credential here is almost
   certainly a mistake — a test fixture, a pasted token, or a local config file
   that should be gitignored.
 

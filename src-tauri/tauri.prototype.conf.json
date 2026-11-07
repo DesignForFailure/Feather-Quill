@@ -1,6 +1,6 @@
 {
-  "productName": "Kindling Export Prototype",
-  "identifier": "com.kindlingwriter.export-prototype",
+  "productName": "Feather Quill Export Prototype",
+  "identifier": "io.github.designforfailure.featherquill.export-prototype",
   "bundle": {
     "createUpdaterArtifacts": false
   },
@@ -8,7 +8,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Kindling Export Prototype",
+        "title": "Feather Quill Export Prototype",
         "visible": false,
         "width": 1440,
         "height": 960,

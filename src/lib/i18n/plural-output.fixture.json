@@ -27,11 +27,11 @@
       "onboarding.feedbackDialog.star": "0 stars",
       "references.syncDialog.conflict": "0 conflicts",
       "references.syncDialog.selection": "0 items selected",
-      "references.syncDialog.kept": "0 kindling versions kept",
+      "references.syncDialog.kept": "0 Feather Quill versions kept",
       "references.syncDialog.apply": "Apply 0 changes",
       "references.syncSummaryDialog.proseItemUpdated": "0 prose items updated",
       "references.syncSummaryDialog.proseItemPreserved": "0 prose items preserved",
-      "references.syncDialog.keepKindling": "Keep kindling versions"
+      "references.syncDialog.keepFeatherQuill": "Keep Feather Quill versions"
     },
     "1": {
       "sidebar.sidebar.sceneCount": "1 scene",
@@ -61,11 +61,11 @@
       "onboarding.feedbackDialog.star": "1 star",
       "references.syncDialog.conflict": "1 conflict",
       "references.syncDialog.selection": "1 item selected",
-      "references.syncDialog.kept": "1 kindling version kept",
+      "references.syncDialog.kept": "1 Feather Quill version kept",
       "references.syncDialog.apply": "Apply 1 change",
       "references.syncSummaryDialog.proseItemUpdated": "1 prose item updated",
       "references.syncSummaryDialog.proseItemPreserved": "1 prose item preserved",
-      "references.syncDialog.keepKindling": "Keep kindling version"
+      "references.syncDialog.keepFeatherQuill": "Keep Feather Quill version"
     },
     "2": {
       "sidebar.sidebar.sceneCount": "2 scenes",
@@ -95,11 +95,11 @@
       "onboarding.feedbackDialog.star": "2 stars",
       "references.syncDialog.conflict": "2 conflicts",
       "references.syncDialog.selection": "2 items selected",
-      "references.syncDialog.kept": "2 kindling versions kept",
+      "references.syncDialog.kept": "2 Feather Quill versions kept",
       "references.syncDialog.apply": "Apply 2 changes",
       "references.syncSummaryDialog.proseItemUpdated": "2 prose items updated",
       "references.syncSummaryDialog.proseItemPreserved": "2 prose items preserved",
-      "references.syncDialog.keepKindling": "Keep kindling versions"
+      "references.syncDialog.keepFeatherQuill": "Keep Feather Quill versions"
     },
     "5": {
       "sidebar.sidebar.sceneCount": "5 scenes",
@@ -129,11 +129,11 @@
       "onboarding.feedbackDialog.star": "5 stars",
       "references.syncDialog.conflict": "5 conflicts",
       "references.syncDialog.selection": "5 items selected",
-      "references.syncDialog.kept": "5 kindling versions kept",
+      "references.syncDialog.kept": "5 Feather Quill versions kept",
       "references.syncDialog.apply": "Apply 5 changes",
       "references.syncSummaryDialog.proseItemUpdated": "5 prose items updated",
       "references.syncSummaryDialog.proseItemPreserved": "5 prose items preserved",
-      "references.syncDialog.keepKindling": "Keep kindling versions"
+      "references.syncDialog.keepFeatherQuill": "Keep Feather Quill versions"
     }
   },
   "zh-CN": {
@@ -164,11 +164,11 @@
       "onboarding.feedbackDialog.star": "0 星",
       "references.syncDialog.conflict": "0 处冲突",
       "references.syncDialog.selection": "已选 0 项",
-      "references.syncDialog.kept": "保留 0 个 kindling 版本",
+      "references.syncDialog.kept": "保留 0 个 Feather Quill 版本",
       "references.syncDialog.apply": "应用 0 项更改",
       "references.syncSummaryDialog.proseItemUpdated": "更新 0 条正文",
       "references.syncSummaryDialog.proseItemPreserved": "保留 0 条正文",
-      "references.syncDialog.keepKindling": "保留 kindling 版本"
+      "references.syncDialog.keepFeatherQuill": "保留 Feather Quill 版本"
     },
     "1": {
       "sidebar.sidebar.sceneCount": "1 个场景",
@@ -198,11 +198,11 @@
       "onboarding.feedbackDialog.star": "1 星",
       "references.syncDialog.conflict": "1 处冲突",
       "references.syncDialog.selection": "已选 1 项",
-      "references.syncDialog.kept": "保留 1 个 kindling 版本",
+      "references.syncDialog.kept": "保留 1 个 Feather Quill 版本",
       "references.syncDialog.apply": "应用 1 项更改",
       "references.syncSummaryDialog.proseItemUpdated": "更新 1 条正文",
       "references.syncSummaryDialog.proseItemPreserved": "保留 1 条正文",
-      "references.syncDialog.keepKindling": "保留 kindling 版本"
+      "references.syncDialog.keepFeatherQuill": "保留 Feather Quill 版本"
     },
     "2": {
       "sidebar.sidebar.sceneCount": "2 个场景",
@@ -232,11 +232,11 @@
       "onboarding.feedbackDialog.star": "2 星",
       "references.syncDialog.conflict": "2 处冲突",
       "references.syncDialog.selection": "已选 2 项",
-      "references.syncDialog.kept": "保留 2 个 kindling 版本",
+      "references.syncDialog.kept": "保留 2 个 Feather Quill 版本",
       "references.syncDialog.apply": "应用 2 项更改",
       "references.syncSummaryDialog.proseItemUpdated": "更新 2 条正文",
       "references.syncSummaryDialog.proseItemPreserved": "保留 2 条正文",
-      "references.syncDialog.keepKindling": "保留 kindling 版本"
+      "references.syncDialog.keepFeatherQuill": "保留 Feather Quill 版本"
     },
     "5": {
       "sidebar.sidebar.sceneCount": "5 个场景",
@@ -266,11 +266,11 @@
       "onboarding.feedbackDialog.star": "5 星",
       "references.syncDialog.conflict": "5 处冲突",
       "references.syncDialog.selection": "已选 5 项",
-      "references.syncDialog.kept": "保留 5 个 kindling 版本",
+      "references.syncDialog.kept": "保留 5 个 Feather Quill 版本",
       "references.syncDialog.apply": "应用 5 项更改",
       "references.syncSummaryDialog.proseItemUpdated": "更新 5 条正文",
       "references.syncSummaryDialog.proseItemPreserved": "保留 5 条正文",
-      "references.syncDialog.keepKindling": "保留 kindling 版本"
+      "references.syncDialog.keepFeatherQuill": "保留 Feather Quill 版本"
     }
   }
 }

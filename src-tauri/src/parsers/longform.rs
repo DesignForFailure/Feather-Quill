@@ -393,7 +393,7 @@ fn resolve_in_vault(
         return Ok(resolved);
     }
     Err(LongformError::InvalidStructure(format!(
-        "{} is outside the vault ({}), so kindling did not import it.",
+        "{} is outside the vault ({}), so Feather Quill did not import it.",
         describe(),
         vault.display()
     )))
@@ -414,7 +414,7 @@ fn stays_in_vault(vault: &Path, entry: &walkdir::DirEntry) -> bool {
         Ok(resolved) if resolved.starts_with(vault) => true,
         Ok(_) => {
             eprintln!(
-                "[kindling] Longform import skipped {}: it links outside the vault ({}).",
+                "[Feather Quill] Longform import skipped {}: it links outside the vault ({}).",
                 entry.path().display(),
                 vault.display()
             );
@@ -728,7 +728,7 @@ fn extract_note_details(
     }
 
     if extended_note {
-        // Kindling's exported note sections carry multiline descriptions and
+        // Feather Quill's exported note sections carry multiline descriptions and
         // notes separately from generated scene backlinks. Keep their contents.
         if description.is_none() {
             description = note_section(body, "Description").or_else(|| {
@@ -1403,7 +1403,7 @@ fn parse_scene_body(content: &str) -> SceneContent {
         }
 
         if !in_beats && !metadata_parsed {
-            if let Some(meta) = parse_kindling_comment(trimmed) {
+            if let Some(meta) = parse_feather_quill_comment(trimmed) {
                 if let Some(value) = meta.get("editor_mode") {
                     editor_mode = EditorMode::parse(value);
                 }
@@ -1444,7 +1444,7 @@ fn parse_scene_body(content: &str) -> SceneContent {
                     custom: &mut custom,
                 };
                 // Mapped keys are applied; other fields (`mood:: tense`,
-                // `up:: [[Chapter One]]`) are metadata Kindling has no home
+                // `up:: [[Chapter One]]`) are metadata Feather Quill has no home
                 // for, consumed as 1.2 did and never turned into references.
                 // Unspaced `key::text` is only a field for a mapped key or a
                 // link value, so text like `std::vector` stays prose. A
@@ -1697,9 +1697,9 @@ fn reference_type_for_kind(kind: ReferenceKind) -> Option<&'static str> {
     }
 }
 
-/// Apply a Dataview field Kindling understands. Returns `false` for keys it
+/// Apply a Dataview field Feather Quill understands. Returns `false` for keys it
 /// does not map, leaving the context untouched. A mapped key returns `true`
-/// even when Kindling metadata locks it, so the line is still metadata.
+/// even when Feather Quill metadata locks it, so the line is still metadata.
 fn apply_dataview_field(key: &str, value: &str, context: &mut DataviewContext<'_>) -> bool {
     let normalized_key = key.trim().to_lowercase();
     match normalized_key.as_str() {
@@ -1855,7 +1855,7 @@ struct DataviewField {
     /// The value is only wikilinks (`[[A]]` or `[[A]], [[B]]`).
     links_only: bool,
     /// A capitalised key with a plain value (`POV:: Zoe`). Only a field when
-    /// Kindling maps the key, as 1.2 read it; `Meanwhile:: the ship sank.`
+    /// Feather Quill maps the key, as 1.2 read it; `Meanwhile:: the ship sank.`
     /// stays prose.
     capitalized: bool,
 }
@@ -2407,7 +2407,7 @@ fn register_reference_items(
     }
 }
 
-fn parse_kindling_comment(line: &str) -> Option<HashMap<String, String>> {
+fn parse_feather_quill_comment(line: &str) -> Option<HashMap<String, String>> {
     if !line.starts_with("<!--") || !line.ends_with("-->") {
         return None;
     }
@@ -2417,6 +2417,7 @@ fn parse_kindling_comment(line: &str) -> Option<HashMap<String, String>> {
         .trim_end_matches("-->")
         .trim();
 
+    // Published Kindling metadata is retained for round-trip compatibility.
     let payload = inner.strip_prefix("kindling:")?.trim();
     if payload.eq_ignore_ascii_case("beats") {
         return None;
@@ -2916,7 +2917,7 @@ Night falls:: the long wait begins.\n\
 
     #[test]
     fn test_parse_scene_body_keeps_sentences_that_look_like_fields() {
-        // Capitalised words before `::` that kindling doesn't map are prose.
+        // Capitalised words before `::` that Feather Quill doesn't map are prose.
         let scene = parse_scene_body(
             "Meanwhile:: the ship sank.\n\
 Later:: she remembered.\n\
@@ -2978,7 +2979,7 @@ Body.",
 
     #[test]
     fn test_parse_scene_body_locked_field_is_still_metadata() {
-        // A recognised key ignored because Kindling metadata locks it is still a
+        // A recognised key ignored because Feather Quill metadata locks it is still a
         // field line, with or without a space after `::`.
         let scene = parse_scene_body(
             "<!-- kindling: scene_status=final synopsis=\"Locked\" -->\n\

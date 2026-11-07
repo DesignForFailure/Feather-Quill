@@ -805,20 +805,20 @@
 
   onMount(() => {
     const dnHandler = () => (discoveryNotesVisible = !discoveryNotesVisible);
-    window.addEventListener("kindling:toggleDiscoveryNotes", dnHandler);
+    window.addEventListener("feather-quill:toggleDiscoveryNotes", dnHandler);
 
     const emHandler = () => {
       const scene = currentProject.currentScene;
       if (!scene || scene.planning_status !== "fixed") return;
       switchEditorMode(scene.editor_mode === "page" ? "beat" : "page");
     };
-    window.addEventListener("kindling:toggleEditorMode", emHandler);
+    window.addEventListener("feather-quill:toggleEditorMode", emHandler);
     // Export and sync read prose from the database, so they flush the editors first.
     const unregisterProseFlush = registerProseFlush(prepareForSearch);
 
     return () => {
-      window.removeEventListener("kindling:toggleDiscoveryNotes", dnHandler);
-      window.removeEventListener("kindling:toggleEditorMode", emHandler);
+      window.removeEventListener("feather-quill:toggleDiscoveryNotes", dnHandler);
+      window.removeEventListener("feather-quill:toggleEditorMode", emHandler);
       unregisterProseFlush();
     };
   });
@@ -846,7 +846,7 @@
         disabled={openingRevisions}
         aria-busy={openingRevisions || undefined}
         onclick={openRevisions}
-        class="ka-button ka-button--ghost"
+        class="fq-button fq-button--ghost"
       >
         <History class="w-5 h-5" aria-hidden="true" />
         {openingRevisions
@@ -855,7 +855,7 @@
       </button>
       {#if planning === "fixed"}
         <div
-          class="ka-segment-track scene-view"
+          class="fq-segment-track scene-view"
           role="group"
           aria-label={t("editor.scenePanel.viewGroupLabel")}
         >
@@ -864,8 +864,8 @@
             data-testid="view-beats"
             onclick={() => switchEditorMode("beat")}
             disabled={switchingMode || isLocked}
-            class="ka-segment"
-            class:ka-selected={scene.editor_mode === "beat"}
+            class="fq-segment"
+            class:fq-selected={scene.editor_mode === "beat"}
             aria-pressed={scene.editor_mode === "beat"}
             title={t("editor.scenePanel.beatsTabTooltip")}
           >
@@ -877,8 +877,8 @@
             data-testid="view-page"
             onclick={() => switchEditorMode("page")}
             disabled={switchingMode || isLocked}
-            class="ka-segment"
-            class:ka-selected={scene.editor_mode === "page"}
+            class="fq-segment"
+            class:fq-selected={scene.editor_mode === "page"}
             aria-pressed={scene.editor_mode === "page"}
             title={t("editor.scenePanel.pageTabTooltip")}
           >
@@ -912,7 +912,7 @@
               >
             {/if}
             {#if isLocked}
-              <span class="ka-badge ka-badge--warning scene-locked">
+              <span class="fq-badge fq-badge--warning scene-locked">
                 <Lock class="w-4 h-4" aria-hidden="true" />
                 {t("editor.scenePanel.locked")}
               </span>
@@ -930,7 +930,7 @@
             <h1 data-testid="scene-title" class="scene-title">{scene.title}</h1>
           {/if}
           <div class="scene-meta">
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="scene-type">{t("editor.scenePanel.sceneTypeLabel")}</label>
               <select
                 id="scene-type"
@@ -943,7 +943,7 @@
                 {/each}
               </select>
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <label for="scene-status">{t("editor.scenePanel.statusLabel")}</label>
               <select
                 id="scene-status"
@@ -956,7 +956,7 @@
                 {/each}
               </select>
             </div>
-            <div class="ka-field od-field">
+            <div class="fq-field od-field">
               <span class="scene-label-tip">
                 <label for="planning-status">{t("editor.scenePanel.planningLabel")}</label>
                 <Tooltip text={t("editor.scenePanel.planningTooltip")} position="top">
@@ -981,13 +981,13 @@
                   <option value={option.value}>{option.label}</option>
                 {/each}
               </select>
-              <span id="planning-status-help" class="ka-sr"
+              <span id="planning-status-help" class="fq-sr"
                 >{t("editor.scenePanel.planningHelp")}</span
               >
             </div>
           </div>
           {#if metadataError}
-            <p class="ka-error scene-meta-error" role="alert">{metadataError}</p>
+            <p class="fq-error scene-meta-error" role="alert">{metadataError}</p>
           {/if}
 
           <!-- Scene tags -->
@@ -1015,7 +1015,7 @@
               <button
                 type="button"
                 onclick={() => ui.markTooltipSeen("planningStatus")}
-                class="ka-button ka-button--ghost ka-icon-button"
+                class="fq-button fq-button--ghost fq-icon-button"
                 aria-label={t("editor.scenePanel.dismiss")}
                 title={t("editor.scenePanel.dismiss")}
               >
@@ -1057,7 +1057,7 @@
             <div class="scene-planning-body">
               <h3 id="planning-undefined-title">{t("editor.scenePanel.undefinedSceneTitle")}</h3>
               <p>{t("editor.scenePanel.undefinedSceneBody")}</p>
-              <p class="ka-help">
+              <p class="fq-help">
                 {t("editor.scenePanel.undefinedSceneHelp")}
               </p>
               {#if !isLocked}
@@ -1065,14 +1065,14 @@
                   <button
                     type="button"
                     onclick={() => setScenePlanningStatus(scene, "flexible")}
-                    class="ka-button ka-button--secondary"
+                    class="fq-button fq-button--secondary"
                   >
                     {t("editor.scenePanel.switchToFlexible")}
                   </button>
                   <button
                     type="button"
                     onclick={() => setScenePlanningStatus(scene, "fixed")}
-                    class="ka-button ka-button--ghost"
+                    class="fq-button fq-button--ghost"
                   >
                     {t("editor.scenePanel.goStraightToFixed")}
                   </button>
@@ -1086,7 +1086,7 @@
             <div class="scene-planning-body">
               <h3 id="planning-flexible-title">{t("editor.scenePanel.flexibleSceneTitle")}</h3>
               <p>{t("editor.scenePanel.flexibleSceneBody")}</p>
-              <p class="ka-help">
+              <p class="fq-help">
                 {t("editor.scenePanel.flexibleSceneHelp")}
               </p>
               {#if !isLocked}
@@ -1094,7 +1094,7 @@
                   <button
                     type="button"
                     onclick={() => setScenePlanningStatus(scene, "fixed")}
-                    class="ka-button ka-button--secondary"
+                    class="fq-button fq-button--secondary"
                   >
                     {t("editor.scenePanel.defineBeats")}
                   </button>
@@ -1106,7 +1106,7 @@
 
         <!-- Locked Banner -->
         {#if isLocked}
-          <div class="ka-notice ka-notice--warning od-row-top scene-locked-notice" role="status">
+          <div class="fq-notice fq-notice--warning od-row-top scene-locked-notice" role="status">
             <Lock class="w-5 h-5 shrink-0" aria-hidden="true" />
             <div class="od-field od-fill">
               <strong>{t("editor.scenePanel.sceneLockedTitle")}</strong>
@@ -1129,7 +1129,7 @@
               <button
                 type="button"
                 onclick={startEditingSynopsis}
-                class="ka-button ka-button--ghost ka-icon-button"
+                class="fq-button fq-button--ghost fq-icon-button"
                 aria-label={t("editor.scenePanel.editSynopsis")}
                 title={t("editor.scenePanel.editSynopsis")}
               >
@@ -1138,8 +1138,8 @@
             {/if}
           </div>
           {#if editingSynopsis && !isLocked}
-            <div class="ka-field od-field scene-synopsis-field">
-              <label for="scene-synopsis" class="ka-sr"
+            <div class="fq-field od-field scene-synopsis-field">
+              <label for="scene-synopsis" class="fq-sr"
                 >{t("editor.scenePanel.synopsisTitle")}</label
               >
               <textarea
@@ -1149,7 +1149,7 @@
                 oninput={(e) => handleSynopsisInput(e.currentTarget.value)}
                 aria-describedby="scene-synopsis-help"
               ></textarea>
-              <p id="scene-synopsis-help" class="ka-help">
+              <p id="scene-synopsis-help" class="fq-help">
                 {t("editor.scenePanel.synopsisEditingHelp")}
               </p>
             </div>
@@ -1159,19 +1159,19 @@
             <button
               type="button"
               onclick={startEditingSynopsis}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
             >
               <Plus class="w-5 h-5" aria-hidden="true" />
               {t("editor.scenePanel.addSynopsis")}
             </button>
           {:else}
-            <p class="ka-help scene-quiet">
+            <p class="fq-help scene-quiet">
               <Lock class="w-4 h-4" aria-hidden="true" />
               {t("editor.scenePanel.sceneLockedShort")}
             </p>
           {/if}
           {#if synopsisSave.error}
-            <div role="alert" class="ka-notice ka-notice--error scene-inline-notice">
+            <div role="alert" class="fq-notice fq-notice--error scene-inline-notice">
               <p>
                 {t("editor.scenePanel.synopsisSaveFailed", { error: synopsisSave.error ?? "" })}
               </p>
@@ -1179,7 +1179,7 @@
                 type="button"
                 onclick={flushSynopsisSave}
                 disabled={synopsisSave.saving}
-                class="ka-button ka-button--secondary"
+                class="fq-button fq-button--secondary"
                 aria-label={t("editor.scenePanel.retrySynopsisSave")}
                 >{t("editor.scenePanel.retrySaving")}</button
               >
@@ -1187,7 +1187,7 @@
           {:else if editingSynopsis && !isLocked}
             <!-- Mounted for as long as the field is open, so save state never moves the
                  sections below it. -->
-            <p role="status" class="ka-help scene-synopsis-status" data-testid="synopsis-status">
+            <p role="status" class="fq-help scene-synopsis-status" data-testid="synopsis-status">
               {#if synopsisSave.saving}
                 <Loader2 class="w-4 h-4 animate-spin" aria-hidden="true" />
                 {t("editor.scenePanel.saving")}
@@ -1196,7 +1196,7 @@
               {/if}
             </p>
           {:else if synopsisSave.draft && !synopsisSave.saving}
-            <p role="status" class="ka-help">{t("editor.scenePanel.unsavedChanges")}</p>
+            <p role="status" class="fq-help">{t("editor.scenePanel.unsavedChanges")}</p>
           {/if}
         </section>
 
@@ -1206,11 +1206,11 @@
             <div class="scene-section-head">
               <h3 id="scene-references-title">{t("editor.scenePanel.referencesTitle")}</h3>
               {#if sceneReferenceLoading}
-                <span class="ka-help" role="status">{t("editor.scenePanel.loading")}</span>
+                <span class="fq-help" role="status">{t("editor.scenePanel.loading")}</span>
               {/if}
             </div>
             {#if sceneReferenceError}
-              <p class="ka-error" role="alert">{sceneReferenceError}</p>
+              <p class="fq-error" role="alert">{sceneReferenceError}</p>
             {:else}
               {@const hasSceneReferences = sceneReferenceOptions.some(
                 (option) => (sceneReferenceItems[option.id]?.length ?? 0) > 0
@@ -1225,7 +1225,7 @@
                         <dt><Icon class="w-4 h-4" aria-hidden="true" /> {option.label}</dt>
                         <dd>
                           {#each items as item (item.id)}
-                            <span class="ka-badge">{item.name}</span>
+                            <span class="fq-badge">{item.name}</span>
                           {/each}
                         </dd>
                       </div>
@@ -1233,7 +1233,7 @@
                   {/each}
                 </dl>
               {:else if !sceneReferenceLoading}
-                <p class="ka-help">
+                <p class="fq-help">
                   {t("editor.scenePanel.noReferences")}
                 </p>
               {/if}
@@ -1261,11 +1261,11 @@
             {#if discoveryNotesVisible}
               <div id="discovery-notes-body" class="scene-notes">
                 {#if discoveryNotesLoading}
-                  <p class="ka-help" role="status">{t("editor.scenePanel.loading")}</p>
+                  <p class="fq-help" role="status">{t("editor.scenePanel.loading")}</p>
                 {:else}
                   {#if addingDiscoveryNote}
-                    <div class="ka-field od-field scene-note-form">
-                      <label for="new-discovery-note" class="ka-sr"
+                    <div class="fq-field od-field scene-note-form">
+                      <label for="new-discovery-note" class="fq-sr"
                         >{t("editor.scenePanel.newNoteLabel")}</label
                       >
                       <textarea
@@ -1274,13 +1274,13 @@
                         placeholder={t("editor.scenePanel.newNotePlaceholder")}
                         rows="3"
                       ></textarea>
-                      <div class="ka-row">
+                      <div class="fq-row">
                         <button
                           type="button"
                           onclick={createDiscoveryNote}
                           disabled={!newDiscoveryNoteContent.trim() || creatingDiscoveryNote}
                           aria-busy={creatingDiscoveryNote || undefined}
-                          class="ka-button"
+                          class="fq-button"
                         >
                           {creatingDiscoveryNote
                             ? t("editor.scenePanel.addingNote")
@@ -1292,7 +1292,7 @@
                             addingDiscoveryNote = false;
                             newDiscoveryNoteContent = "";
                           }}
-                          class="ka-button ka-button--ghost"
+                          class="fq-button fq-button--ghost"
                         >
                           {t("editor.scenePanel.cancel")}
                         </button>
@@ -1305,8 +1305,8 @@
                         {@const isEditing = editingDiscoveryNoteId === note.id}
                         <li class="scene-note">
                           {#if isEditing}
-                            <div class="ka-field od-field">
-                              <label for={`note-${note.id}`} class="ka-sr"
+                            <div class="fq-field od-field">
+                              <label for={`note-${note.id}`} class="fq-sr"
                                 >{t("editor.scenePanel.editNoteLabel")}</label
                               >
                               <textarea
@@ -1315,12 +1315,12 @@
                                 rows="3"
                               ></textarea>
                             </div>
-                            <div class="ka-row">
+                            <div class="fq-row">
                               <button
                                 type="button"
                                 onclick={() =>
                                   updateDiscoveryNote(note.id, editingDiscoveryNoteContent)}
-                                class="ka-button"
+                                class="fq-button"
                               >
                                 {t("editor.scenePanel.save")}
                               </button>
@@ -1330,7 +1330,7 @@
                                   editingDiscoveryNoteId = null;
                                   editingDiscoveryNoteContent = "";
                                 }}
-                                class="ka-button ka-button--ghost"
+                                class="fq-button fq-button--ghost"
                               >
                                 {t("editor.scenePanel.cancel")}
                               </button>
@@ -1340,7 +1340,7 @@
                             {#if note.tags && note.tags.length > 0}
                               <div class="scene-note-tags">
                                 {#each note.tags as tag}
-                                  <span class="ka-badge">{tag}</span>
+                                  <span class="fq-badge">{tag}</span>
                                 {/each}
                               </div>
                             {/if}
@@ -1351,7 +1351,7 @@
                                   editingDiscoveryNoteId = note.id;
                                   editingDiscoveryNoteContent = note.content;
                                 }}
-                                class="ka-button ka-button--ghost"
+                                class="fq-button fq-button--ghost"
                               >
                                 {t("editor.scenePanel.edit")}
                               </button>
@@ -1360,7 +1360,7 @@
                                 onclick={() => promoteNoteToBeat(note)}
                                 disabled={promotingNoteId === note.id}
                                 aria-busy={promotingNoteId === note.id || undefined}
-                                class="ka-button ka-button--ghost"
+                                class="fq-button fq-button--ghost"
                               >
                                 {promotingNoteId === note.id
                                   ? t("editor.scenePanel.promoting")
@@ -1369,7 +1369,7 @@
                               <button
                                 type="button"
                                 onclick={() => deleteDiscoveryNote(note.id)}
-                                class="ka-button ka-button--ghost scene-danger"
+                                class="fq-button fq-button--ghost scene-danger"
                               >
                                 {t("editor.scenePanel.delete")}
                               </button>
@@ -1379,7 +1379,7 @@
                       {/each}
                     </ul>
                   {:else if !addingDiscoveryNote}
-                    <p class="ka-help">
+                    <p class="fq-help">
                       {t("editor.scenePanel.noNotes")}
                     </p>
                   {/if}
@@ -1387,7 +1387,7 @@
                     <button
                       type="button"
                       onclick={startAddingDiscoveryNote}
-                      class="ka-button ka-button--secondary scene-add-note"
+                      class="fq-button fq-button--secondary scene-add-note"
                     >
                       <Plus class="w-5 h-5" aria-hidden="true" />
                       {t("editor.scenePanel.addNote")}
@@ -1443,7 +1443,7 @@
   {:else}
     <!-- Empty State -->
     <div data-testid="empty-state" class="scene-empty">
-      <div class="ka-empty od-stack">
+      <div class="fq-empty od-stack">
         <FileText class="w-7 h-7" aria-hidden="true" />
         <h2>{t("editor.scenePanel.emptyTitle")}</h2>
         <p>{t("editor.scenePanel.emptyBody")}</p>
@@ -1493,7 +1493,7 @@
   .scene-view {
     flex-wrap: nowrap;
   }
-  .scene-view .ka-segment {
+  .scene-view .fq-segment {
     flex: none;
     padding: var(--space-2xs) var(--space-s);
   }
@@ -1525,7 +1525,7 @@
   }
   .scene-title {
     margin: 0;
-    font: 550 var(--ka-heading) / var(--leading-tight) var(--font-display);
+    font: 550 var(--fq-heading) / var(--leading-tight) var(--font-display);
     letter-spacing: var(--tracking-tight);
     color: var(--color-text);
     overflow-wrap: anywhere;
@@ -1537,18 +1537,18 @@
     gap: var(--space-s);
     margin-top: var(--space-m);
   }
-  .scene-meta .ka-field {
+  .scene-meta .fq-field {
     flex: 1 1 136px;
     width: auto;
     min-width: 0;
     max-width: 200px;
     gap: var(--space-3xs);
   }
-  .scene-meta .ka-field label {
+  .scene-meta .fq-field label {
     font: 500 var(--text-small) / 1.5 var(--font-ui);
     color: var(--color-text-muted);
   }
-  .scene-meta .ka-field select {
+  .scene-meta .fq-field select {
     padding: var(--space-2xs) var(--space-xs);
   }
   .scene-label-tip {
@@ -1703,7 +1703,7 @@
     align-items: center;
     gap: var(--space-3xs);
   }
-  /* One `.ka-help` line (14px at 1.6), reserved while the field is open. */
+  /* One `.fq-help` line (14px at 1.6), reserved while the field is open. */
   .scene-synopsis-status {
     min-height: calc(var(--text-small) * 1.6);
   }
@@ -1756,7 +1756,7 @@
   }
   .scene-disclose :global(.scene-chev) {
     color: var(--color-text-muted);
-    transition: transform var(--ka-motion) ease-out;
+    transition: transform var(--fq-motion) ease-out;
   }
   .scene-disclose[aria-expanded="true"] :global(.scene-chev) {
     transform: rotate(90deg);
@@ -1831,7 +1831,7 @@
     min-height: 0;
     padding: var(--space-xl);
   }
-  .scene-empty .ka-empty {
+  .scene-empty .fq-empty {
     align-items: center;
     text-align: center;
   }

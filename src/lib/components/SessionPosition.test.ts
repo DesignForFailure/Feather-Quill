@@ -292,7 +292,7 @@ it("keeps scroll saving and screenplay auto-selection working when sync supersed
   render(Sidebar);
   render(ScenePanel);
   await waitFor(() => expect(finishOriginal).toBeTypeOf("function"));
-  window.dispatchEvent(new Event("kindling:sync"));
+  window.dispatchEvent(new Event("feather-quill:sync"));
   await fireEvent.click(await screen.findByTestId("sync-confirm"));
   await waitFor(() => expect(currentProject.currentScene?.id).toBe(scene.id));
   finishOriginal();

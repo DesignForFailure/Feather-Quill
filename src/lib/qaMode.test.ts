@@ -3,7 +3,7 @@ import { installBackgroundFrames } from "./qaMode";
 const originalRAF = window.requestAnimationFrame;
 const originalCancel = window.cancelAnimationFrame;
 afterEach(() => {
-  delete window.__KINDLING_QA_BACKGROUND__;
+  delete window.__FEATHER_QUILL_QA_BACKGROUND__;
   window.requestAnimationFrame = originalRAF;
   window.cancelAnimationFrame = originalCancel;
   vi.useRealTimers();
@@ -15,7 +15,7 @@ it("leaves native frame scheduling untouched outside isolated QA", () => {
 });
 it("runs hidden layout callbacks in batches, supports cancellation and defers nested frames", () => {
   vi.useFakeTimers();
-  window.__KINDLING_QA_BACKGROUND__ = true;
+  window.__FEATHER_QUILL_QA_BACKGROUND__ = true;
   installBackgroundFrames();
   const events: string[] = [];
   let cancelled = 0;

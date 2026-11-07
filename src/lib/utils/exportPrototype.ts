@@ -182,7 +182,8 @@ export function starterProfiles(title: string, author: string): ExportProfile[] 
   ];
 }
 
-export const profileStorageKey = (projectId: string) => `kindling:export-prototype:v1:${projectId}`;
+export const profileStorageKey = (projectId: string) =>
+  `feather-quill:export-prototype:v1:${projectId}`;
 
 const numericSettings = [
   ["fontSize", "logic.exportPrototype.fontSize", 8, 24],

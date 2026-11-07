@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Kindling needs to be a cross-platform desktop application that works on macOS, Windows, and Linux. Writers expect native-feeling applications with good performance and small install sizes.
+Feather Quill needs to be a cross-platform desktop application that works on macOS, Windows, and Linux. Writers expect native-feeling applications with good performance and small install sizes.
 
 The main contenders were:
 - **Electron**: Mature, widely used, bundles Chromium (~150MB+ install size)
@@ -14,7 +14,7 @@ The main contenders were:
 - **Native per-platform**: Maximum performance, 3x development effort
 
 Key considerations:
-- Kindling is a writing tool that should feel lightweight, not resource-heavy
+- Feather Quill is a writing tool that should feel lightweight, not resource-heavy
 - The frontend is primarily UI with moderate complexity
 - We need file system access for importing outlines
 - Security is important since users trust us with their creative work

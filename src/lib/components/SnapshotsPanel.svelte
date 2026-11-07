@@ -320,7 +320,7 @@
   aria-labelledby="snapshots-panel-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-default dialog-shell">
+  <div class="app-dialog-surface fq-dialog-default dialog-shell">
     <DialogHeader
       title={t("editorial.snapshotsPanel.title")}
       titleId="snapshots-panel-title"
@@ -330,9 +330,9 @@
       disabled={restoringId !== null}
     />
 
-    <div class="ka-dialog-body snapshots">
+    <div class="fq-dialog-body snapshots">
       <div class="snapshots-intro">
-        <p class="ka-help">
+        <p class="fq-help">
           {t("editorial.snapshotsPanel.intro")}
         </p>
         {#if !showCreateDialog}
@@ -342,7 +342,7 @@
             type="button"
             onclick={openCreateDialog}
             disabled={creating || restoringId !== null}
-            class="ka-button"
+            class="fq-button"
           >
             <Plus class="w-5 h-5" aria-hidden="true" />
             {t("editorial.snapshotsPanel.create")}
@@ -351,11 +351,11 @@
       </div>
 
       {#if showCreateDialog}
-        <section class="ka-tagedit snapshot-create" aria-labelledby="snapshot-create-title">
-          <h3 id="snapshot-create-title" class="ka-group-title">
+        <section class="fq-tagedit snapshot-create" aria-labelledby="snapshot-create-title">
+          <h3 id="snapshot-create-title" class="fq-group-title">
             {t("editorial.snapshotsPanel.newSnapshot")}
           </h3>
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="snapshot-name">{t("editorial.snapshotsPanel.name")}</label>
             <input
               id="snapshot-name"
@@ -372,10 +372,10 @@
               disabled={creating}
             />
           </div>
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="snapshot-description"
               >{t("editorial.snapshotsPanel.description")}
-              <span class="ka-optional">{t("editorial.snapshotsPanel.optional")}</span></label
+              <span class="fq-optional">{t("editorial.snapshotsPanel.optional")}</span></label
             >
             <textarea
               id="snapshot-description"
@@ -385,13 +385,13 @@
               disabled={creating}
             ></textarea>
           </div>
-          {#if createError}<p class="ka-error" role="alert">{createError}</p>{/if}
+          {#if createError}<p class="fq-error" role="alert">{createError}</p>{/if}
           <div class="snapshot-actions-end">
             <button
               type="button"
               onclick={closeCreateDialog}
               disabled={creating}
-              class="ka-button ka-button--secondary"
+              class="fq-button fq-button--secondary"
             >
               {t("editorial.snapshotsPanel.cancel")}
             </button>
@@ -401,7 +401,7 @@
               onclick={createSnapshot}
               disabled={!newSnapshotName.trim() || creating}
               aria-busy={creating || undefined}
-              class="ka-button"
+              class="fq-button"
             >
               {#if creating}
                 <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
@@ -415,7 +415,7 @@
       {/if}
 
       {#if createdName}
-        <div class="ka-notice ka-notice--success od-row-top" role="status">
+        <div class="fq-notice fq-notice--success od-row-top" role="status">
           <CheckCircle2 class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <strong>{t("editorial.snapshotsPanel.created")}</strong>
@@ -425,12 +425,12 @@
       {/if}
 
       {#if loading}
-        <p class="ka-help snapshots-loading" role="status">
+        <p class="fq-help snapshots-loading" role="status">
           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
           {t("editorial.snapshotsPanel.loading")}
         </p>
       {:else if error}
-        <div class="ka-notice ka-notice--error od-row-top" role="alert">
+        <div class="fq-notice fq-notice--error od-row-top" role="alert">
           <CircleAlert class="w-5 h-5" aria-hidden="true" />
           <div class="od-field od-fill">
             <strong>{t("editorial.snapshotsPanel.loadErrorTitle")}</strong>
@@ -438,7 +438,7 @@
           </div>
         </div>
       {:else if snapshots.length === 0 && !showCreateDialog}
-        <div class="ka-empty od-stack snapshots-empty">
+        <div class="fq-empty od-stack snapshots-empty">
           <History class="w-7 h-7" aria-hidden="true" />
           <h4>{t("editorial.snapshotsPanel.emptyTitle")}</h4>
           <p>{t("editorial.snapshotsPanel.emptyBody")}</p>
@@ -452,7 +452,7 @@
             <li class="snapshot-row">
               <div class="snapshot-main">
                 <div class="snapshot-text">
-                  <p class="ka-label snapshot-name" id={`snapshot-${snapshot.id}-name`}>
+                  <p class="fq-label snapshot-name" id={`snapshot-${snapshot.id}-name`}>
                     {snapshot.name}
                   </p>
                   <p class="snapshot-meta">
@@ -476,7 +476,7 @@
                     type="button"
                     onclick={() => openRestoreDialog(snapshot)}
                     disabled={restoringId !== null || deletingId === snapshot.id}
-                    class="ka-button ka-button--secondary"
+                    class="fq-button fq-button--secondary"
                     aria-label={t("editorial.snapshotsPanel.restoreAria")}
                     aria-describedby={`snapshot-${snapshot.id}-name`}
                     aria-expanded={isRestoring}
@@ -489,7 +489,7 @@
                     type="button"
                     onclick={() => openDeleteConfirm(snapshot)}
                     disabled={restoringId !== null || deletingId === snapshot.id}
-                    class="ka-button ka-button--ghost ka-icon-button snapshot-delete"
+                    class="fq-button fq-button--ghost fq-icon-button snapshot-delete"
                     aria-label={t("editorial.snapshotsPanel.deleteAria", { date })}
                     title={t("editorial.snapshotsPanel.deleteAria", { date })}
                     aria-expanded={isDeleting}
@@ -503,7 +503,7 @@
               {#if isRestoring}
                 <div
                   id={`snapshot-${snapshot.id}-confirm`}
-                  class="ka-notice ka-notice--warning od-row-top snapshot-confirm"
+                  class="fq-notice fq-notice--warning od-row-top snapshot-confirm"
                   role="alertdialog"
                   aria-labelledby={`snapshot-${snapshot.id}-confirm-title`}
                 >
@@ -513,8 +513,8 @@
                       >{t("editorial.snapshotsPanel.restoreTitle")}</strong
                     >
                     <fieldset class="snapshot-modes" disabled={restoringId !== null}>
-                      <legend class="ka-sr">{t("editorial.snapshotsPanel.restoreMode")}</legend>
-                      <label class="ka-check snapshot-mode">
+                      <legend class="fq-sr">{t("editorial.snapshotsPanel.restoreMode")}</legend>
+                      <label class="fq-check snapshot-mode">
                         <input
                           type="radio"
                           name="restore-mode"
@@ -524,10 +524,10 @@
                         />
                         <span class="od-field">
                           <span>{t("editorial.snapshotsPanel.replaceProject")}</span>
-                          <span class="ka-help">{t("editorial.snapshotsPanel.replaceHelp")}</span>
+                          <span class="fq-help">{t("editorial.snapshotsPanel.replaceHelp")}</span>
                         </span>
                       </label>
-                      <label class="ka-check snapshot-mode">
+                      <label class="fq-check snapshot-mode">
                         <input
                           type="radio"
                           name="restore-mode"
@@ -536,12 +536,12 @@
                         />
                         <span class="od-field">
                           <span>{t("editorial.snapshotsPanel.createNewProject")}</span>
-                          <span class="ka-help">{t("editorial.snapshotsPanel.createNewHelp")}</span>
+                          <span class="fq-help">{t("editorial.snapshotsPanel.createNewHelp")}</span>
                         </span>
                       </label>
                     </fieldset>
                     {#if restoreMode === "create_new"}
-                      <div class="ka-field od-field">
+                      <div class="fq-field od-field">
                         <label for="snapshot-restore-project-name"
                           >{t("editorial.snapshotsPanel.newProjectName")}</label
                         >
@@ -555,19 +555,19 @@
                             : undefined}
                         />
                         {#if !newProjectName.trim()}
-                          <p id="snapshot-restore-project-name-help" class="ka-help">
+                          <p id="snapshot-restore-project-name-help" class="fq-help">
                             {t("editorial.snapshotsPanel.newProjectNameHelp")}
                           </p>
                         {/if}
                       </div>
                     {/if}
-                    {#if rowError}<p class="ka-error" role="alert">{rowError}</p>{/if}
+                    {#if rowError}<p class="fq-error" role="alert">{rowError}</p>{/if}
                     <div class="snapshot-actions-end">
                       <button
                         type="button"
                         onclick={cancelConfirm}
                         disabled={restoringId !== null}
-                        class="ka-button ka-button--ghost"
+                        class="fq-button fq-button--ghost"
                       >
                         {t("editorial.snapshotsPanel.cancel")}
                       </button>
@@ -577,7 +577,7 @@
                         disabled={restoringId !== null ||
                           (restoreMode === "create_new" && !newProjectName.trim())}
                         aria-busy={restoringId !== null || undefined}
-                        class="ka-button ka-button--danger"
+                        class="fq-button fq-button--danger"
                       >
                         {#if restoringId}
                           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
@@ -592,7 +592,7 @@
               {:else if isDeleting}
                 <div
                   id={`snapshot-${snapshot.id}-confirm`}
-                  class="ka-notice ka-notice--warning od-row-top snapshot-confirm"
+                  class="fq-notice fq-notice--warning od-row-top snapshot-confirm"
                   role="alertdialog"
                   aria-labelledby={`snapshot-${snapshot.id}-confirm-title`}
                   aria-describedby={`snapshot-${snapshot.id}-confirm-body`}
@@ -605,13 +605,13 @@
                     <p id={`snapshot-${snapshot.id}-confirm-body`}>
                       {t("editorial.snapshotsPanel.deleteBody")}
                     </p>
-                    {#if rowError}<p class="ka-error" role="alert">{rowError}</p>{/if}
+                    {#if rowError}<p class="fq-error" role="alert">{rowError}</p>{/if}
                     <div class="snapshot-actions-end">
                       <button
                         type="button"
                         onclick={cancelConfirm}
                         disabled={deletingId !== null}
-                        class="ka-button ka-button--ghost"
+                        class="fq-button fq-button--ghost"
                         use:focusOnMount
                       >
                         {t("editorial.snapshotsPanel.cancel")}
@@ -621,7 +621,7 @@
                         onclick={() => deleteSnapshot(snapshot)}
                         disabled={deletingId !== null}
                         aria-busy={deletingId === snapshot.id || undefined}
-                        class="ka-button ka-button--danger"
+                        class="fq-button fq-button--danger"
                       >
                         {#if deletingId === snapshot.id}
                           <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
@@ -655,7 +655,7 @@
     flex-wrap: wrap;
     gap: var(--space-s);
   }
-  .snapshots-intro .ka-help {
+  .snapshots-intro .fq-help {
     flex: 1 1 16rem;
     margin: 0;
   }
@@ -667,7 +667,7 @@
     border-radius: var(--radius-m);
     background: var(--color-surface);
   }
-  .snapshot-create .ka-group-title {
+  .snapshot-create .fq-group-title {
     margin: 0;
   }
   .snapshots-loading {
@@ -764,7 +764,7 @@
   .snapshot-mode input {
     margin-top: 2px;
   }
-  .snapshot-mode .ka-help {
+  .snapshot-mode .fq-help {
     max-width: none;
   }
   .snapshot-actions-end {

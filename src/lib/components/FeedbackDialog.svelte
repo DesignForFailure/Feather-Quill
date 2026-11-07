@@ -1,5 +1,5 @@
 <!--
-  FeedbackDialog.svelte - Send feedback to the kindling team
+  FeedbackDialog.svelte - Send feedback to the Feather Quill team
 
   A small form letting the user submit a bug report, feature request, or star
   rating. Apart from the updater's release check, submission is the only network
@@ -131,7 +131,7 @@
   aria-labelledby="feedback-dialog-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell" data-testid="feedback-dialog">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell" data-testid="feedback-dialog">
     <DialogHeader
       title={t("onboarding.feedbackDialog.title")}
       titleId="feedback-dialog-title"
@@ -140,28 +140,28 @@
     />
 
     {#if status === "success"}
-      <div class="ka-dialog-body feedback-success" data-testid="feedback-success" role="status">
+      <div class="fq-dialog-body feedback-success" data-testid="feedback-success" role="status">
         <CheckCircle2 class="w-7 h-7" aria-hidden="true" />
         <h3>{t("onboarding.feedbackDialog.successTitle")}</h3>
         <p>{t("onboarding.feedbackDialog.successMessage")}</p>
       </div>
-      <footer class="ka-dialog-footer">
-        <button type="button" onclick={onClose} class="ka-button" use:focusOnMount
+      <footer class="fq-dialog-footer">
+        <button type="button" onclick={onClose} class="fq-button" use:focusOnMount
           >{t("common.done")}</button
         >
       </footer>
     {:else}
-      <div class="ka-dialog-body feedback-form">
-        <fieldset class="ka-segments">
+      <div class="fq-dialog-body feedback-form">
+        <fieldset class="fq-segments">
           <legend>{t("onboarding.feedbackDialog.kindsLegend")}</legend>
-          <div class="ka-segment-track">
+          <div class="fq-segment-track">
             {#each FEEDBACK_TYPES as type (type.value)}
               <button
                 type="button"
                 onclick={() => selectType(type.value)}
                 aria-pressed={feedbackType === type.value}
-                class="ka-segment"
-                class:ka-selected={feedbackType === type.value}
+                class="fq-segment"
+                class:fq-selected={feedbackType === type.value}
               >
                 {type.label}
               </button>
@@ -172,29 +172,29 @@
         {#if feedbackType === "rating"}
           <fieldset class="feedback-rating">
             <legend>{t("onboarding.feedbackDialog.ratingLegend")}</legend>
-            <div class="ka-row">
+            <div class="fq-row">
               {#each [1, 2, 3, 4, 5] as n (n)}
                 <button
                   type="button"
                   onclick={() => (rating = n)}
                   aria-label={tn("onboarding.feedbackDialog.star", n)}
                   aria-pressed={rating === n}
-                  class="ka-button ka-button--ghost ka-icon-button feedback-star"
+                  class="fq-button fq-button--ghost fq-icon-button feedback-star"
                   class:is-on={n <= rating}
                 >
                   <Star class="w-6 h-6" fill={n <= rating ? "currentColor" : "none"} />
                 </button>
               {/each}
-              {#if rating > 0}<span class="ka-help"
+              {#if rating > 0}<span class="fq-help"
                   >{t("onboarding.feedbackDialog.ratingOfFive", { rating })}</span
                 >{/if}
             </div>
           </fieldset>
         {:else}
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="feedback-summary">
               {t("onboarding.feedbackDialog.summaryLabel")}
-              <span class="ka-optional">{t("onboarding.feedbackDialog.optional")}</span>
+              <span class="fq-optional">{t("onboarding.feedbackDialog.optional")}</span>
             </label>
             <input
               id="feedback-summary"
@@ -204,16 +204,16 @@
               placeholder={t("onboarding.feedbackDialog.summaryPlaceholder")}
               aria-invalid={summary.trim().length > MAX_SUMMARY_LEN || undefined}
             />
-            <div class="ka-field-meta">
+            <div class="fq-field-meta">
               <span
-                class="ka-count"
-                class:ka-error={summary.trim().length > MAX_SUMMARY_LEN}
+                class="fq-count"
+                class:fq-error={summary.trim().length > MAX_SUMMARY_LEN}
                 aria-live="polite">{summary.trim().length}/{MAX_SUMMARY_LEN}</span
               >
             </div>
           </div>
 
-          <div class="ka-field od-field">
+          <div class="fq-field od-field">
             <label for="feedback-message">{t("onboarding.feedbackDialog.messageLabel")}</label>
             <textarea
               id="feedback-message"
@@ -223,22 +223,22 @@
               placeholder={t("onboarding.feedbackDialog.messagePlaceholder")}
               aria-invalid={message.trim().length > MAX_MESSAGE_LEN || undefined}
             ></textarea>
-            <div class="ka-field-meta">
+            <div class="fq-field-meta">
               <span
-                class="ka-count"
-                class:ka-error={message.trim().length > MAX_MESSAGE_LEN}
+                class="fq-count"
+                class:fq-error={message.trim().length > MAX_MESSAGE_LEN}
                 aria-live="polite">{message.trim().length}/{MAX_MESSAGE_LEN}</span
               >
             </div>
           </div>
         {/if}
 
-        <p class="ka-help" data-testid="feedback-disclosure">
+        <p class="fq-help" data-testid="feedback-disclosure">
           {t("onboarding.feedbackDialog.disclosure")}
         </p>
 
         {#if validationError}
-          <p class="ka-error" data-testid="feedback-validation" role="alert">
+          <p class="fq-error" data-testid="feedback-validation" role="alert">
             <AlertCircle class="w-4 h-4 shrink-0" aria-hidden="true" />
             {validationError}
           </p>
@@ -246,7 +246,7 @@
 
         {#if status === "error"}
           <div
-            class="ka-notice ka-notice--error od-row-top"
+            class="fq-notice fq-notice--error od-row-top"
             data-testid="feedback-error"
             role="alert"
           >
@@ -259,7 +259,7 @@
                 type="button"
                 onclick={handleSubmit}
                 disabled={sending}
-                class="ka-button ka-button--secondary feedback-retry"
+                class="fq-button fq-button--secondary feedback-retry"
               >
                 {t("onboarding.feedbackDialog.tryAgain")}
               </button>
@@ -268,12 +268,12 @@
         {/if}
       </div>
 
-      <footer class="ka-dialog-footer">
+      <footer class="fq-dialog-footer">
         <button
           type="button"
           onclick={onClose}
           disabled={sending}
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
         >
           {t("common.cancel")}
         </button>
@@ -282,7 +282,7 @@
           onclick={handleSubmit}
           disabled={sending}
           aria-busy={sending || undefined}
-          class="ka-button"
+          class="fq-button"
           data-testid="feedback-submit"
         >
           {#if sending}

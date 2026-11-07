@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Applies qa/demo/seed.json to a Kindling database so documentation and website
+ * Applies qa/demo/seed.json to a Feather Quill database so documentation and website
  * screenshots always start from the same project.
  *
  * The database itself is never committed: create it by launching the app once
@@ -40,7 +40,7 @@ export function uuidv5(name, namespace = NAMESPACE) {
 }
 
 /** Ids are namespaced by kind so a chapter and a scene may share a key without colliding. */
-export const idFor = (kind, key) => uuidv5(`kindling-demo:${kind}:${key}`);
+export const idFor = (kind, key) => uuidv5(`feather-quill-demo:${kind}:${key}`);
 
 /** SQLite literal. NULL for null/undefined, doubled single quotes otherwise. */
 export function lit(value) {
@@ -224,7 +224,7 @@ function applySql(dbPath, sql) {
 function main(argv) {
   const args = argv.slice(2);
   const dbFlag = args.indexOf("--db");
-  const dbPath = resolve(dbFlag === -1 ? join(HERE, "data", "kindling.db") : args[dbFlag + 1]);
+  const dbPath = resolve(dbFlag === -1 ? join(HERE, "data", "feather-quill.db") : args[dbFlag + 1]);
   const manifest = JSON.parse(readFileSync(join(HERE, "seed.json"), "utf8"));
   const sql = buildSql(manifest);
 

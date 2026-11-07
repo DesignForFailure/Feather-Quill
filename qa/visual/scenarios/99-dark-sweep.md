@@ -34,7 +34,7 @@ invalidation bug from run 2026-09-04-1729 and a regression.
   `q.clickNth("beat-header", 0)`, `q.shot("99-02-dark-editor")`. Screenshot.
 - Next call: `q.key("Escape")`.
 
-**Expect**: the prose card follows the current Press reading-surface tokens;
+**Expect**: the prose card follows the current local reading-surface tokens;
 text, selection and toolbar icons remain legible. Verify computed colors rather
 than assuming the old cream card is still intentional. The beat header and
 card border follow the dark theme.

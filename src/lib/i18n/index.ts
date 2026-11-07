@@ -67,12 +67,12 @@ export function resolveLocale(tag: string | undefined | null): Locale {
 
 /**
  * The locale at startup. Tests always read English. Otherwise a dev-server
- * `VITE_KINDLING_LOCALE` (set directly or through `KINDLING_LOCALE`, see `vite.config.ts`)
+ * `VITE_FEATHER_QUILL_LOCALE` (set directly or through `FEATHER_QUILL_LOCALE`, see `vite.config.ts`)
  * wins over the system language, so visual QA can screenshot every locale on one machine.
  */
 export function initialLocale(env: ImportMetaEnv, systemTag: string | undefined): Locale {
   if (env.MODE === "test" || env.VITEST) return FALLBACK_LOCALE;
-  const override = env.DEV ? env.VITE_KINDLING_LOCALE : undefined;
+  const override = env.DEV ? env.VITE_FEATHER_QUILL_LOCALE : undefined;
   return resolveLocale(override || systemTag);
 }
 

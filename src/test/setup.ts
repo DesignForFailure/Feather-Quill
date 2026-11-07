@@ -31,7 +31,7 @@ vi.mock("@tauri-apps/plugin-process", () => ({
 // Mock @tauri-apps/api/app
 vi.mock("@tauri-apps/api/app", () => ({
   getVersion: vi.fn().mockResolvedValue("1.0.0"),
-  getName: vi.fn().mockResolvedValue("Kindling"),
+  getName: vi.fn().mockResolvedValue("Feather Quill"),
   getTauriVersion: vi.fn().mockResolvedValue("2.0.0"),
 }));
 

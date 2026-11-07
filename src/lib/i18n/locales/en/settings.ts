@@ -32,7 +32,7 @@ const catalog: Catalog = {
 
   // --- Appearance ---
   "appearance.lede":
-    "Choose how kindling looks and how much guidance it shows. Changes apply immediately to all projects.",
+    "Choose how Feather Quill looks and how much guidance it shows. Changes apply immediately to all projects.",
   "appearance.title": "Appearance",
   "appearance.themeAria": "Theme",
   "appearance.themeDark": "Dark",

@@ -3,7 +3,7 @@
   import { onDestroy, untrack } from "svelte";
   import { invoke } from "@tauri-apps/api/core";
   import { Loader2, Pencil, Plus, Trash2, X, Check } from "lucide-svelte";
-  import pressTokens from "../../styles/press/tokens.json";
+  import themePalette from "../../styles/theme/palette.json";
   import type { Tag } from "../types";
   import { t } from "../i18n";
 
@@ -35,7 +35,7 @@
   });
   onDestroy(() => onState?.({ dirty: false, busy: false }));
 
-  const PRESET_COLOR_TOKENS: Array<[string, keyof typeof pressTokens.light]> = [
+  const PRESET_COLOR_TOKENS: Array<[string, keyof typeof themePalette.light]> = [
     ["Red", "--tag-red"],
     ["Orange", "--tag-orange"],
     ["Yellow", "--tag-yellow"],
@@ -49,7 +49,7 @@
   ];
   const PRESET_COLORS = PRESET_COLOR_TOKENS.map(([name, token]) => ({
     name,
-    color: pressTokens.light[token],
+    color: themePalette.light[token],
   }));
 
   async function loadTags() {
@@ -145,25 +145,25 @@
 {#snippet tagRow(tag: Tag, depth: number)}
   {@const children = getChildTags(tag.id)}
   <li>
-    <div class="ka-tagrow">
+    <div class="fq-tagrow">
       <span
-        class="ka-swatch"
-        class:ka-swatch--none={!tag.color}
+        class="fq-swatch"
+        class:fq-swatch--none={!tag.color}
         style:--swatch={tagColor(tag.color) ?? "transparent"}
         aria-hidden="true"
       ></span>
-      <span class="ka-name">{tag.name}</span>
+      <span class="fq-name">{tag.name}</span>
       {#if children.length > 0}
-        <span class="ka-badge" title={t("sidebar.tagManager.childTags", { count: children.length })}
+        <span class="fq-badge" title={t("sidebar.tagManager.childTags", { count: children.length })}
           >{children.length}</span
         >
       {/if}
-      <div class="ka-row">
+      <div class="fq-row">
         {#if depth < 2}
           <button
             type="button"
             onclick={() => openCreateForm(tag.id)}
-            class="ka-button ka-button--ghost ka-icon-button"
+            class="fq-button fq-button--ghost fq-icon-button"
             aria-label={t("sidebar.tagManager.addChildTag")}
             title={t("sidebar.tagManager.addChildTag")}
             disabled={!!editingTag}
@@ -174,7 +174,7 @@
         <button
           type="button"
           onclick={() => openEditForm(tag)}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("sidebar.tagManager.editTag")}
           title={t("sidebar.tagManager.editTag")}
           disabled={!!editingTag}
@@ -184,7 +184,7 @@
         <button
           type="button"
           onclick={() => deleteTag(tag.id)}
-          class="ka-button ka-button--ghost ka-icon-button tag-delete"
+          class="fq-button fq-button--ghost fq-icon-button tag-delete"
           aria-label={t("sidebar.tagManager.deleteTag")}
           title={t("sidebar.tagManager.deleteTag")}
         >
@@ -204,11 +204,11 @@
 
 <div class="tags">
   <div class="tags-head">
-    <p class="ka-help">{t("sidebar.tagManager.tagsNestLevels")}</p>
+    <p class="fq-help">{t("sidebar.tagManager.tagsNestLevels")}</p>
     <button
       type="button"
       onclick={() => openCreateForm()}
-      class="ka-button ka-button--secondary"
+      class="fq-button fq-button--secondary"
       disabled={!!editingTag}
     >
       <Plus class="w-5 h-5" aria-hidden="true" />
@@ -217,13 +217,13 @@
   </div>
 
   {#if loading}
-    <p class="ka-help" role="status">{t("sidebar.tagManager.loadingTags")}</p>
+    <p class="fq-help" role="status">{t("sidebar.tagManager.loadingTags")}</p>
   {:else if error}
-    <p class="ka-error" role="alert">{error}</p>
+    <p class="fq-error" role="alert">{error}</p>
   {:else if tags.length === 0 && !editingTag}
-    <p class="ka-help">{t("sidebar.tagManager.noTags")}</p>
+    <p class="fq-help">{t("sidebar.tagManager.noTags")}</p>
   {:else}
-    <ul class="ka-tagtree">
+    <ul class="fq-tagtree">
       {#each getRootTags() as tag (tag.id)}
         {@render tagRow(tag, 0)}
       {/each}
@@ -231,7 +231,7 @@
   {/if}
 
   {#if editingTag}
-    <div class="ka-tagedit">
+    <div class="fq-tagedit">
       <div class="tags-edit-head">
         <h4>
           {editMode === "create" ? t("sidebar.tagManager.newTag") : t("sidebar.tagManager.editTag")}
@@ -239,7 +239,7 @@
         <button
           type="button"
           onclick={cancelEdit}
-          class="ka-button ka-button--ghost ka-icon-button"
+          class="fq-button fq-button--ghost fq-icon-button"
           aria-label={t("sidebar.tagManager.closeEditor")}
           title={t("sidebar.tagManager.closeEditor")}
         >
@@ -247,7 +247,7 @@
         </button>
       </div>
 
-      <div class="ka-field od-field">
+      <div class="fq-field od-field">
         <label for="tag-name">{t("sidebar.tagManager.name")}</label>
         <input
           id="tag-name"
@@ -259,14 +259,14 @@
         />
       </div>
 
-      <fieldset class="ka-swatches">
+      <fieldset class="fq-swatches">
         <legend>{t("sidebar.tagManager.color")}</legend>
         <button
           type="button"
           onclick={() => {
             if (editingTag) editingTag.color = null;
           }}
-          class="ka-swatch-option ka-swatch-option--none swatch-button"
+          class="fq-swatch-option fq-swatch-option--none swatch-button"
           class:is-selected={!editingTag.color}
           aria-pressed={!editingTag.color}
           aria-label={t("sidebar.tagManager.noColor")}
@@ -283,7 +283,7 @@
             onclick={() => {
               if (editingTag) editingTag.color = color;
             }}
-            class="ka-swatch-option swatch-button"
+            class="fq-swatch-option swatch-button"
             class:is-selected={editingTag.color === color}
             style:--swatch={tagColor(color)}
             aria-pressed={editingTag.color === color}
@@ -300,11 +300,11 @@
         {/each}
       </fieldset>
 
-      <div class="ka-row tags-edit-actions">
+      <div class="fq-row tags-edit-actions">
         <button
           type="button"
           onclick={cancelEdit}
-          class="ka-button ka-button--secondary"
+          class="fq-button fq-button--secondary"
           disabled={saving}
         >
           {t("common.cancel")}
@@ -312,7 +312,7 @@
         <button
           type="button"
           onclick={saveTag}
-          class="ka-button"
+          class="fq-button"
           disabled={saving || !editingTag.name?.trim()}
           aria-busy={saving || undefined}
         >
@@ -337,7 +337,7 @@
     justify-content: space-between;
     gap: var(--space-s);
   }
-  .tags-head .ka-help {
+  .tags-head .fq-help {
     margin: 0;
   }
   .tags-edit-head {

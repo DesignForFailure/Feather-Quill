@@ -39,9 +39,9 @@
   aria-labelledby="dialog-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-narrow dialog-shell">
+  <div class="app-dialog-surface fq-dialog-narrow dialog-shell">
     <DialogHeader title={t(text("deleteTitle"))} titleId="dialog-title" onClose={onCancel} />
-    <div class="ka-dialog-body part-delete">
+    <div class="fq-dialog-body part-delete">
       <p class="part-delete-lede">
         {tn("sidebar.partDeleteDialog.lede", childChapterCount, { title: partTitle, chapters })}
       </p>
@@ -50,7 +50,7 @@
         type="button"
         data-testid="delete-part-only"
         onclick={onDeletePartOnly}
-        class="ka-button ka-button--secondary part-delete-choice"
+        class="fq-button fq-button--secondary part-delete-choice"
       >
         <span>{t(text("deleteOnly"))}</span>
         <small>
@@ -62,7 +62,7 @@
         type="button"
         data-testid="delete-part-and-chapters"
         onclick={onDeletePartAndChapters}
-        class="ka-button ka-button--danger part-delete-choice"
+        class="fq-button fq-button--danger part-delete-choice"
       >
         <span>{t(text("deleteAll"))}</span>
         <small>
@@ -70,12 +70,12 @@
         </small>
       </button>
     </div>
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       <button
         type="button"
         data-testid="dialog-cancel"
         onclick={onCancel}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
       >
         {t("common.cancel")}
       </button>
@@ -104,7 +104,7 @@
   .part-delete-choice small {
     font: 400 var(--text-small) / 1.4 var(--font-ui);
   }
-  .ka-button--secondary.part-delete-choice small {
+  .fq-button--secondary.part-delete-choice small {
     color: var(--color-text-muted);
   }
 </style>

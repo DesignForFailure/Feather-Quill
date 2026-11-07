@@ -643,14 +643,14 @@
 </script>
 
 <section class="beats" aria-labelledby="beats-title">
-  <p class="ka-sr" role="status" aria-live="polite">{moveAnnouncement}</p>
+  <p class="fq-sr" role="status" aria-live="polite">{moveAnnouncement}</p>
   <div class="beats-head">
     <h3 id="beats-title">{t("editor.beatView.beatsTitle")}</h3>
     {#if beats.length > 0 && !addingBeat && !isLocked}
       <button
         type="button"
         onclick={startAddingBeat}
-        class="ka-button ka-button--ghost beats-add-top"
+        class="fq-button fq-button--ghost beats-add-top"
       >
         <Plus class="w-5 h-5" aria-hidden="true" />
         {t("editor.beatView.addBeat")}
@@ -666,7 +666,7 @@
         <article
           data-drag-beat={beat.id}
           data-testid="beat-item"
-          class="ka-beat beat"
+          class="fq-beat beat"
           class:is-open={isExpanded}
           class:is-drop-target={dragOverBeatId === beat.id}
           use:registerBeatRef={beat.id}
@@ -695,7 +695,7 @@
             {#if editingBeatId === beat.id}
               <div class="beat-toggle">
                 <ChevronRight class="w-5 h-5 beat-chev" aria-hidden="true" />
-                <span class="ka-beat-number">{index + 1}</span>
+                <span class="fq-beat-number">{index + 1}</span>
                 <input
                   data-rename-beat={beat.id}
                   type="text"
@@ -714,7 +714,7 @@
                 class="beat-toggle"
               >
                 <ChevronRight class="w-5 h-5 beat-chev" aria-hidden="true" />
-                <span class="ka-beat-number">{index + 1}</span>
+                <span class="fq-beat-number">{index + 1}</span>
                 <span class="beat-title" title={beat.content}>{beat.content}</span>
                 {#if prose}
                   <small class="beat-count"
@@ -730,7 +730,7 @@
                   e.stopPropagation();
                   openBeatMenu(e, beat);
                 }}
-                class="ka-button ka-button--ghost ka-icon-button beat-menu"
+                class="fq-button fq-button--ghost fq-icon-button beat-menu"
                 aria-label={t("editor.beatView.beatMenu")}
                 aria-haspopup="menu"
               >
@@ -779,7 +779,7 @@
         <button
           type="button"
           onclick={startAddingBeat}
-          class="ka-button ka-button--secondary beats-add"
+          class="fq-button fq-button--secondary beats-add"
         >
           <Plus class="w-5 h-5" aria-hidden="true" />
           {t("editor.beatView.addBeat")}
@@ -787,16 +787,16 @@
       {/if}
     </div>
   {:else if !addingBeat && !isLocked}
-    <div class="ka-empty od-stack beats-empty">
+    <div class="fq-empty od-stack beats-empty">
       <h4>{t("editor.beatView.emptyTitle")}</h4>
       <p>{t("editor.beatView.emptyBody")}</p>
-      <button type="button" onclick={startAddingBeat} class="ka-button">
+      <button type="button" onclick={startAddingBeat} class="fq-button">
         <Plus class="w-5 h-5" aria-hidden="true" />
         {t("editor.beatView.addFirstBeat")}
       </button>
     </div>
   {:else if !addingBeat && isLocked}
-    <p class="ka-help beats-locked">
+    <p class="fq-help beats-locked">
       <Lock class="w-4 h-4" aria-hidden="true" />
       {t("editor.beatView.sceneLocked")}
     </p>
@@ -804,7 +804,7 @@
 
   <!-- Add Beat Input -->
   {#if addingBeat && !isLocked}
-    <div class="ka-field od-field beats-new">
+    <div class="fq-field od-field beats-new">
       <label for="new-beat-content">{t("editor.beatView.newBeatLabel")}</label>
       <input
         id="new-beat-content"
@@ -815,16 +815,16 @@
         onkeydown={handleNewBeatKeydown}
         disabled={creatingBeat}
       />
-      <div class="ka-between">
-        <p id="new-beat-help" class="ka-help">{t("editor.beatView.newBeatHelp")}</p>
-        <div class="ka-row">
+      <div class="fq-between">
+        <p id="new-beat-help" class="fq-help">{t("editor.beatView.newBeatHelp")}</p>
+        <div class="fq-row">
           <button
             type="button"
             onclick={() => {
               addingBeat = false;
               newBeatContent = "";
             }}
-            class="ka-button ka-button--ghost"
+            class="fq-button fq-button--ghost"
             disabled={creatingBeat}
           >
             {t("editor.beatView.cancel")}
@@ -834,7 +834,7 @@
             onclick={createBeat}
             disabled={creatingBeat || !newBeatContent.trim()}
             aria-busy={creatingBeat || undefined}
-            class="ka-button"
+            class="fq-button"
           >
             {#if creatingBeat}
               <Loader2 class="w-5 h-5 animate-spin" aria-hidden="true" />
@@ -941,17 +941,17 @@
   .beat-toggle :global(.beat-chev) {
     flex: none;
     color: var(--color-text-muted);
-    transition: transform var(--ka-motion) ease-out;
+    transition: transform var(--fq-motion) ease-out;
   }
   .beat.is-open .beat-toggle :global(.beat-chev) {
     transform: rotate(90deg);
   }
-  .beat:not(.is-open) .ka-beat-number {
+  .beat:not(.is-open) .fq-beat-number {
     background: transparent;
     color: var(--color-text-muted);
     box-shadow: inset 0 0 0 1px var(--color-control-border-hover);
   }
-  .ka-beat-number {
+  .fq-beat-number {
     font: 500 var(--text-small) / 1 var(--font-ui);
   }
   .beat-title {

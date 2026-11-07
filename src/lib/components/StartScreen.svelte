@@ -202,7 +202,7 @@
 <div class="start">
   <div class="start-bar">
     {#if onOpenQuickStart}
-      <button type="button" class="ka-button ka-button--ghost" onclick={onOpenQuickStart}>
+      <button type="button" class="fq-button fq-button--ghost" onclick={onOpenQuickStart}>
         <CircleHelp class="w-5 h-5" aria-hidden="true" />
         {t("onboarding.startScreen.quickStart")}
       </button>
@@ -211,19 +211,13 @@
 
   <div class="start-body">
     <div class="start-intro">
-      <h1 class="ka-sr">kindling</h1>
+      <h1 class="fq-sr">Feather Quill</h1>
       <div class="signature">
         <figure class="brand">
-          <img
-            class="on-light"
-            src="/brand/kindling-lockup-stacked.svg"
-            alt=""
-            width="160"
-            height="132"
-          />
+          <img class="on-light" src="/feather-quill/lockup.svg" alt="" width="160" height="132" />
           <img
             class="on-dark"
-            src="/brand/kindling-lockup-stacked-reversed.svg"
+            src="/feather-quill/lockup-reversed.svg"
             alt=""
             width="160"
             height="132"
@@ -243,7 +237,7 @@
               type="button"
               data-testid="new-project-button"
               onclick={onNewProject}
-              class="ka-button start-action"
+              class="fq-button start-action"
             >
               <Plus class="w-5 h-5" aria-hidden="true" />
               <span
@@ -256,14 +250,14 @@
               onclick={trySampleProject}
               disabled={startingSample}
               aria-busy={startingSample || undefined}
-              class="ka-button ka-button--secondary start-action"
+              class="fq-button fq-button--secondary start-action"
             >
               <BookOpen class="w-5 h-5" aria-hidden="true" />
               <span>
                 {startingSample
                   ? t("onboarding.startScreen.openingSample")
                   : t("onboarding.startScreen.sampleProject")}
-                <small>{t("onboarding.startScreen.exploreKindling")}</small>
+                <small>{t("onboarding.startScreen.exploreFeatherQuill")}</small>
               </span>
             </button>
           {/if}
@@ -271,7 +265,7 @@
             <button
               type="button"
               onclick={onOpenEditorial}
-              class="ka-button ka-button--secondary start-action"
+              class="fq-button fq-button--secondary start-action"
             >
               <FolderOpen class="w-5 h-5" aria-hidden="true" />
               <span
@@ -296,7 +290,7 @@
             {#if hasMoreProjects || showAllProjects}
               <button
                 type="button"
-                class="ka-button ka-button--ghost"
+                class="fq-button fq-button--ghost"
                 aria-pressed={showAllProjects}
                 aria-busy={loadingProjectList || undefined}
                 onclick={toggleProjectList}
@@ -308,7 +302,7 @@
             {/if}
           </div>
           {#if openError}
-            <div class="ka-notice ka-notice--error od-row-top open-error" role="alert">
+            <div class="fq-notice fq-notice--error od-row-top open-error" role="alert">
               <TriangleAlert class="w-5 h-5 shrink-0" aria-hidden="true" />
               <div class="od-field od-fill">
                 <strong
@@ -348,7 +342,7 @@
                   type="button"
                   onclick={(e) => showDeleteConfirmation(e, project)}
                   disabled={deletingProjectId === project.id || openingProjectId === project.id}
-                  class="ka-button ka-button--ghost ka-icon-button recent-delete"
+                  class="fq-button fq-button--ghost fq-icon-button recent-delete"
                   class:is-busy={deletingProjectId === project.id}
                   aria-label={t("onboarding.startScreen.deleteNamed", { name: project.name })}
                   title={t("onboarding.startScreen.deleteProject")}
@@ -365,7 +359,7 @@
         </section>
       {:else}
         <section aria-label={t("onboarding.startScreen.projectsLabel")}>
-          <div class="ka-empty od-stack">
+          <div class="fq-empty od-stack">
             <FileText class="w-7 h-7" aria-hidden="true" />
             <h2 class="section-title">{t("onboarding.startScreen.emptyTitle")}</h2>
             <p>{t("onboarding.startScreen.emptyMessage")}</p>
@@ -377,7 +371,7 @@
         <h2 id="import-heading" class="section-title">
           {t("onboarding.startScreen.importOutline")}
         </h2>
-        <p class="ka-help section-help">
+        <p class="fq-help section-help">
           {t("onboarding.startScreen.importHelp")}
         </p>
         <ul class="import-list">
@@ -385,7 +379,7 @@
             <li>
               <button
                 type="button"
-                class="ka-button ka-button--ghost import-format"
+                class="fq-button fq-button--ghost import-format"
                 onclick={format.run}
               >
                 {format.label}
@@ -494,7 +488,7 @@
   .start-action small {
     font: 400 var(--text-small) / 1.4 var(--font-ui);
   }
-  .ka-button--secondary.start-action small {
+  .fq-button--secondary.start-action small {
     color: var(--color-text-muted);
   }
 
@@ -541,7 +535,7 @@
     gap: var(--space-3xs);
     padding-right: var(--space-3xs);
     border-bottom: var(--border-hair);
-    transition: background-color var(--ka-motion) ease-out;
+    transition: background-color var(--fq-motion) ease-out;
   }
   .recent-row:hover,
   .recent-row:focus-within {
@@ -611,11 +605,11 @@
     }
   }
 
-  .ka-empty {
+  .fq-empty {
     border-bottom: var(--border-hair);
     padding-top: var(--space-m);
   }
-  .ka-empty :global(svg) {
+  .fq-empty :global(svg) {
     color: var(--color-text-muted);
   }
 

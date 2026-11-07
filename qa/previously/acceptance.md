@@ -7,7 +7,7 @@ Base: `36aab52a6fd63ab4c896f7e3241fb62caf24f4cd` (latest main at branch creation
 | Collapsible Previously at top of scene | `Previously.svelte`, mounted above scene header                                     | Component tests; native desktop inspection                                                                |
 | Predecessor title and synopsis         | Position-ordered chapter/scene traversal; retains pending synopsis                  | Same/cross-chapter tests, including save completion and cleared synopsis; native cross-chapter inspection |
 | Closing 2–3 prose sentences            | Last three sentence segments; active Page or ordered Beat prose; no outline prompts | HTML/entities/dialogue/empty/short prose tests; native Beat and Page fixtures                             |
-| Remember collapsed state               | `kindling:previouslyCollapsed` localStorage preference                              | Navigation/remount tests; native navigation and webview reload                                            |
+| Remember collapsed state               | `feather-quill:previouslyCollapsed` localStorage preference                              | Navigation/remount tests; native navigation and webview reload                                            |
 | Hide when no predecessor               | First scene/missing selection return no summary                                     | Component/helper tests; native first-scene inspection                                                     |
 
 Additional regressions cover archived/empty chapters, stale navigation responses,
@@ -19,15 +19,15 @@ refresh after Find/Replace, editorial apply, or draft discard. No new IPC comman
 - Focused suite: 35 tests passed.
 - Full frontend suite with coverage: 560 tests passed in 41 files; statements
   98.56%, branches 94.11%, functions 98.61%, lines 99.13% (all gates passed).
-- `npm run check:all` passed: Press sync, types, formatting, ESLint, Rust formatting
+- `npm run check:all` passed: theme checks, types, formatting, ESLint, Rust formatting
   and all-target/all-feature Clippy. Existing Svelte/ESLint warnings remain.
 - `npm run build` passed; existing bundle-size warning remains.
 
 ## Native inspection
 
 Ran the real Tauri debug app on macOS with a disposable database at
-`/tmp/kindling-issue66-data` and an isolated application identifier
-`com.kindling.issue66qa`. Imported `test-data/simple-story.pltr` and seeded only
+`/tmp/feather-quill-issue66-data` and an isolated application identifier
+`io.github.designforfailure.featherquill.issue66qa`. Imported `test-data/simple-story.pltr` and seeded only
 that disposable project through existing IPC commands.
 
 Verified a Beat excerpt in Discovery, a Page excerpt from Discovery while viewing

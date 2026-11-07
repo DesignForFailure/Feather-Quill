@@ -1,6 +1,6 @@
-# gitleaks configuration for Kindling.
+# gitleaks configuration for Feather Quill.
 #
-# Kindling is offline-only and ships no secrets, so this file exists to give the
+# Feather Quill is offline-only and ships no secrets, so this file exists to give the
 # .githooks/pre-commit hook a documented home for false positives rather than
 # having contributors reach for `git commit --no-verify`.
 #

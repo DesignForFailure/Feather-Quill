@@ -120,7 +120,7 @@ it("sidebar shows a failed scene load, create and sync preview", async () => {
 
   ui.clearToast();
   mockInvoke("get_sync_preview", { get_chapters: [chapter], get_scenes: [scene] });
-  window.dispatchEvent(new Event("kindling:sync"));
+  window.dispatchEvent(new Event("feather-quill:sync"));
   await toast("Failed to check for sync changes: Disk is read-only");
 });
 
@@ -194,6 +194,6 @@ it("template browser shows a failed load instead of an empty list alone", async 
 it("references panel shows a failed detect-all request", async () => {
   mockInvoke("detect_all_references");
   render(ReferencesPanel);
-  window.dispatchEvent(new Event("kindling:detectAllReferences"));
+  window.dispatchEvent(new Event("feather-quill:detectAllReferences"));
   await toast("Failed to detect references: Disk is read-only");
 });

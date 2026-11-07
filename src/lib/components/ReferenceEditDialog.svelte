@@ -176,7 +176,7 @@
   aria-labelledby="reference-dialog-title"
   tabindex="-1"
 >
-  <div class="app-dialog-surface ka-dialog-default dialog-shell">
+  <div class="app-dialog-surface fq-dialog-default dialog-shell">
     <DialogHeader
       title={referenceTypeText(
         reference
@@ -190,9 +190,9 @@
       closeTestId="reference-close"
     />
 
-    <div class="ka-dialog-body reference-form">
-      <div class="ka-group">
-        <div class="ka-field od-field">
+    <div class="fq-dialog-body reference-form">
+      <div class="fq-group">
+        <div class="fq-field od-field">
           <label for="reference-name">{t("references.referenceEditDialog.name")}</label>
           <input
             id="reference-name"
@@ -206,14 +206,14 @@
             oninput={() => (nameError = null)}
           />
           {#if nameError}
-            <p id="ref-name-error" class="ka-error">{nameError}</p>
+            <p id="ref-name-error" class="fq-error">{nameError}</p>
           {/if}
         </div>
 
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="reference-description">
             {t("references.referenceEditDialog.description")}
-            <span class="ka-optional">{t("references.referenceEditDialog.optional")}</span>
+            <span class="fq-optional">{t("references.referenceEditDialog.optional")}</span>
           </label>
           <textarea
             id="reference-description"
@@ -224,10 +224,10 @@
           ></textarea>
         </div>
 
-        <div class="ka-field od-field">
+        <div class="fq-field od-field">
           <label for="reference-notes"
             >{t("references.referenceEditDialog.notes")}
-            <span class="ka-optional">{t("references.referenceEditDialog.optional")}</span></label
+            <span class="fq-optional">{t("references.referenceEditDialog.optional")}</span></label
           >
           <textarea
             id="reference-notes"
@@ -240,8 +240,8 @@
       </div>
 
       {#if !fieldsLoading && visibleFieldDefs.length > 0}
-        <section class="ka-group" aria-labelledby="reference-custom-fields">
-          <h3 id="reference-custom-fields" class="ka-group-title">
+        <section class="fq-group" aria-labelledby="reference-custom-fields">
+          <h3 id="reference-custom-fields" class="fq-group-title">
             {t("references.referenceEditDialog.customFields")}
           </h3>
           <div class="reference-fields">
@@ -257,15 +257,15 @@
         </section>
       {/if}
 
-      <section class="ka-group" aria-labelledby="reference-legacy">
-        <div class="ka-group-title">
+      <section class="fq-group" aria-labelledby="reference-legacy">
+        <div class="fq-group-title">
           <h3 id="reference-legacy" class="reference-legacy-title">
             {t("references.referenceEditDialog.legacyAttributes")}
           </h3>
           <button
             type="button"
             onclick={addAttributeRow}
-            class="ka-button ka-button--ghost"
+            class="fq-button fq-button--ghost"
             disabled={saving}
           >
             <Plus class="w-5 h-5" aria-hidden="true" />
@@ -273,7 +273,7 @@
           </button>
         </div>
         {#if attributeRows.length === 0}
-          <p class="ka-help">{t("references.referenceEditDialog.noAttributes")}</p>
+          <p class="fq-help">{t("references.referenceEditDialog.noAttributes")}</p>
         {:else}
           {#each attributeRows as row, index (row.id)}
             <div class="reference-attribute">
@@ -298,7 +298,7 @@
               <button
                 type="button"
                 onclick={() => removeAttributeRow(row.id)}
-                class="ka-button ka-button--ghost ka-icon-button reference-remove"
+                class="fq-button fq-button--ghost fq-icon-button reference-remove"
                 aria-label={t("references.referenceEditDialog.removeAttribute")}
                 title={t("references.referenceEditDialog.removeAttribute")}
                 disabled={saving}
@@ -311,15 +311,15 @@
       </section>
 
       {#if error}
-        <p class="ka-error" role="alert">{error}</p>
+        <p class="fq-error" role="alert">{error}</p>
       {/if}
     </div>
 
-    <footer class="ka-dialog-footer">
+    <footer class="fq-dialog-footer">
       <button
         type="button"
         onclick={onClose}
-        class="ka-button ka-button--secondary"
+        class="fq-button fq-button--secondary"
         disabled={saving}
       >
         {t("references.referenceEditDialog.cancel")}
@@ -328,7 +328,7 @@
         data-testid="reference-save"
         type="button"
         onclick={handleSave}
-        class="ka-button"
+        class="fq-button"
         disabled={saving}
         aria-busy={saving || undefined}
       >
@@ -347,7 +347,7 @@
   .reference-form {
     display: grid;
   }
-  .reference-form .ka-group > .ka-field + .ka-field {
+  .reference-form .fq-group > .fq-field + .fq-field {
     margin-top: 4px;
   }
   /* Short fields (Role, Age) pair up; groups of options take the full row. */
@@ -356,7 +356,7 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-s);
   }
-  .reference-fields > :global(.field-renderer:has(textarea, .ka-checks)) {
+  .reference-fields > :global(.field-renderer:has(textarea, .fq-checks)) {
     grid-column: 1 / -1;
   }
   .reference-legacy-title {

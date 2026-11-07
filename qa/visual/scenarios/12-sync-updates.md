@@ -5,7 +5,7 @@ titles from source_, _should add new chapters from source_, _should add new
 scenes from source_) using the `simple-story-v2.pltr` fixture. Nothing in
 `test-data/` is modified: the run imports a temp copy of v1 and then
 overwrites that temp copy with v2, which is what a writer editing their
-outline in Plottr looks like to Kindling. Budget: 2 screenshots, about 9
+outline in Plottr looks like to Feather Quill. Budget: 2 screenshots, about 9
 tool calls.
 
 v2 differs from v1 in three ways: `Act 3` is renamed `Act 3: Resolution`,
